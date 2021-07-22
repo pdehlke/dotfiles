@@ -27,5 +27,8 @@ else
   end
 endif
 
+
+let g:lightline.colorscheme = 'solarized'
+
 colorscheme solarized
 set background=dark
