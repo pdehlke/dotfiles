@@ -62,6 +62,11 @@ alias ve='vim ~/.vimrc'
 # zsh profile editing
 alias ze='vim ~/.zshrc'
 
+# asdf
+alias aua='asdf update --head && asdf plugin-update --all'
+alias ala='asdf list-all'
+alias rlv="asdf list-all ruby | rg '^\d'"
+
 # Git Aliases
 alias gs='git status'
 alias gstsh='git stash'
