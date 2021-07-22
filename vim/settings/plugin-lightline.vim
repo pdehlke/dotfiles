@@ -1,5 +1,4 @@
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -33,7 +32,7 @@ endfunction
 
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-       \ ('' != expand('%') ? expand('%') : '[NoName]')
+       \ ('' != expand('%:~:.') ? expand('%:~:.') : '[NoName]')
 endfunction
 
 " Use status bar even with single buffer
