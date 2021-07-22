@@ -1,7 +1,8 @@
-FROM ubuntu:18.04
-LABEL maintainer="Luiz Filho <lfilho@gmail.com>"
+FROM ubuntu:20.04
+LABEL maintainer="Nanda Lopes <nandalopes@gmail.com>"
 
 ENV TERM xterm-256color
+ENV CODESPACES true
 
 # Bootstrapping packages needed for installation
 RUN \
@@ -23,7 +24,6 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && \
 # `security` is needed for fontconfig and fc-cache
 # Let the container know that there is no tty
 RUN DEBIAN_FRONTEND=noninteractive \
-  add-apt-repository ppa:aacebedo/fasd && \
   apt-get update && \
   apt-get -yqq install \
     autoconf \
@@ -46,7 +46,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 # Install dotfiles
 COPY . /root/.yadr
-RUN cd /root/.yadr && rake install
+RUN cd /root/.yadr && ./install.sh
+
+# Install vim plugins
+RUN vim -es -u ~/.vimrc -i NONE -c 'PlugClean!' -c 'PlugInstall --sync' -c 'qall'
 
 # Run a zsh session
 CMD [ "/bin/zsh" ]
