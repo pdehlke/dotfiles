@@ -16,3 +16,5 @@ vim/sessions
 bin/subl
 tags
 **/.uuid
+
+bin/chezmoi
