@@ -39,7 +39,7 @@ Please use GitHub Issues for pull requests or bug reports only.
 
 ## Screenshot
 
-![screenshot vim](https://i.imgur.com/Gt9Q5Mk.png)
+![screenshot vim](https://i.imgur.com/IhPYpNV.png)
 
 ## Installation
 
@@ -193,7 +193,7 @@ A .gemrc is included. Never again type `gem install whatever --no-ri --no-rdoc`.
 `tmux.conf` provides some sane defaults for tmux on Mac OS like a powerful status bar and vim keybindings.
 You can customize the configuration in `~/.tmux.conf.user`.
 
-![screenshot tmux](https://i.imgur.com/94ZJQwb.png)
+![screenshot tmux](https://i.imgur.com/Rlh30kg.png)
 
 ### Vimization of everything
 
