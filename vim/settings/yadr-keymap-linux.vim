@@ -74,5 +74,8 @@ nnoremap <C-Right>  <C-w>>
 nmap <A-A> :Tabularize /
 vmap <A-A> :Tabularize /
 
+" ,hp = html preview
+map <silent> ,hp :!xdg-open %<CR><CR>
+
 " Source current file Alt-% (good for vim development)
 map <A-%> :so %<CR>
