@@ -1,7 +1,10 @@
 " ========================================
 " Mac specific General vim sanity improvements
 " ========================================
-"
+if !OSX()
+  finish
+endif
+
 " ========================================
 " RSI Prevention - keyboard remaps
 " ========================================

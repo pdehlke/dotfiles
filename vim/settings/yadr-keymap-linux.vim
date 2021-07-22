@@ -1,7 +1,10 @@
 " ========================================
 " Linux specific General vim sanity improvements
 " ========================================
-"
+if !LINUX()
+  finish
+endif
+
 " ========================================
 " RSI Prevention - keyboard remaps
 " ========================================
