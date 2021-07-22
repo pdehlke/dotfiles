@@ -1,8 +1,5 @@
 # Aliases in this file are bash and zsh compatible
 
-# Don't change. The following determines where YADR is installed.
-yadr=$HOME/.yadr
-
 # Get operating system
 platform='unknown'
 unamestr=$(uname)
@@ -48,9 +45,9 @@ TRAPHUP() {
   source $yadr/zsh/aliases.zsh
 }
 
-alias ae='vim $yadr/zsh/aliases.zsh' #alias edit
-alias ar='source $yadr/zsh/aliases.zsh'  #alias reload
-alias gar="killall -HUP -u \"$USER\" zsh"  #global alias reload
+alias ae='vim $yadr/zsh/aliases.zsh' # alias edit
+alias ar='source $yadr/zsh/aliases.zsh'  # alias reload
+alias gar="killall -HUP -u \"$USER\" zsh"  # global alias reload
 
 # vim using
 mvim --version > /dev/null 2>&1

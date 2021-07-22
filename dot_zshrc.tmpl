@@ -1,0 +1,6 @@
+source {{ .chezmoi.sourceDir }}/zsh/prezto/runcoms/zshrc
+
+# Don't change. The following determines where YADR is installed.
+export yadr={{ .chezmoi.sourceDir }}
+
+for config_file ( {{- .chezmoi.sourceDir -}} /zsh/*.zsh) source $config_file
