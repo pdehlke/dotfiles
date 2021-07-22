@@ -5,14 +5,19 @@
      _____| / ___ ( (_| | |
     (_______\_____|\____|_|
 
-    # Yet Another Dotfile Repo v1.1
-    # Now with Prezto and Vundle!
+    # Yet Another Dotfile Repo v2.0
+    # Now with Chezmoi, Prezto and Vim-Plug!
 
 [![Join the chat at https://gitter.im/skwp/dotfiles](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/skwp/dotfiles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-#### sh -c "\`curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh \`"
+This is a **GNU/Linux** focused fork of @[skwp/dotfiles](https://github.com/skwp/dotfiles).
 
-**Always be sure to run `rake update` after pulling to ensure plugins are updated**
+#### sh -c "\`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/bin/yadr/install.sh \`"
+
+**Managed with [chezmoi](https://chezmoi.io/).**
+
+This repo has been built for my own benefit, however feel free to sneak in and
+steal anything that would improve your own productivity.
 
 ## What is YADR?
 
@@ -23,7 +28,7 @@
   * Many zsh plugins, starting with the wonderful Prezto base, and adding a few niceties on top.
   * All things are vimized: irb, postgres command line, etc.
 
-*Linux/Ubuntu is not supported! If it works, great. If it doesn't, please don't complain. You may need to install zsh if you don't already have it.*
+*MacOS is not supported! If it works, great. If it doesn't, please don't complain. You may need to install zsh if you don't already have it.*
 *That being said, check the Docker section below*
 
 ## Mailing List
@@ -34,27 +39,60 @@ Please use GitHub Issues for pull requests or bug reports only.
 
 ## Screenshot
 
-![screenshot](https://i.imgur.com/3C1Ze.png)
+![screenshot vim](https://i.imgur.com/Gt9Q5Mk.png)
 
 ## Installation
 
 To get started please run:
 
 ```bash
-sh -c "`curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh`"
+sh -c "`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/bin/yadr/install.sh`"
 ```
 
-**Note:** YADR will automatically install all of its subcomponents. If you want to be asked
-about each one, use:
+**Note:** YADR will automatically install all of its subcomponents.
+
+### Convenience script
+
+In case of not having `chezmoi` installed - Just firing the
+[`bin/yadr/install.sh`](https://github.com/nandalopes/dotfiles/raw/main/bin/yadr/install.sh)
+after a simple download of it.
+
+### Manually with `git`
+
+You will have to clone the repo and from its root directory, execute the
+`install.sh` SH script
+
+### Manually with `chezmoi`
+
+Leveraging Chezmoi capabilities
 
 ```bash
-sh -c "`curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh`" -s ask
+chezmoi init --apply --verbose --source ~/.yadr --https nandalopes/dotfiles
+```
+
+### _What if I already have a chezmoi dotfiles repo?_
+
+If you want to integrate this repo with yours, do this:
+
+```bash
+chezmoi cd
+git remote add yadr https://github.com/nandalopes/dotfiles.git
+git fetch yadr
+
+# Merge repos:
+git merge --allow-unrelated-histories yadr/main
+
+# Verify if there is duplicated source files
+chezmoi verify
+
+# Then apply updates
+chezmoi apply --verbose
 ```
 
 ## Wait, you're not done! Do this:
 
-#### Install iTerm Solarized Colors
-YADR will install Solarized colorschemes into your iTerm. Go to Profiles => Colors => Load Presets to pick Solarized Dark.
+#### Install Solarized Colors at your terminal of choice
+Change your terminal colors to Solarized. Most terminals on Linux have a solarized colorscheme installed by default.
 
 #### Remap caps-lock to escape with [Karabiner-Elements](https://pqrs.org/osx/karabiner/index.html)
 The escape key is the single most used key in vim.  Old keyboards used to have Escape where Tab is today. Apple keyboards are the worst with their tiny Esc keys. But all this is fixed by remapping Caps to Escape.  If you're hitting a small target in the corner, you are slowing yourself down considerably, and probably damaging your hands with repetitive strain injuries.
@@ -73,23 +111,29 @@ Same as iTerm. The native spaces navigation slows everything down for no reason.
 * Make sure you install Solarized colorscheme in your terminal!
 * If you don't want to use solarized terminal, then make sure you do this:
 
-      let g:yadr_using_unsolarized_terminal = 1
-      # in ~/.vimrc.before
+```vim
+let g:yadr_using_unsolarized_terminal = 1
+# in ~/.vimrc.before
+```
 
 * If you want to use an alternate colorcheme like Gruvbox, then in your `~/.vimrc.after` do:
 
-      let g:yadr_disable_solarized_enhancements = 1
-      colorscheme base16-twilight
+```vim
+let g:yadr_disable_solarized_enhancements = 1
+colorscheme base16-twilight
+# in ~/.vimrc.after
+```
 
 ### Upgrading
 
 Upgrading is easy.
 
-```bash
-cd ~/.yadr
-git pull --rebase
-rake update
-```
+
+      chezmoi cd
+      git pull --rebase
+      chezmoi diff # check updates before apply
+      chezmoi apply --verbose
+
 
 ## What's included, and how to customize?
 
@@ -152,6 +196,8 @@ A .gemrc is included. Never again type `gem install whatever --no-ri --no-rdoc`.
 `tmux.conf` provides some sane defaults for tmux on Mac OS like a powerful status bar and vim keybindings.
 You can customize the configuration in `~/.tmux.conf.user`.
 
+![screenshot tmux](https://i.imgur.com/94ZJQwb.png)
+
 ### Vimization of everything
 
 The provided inputrc and editrc will turn your various command line tools like mysql and irb into vim prompts. There's
@@ -179,7 +225,7 @@ of plugins above to learn more.
 
  * `,z` - go to previous buffer (:bp)
  * `,x` - go to next buffer (:bn)
- * `Cmd-j` and `Cmd-k` to move up and down roughly by functions (`Alt` in Linux)
+ * `Cmd-j` and `Cmd-k` to move up and down roughly by functions (`\j` and `\k` in Linux)
  * `Ctrl-o` - Old cursor position - this is a standard mapping but very useful, so included here
  * `Ctrl-i` - opposite of Ctrl-O (again, this is standard)
 
@@ -192,6 +238,7 @@ of plugins above to learn more.
  * `,k` - Search the current word under the cursor and show results in quickfix window
  * `,K` - Grep the current word up to next exclamation point (useful for ruby foo! methods)
  * `Cmd-*` - highlight all occurrences of current word (similar to regular `*` except doesn't move)
+ (`Alt` in Linux)
  * `,hl` - toggle search highlight on and off
  * `,gg` or `,ag` - Grep command line, type between quotes. Uses Ag Silver Searcher.
  * After searching with `,gg` you can navigate the results with `Ctrl-x` and `Ctrl-z` (or standard vim `:cn` and `:cp`)
@@ -210,22 +257,24 @@ of plugins above to learn more.
  * `,t` - CtrlP fuzzy file selector
  * `,b` - CtrlP buffer selector - great for jumping to a file you already have open
  * `Cmd-Shift-M` - jump to method - CtrlP tag search within current buffer
+ (`,M` in Linux)
  * `,jm` jump to models. Other `,j` mappings: `,jc` for controllers, `,jh` for helpers, etc. If you think of a concept and a letter, we've got you covered.
- * `Cmd-Shift-N` - NERDTree toggle (`Alt` in Linux)
+ * `Cmd-Shift-N` - NERDTree toggle (`\N` in Linux)
  * `Ctrl-\` - Show current file in NERDTree
  * `Cmd-Shift-P` - Clear CtrlP cache
+ (`,P` in Linux)
 
 #### Better keystrokes for common editing commands
 
  * Ctrl-Space to autocomplete. Tab for snipmate snippets.
  * `,#` `,"` `,'` `,]` `,)` `,}` to surround a word in these common wrappers. the # does #{ruby interpolation}. works in visual mode (thanks @cj). Normally these are done with something like `ysw#`
- * `Cmd-'`, `Cmd-"`, `Cmd-]`, `Cmd-)`, etc to change content inside those surrounding marks. You don't have to be inside them (`Alt` in Linux)
+ * `Cmd-'`, `Cmd-"`, `Cmd-]`, `Cmd-)`, etc to change content inside those surrounding marks. You don't have to be inside them (`\"` in Linux)
  * `,.` to go to last edit location (same as `'.`) because the apostrophe is hard on the pinky
  * `,ci` to change inside any set of quotes/brackets/etc
 
 #### Tabs, Windows, Splits
 
- * Use `Cmd-1` thru `Cmd-9` to switch to a specific tab number (like iTerm and Chrome) - and tabs have been set up to show numbers (`Alt` in Linux)
+ * Use `Cmd-1` thru `Cmd-9` to switch to a specific tab number (like iTerm and Chrome) - and tabs have been set up to show numbers (`,t` or `Alt` in Linux)
  * `Ctrl-h,l,j,k` - to move left, right, down, up between splits. This also works between vim and tmux splits thanks to `vim-tmux-navigator`.
  * `Q` - Intelligent Window Killer. Close window `wincmd c` if there are multiple windows to same buffer, or kill the buffer `bwipeout` if this is the last window into it.
  * `vv` - vertical split (`Ctrl-w,v`)
@@ -251,13 +300,13 @@ of plugins above to learn more.
  * `,he` - Html Escape
  * `,hu` - Html Unescape
  * `,hp` - Html Preview (open in Safari)
- * `Cmd-Shift-A` - align things (type a character/expression to align by, works in visual mode or by itself) (`Alt` in Linux)
+ * `Cmd-Shift-A` - align things (type a character/expression to align by, works in visual mode or by itself) (`,A` in Linux)
  * `:ColorToggle` - turn on #abc123 color highlighting (useful for css)
  * `:Gitv` - Git log browsers
  * `,hi` - show current Highlight group. if you don't like the color of something, use this, then use `hi! link [groupname] [anothergroupname]` in your vimrc.after to remap the color. You can see available colors using `:hi`
  * `,gt` - Go Tidy - tidy up your html code (works on a visual selection)
  * `:Wrap` - wrap long lines (e.g. when editing markdown files)
- * `Cmd-/` - toggle comments (usually gcc from tComment) (`Alt` in Linux)
+ * `Cmd-/` - toggle comments (usually gcc from tComment) (`,/` in Linux)
  * `gcp` (comment a paragraph)
 
 #### Rails & Ruby
