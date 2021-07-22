@@ -74,5 +74,8 @@ nnoremap <D-Right>  <C-w>>
 nmap <D-A> :Tabularize /
 vmap <D-A> :Tabularize /
 
+" ,hp = html preview
+map <silent> ,hp :!open -a Safari %<CR><CR>
+
 " Source current file Cmd-% (good for vim development)
 map <D-%> :so %<CR>
