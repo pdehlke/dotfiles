@@ -1,7 +1,7 @@
 Plug 'itchyny/lightline.vim' " Status line
 Plug 'chrisbra/color_highlight'
-Plug 'jby/tmux.vim'
 Plug 'zakj/vim-showmarks'
+Plug 'nathanaelkane/vim-indent-guides' " Display indent levels
 
 " Required for Gblame in terminal vim
 Plug 'godlygeek/csapprox'
