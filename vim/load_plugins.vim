@@ -17,11 +17,11 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-set runtimepath+=~/.vim/plugins.d "Submodules
-
 " YADR's vundles are split up by category into smaller files
 " This reduces churn and makes it easier to fork. See
 " ~/.vim/plugins.d/ to edit them:
+set runtimepath+=~/.vim/plugins.d "Submodules
+
 runtime ruby.vim
 runtime languages.vim
 runtime git.vim
@@ -30,6 +30,8 @@ runtime textobjects.vim
 runtime search.vim
 runtime project.vim
 runtime improvements.vim
+
+" call lib#SourceDirectory('~/.vim/plugins.d') " source all bundles under `plugins.d`
 
 " The plugins listed in ~/.vim/.vundles.local will be added here to
 " allow the user to add vim plugins to yadr without the need for a fork.
