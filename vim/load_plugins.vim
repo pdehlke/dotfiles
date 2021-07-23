@@ -29,7 +29,7 @@ runtime appearance.vim
 runtime textobjects.vim
 runtime search.vim
 runtime project.vim
-runtime vim-improvements.vim
+runtime improvements.vim
 
 " The plugins listed in ~/.vim/.vundles.local will be added here to
 " allow the user to add vim plugins to yadr without the need for a fork.
