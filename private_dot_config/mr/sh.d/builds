@@ -1,0 +1,9 @@
+# -*- mode: sh -*-
+
+has_makefile() {
+  if missing_file Makefile && missing_file GNUmakefile ; then
+    return 1
+  else
+    return 0
+  fi
+}

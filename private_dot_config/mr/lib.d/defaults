@@ -1,0 +1,16 @@
+# -*- mode: sh -*-
+
+bundleall = git_bundleall $MR_REPO $@
+
+Clean =
+  if has_makefile ; then
+    make clean
+  fi
+
+make =
+  if has_makefile ; then
+    make
+  fi
+
+# skip = default_skipper $MR_ACTION
+
