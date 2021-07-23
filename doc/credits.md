@@ -10,6 +10,8 @@ and other places for the cream of the crop of vim awesomeness.
  * https://github.com/kana
  * https://github.com/sorin-ionescu
  * https://github.com/nelstrom
+ * https://github.com/twpayne/chezmoi
+ * https://github.com/aspiers/mr-config
 
 And everything that's in the modules included in vim/bundle of course.
 Please explore these people's work.
@@ -24,3 +26,5 @@ Yadr is made possible by many awesome people, too many to list :) But here are a
  * Switch from oh-my-zsh to Presto: @[JeanMertz](https://github.com/JeanMertz)
  * Vundle migration: @[duhanebel](https://github.com/duhanebel)
  * Docker support: @[lfilho](https://github.com/lfilho)
+ * Vim-Plug migration: @[nandalopes](https://github.com/nandalopes)
+ * Chezmoi migration: @[nandalopes](https://github.com/nandalopes)
