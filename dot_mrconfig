@@ -1,0 +1,15 @@
+# -*- mode: sh -*-
+
+[DEFAULT]
+include =
+  if [ -e ~/.config/mr/library_loaders ]; then
+    # mr-config already checked out
+    . ~/.config/mr/library_loaders
+    load_libraries ~/.config/mr/sh.d/*
+    include_lib_dirs ~/.config/mr/lib.d
+    include_lib_dirs ~/.config/mr/groups.d
+  fi
+
+[ALIAS]
+up = update
+

@@ -1,0 +1,43 @@
+# vim:fileencoding=utf-8:ft=conf
+
+[ {{- .chezmoi.sourceDir -}} ]
+checkout =
+  git clone 'https://github.com/nandalopes/dotfiles.git' '{{ .chezmoi.sourceDir }}'
+# load {{ .chezmoi.sourceDir }}/.mrconfig
+chain = true
+order = 3
+update = gplr
+post_checkout =
+  cd "$MR_REPO"
+  # config
+  cfg_rcv_warn
+  cfg_shared
+  git_add_remotes "
+    upstream https://github.com/skwp/dotfiles.git
+    lfilho   https://github.com/lfilho/dotfiles.git
+  "
+
+
+[${XDG_CONFIG_HOME:-.config}/gitstatus]
+checkout =
+  if ! [ -s "$HOME/.zprezto" ] ; then
+    git clone --depth=1 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
+  else
+    ln -nfs \
+      ~/.zprezto/modules/prompt/external/powerlevel10k/gitstatus \
+      'gitstatus'
+  fi
+order = 9
+update =
+  if ! [ -s "$MR_REPO" ]; then
+    git pull
+  fi
+fetch =
+  if ! [ -s "$MR_REPO" ]; then
+    git fetch
+  fi
+post_status = git_last_tag
+make =
+  ./build -w -s -d docker
+  sudo chown $USER:$USER -R usrbin deps
+
