@@ -184,6 +184,23 @@ It is recommended to use this file to set your user info. Alternately, you can s
   * Slightly improved colors for diff
   * `gdmb` (g)it (d)elete (m)erged (b)ranches - Deletes all branches already merged on current branch
 
+### Myrepos framework configuration
+
+[Myrepos](https://myrepos.branchable.com/) is a tool to manage all your version control repositories.
+
+YADR provides a config framework to manage not only git repositories, but any version control system supported by this tool. It was adapted from [@aspiers/mr-config](https://github.com/aspiers/mr-config).
+
+You'll have under a `.config/mr` folder:
+
+  * [`.mrconfig`](https://github.com/nandalopes/dotfiles/blob/main/dot_mrconfig) - uses [`library_loaders`](https://github.com/nandalopes/dotfiles/blob/main/private_dot_config/mr/library_loaders) to load all the components below:
+    * [`groups.d/`](https://github.com/nandalopes/dotfiles/blob/main/private_dot_config/mr/groups.d) - groups of `mr` repo definitions
+    * [`lib.d/`](https://github.com/nandalopes/dotfiles/blob/main/private_dot_config/mr/lib.d) which contains
+      * various shell snippets which get auto-loaded in the context of `mr`'s `lib` parameter
+      * definitions of various `mr` actions and other `mr` parameters
+    * [`sh.d/`](https://github.com/nandalopes/dotfiles/blob/main/private_dot_config/mr/sh.d) - various shell helper functions used by the files in `lib.d/`.  Parts of these could be reused by other people, e.g.:
+      * [`sh.d/git`](https://github.com/nandalopes/dotfiles/blob/main/private_dot_config/mr/sh.d/git) - various generic `git`-related helper functions
+      * [`sh.d/git-remotes`](https://github.com/nandalopes/dotfiles/blob/main/private_dot_config/mr/sh.d/git-remotes) - various helper functions relating to management of git remotes
+
 ### RubyGems
 
 A .gemrc is included. Never again type `gem install whatever --no-ri --no-rdoc`. `--no-ri --no-rdoc` is done by default.
