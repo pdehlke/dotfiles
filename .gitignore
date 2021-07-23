@@ -1,17 +1,6 @@
 custom/zsh
 
-vim/backups
-vim/view
 *un~
-vim/.netrwhist
-vim/tmp
-vim/spell
-vim/after/.vimrc.after
-vim/.vundles.local
-vim/.vundles.local.bak
-vim/autoload/plug.vim
-vim/plugged
-vim/sessions
 .netrwhist
 bin/subl
 tags
