@@ -1,5 +1,5 @@
 Plug 'justinmk/vim-sneak'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug 'henrik/vim-indexed-search'
 Plug 'bronson/vim-visual-star-search'
 Plug 'skwp/greplace.vim'
