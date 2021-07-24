@@ -1,9 +1,9 @@
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
-Plug 'jtratner/vim-flavored-markdown'
+Plug 'rhysd/vim-gfm-syntax'
 Plug 'nelstrom/vim-markdown-preview'
 Plug 'skwp/vim-html-escape'
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 
 " SnipMate files
