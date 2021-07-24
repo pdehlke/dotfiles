@@ -21,6 +21,19 @@ imap <silent> <A-d> _
 imap <silent> <A-K> -
 imap <silent> <A-D> -
 
+" Wrappings
+vmap <A-j> gj
+vmap <A-k> gk
+vmap <A-$> g$
+vmap <A-^> g^
+vmap <A-0> g^
+nmap <A-j> gj
+nmap <A-k> gk
+nmap <A-$> g$
+nmap <A-^> g^
+nmap <A-0> g^
+
+
 " Change inside various enclosures with Alt-" and Alt-'
 " The f makes it find the enclosure so you don't have
 " to be standing inside it
