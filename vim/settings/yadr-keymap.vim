@@ -90,6 +90,12 @@ nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
 nmap <silent> ,qc :cclose<CR>
 nmap <silent> ,qo :copen<CR>
 
+
+" Stolen from Steve Losh vimrc: https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+" Open a Quickfix window for the last search.
+nnoremap <silent> <leader>q/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+
 "Move back and forth through previous and next buffers
 "with ,z and ,x
 nnoremap <silent> ,z :bp<CR>
