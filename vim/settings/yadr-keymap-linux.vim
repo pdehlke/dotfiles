@@ -60,7 +60,7 @@ nnoremap <C-Left> <C-w><
 nnoremap <C-Right>  <C-w>>
 
 " ,hp = html preview
-map <silent> ,hp :!xdg-open %<CR><CR>
+map <silent> <leader>hp :!xdg-open %<CR><CR>
 
 " Source current file Alt-% (good for vim development)
 map <A-%> :so %<CR>
