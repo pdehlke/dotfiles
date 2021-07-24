@@ -36,21 +36,24 @@ set nowb
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
-if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
+if has('persistent_undo')
+  if !isdirectory(expand('~').'/.cache/vim/backups')
+    silent !mkdir -p ~/.cache/vim/backups > /dev/null 2>&1
+  endif
+  set undodir=~/.cache/vim/backups
   set undofile
 endif
 
 " ================ Indentation ======================
 
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
+set autoindent     " Minimal automatic indenting for any filetype.
+
+"" Tabs. May be overridden by autocmd rules
+set tabstop=4      " Tab equal 4 spaces (default 8)
+set shiftwidth=2   " Arrow function (>>) creates 2 spaces
+set softtabstop=-2 " Number of spaces per Tab - negative, will use shiftwidth
+set expandtab      " Use spaces instead of a tab charater on TAB
+set shiftround     " Shift to the next round tab stop. Aka When at 3 spaces, hit >> to go to 4, not 5 if your shiftwidth is set to 2.
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
