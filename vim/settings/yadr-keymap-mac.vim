@@ -21,6 +21,19 @@ imap <silent> <D-d> _
 imap <silent> <D-K> -
 imap <silent> <D-D> -
 
+" Wrappings
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-$> g$
+vmap <D-^> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-$> g$
+nmap <D-^> g^
+nmap <D-0> g^
+
+
 " Change inside various enclosures with Cmd-" and Cmd-'
 " The f makes it find the enclosure so you don't have
 " to be standing inside it
