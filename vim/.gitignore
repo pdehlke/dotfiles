@@ -14,4 +14,7 @@ after/.vimrc.after
 autoload/plug.vim
 plugged/
 sessions/
-settings/**/*.vim
+settings/before/*.vim
+settings/after/*.vim
+!settings/before/main.vim
+!settings/after/main.vim
