@@ -1,6 +1,6 @@
-nnoremap ,rs :RunItermSpec<cr>
-nnoremap ,rl :RunItermSpecLine<cr>
-nnoremap ,ss :RunItermSpringSpec<cr>
-nnoremap ,sl :RunItermSpringSpecLine<cr>
+nnoremap <leader>rs :RunItermSpec<cr>
+nnoremap <leader>rl :RunItermSpecLine<cr>
+nnoremap <leader>ss :RunItermSpringSpec<cr>
+nnoremap <leader>sl :RunItermSpringSpecLine<cr>
 nnoremap zl :RunItermZeusSpecLine<cr>
 nnoremap zs :RunItermZeusSpec<cr>
