@@ -36,8 +36,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python-setuptools \
     python-dev \
     ruby-full \
+    silversearcher-ag \
     sudo \
     tmux \
+    universal-ctags \
     vim \
     wget \
     zsh && \
