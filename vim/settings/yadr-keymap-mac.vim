@@ -42,10 +42,6 @@ autocmd FileType rspec map <buffer> <D-k> {
 autocmd FileType javascript map <buffer> <D-k> }
 autocmd FileType javascript map <buffer> <D-j> {
 
-" Command-/ to toggle comments
-map <D-/> :TComment<CR>
-imap <D-/> <Esc>:TComment<CR>i
-
 " Use numbers to pick the tab you want (like iTerm)
 map <silent> <D-1> :tabn 1<cr>
 map <silent> <D-2> :tabn 2<cr>
