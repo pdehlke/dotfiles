@@ -1,15 +1,17 @@
 "" fzf.vim
-let $FZF_DEFAULT_COMMAND =  "find -path '.git/*' -prune -o -path '*/.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+let $FZF_DEFAULT_COMMAND =  "find -path '*/.git' -prune -o -path '*/node_modules' -prune -o -path '*/target' -prune -o -path '*/dist' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 set grepprg=git\ grep\ --line-number
 
 " The Silver Searcher
 if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore node_modules -g ""'
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 " ripgrep
 if executable('rg')
+  " Caution, it uses gitignore patterns, to include vcs ignored, add
+  " `--no-ignore-vcs`
   let $FZF_DEFAULT_COMMAND = "rg --files --hidden --follow --glob '!.git'"
   set grepprg=rg\ --vimgrep
 endif
