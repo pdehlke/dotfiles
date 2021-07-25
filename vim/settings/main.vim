@@ -21,6 +21,11 @@ set hidden
 "turn on syntax highlighting
 syntax on
 
+"" Copy/Paste/Cut
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+
 
 " ================ Turn Off Swap Files ==============
 
@@ -83,8 +88,8 @@ set wildignore+=*.png,*.jpg,*.gif
 
 " ================ Scrolling ========================
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
+set scrolloff=6         "Start scrolling when we're 6 lines away from margins
+set sidescrolloff=10
 set sidescroll=1
 
 " ================ Search ===========================
@@ -94,7 +99,7 @@ set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 
-" ================ Security ==========================
-set modelines=0
-set nomodeline
+" ================ Modelines ==========================
+set modeline
+set modelines=3
 
