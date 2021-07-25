@@ -1,12 +1,13 @@
-Plug 'itchyny/lightline.vim' " Status line
-Plug 'chrisbra/color_highlight'
-Plug 'zakj/vim-showmarks'
-Plug 'nathanaelkane/vim-indent-guides' " Display indent levels
-
-" Required for Gblame in terminal vim
-Plug 'godlygeek/csapprox'
+" Status line
+Plug 'itchyny/lightline.vim'
 
 " Colorschemes
 Plug 'skwp/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+
+" Other visual enhancements
+Plug 'godlygeek/CSApprox' " Required for Gblame in terminal vim, Fix gvim only colorscheme on terminals
+Plug 'zakj/vim-showmarks'
+Plug 'nathanaelkane/vim-indent-guides' " Display indent levels
+Plug 'chrisbra/Colorizer' " Show colors by code
