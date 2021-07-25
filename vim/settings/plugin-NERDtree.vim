@@ -1,3 +1,7 @@
+"" NERDTree configuration
+let g:NERDTreeIgnore=['\.git', '\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -15,6 +19,8 @@ function! OpenNerdTree()
   endif
 endfunction
 nnoremap <silent> <C-\> :call OpenNerdTree()<CR>
+nnoremap <silent> <F2> :call OpenNerdTree()<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " ==== NERD tree
 if LINUX()
