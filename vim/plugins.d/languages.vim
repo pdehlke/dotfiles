@@ -1,10 +1,7 @@
-Plug 'sheerun/vim-polyglot'
+"" All languages
+Plug 'sheerun/vim-polyglot' " language pack for Vim
 Plug 'vim-syntastic/syntastic'
-Plug 'rhysd/vim-gfm-syntax'
-Plug 'nelstrom/vim-markdown-preview'
-Plug 'skwp/vim-html-escape'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'jparise/vim-graphql'
+" Plug 'dense-analysis/ale'
 
 " SnipMate files
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -12,3 +9,14 @@ Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
 " Optional:
 Plug 'honza/vim-snippets'
+
+" Markdown
+Plug 'rhysd/vim-gfm-syntax'
+Plug 'nelstrom/vim-markdown-preview'
+
+"" HTML
+Plug 'skwp/vim-html-escape'
+Plug 'jparise/vim-graphql'
+
+"" Javascript
+Plug 'maxmellon/vim-jsx-pretty'
