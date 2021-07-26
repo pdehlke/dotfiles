@@ -2,25 +2,25 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" ================ General Config ====================
+" ================ General Config ===================
 
-set number                      "Line numbers are good
-set relativenumber              "Relative line numbers
-set backspace=indent,eol,start  "Allow backspace in insert mode
-set history=1000                "Store lots of :cmdline history
-set showcmd                     "Show incomplete cmds down the bottom
-set showmode                    "Show current mode down the bottom
-set gcr=a:blinkon0              "Disable cursor blink
-set mouse+=a                    "Enable mouse
-set visualbell                  "No sounds
-set autoread                    "Reload files changed outside vim
+set number                     " Line numbers are good
+set relativenumber             " Relative line numbers
+set backspace=indent,eol,start " Allow backspace in insert mode
+set history=1000               " Store lots of :cmdline history
+set showcmd                    " Show incomplete cmds down the bottom
+set showmode                   " Show current mode down the bottom
+set gcr=a:blinkon0             " Disable cursor blink
+set mouse+=a                   " Enable mouse
+set visualbell                 " No sounds
+set autoread                   " Reload files changed outside vim
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-"turn on syntax highlighting
+" turn on syntax highlighting
 syntax on
 
 "" Copy/Paste/Cut
@@ -50,7 +50,7 @@ endif
 
 set autoindent     " Minimal automatic indenting for any filetype.
 
-"" Tabs. May be overridden by autocmd rules
+" Tabs. May be overridden by autocmd rules
 set tabstop=4      " Tab equal 4 spaces (default 8)
 set shiftwidth=2   " Arrow function (>>) creates 2 spaces
 set softtabstop=-2 " Number of spaces per Tab - negative, will use shiftwidth
@@ -67,20 +67,20 @@ filetype indent on
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
-set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
+set nowrap    " Don't wrap lines
+set linebreak " Wrap lines at convenient points
 
 " ================ Folds ============================
 
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldmethod=indent " fold based on indent
+set foldnestmax=3     " deepest fold is 3 levels
+set nofoldenable      " dont fold by default
 
 " ================ Completion =======================
 
 set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildmenu                      " enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~       " stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
 set wildignore+=*DS_Store*
@@ -93,18 +93,18 @@ set wildignore+=*.png,*.jpg,*.gif
 
 " ================ Scrolling ========================
 
-set scrolloff=6         "Start scrolling when we're 6 lines away from margins
+set scrolloff=6      " Start scrolling when we're 6 lines away from margins
 set sidescrolloff=10
 set sidescroll=1
 
 " ================ Search ===========================
 
-set incsearch       " Find the next match as we type the search
-set hlsearch        " Highlight searches by default
-set ignorecase      " Ignore case when searching...
-set smartcase       " ...unless we type a capital
+set incsearch  " Find the next match as we type the search
+set hlsearch   " Highlight searches by default
+set ignorecase " Ignore case when searching...
+set smartcase  " ...unless we type a capital
 
-" ================ Modelines ==========================
+" ================ Modelines ========================
 set modeline
 set modelines=3
 
