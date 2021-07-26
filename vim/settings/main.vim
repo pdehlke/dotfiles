@@ -28,9 +28,6 @@ if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
-" Hide ~ for blank lines
-highlight! NonText guifg=bg
-
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
