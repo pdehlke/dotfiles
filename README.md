@@ -352,13 +352,13 @@ Assuming your host system has Docker & Docker Compose properly installed, run:
 This will build the container image if it never built it before (which may take a while -- future times will be faster) and then run a `zsh` session inside that container for you.
 There you can play around, test commands, aliases, etc.
 
-*Warning*: this repo is primarily macOS oriented. So any support for Linux can only be done with the help of the community.
+*Warning*: this repo is primarily Linux oriented. So any support for macOS can only be done with the help of the community.
 
 
 ## Misc
 
 * [Credits & Thanks](docs/credits.md)
-* [Other recommended macOS productivity tools](docs/macos_tools.md)
+* [Some recommended macOS productivity tools](docs/macos_tools.md)
 * [Yan's Blog](https://yanpritzker.com)
 
 ### macOS Hacks
