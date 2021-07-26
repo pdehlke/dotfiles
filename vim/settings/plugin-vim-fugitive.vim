@@ -4,6 +4,9 @@
 nnoremap <silent> <leader>dg :diffget<CR>
 nnoremap <silent> <leader>dp :diffput<CR>
 
+" Open fugitive git status
+nnoremap <silent> <leader>gs :Git<CR>
+
 augroup vimrc-plugin-fugitive
   " The tree buffer makes it easy to drill down through the directories of your
   " git repository, but it’s not obvious how you could go up a level to the
@@ -19,5 +22,4 @@ augroup vimrc-plugin-fugitive
   " fugitive buffers. This prevents this from becomming an issue:
   autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
-
 
