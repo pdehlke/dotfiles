@@ -24,9 +24,20 @@ else
   if exists("g:yadr_using_unsolarized_terminal")
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
-  end
-endif
+  endif
 
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+    set t_Co=256
+  elseif $TERM == 'xterm'
+    set term=xterm-256color
+    set t_Co=256
+  elseif $TERM == 'tmux-256color'
+    set term=xterm-256color
+    set t_Co=256
+  endif
+
+endif
 
 let g:lightline.colorscheme = 'solarized'
 
