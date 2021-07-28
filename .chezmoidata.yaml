@@ -1,0 +1,9 @@
+tmux_terminal_features:
+  alacritty:
+    term_name: alacritty
+    features: "clipboard:ccolour:cstyle:focus:title:RGB:256:usstyle:extkeys"
+    overrides: "Tc:RGB"
+  kitty:
+    term_name: xterm-kitty
+    features: "RGB:256:usstyle:extkeys"
+    # Kitty supports RGB and 256 colors, underscore style and color
