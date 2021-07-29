@@ -48,12 +48,15 @@ nnoremap <A-]> f]ci]
 " which will move us around by functions
 nnoremap <silent> <A-j> }
 nnoremap <silent> <A-k> {
-autocmd FileType ruby map <buffer> <A-j> ]m
-autocmd FileType ruby map <buffer> <A-k> [m
-autocmd FileType rspec map <buffer> <A-j> }
-autocmd FileType rspec map <buffer> <A-k> {
-autocmd FileType javascript map <buffer> <A-k> }
-autocmd FileType javascript map <buffer> <A-j> {
+augroup yadr-keymap-linux
+  autocmd!
+  autocmd FileType ruby map <buffer> <A-j> ]m
+  autocmd FileType ruby map <buffer> <A-k> [m
+  autocmd FileType rspec map <buffer> <A-j> }
+  autocmd FileType rspec map <buffer> <A-k> {
+  autocmd FileType javascript map <buffer> <A-k> }
+  autocmd FileType javascript map <buffer> <A-j> {
+augroup END
 
 " Use Alt- numbers to pick the tab you want
 map <silent> <A-1> :tabn 1<cr>

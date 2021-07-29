@@ -48,12 +48,15 @@ nnoremap <D-]> f]ci]
 " which will move us around by functions
 nnoremap <silent> <D-j> }
 nnoremap <silent> <D-k> {
-autocmd FileType ruby map <buffer> <D-j> ]m
-autocmd FileType ruby map <buffer> <D-k> [m
-autocmd FileType rspec map <buffer> <D-j> }
-autocmd FileType rspec map <buffer> <D-k> {
-autocmd FileType javascript map <buffer> <D-k> }
-autocmd FileType javascript map <buffer> <D-j> {
+augroup yadr-keymap-mac
+  autocmd!
+  autocmd FileType ruby map <buffer> <D-j> ]m
+  autocmd FileType ruby map <buffer> <D-k> [m
+  autocmd FileType rspec map <buffer> <D-j> }
+  autocmd FileType rspec map <buffer> <D-k> {
+  autocmd FileType javascript map <buffer> <D-k> }
+  autocmd FileType javascript map <buffer> <D-j> {
+augroup END
 
 " Use numbers to pick the tab you want (like iTerm)
 map <silent> <D-1> :tabn 1<cr>

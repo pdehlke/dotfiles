@@ -8,6 +8,7 @@ nnoremap <silent> <leader>dp :diffput<CR>
 nnoremap <silent> <leader>gs :Git<CR>
 
 augroup vimrc-plugin-fugitive
+  autocmd!
   " The tree buffer makes it easy to drill down through the directories of your
   " git repository, but it’s not obvious how you could go up a level to the
   " parent directory. Here’s a mapping of .. to the above command, but
