@@ -5,3 +5,10 @@ let g:session_command_aliases = 1
 " If you want to load the session, use :SaveSession and :OpenSession
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
+
+" session management
+nnoremap <leader>so :OpenSession<Space>
+nnoremap <leader>ss :SaveSession<Space>
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+
