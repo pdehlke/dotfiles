@@ -9,9 +9,9 @@ function! OpenChangedFiles()
   let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
   let filenames = split(status, "\n")
   if len(filenames) > 0
-    exec "edit " . filenames[0]
+    exec 'edit ' . filenames[0]
     for filename in filenames[1:]
-      exec "sp " . filename
+      exec 'tabedit ' . filename
     endfor
   end
 endfunction
