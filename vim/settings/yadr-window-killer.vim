@@ -2,10 +2,12 @@
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
-  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+  let this_buffer=bufnr('%')
+  " let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), 'winbufnr(v:val) == bufnr(%)'))
+  let number_of_windows_to_this_buffer = len(win_findbuf(this_buffer))
 
   " We should never bdelete a nerd tree
-  if matchstr(expand("%"), 'NERD') == 'NERD'
+  if matchstr(expand('%'), 'NERD') ==# 'NERD'
     wincmd c
     return
   endif

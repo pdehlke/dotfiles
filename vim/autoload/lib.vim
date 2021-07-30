@@ -4,20 +4,20 @@
 " Environment {
 
     " Platform idenfitication {
-        silent function! OSX()
+        silent function! OSX() abort
             return has('macunix')
         endfunction
-        silent function! LINUX()
+        silent function! LINUX() abort
             return has('unix') && !has('macunix') && !has('win32unix')
         endfunction
-        silent function! WINDOWS()
+        silent function! WINDOWS() abort
             return  (has('win16') || has('win32') || has('win64'))
         endfunction
-        silent function! UNIXLIKE()
+        silent function! UNIXLIKE() abort
             return !WINDOWS()
         endfunction
-        silent function! FREEBSD()
-          let s:uname = system("uname -s")
+        silent function! FREEBSD() abort
+          let s:uname = system('uname -s')
           return (match(s:uname, 'FreeBSD') >= 0)
         endfunction
     " }
@@ -31,7 +31,7 @@
 " }
 
 " Function to source only if file exists {
-function! lib#SourceIfExists(file)
+function! lib#SourceIfExists(file) abort
   if filereadable(expand(a:file))
     exe 'source' a:file
   endif
@@ -39,14 +39,14 @@ endfunction
 " }
 
 " Function to source all .vim files in directory {
-function! lib#SourceDirectory(file)
+function! lib#SourceDirectory(file) abort
   for s:fpath in split(globpath(a:file, '*.vim'), '\n')
     exe 'source' s:fpath
   endfor
 endfunction
 " }
 
-function! lib#ColorSchemeExists(colorscheme)
+function! lib#ColorSchemeExists(colorscheme) abort
   try
       exe 'colorscheme' a:colorscheme
       return 1

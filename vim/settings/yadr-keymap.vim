@@ -121,9 +121,9 @@ imap <silent> <C-J> <%  %><Esc>2hi
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
 " this is helpful to paste someone the path you're looking at
-nnoremap <silent> <leader>cf :let @* = expand("%:~")<CR>
-nnoremap <silent> <leader>cr :let @* = expand("%")<CR>
-nnoremap <silent> <leader>cn :let @* = expand("%:t")<CR>
+nnoremap <silent> <leader>cf :let @* = expand('%:~')<CR>
+nnoremap <silent> <leader>cr :let @* = expand('%')<CR>
+nnoremap <silent> <leader>cn :let @* = expand('%:t')<CR>
 
 "Clear current search highlight by double tapping //
 nmap <silent> // :nohlsearch<CR>
@@ -146,7 +146,7 @@ nnoremap ' `
 nnoremap ` '
 
 " Get the current highlight group. Useful for then remapping the color
-map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+map <leader>hi :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') . '> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>' . ' FG:' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'fg#')<CR>
 
 " Map Ctrl-x and Ctrl-z to navigate the quickfix error list (normally :cn and
 " :cp)
