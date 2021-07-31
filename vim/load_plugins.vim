@@ -11,11 +11,11 @@
 " Install vim-plug if not found
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source '~/.vimrc'
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(data_dir . '/plugged')
 
 " YADR's vundles are split up by category into smaller files
 " This reduces churn and makes it easier to fork. See
@@ -35,6 +35,6 @@ runtime improvements.vim
 
 " The plugins listed in ~/.vim/.vundles.local will be added here to
 " allow the user to add vim plugins to yadr without the need for a fork.
-call lib#SourceIfExists("~/.vim/.vundles.local")
+call lib#SourceIfExists('~/.vim/.vundles.local')
 
 call plug#end()
