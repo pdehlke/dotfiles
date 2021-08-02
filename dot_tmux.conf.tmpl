@@ -7,20 +7,18 @@ set -gq status-utf8 on
 
 # Make sure we have true colors
 set -g default-terminal 'tmux-256color'
-set-option -sa terminal-overrides ',xterm-256color:Tc:RGB
+set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
   {{- range .tmux_terminal_features -}}
-    {{- if hasKey . "overrides" -}}
-      ,{{ .term_name }}:{{ .overrides }}
-    {{- end -}}
-  {{- end -}}
-'
-set-option -sa terminal-features  '
+    {{- if hasKey . "overrides" }}
+set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
+    {{- end }}
+  {{- end }}
+
   {{- range .tmux_terminal_features -}}
-    {{- if hasKey . "features" -}}
-      ,{{ .term_name }}:{{ .features }}
-    {{- end -}}
-  {{- end -}}
-'
+    {{- if hasKey . "features" }}
+set-option -sa terminal-features ',{{ .term_name }}:{{ .features }}'
+    {{- end }}
+  {{- end }}
 
 # Screen like binding
 unbind C-b
