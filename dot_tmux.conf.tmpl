@@ -148,7 +148,7 @@ set-option -g status-right-length '80'
 set-window-option -g window-status-activity-style none
 set-window-option -g window-status-separator ''
 
-{{ template "tmux.solarized.conf" }}
+{{ include ".tmux.solarized.conf" }}
 
 # Local config
 if-shell "[ -f ~/.tmux.conf.user ]" 'source ~/.tmux.conf.user'
