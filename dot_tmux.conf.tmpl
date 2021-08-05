@@ -72,9 +72,6 @@ bind C-l send-keys C-l
 # Note that to get command mode you need to hit ESC twice...
 set -g status-keys vi
 
-# Use vi keybindings in copy and choice modes
-setw -g mode-keys vi
-
 # easily toggle synchronization (mnemonic: e is for echo)
 # sends input to all panes in a given window.
 bind e setw synchronize-panes on
@@ -90,9 +87,9 @@ set-window-option -g mouse on
 # enable this to improve autoread on neovim
 set-option -g focus-events on
 
-# Patch for OS X pbpaste and pbcopy under tmux.
-set-option -g default-command "which reattach-to-user-namespace > /dev/null && reattach-to-user-namespace -l $SHELL || $SHELL"
 
+# Use vi keybindings in copy and choice modes
+setw -g mode-keys vi
 
 # Fix VISUAL shortcuts for TMUX
 bind-key -T edit-mode-vi Up send-keys -X history-up
