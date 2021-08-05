@@ -9,7 +9,7 @@
 "
 function! ChangePendingRspecToXit()
   " Find the next occurrence of pending
-  while(search("pending(") > 0)
+  while(search('pending(') > 0)
     " Delete it
     normal dd
     " Search backwards to the it block

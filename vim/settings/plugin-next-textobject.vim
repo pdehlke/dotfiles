@@ -1,4 +1,4 @@
-" Stolen from Steve Losh 
+" Stolen from Steve Losh
 " https://github.com/sjl/dotfiles/blob/master/vim/vimrc#L1380
 "
 " Motion for "next/last object".  "Last" here means "previous", not "final".
@@ -8,7 +8,7 @@
 " object of the given type.  These don't necessarily have to be in the current
 " line.
 "
-" Currently works for (, [, {, and their shortcuts b, r, B. 
+" Currently works for (, [, {, and their shortcuts b, r, B.
 "
 " Next kind of works for ' and " as long as there are no escaped versions of
 " them in the string (TODO: fix that).  Last is currently broken for quotes
@@ -46,12 +46,12 @@ function! s:NextTextObject(motion, dir)
     let c = nr2char(getchar())
     let d = ''
 
-    if c ==# "b" || c ==# "(" || c ==# ")"
-        let c = "("
-    elseif c ==# "B" || c ==# "{" || c ==# "}"
-        let c = "{"
-    elseif c ==# "r" || c ==# "[" || c ==# "]"
-        let c = "["
+    if c ==# 'b' || c ==# '(' || c ==# ')'
+        let c = '('
+    elseif c ==# 'B' || c ==# '{' || c ==# '}'
+        let c = '{'
+    elseif c ==# 'r' || c ==# '[' || c ==# ']'
+        let c = '['
     elseif c ==# "'"
         let c = "'"
     elseif c ==# '"'
@@ -61,12 +61,12 @@ function! s:NextTextObject(motion, dir)
     endif
 
     " Find the next opening-whatever.
-    execute "normal! " . a:dir . c . "\<cr>"
+    execute 'normal! ' . a:dir . c . "\<cr>"
 
     if a:motion ==# 'a'
         " If we're doing an 'around' method, we just need to select around it
         " and we can bail out to Vim.
-        execute "normal! va" . c
+        execute 'normal! va' . c
     else
         " Otherwise we're looking at an 'inside' motion.  Unfortunately these
         " get tricky when you're dealing with an empty set of delimiters because
@@ -75,13 +75,13 @@ function! s:NextTextObject(motion, dir)
         let open = ''
         let close = ''
 
-        if c ==# "(" 
-            let open = "("
-            let close = ")"
-        elseif c ==# "{"
-            let open = "{"
-            let close = "}"
-        elseif c ==# "["
+        if c ==# '('
+            let open = '('
+            let close = ')'
+        elseif c ==# '{'
+            let open = '{'
+            let close = '}'
+        elseif c ==# '['
             let open = "\\["
             let close = "\\]"
         elseif c ==# "'"
@@ -115,11 +115,11 @@ function! s:NextTextObject(motion, dir)
             " character and select that so most Vim commands will do something
             " sane.  v is gonna be weird, and so is y.  Oh well.
             execute "normal! ax\<esc>\<left>"
-            execute "normal! vi" . c
+            execute 'normal! vi' . c
         elseif start_l == end_l && start_c == (end_c - 2)
             " We're on a set of delimiters that contain a single, non-newline
             " character.  We can just select that and we're done.
-            execute "normal! vi" . c
+            execute 'normal! vi' . c
         else
             " Otherwise these delimiters contain something.  But we're still not
             " sure Vim's gonna work, because if they contain nothing but
@@ -128,7 +128,7 @@ function! s:NextTextObject(motion, dir)
             let whichwrap = &whichwrap
             set whichwrap+=h,l
 
-            execute "normal! va" . c . "hol"
+            execute 'normal! va' . c . 'hol'
 
             let &whichwrap = whichwrap
         endif

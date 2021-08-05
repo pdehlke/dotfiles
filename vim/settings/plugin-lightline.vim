@@ -13,17 +13,17 @@ let g:lightline = {
       \ }
 
 function! MyReadonly()
-  if &filetype == "help"
-    return ""
+  if &filetype ==# 'help'
+    return ''
   elseif &readonly
     return "\ue0a2"
   else
-    return ""
+    return ''
   endif
 endfunction
 
 function! MyFugitive()
-  if exists("*fugitive#head")
+  if exists('*fugitive#head')
     let _ = fugitive#head()
     return strlen(_) ? "\ue0a0 "._ : ''
   endif
@@ -31,8 +31,8 @@ function! MyFugitive()
 endfunction
 
 function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-       \ ('' != expand('%:~:.') ? expand('%:~:.') : '[NoName]')
+  return ('' !=# MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' !=# expand('%:~:.') ? expand('%:~:.') : '[NoName]')
 endfunction
 
 " Use status bar even with single buffer
