@@ -1,0 +1,7 @@
+  {{- if eq .chezmoi.os "linux" "darwin" -}}
+#!/usr/bin/env bash
+
+chsh --shell /bin/zsh
+
+exit 0
+  {{- end }}
