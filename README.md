@@ -202,7 +202,7 @@ You'll have under a `.config/mr` folder:
 
 ### RubyGems
 
-A .gemrc is included. Never again type `gem install whatever --no-ri --no-rdoc`. `--no-ri --no-rdoc` is done by default.
+A `.gemrc` is included. Never again type `gem install whatever --no-ri --no-rdoc`. `--no-ri --no-rdoc` is done by default.
 
 ### Tmux configuration
 
@@ -269,7 +269,7 @@ This is not a comprehensive list. To get deeper knowledge, practice a few of the
   * `Cmd-Shift-M` - jump to method - CtrlP tag search within current buffer
   (`,M` in Linux)
   * `,jm` jump to models. Other `,j` mappings: `,jc` for controllers, `,jh` for helpers, etc. If you think of a concept and a letter, we've got you covered.
-  * `Cmd-Shift-N` - NERDTree toggle (`\N` in Linux)
+  * `Cmd-Shift-N` - NERDTree toggle (`,N` in Linux)
   * `Ctrl-\` - Show current file in NERDTree
   * `Cmd-Shift-P` - Clear CtrlP cache
   (`,P` in Linux)
