@@ -26,6 +26,8 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 if LINUX()
   " Alt-Shift-N for nerd tree
   nmap <A-N> :NERDTreeToggle<CR>
+  " ,Shift-N for nerd tree
+  nmap <Leader>N :NERDTreeToggle<CR>
 elseif OSX()
   " Cmd-Shift-N for nerd tree
   nmap <D-N> :NERDTreeToggle<CR>
