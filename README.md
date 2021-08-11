@@ -215,10 +215,9 @@ You can customize the configuration in `~/.tmux.conf.user`.
 
 The provided inputrc and editrc will turn your various command line tools like mysql and irb into vim prompts. There's also an included Ctrl-R reverse history search feature in editrc, very useful in irb, postgres command line, and etc.
 
-### Github Issues: [ghi gem](https://github.com/stephencelis/ghi)
+### Image diffs: [spaceman-diff](https://github.com/holman/spaceman-diff)
 
-We include the `ghi` command. Try `ghi list` and have fun managing issues from command line!
-
+We include the `spaceman-diff` command. Now you can diff images from the command line.
 
 ## Vim - What's included?
 
