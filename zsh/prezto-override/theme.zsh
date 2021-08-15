@@ -19,7 +19,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
-    newline                 # \n
+    newline
     prompt_char             # prompt symbol
 )
 
@@ -33,7 +33,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     vim_shell               # vim shell indicator (:sh)
     time                    # current time
     # =========================[ Line #2 ]=========================
-    newline                 # \n
+    newline
 )
 
 # Disable dir/git icons
