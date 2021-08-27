@@ -1,0 +1,14 @@
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == *{{ .chezmoi.homeDir }}/.fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:} {{- .chezmoi.homeDir -}} /.fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "{{- .chezmoi.homeDir -}}
+  /.fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "{{ .chezmoi.homeDir }}/.fzf/shell/key-bindings.zsh"
