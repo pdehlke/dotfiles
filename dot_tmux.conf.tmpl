@@ -160,7 +160,13 @@ set-option -g status-right-length '80'
 set-window-option -g window-status-activity-style none
 set-window-option -g window-status-separator ''
 
-{{ include ".chezmoitemplates/colors/tmux.solarized.conf" }}
+{{
+  include (
+    printf
+      ".chezmoitemplates/colors/tmux.%s.conf"
+      (index .color .param.color "tmux")
+  )
+}}
 
 # Local config
 if-shell "[ -f ~/.tmux.conf.user ]" 'source ~/.tmux.conf.user'
