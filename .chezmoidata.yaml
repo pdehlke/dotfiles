@@ -7,6 +7,13 @@ color:
   dracula:
     tmux: dracula
 
+sayings:
+  - phrase: "So long and thanks for all the fish."
+    author: "Douglas Adams"
+  - phrase: "Good morning! And in case I don't see ya, good afternoon, good evening and goodnight."
+    author: "Truman Burbank"
+
+
 tmux_terminal_features:
   alacritty:
     term_name: alacritty
