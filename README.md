@@ -154,7 +154,7 @@ We've also provided lots of enhancements:
 * Fuzzy matching - if you mistype a directory name, tab completion will fix it
 * [fasd](https://github.com/clvv/fasd) integration - hit `z` and partial match for recently used directory. Tab completion enabled.
 * [Prezto - the power behind YADR's zsh](https://github.com/sorin-ionescu/prezto)
-* [How to add your own ZSH theme](doc/zsh/themes.md)
+* [How to add your own ZSH theme](docs/zsh/themes.md)
 
 ### Aliases
 
@@ -224,11 +224,11 @@ We include the `ghi` command. Try `ghi list` and have fun managing issues from c
 
 ## Vim - What's included?
 
- * [Navigation - NERDTree, EasyMotion, CtrlP and more](doc/vim/navigation.md)
- * [Text Objects - manipulate ruby blocks, and more](doc/vim/textobjects.md)
- * [Code manipulation - rails support, comments, snippets, highlighting](doc/vim/coding.md)
- * [Utils - indents, paste buffer management, lots more](doc/vim/utils.md)
- * [General enhancements that don't add new commands](doc/vim/enhancements.md)
+ * [Navigation - NERDTree, EasyMotion, CtrlP and more](docs/vim/navigation.md)
+ * [Text Objects - manipulate ruby blocks, and more](docs/vim/textobjects.md)
+ * [Code manipulation - rails support, comments, snippets, highlighting](docs/vim/coding.md)
+ * [Utils - indents, paste buffer management, lots more](docs/vim/utils.md)
+ * [General enhancements that don't add new commands](docs/vim/enhancements.md)
 
 A list of some of the most useful commands that YADR provides in vim are
 included below. This is not a comprehensive list. To get deeper knowledge,
@@ -341,9 +341,9 @@ of plugins above to learn more.
 
 ## Extending and overriding YADR settings
 
-* [Debugging vim keymappings](doc/vim/keymaps.md)
-* [Overriding vim settings with ~/.vimrc.after and friends](doc/vim/override.md)
-* [Adding your own vim plugins](doc/vim/manage_plugins.md)
+* [Debugging vim keymappings](docs/vim/keymaps.md)
+* [Overriding vim settings with ~/.vimrc.after and friends](docs/vim/override.md)
+* [Adding your own vim plugins](docs/vim/manage_plugins.md)
 
 ## Testing with Docker
 
@@ -361,8 +361,8 @@ There you can play around, test commands, aliases, etc.
 
 ## Misc
 
-* [Credits & Thanks](doc/credits.md)
-* [Other recommended macOS productivity tools](doc/macos_tools.md)
+* [Credits & Thanks](docs/credits.md)
+* [Other recommended macOS productivity tools](docs/macos_tools.md)
 * [Yan's Blog](https://yanpritzker.com)
 
 ### macOS Hacks
@@ -399,4 +399,5 @@ rvm system do brew install vim --with-lua
 Pry offers a much better out of the box IRB experience with colors, tab completion, and lots of other tricks. You can also use it
 as an actual debugger by installing [pry-nav](https://github.com/nixme/pry-nav).
 
-[Learn more about YADR's pry customizations and how to install](doc/pry.md)
+[Learn more about YADR's pry customizations and how to install](docs/pry.md)
+
