@@ -50,3 +50,23 @@ POWERLEVEL9K_TIME_FORMAT='%D{%Y-%m-%d %H:%M:%S}' # Shows date and time
 # Uncomment to enable sparse mode (newline before prompt)
 # POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
+
+#
+# ASDF config
+#
+# Uncomment to hide system version
+POWERLEVEL9K_ASDF_SHOW_SYSTEM=false
+
+# Uncomment to show versions that are the same as global
+# POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW=true
+
+# Uncomment to show only relevant tools on prompt
+POWERLEVEL9K_ASDF_SHOW_ON_UPGLOB=true
+POWERLEVEL9K_ASDF_RUBY_SHOW_ON_UPGLOB='*.rb|Gemfile|Rakefile|.bundle'
+POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.py|pyproject.*'
+POWERLEVEL9K_ASDF_GOLANG_SHOW_ON_UPGLOB='*.go|go.mod'
+POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='package.json|yarn.lock|*.js'
+POWERLEVEL9K_ASDF_RUST_SHOW_ON_UPGLOB='Cargo.*|*.rs'
+POWERLEVEL9K_ASDF_PHP_SHOW_ON_UPGLOB='*.php'
+POWERLEVEL9K_ASDF_YARN_SHOW_ON_UPGLOB='package.json|yarn.lock'
+
