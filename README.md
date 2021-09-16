@@ -139,12 +139,9 @@ Upgrading is easy.
 
 Read on to learn what YADR provides!
 
-### [Homebrew](https://brew.sh/)
+### <del>Homebrew</del>
 
-Homebrew is _the missing package manager for macOS_. Installed automatically.
-
-We automatically install a few useful packages including ctags, git, macvim, hub, and the silver searcher ('ag')
-Note that our autocomplete plugin requires a MacVim that supports Lua. The installer knows how to install it, but if you had one installed before, you may need to manually remove your old MacVim.
+TODO: port [homebrew](https://brew.sh/) install script to a `run_once_homebrew_install`.
 
 ### ZSH
 
