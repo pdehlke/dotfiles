@@ -1,7 +1,26 @@
+# Dotfiles
 LICENSE
 README.md
+CHANGELOG.md
+doc/
 install.sh
 
+# YADR install
+Rakefile
+bin/
+
+# Docker tests
+Dockerfile
+docker-compose.yml
+
+# Chrome Custom.css
+chrome/
+
+# Vimfiles
+vim/
+
+# ZSH
+zsh/
 
 {{ if (ne .chezmoi.os "darwin") }}{{/* Don't install MacOS files */}}
 # no darwin files
