@@ -46,6 +46,12 @@ alias ae='vim $yadr/dot_aliases'    # alias edit
 alias ar='source $yadr/dot_aliases' # alias reload
 alias gar='killall -HUP -u "$USER" zsh' # global alias reload
 
+# chezmoi apply
+alias czcd='chezmoi cd'
+alias czed='chezmoi edit --apply -v'
+alias czap='chezmoi apply -v'
+
+
 # vim using
 mvim --version > /dev/null 2>&1
 MACVIM_INSTALLED=$?
