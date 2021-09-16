@@ -39,11 +39,11 @@ alias lsg='ll | grep'
 
 # Alias Editing
 TRAPHUP() {
-  source $yadr/dot_aliases
+  source $yadr/aliases.sh
 }
 
-alias ae='vim $yadr/dot_aliases'    # alias edit
-alias ar='source $yadr/dot_aliases' # alias reload
+alias ae='vim $yadr/aliases.sh'    # alias edit
+alias ar='source $yadr/aliases.sh' # alias reload
 alias gar='killall -HUP -u "$USER" zsh' # global alias reload
 
 # chezmoi apply
