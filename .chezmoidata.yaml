@@ -1,3 +1,12 @@
+---
+color:
+  solarized:
+    tmux: &tmuxDefault solarized
+  gruvbox:
+    tmux: gruvbox
+  dracula:
+    tmux: dracula
+
 tmux_terminal_features:
   alacritty:
     term_name: alacritty

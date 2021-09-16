@@ -1,9 +1,11 @@
 {{- $codespaces:= env "CODESPACES" | not | not -}}
 {{- $name := "Your name" -}}
 {{- $email := "your@email.com" -}}
+{{- $color := "solarized" -}}
 {{- if and (not $codespaces) stdinIsATTY -}}{{/* Interactive setup, so prompt for an email address */}}
   {{- $name = promptString "name" -}}
   {{- $email = promptString "email" -}}
+  {{- $color = promptString "color (solarized/gruvbox/dracula)" -}}
 {{- end -}}
 ---
 sourceDir: "{{ .chezmoi.sourceDir }}"
@@ -12,6 +14,8 @@ data:
   codespaces: {{ $codespaces }}
   name: " {{- $name -}} "
   email: " {{- $email -}} "
+  param:
+    color: " {{- $color -}} "
 
 # diff:
 #   format: git
