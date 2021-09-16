@@ -1,11 +1,24 @@
 #!/bin/sh
 
-if [ ! -d "$HOME/.yadr" ]; then
-    echo "Installing YADR for the first time"
-    git clone --depth=1 https://github.com/skwp/dotfiles.git "$HOME/.yadr"
-    cd "$HOME/.yadr"
-    [ "$1" = "ask" ] && export ASK="true"
-    rake install
+set -e # -e: exit on error
+
+# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
+script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+
+if [ ! "$(command -v chezmoi)" ]; then
+  bin_dir="$script_dir/bin"
+  chezmoi="$bin_dir/chezmoi"
+  if [ "$(command -v curl)" ]; then
+    sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$bin_dir"
+  elif [ "$(command -v wget)" ]; then
+    sh -c "$(wget -qO- https://git.io/chezmoi)" -- -b "$bin_dir"
+  else
+    echo "To install chezmoi, you must have curl or wget installed." >&2
+    exit 1
+  fi
 else
-    echo "YADR is already installed"
+  chezmoi=chezmoi
 fi
+
+# exec: replace current process with chezmoi init
+exec "$chezmoi" init --apply "--source=$script_dir"
