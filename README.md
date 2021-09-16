@@ -112,7 +112,7 @@ Same as iTerm. The native spaces navigation slows everything down for no reason.
 
 ```vim
 let g:yadr_using_unsolarized_terminal = 1
-# in ~/.vimrc.before
+" in ~/.vimrc.before
 ```
 
   * If you want to use an alternate colorcheme like Gruvbox, then do:
@@ -120,7 +120,7 @@ let g:yadr_using_unsolarized_terminal = 1
 ```vim
 let g:yadr_disable_solarized_enhancements = 1
 colorscheme base16-twilight
-# in ~/.vimrc.after
+" in ~/.vimrc.after
 ```
 
 ### Upgrading
