@@ -1,12 +1,12 @@
-Bundle 'itchyny/lightline.vim' " Status line
-Bundle 'chrisbra/color_highlight.git'
-Bundle 'jby/tmux.vim'
-Bundle 'zakj/vim-showmarks'
+Plug 'itchyny/lightline.vim' " Status line
+Plug 'chrisbra/color_highlight'
+Plug 'jby/tmux.vim'
+Plug 'zakj/vim-showmarks'
 
 " Required for Gblame in terminal vim
-Bundle 'godlygeek/csapprox.git'
+Plug 'godlygeek/csapprox'
 
 " Colorschemes
-Bundle 'skwp/vim-colors-solarized'
-Bundle 'morhetz/gruvbox'
-Bundle 'chriskempson/base16-vim'
+Plug 'skwp/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
