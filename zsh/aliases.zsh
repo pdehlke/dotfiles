@@ -21,6 +21,10 @@ alias psa="ps aux"
 alias psg="ps aux | grep "
 alias psr='ps aux | grep ruby'
 
+# Kill
+alias ka9='killall -9'
+alias k9='kill -9'
+
 # Moving around
 alias cdb='cd -'
 alias cls='clear;ls'
@@ -97,24 +101,25 @@ alias gbi='git rebase --interactive'
 alias gl='git l'
 alias glg='git l'
 alias glog='git l'
-alias co='git co'
+alias co='git checkout'
 alias gf='git fetch'
 alias gfp='git fetch --prune'
 alias gfa='git fetch --all'
 alias gfap='git fetch --all --prune'
 alias gfch='git fetch'
 alias gd='git diff'
-alias gb='git b'
+alias gb='git branch -v'
+alias grb='git recent-branches'
+alias gtr='grb track'
+alias gpub='grb publish'
 # Staged and cached are the same thing
 alias gdc='git diff --cached -w'
 alias gds='git diff --staged -w'
-alias gpub='grb publish'
-alias gtr='grb track'
 alias gpl='git pull'
 alias gplr='git pull --rebase'
 alias gps='git push'
 alias gpsh='git push -u origin `git rev-parse --abbrev-ref HEAD`'
-alias gnb='git nb' # new branch aka checkout -b
+alias gnb='git checkout -b' # new branch aka checkout -b
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias gcln='git clean'
@@ -123,7 +128,7 @@ alias gclndfx='git clean -dfx'
 alias gsm='git submodule'
 alias gsmi='git submodule init'
 alias gsmu='git submodule update'
-alias gt='git t'
+alias gt='git tag -n'
 alias gbg='git bisect good'
 alias gbb='git bisect bad'
 alias gdmb='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
@@ -151,9 +156,6 @@ alias ms='mongrel_rails start'
 alias tfdl='tail -f log/development.log'
 alias tftl='tail -f log/test.log'
 
-alias ka9='killall -9'
-alias k9='kill -9'
-
 # Gem install
 alias sgi='sudo gem install --no-ri --no-rdoc'
 
@@ -165,6 +167,7 @@ alias todo='open nvalt://find/todo'
 # Forward port 80 to 3000
 alias portforward='sudo ipfw add 1000 forward 127.0.0.1,3000 ip from any to any 80 in'
 
+# db:migrate
 alias rdm='rake db:migrate'
 alias rdmr='rake db:migrate:redo'
 
@@ -200,6 +203,7 @@ alias grb='git recent-branches'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
+# spring
 alias dbtp='spring rake db:test:prepare'
 alias dbm='spring rake db:migrate'
 alias dbmr='spring rake db:migrate:redo'
