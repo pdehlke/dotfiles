@@ -401,3 +401,6 @@ as an actual debugger by installing [pry-nav](https://github.com/nixme/pry-nav).
 
 [Learn more about YADR's pry customizations and how to install](docs/pry.md)
 
+## License
+
+MIT
