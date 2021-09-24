@@ -64,3 +64,4 @@ z() {
   fi
 }
 
+# vim: ft=bash
