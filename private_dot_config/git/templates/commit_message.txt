@@ -1,0 +1,41 @@
+# <type>(<scope>): <subject>
+# If applied, this commit will...
+
+
+# <body>
+# Why is this change needed?
+# Prior to this change,
+
+# How does it address the issue?
+# This change
+
+# <footer>
+# Provide links to any relevant tickets, articles or other resources
+# Add commit metadata
+#
+# * Co-authored-by: User Name <user@email.com>
+# * On-Behalf-Of: @company-name <company@email.com>
+
+# ## Type
+#
+# * feat (feature)
+# * fix (bug fix)
+# * docs (documentation)
+# * style (formatting, missing semicolons, …)
+# * refactor
+# * test (when adding missing tests)
+# * chore (maintain)
+#
+# ## Rules
+#
+# * HEADER Max. 50 characters, imperative ("change", not "changed"),
+#          no capitalised first letter, no dot at the end
+# * BODY   Motivation for change, contrast with prev. behavior,
+#          imperative present tense
+# * FOOTER Information about "BREAKING CHANGE", reference GitHub issues
+#          using #<id>
+#
+# ## See
+#
+# * https://www.conventionalcommits.org
+# * https://codeinthehole.com/tips/a-useful-template-for-commit-messages
