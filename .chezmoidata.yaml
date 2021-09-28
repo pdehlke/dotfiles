@@ -13,7 +13,7 @@ sayings:
   - phrase: "Good morning! And in case I don't see ya, good afternoon, good evening and goodnight."
     author: "Truman Burbank"
 
-
+# PS: Only tmux >= 3.1 supports terminal-features
 tmux_terminal_features:
   alacritty:
     term_name: alacritty

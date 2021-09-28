@@ -14,9 +14,14 @@ set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
     {{- end }}
   {{- end }}
 
-  {{- range .tmux_terminal_features -}}
-    {{- if hasKey . "features" }}
+  {{/* Only tmux >= 3.1 supports terminal-features */}}
+  {{- if lookPath "tmux" }}
+    {{- if (output "tmux" "-V" | regexMatch " 3.[1-4].*") }}
+      {{- range .tmux_terminal_features -}}
+        {{- if hasKey . "features" }}
 set-option -sa terminal-features ',{{ .term_name }}:{{ .features }}'
+        {{- end }}
+      {{- end }}
     {{- end }}
   {{- end }}
 
