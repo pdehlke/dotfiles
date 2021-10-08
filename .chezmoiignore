@@ -23,6 +23,11 @@ vim/
 # ZSH
 zsh/
 
+# Kitty
+{{ if not (eq .param.color "solarized" "dracula") }}
+.config/kitty/diff.conf
+{{ end }}
+
 {{ if (ne .chezmoi.os "darwin") }}{{/* Don't install MacOS files */}}
 # no darwin files
 Library/
