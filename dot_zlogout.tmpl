@@ -11,9 +11,10 @@
 SAYINGS=(
   {{- range .sayings }}
     "
-    {{- .phrase -}}
-    {{- if hasKey . "author" -}} \n  -- {{ .author -}}
-    {{- end -}}
+      {{- .phrase -}}
+      {{- if hasKey . "author" -}}
+        \n  -- {{ .author -}}
+      {{- end -}}
     "
   {{- end }}
 )
