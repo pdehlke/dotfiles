@@ -1,0 +1,4 @@
+# Kitty
+{{ if not (eq .param.color "solarized" "dracula") }}
+.config/kitty/diff.conf
+{{ end }}
