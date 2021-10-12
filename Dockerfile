@@ -36,15 +36,26 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python-setuptools \
     python-dev \
     ruby-full \
-    silversearcher-ag \
     sudo \
     tmux \
-    universal-ctags \
     vim \
     wget \
     zsh && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install more dependencies
+# Let the container know that there is no tty
+RUN DEBIAN_FRONTEND=noninteractive \
+  apt-get update && \
+  apt-get -yqq install \
+    myrepos \
+    ripgrep \
+    silversearcher-ag \
+    universal-ctags && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 # Install dotfiles
 COPY . /root/.yadr
