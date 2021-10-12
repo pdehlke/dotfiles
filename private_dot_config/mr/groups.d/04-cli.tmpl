@@ -1,0 +1,9 @@
+# vim:fileencoding=utf-8:ft=conf
+
+[.asdf]
+skip = third_party_skipper $MR_ACTION
+checkout =
+  git clone --branch v0.8.1 -- \
+      'https://github.com/asdf-vm/asdf.git' '.asdf'
+update = asdf update
+
