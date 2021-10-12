@@ -49,6 +49,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN DEBIAN_FRONTEND=noninteractive \
   apt-get update && \
   apt-get -yqq install \
+    direnv \
     myrepos \
     ripgrep \
     silversearcher-ag \
