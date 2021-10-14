@@ -1,21 +1,35 @@
 {{- $codespaces:= env "CODESPACES" | not | not -}}
-{{- $name := "Your name" -}}
-{{- $email := "your@email.com" -}}
-{{- $color := "solarized" -}}
+{{- $name  := get . "name" -}}
+{{- $email := get . "email" -}}
+{{- $color := dig "param" "color" "" . -}}
+{{- $supportedColors := list "solarized" "gruvbox" "dracula" -}}
 {{- if and (not $codespaces) stdinIsATTY -}}{{/* Interactive setup, so prompt for an email address */}}
-  {{- $name = promptString "name" -}}
-  {{- $email = promptString "email" -}}
-  {{- $color = promptString "color (solarized/gruvbox/dracula)" -}}
+  {{- if not $name -}}
+  {{-   $name = promptString "name" -}}
+  {{- end -}}
+  {{- if not $email -}}
+  {{-   $email = promptString "email" -}}
+  {{- end -}}
+  {{- if not $color -}}
+  {{-   $color =  printf "color (%s)" (join "/" $supportedColors) | promptString -}}
+  {{- end -}}
 {{- end -}}
 ---
 sourceDir: "{{ .chezmoi.sourceDir }}"
 
 data:
   codespaces: {{ $codespaces }}
-  name: " {{- $name -}} "
-  email: " {{- $email -}} "
+  name: " {{- default "Your Name" $name -}} "
+  email: " {{- default "your@email.com" $email -}} "
   param:
-    color: " {{- $color -}} "
+    color: "
+      {{- if has $color $supportedColors -}}
+        {{- $color -}}
+      {{- else -}}
+        solarized
+      {{- end -}}
+    "
+    # Choose any of {{ join ", " $supportedColors }}
 
 # diff:
 #   format: git
