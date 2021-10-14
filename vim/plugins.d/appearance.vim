@@ -4,6 +4,7 @@ Plug 'itchyny/lightline.vim'
 " Colorschemes
 Plug 'skwp/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'chriskempson/base16-vim'
 
 " Other visual enhancements
