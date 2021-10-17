@@ -7,7 +7,8 @@ install.sh
 
 # YADR install
 Rakefile
-bin/
+bin/*
+!bin/scripts/
 aliases.sh
 
 # Docker tests
