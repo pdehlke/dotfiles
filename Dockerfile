@@ -63,7 +63,7 @@ COPY . /root/.yadr
 RUN cd /root/.yadr && ./install.sh
 
 # Install vim plugins
-RUN vim -es -u ~/.vimrc -i NONE -c 'PlugClean!' -c 'PlugInstall! --sync' -c 'qall'
+# RUN vim -es -u ~/.vimrc -i NONE -c 'PlugClean!' -c 'PlugInstall! --sync' -c 'qall'
 
 # Run a zsh session
 CMD [ "/bin/zsh" ]
