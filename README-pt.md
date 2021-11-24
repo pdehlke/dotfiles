@@ -153,9 +153,9 @@ Também fornecemos muitos aprimoramentos:
   * Modo Vim e estilo bash `Ctrl-R` para localizador de histórico reverso
   * `Ctrl-x, Ctrl-l` para inserir a saída do último comando
   * Correspondência difusa - se você digitar incorretamente um nome de diretório, o preenchimento da guia irá corrigi-lo
-  * Integração [fasd] (https://github.com/clvv/fasd) - clique em `z` e corresponda parcialmente ao diretório usado recentemente. Completação com Tab ativada.
-  * [Prezto - o poder por trás do zsh do YADR] (https://github.com/sorin-ionescu/prezto)
-  * [Como adicionar seu próprio tema ZSH] (docs/zsh/themes.md)
+  * Integração [fasd](https://github.com/clvv/fasd) - clique em `z` e corresponda parcialmente ao diretório usado recentemente. Completação com Tab ativada.
+  * [Prezto - o poder por trás do zsh do YADR](https://github.com/sorin-ionescu/prezto)
+  * [Como adicionar seu próprio tema ZSH](docs/zsh/themes.md)
 
 ### Aliases / Apelidos
 
@@ -225,33 +225,33 @@ Nós incluímos o comando [`spaceman-diff`](https://github.com/holman/spaceman-d
 
 ## Vim - O que está incluído?
 
-  * [Navigation - NERDTree, EasyMotion, CtrlP and more](doc/vim/navigation.md)
-  * [Text Objects - manipulate ruby blocks, and more](doc/vim/textobjects.md)
-  * [Code manipulation - rails support, comments, snippets, highlighting](doc/vim/coding.md)
-  * [Utils - indents, paste buffer management, lots more](doc/vim/utils.md)
-  * [General enhancements that don't add new commands](doc/vim/enhancements.md)
+  * [Navigation - NERDTree, EasyMotion, CtrlP and more](docs/vim/navigation.md)
+  * [Text Objects - manipulate ruby blocks, and more](docs/vim/textobjects.md)
+  * [Code manipulation - rails support, comments, snippets, highlighting](docs/vim/coding.md)
+  * [Utils - indents, paste buffer management, lots more](docs/vim/utils.md)
+  * [General enhancements that don't add new commands](docs/vim/enhancements.md)
 
 Uma lista de alguns dos comandos mais úteis que o YADR fornece no vim está incluída abaixo.
-Essa não é uma lista compreensiva.
-Para obter um conhecimento mais profundo, pratique alguns deles todos os dias e, em seguida, comece a consultar as listas de plug-ins acima para aprender mais.
+Essa não é uma lista compreensiva. Para obter um conhecimento mais profundo, pratique alguns deles todos os dias e, em seguida, comece a consultar as listas de plug-ins acima para aprender mais.
 
 #### Navegação
 
   * `,z` - ir para o buffer anterior (:bp)
   * `,x` - ir para o próximo buffer (:bn)
-  * `Cmd-j` e `Cmd-k`mover para cima e para baixo aproximadamente por funções (`Alt` no Linux)
+  * `Cmd-j` e `Cmd-k`mover para cima e para baixo aproximadamente por funções (`\j` e `\k` no Linux)
   * `Ctrl-o` - Posição do cursor antigo - este é um mapeamento padrão, mas muito útil, então incluído aqui
   * `Ctrl-i` - oposto de Ctrl-O (novamente, este é o padrão)
 
 #### Pesquisa/Navegar no código
 
-  * `,f`: Encontre instantaneamente a definição da classe (deve ter ctags exuberantes instaladas)
+  * `,f`: Encontre instantaneamente a definição da classe (deve ter ctags instalado)
   * `,F`: igual a, `,f` mas em uma divisão vertical
-  * `,gf` ou `Ctrl-f`: o mesmo que vim normal gf (vá para o arquivo), mas em uma divisão vertical (funciona com file.rb: também números de 123 linhas)
+  * `,gf` ou `Ctrl-f`: o mesmo que vim normal gf (vá para o arquivo), mas em uma divisão vertical (funciona também com números de linhas `file.rb:123`)
   * `gF`: mapeamento vim padrão, aqui para integridade (vá para o arquivo no número da linha)
   * `,k`: Pesquise a palavra atual sob o cursor e mostre os resultados na janela de correção rápida
   * `,K`: Grep a palavra atual até o próximo ponto de exclamação (útil para métodos ruby foo!)
   * `Cmd-*`: destacar todas as ocorrências da palavra atual (semelhante a regular `*` exceto que não se move)
+  (`Alt` no Linux)
   * `,hl`: ativar e desativar o destaque da pesquisa
   * `,gg` ou `,ag`: Linha de comando Grep, digite entre aspas.  Usa o Ag Silver Searcher.
   * Depois de pesquisar com `,gg` você pode navegar pelos resultados com `Ctrl-x` e `Ctrl-z` (ou vim `:cn` e `:cp`)
@@ -261,36 +261,38 @@ Para obter um conhecimento mais profundo, pratique alguns deles todos os dias e,
   * `,,w` (Apelido `,<esc>`) ou `,,b` (Apelido `,<shift-esc>`): EasyMotion, uma ferramenta de estilo vimperator que destaca pontos de salto na tela e permite que você digite para chegar lá.
   * `,mc`: marque esta palavra para MultiCursor (como sublime).  Use `Ctrl-n` (próximo), `Ctrl-p` (anterior), `Ctrl-x` (pular) para adicionar mais cursores, então faça coisas normais do vim como editar a palavra.
   * `gK`: Abre a documentação da palavra sob o cursor.
-  * Barra de espaço - Esgueirar - digite dois personagens para mover em uma linha.  Mais ou menos como o `f` do vim, mas mais preciso.
-  * `:Gsearch foo`: pesquisa global, então faça seu `%s/search/replace/g` e normal e siga com `:Greplace` para substituir em todos os arquivos. Quando terminar, use `:wall` para gravar todos os arquivos.
+  * Barra de espaço - Sneak - digite dois caracteres para mover em uma linha.  Mais ou menos como o `f` do vim, mas mais preciso.
+  * `:Gsearch foo`: pesquisa global, então faça seu `%s/search/replace/g` normal e siga com `:Greplace` para substituir em todos os arquivos. Quando terminar, use `:wall` para gravar todos os arquivos.
 
 #### Navegação no arquivo
 
   * `,t`: CtrlP seletor de arquivo fuzzy
   * `,b`: Seletor de buffer CtrlP - ótimo para pular para um arquivo que você já abriu
   * `Cmd-Shift-M`: pular para o método - pesquisa de tag CtrlP no buffer atual
+  (`,M` no Linux)
   * `,jm`: pular para modelos.  Outros `,j` mapeamentos: `,jc` para controladores, `,jh` para auxiliares, etc. Se você pensar em um conceito e uma carta, nós o ajudamos.
-  * `Cmd-Shift-N`: NERDTree toggle (`Alt` no Linux)
+  * `Cmd-Shift-N`: NERDTree toggle (`,N` no Linux)
   * `Ctrl-\`: Mostra o arquivo atual em NERDTree
   * `Cmd-Shift-P`: Limpa o cache do CtrlP
+  (`,P` no Linux)
 
 #### Melhores combinações de teclas para comandos de edição comuns
 
   * Ctrl-Espaço para autocompletar. Guia para fragmentos de snippets.
   * `,#` `,"` `,'` `,]` `,)` `,}`  para envolver uma palavra nesses invólucros comuns.  o # faz # {interpolação em ruby}. funciona em modo visual (obrigado @cj).  Normalmente, isso é feito com algo como `ysw#`
-  * `Cmd-'`, `Cmd-"`, `Cmd-]`, `Cmd-)`, etc para alterar o conteúdo dentro dessas marcas circundantes.  Você não tem que estar dentro deles (`Alt` no Linux)
+  * `Cmd-'`, `Cmd-"`, `Cmd-]`, `Cmd-)`, etc para alterar o conteúdo dentro dessas marcas circundantes.  Você não tem que estar dentro deles (`\"` no Linux)
   * `,.` para ir para o último local de edição (o mesmo que `'.`) porque o apóstrofo é duro no dedo mínimo
   * `,ci` para mudar dentro de qualquer conjunto de aspas/colchetes/etc
 
 #### Guias, janelas, divisões
 
-  * Use `Cmd-1` a` Cmd-9` para alternar para um número de guia específico (como iTerm e Chrome) - e as guias foram configuradas para mostrar números (`Alt` no Linux)
+  * Use `Cmd-1` a` Cmd-9` para alternar para um número de guia específico (como iTerm e Chrome) - e as guias foram configuradas para mostrar números (`,t1` ou `Alt-1` no Linux)
   * `Ctrl-h, l, j, k` - para mover para a esquerda, direita, para baixo, para cima entre as divisões.  Isso também funciona entre vim e tmux splits graças ao `vim-tmux-navigator`.
   * `Q` - Assassino de janela inteligente.  Feche a janela `wincmd c` se houver várias janelas para o mesmo buffer, ou mate o buffer `bwipeout` se esta for a última janela nele.
   * `vv` - divisão vertical (` Ctrl-w, v`)
   * `ss` - divisão horizontal (` Ctrl-w, s`)
   * `,qo` - abre a janela de correção rápida (é para onde vai a saída do Grep)
-  * `,qc` - fechar a correção rápida
+  * `,qc` - fechar a janela de correção rápida
 
 #### Utilitário
 
@@ -310,13 +312,13 @@ Para obter um conhecimento mais profundo, pratique alguns deles todos os dias e,
   * `,he`: Html Escape
   * `,hu`: Html Unescape
   * `,hp`: Antevisão Html (abrir no Safari)
-  * `Cmd-Shift-A`: alinha as coisas (digite um caractere/expressão para alinhar, funciona no modo visual ou sozinho) (`Alt` no Linux)
+  * `Cmd-Shift-A`: alinha as coisas (digite um caractere/expressão para alinhar, funciona no modo visual ou sozinho) (`,A` no Linux)
   * `:ColorToggle`: ative o realce de cor #abc123 (útil para css)
   * `:Gitv`: navegadores de registro Git
   * `,hi`: mostra o grupo realce atual.  se você não gosta da cor de alguma coisa, use isto, então use `oi!  link [groupname] [anothergroupname]` em seu vimrc.after para remapear a cor. Você pode ver as cores disponíveis usando `:hi`
   * `,gt`: Go Tidy - arruma seu código html (funciona em uma seleção visual)
   * `:Wrap`: quebra linhas longas (por exemplo, ao editar arquivos markdown)
-  * `Cmd-/`: alterna comentários (geralmente gcc de tComment) (`Alt` no Linux)
+  * `Cmd-/`: alterna comentários (geralmente gcc de tComment) (`,/` no Linux)
   * `gcp`: comentar um parágrafo
 
 #### Rails e Ruby
