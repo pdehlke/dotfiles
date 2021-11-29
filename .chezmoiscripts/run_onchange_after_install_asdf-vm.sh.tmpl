@@ -22,9 +22,7 @@ asdf update
 asdf plugin add direnv
 
 # create direnv system install dirs
-for f in bin env; do
-  mkdir -vp ~/.asdf/installs/direnv/system/$f
-done
+mkdir -vp ~/.asdf/installs/direnv/system/{bin,env}
 
 # link system direnv
 direnvPath="$(direnv status | head -1 | cut -d' ' -f4)"
@@ -35,7 +33,7 @@ asdf reshim && asdf global direnv system
     {{- else }}
 
 echo 'Install direnv system wide, then run:'
-echo '  $ chezmoi apply ~/bin/scripts/install_asdf-vm.sh'
+echo '  $ chezmoi apply --source-path {{ joinPath .chezmoi.sourceDir .chezmoi.sourceFile }}'
 
     {{- end }}
 
