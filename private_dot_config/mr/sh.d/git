@@ -43,7 +43,15 @@ gplrt() {
 }
 
 git_last_tag () {
-    git describe --abbrev=0 --tags
+    git describe --abbrev=0 --tags --always
+}
+
+git_last_version_tag () {
+    if [ -z "$1" ]; then
+        git tag -n0 --sort=-version:refname | head -n1
+    else
+        git tag -n0 --sort=-version:refname | grep "$1" | head -n1
+    fi
 }
 
 is_branch_present () {

@@ -14,7 +14,11 @@ after/.vimrc.after
 autoload/plug.vim
 plugged/
 sessions/
+# before settings
 settings/before/*.vim
-settings/after/*.vim
 !settings/before/main.vim
+# after settings
+settings/after/*.vim
 !settings/after/main.vim
+!settings/after/colorscheme.vim
+!settings/after/highlight.vim

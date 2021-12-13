@@ -2,19 +2,19 @@
 color:
   solarized: &defaultColors
     kitty: &kittyDefault
-      name: "Solarized Dark"
-      file: "Solarized_Dark"
-    tmux: &tmuxDefault solarized
+      name: 'Solarized Dark'
+      file: 'Solarized_Dark'
+    tmux: &tmuxDefault 'solarized'
   gruvbox:
     kitty:
-      name: "Gruvbox Dark"
-      file: "gruvbox_dark"
-    tmux: gruvbox
+      name: 'Gruvbox Dark'
+      file: 'gruvbox_dark'
+    tmux: 'gruvbox'
   dracula:
     kitty:
-      name: "Dracula"
-      file: "Dracula"
-    tmux: dracula
+      name: 'Dracula'
+      file: 'Dracula'
+    tmux: 'dracula'
 
 sayings:
   - phrase: "So long and thanks for all the fish."
@@ -25,10 +25,10 @@ sayings:
 # PS: Only tmux >= 3.1 supports terminal-features
 tmux_terminal_features:
   alacritty:
-    term_name: "alacritty"
-    features:  "clipboard:ccolour:cstyle:focus:title:RGB:256:usstyle:extkeys"
-    overrides: "Tc:RGB"
+    term_name: 'alacritty'
+    features:  'clipboard:ccolour:cstyle:focus:title:RGB:256:usstyle:extkeys'
+    overrides: 'Tc:RGB'
   kitty:
-    term_name: "xterm-kitty"
-    features:  "clipboard:ccolour:cstyle:focus:title:RGB:256:usstyle:extkeys"
+    term_name: 'xterm-kitty'
+    features:  'RGB:256:usstyle:extkeys'
     # Kitty supports RGB and 256 colors, underscore style and color

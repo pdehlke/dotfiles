@@ -15,29 +15,36 @@
   {{- end -}}
 {{- end -}}
 ---
-sourceDir: "{{ .chezmoi.sourceDir }}"
+sourceDir: '{{ .chezmoi.sourceDir }}'
 
 data:
   codespaces: {{ $codespaces }}
-  name: " {{- default "Your Name" $name -}} "
-  email: " {{- default "your@email.com" $email -}} "
+  name: '{{ default "Your Name" $name }}'
+  email: '{{ default "your@email.com" $email }}'
   param:
-    color: "
+    color: '
       {{- if has $color $supportedColors -}}
         {{- $color -}}
       {{- else -}}
         solarized
       {{- end -}}
-    "
+    '
     # Choose any of {{ join ", " $supportedColors }}
 
 # diff:
+#   exclude:
+#     - scripts
 #   format: git
 # edit:
 #   command: vim
+
 # encryption: gpg
 # gpg:
-#   recipient: "YOUR-GPG-KEY"
+#   recipient: 'YOUR-GPG-KEY'
 #   args:
-#     # - --homedir=/media/user/path/to/.gnupg
 #     - --quiet
+#     - --homedir=/media/{{ .chezmoi.username }}/path/to/.gnupg
+
+# format: yaml
+# verbose: true
+# mode: file
