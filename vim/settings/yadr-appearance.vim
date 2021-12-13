@@ -16,7 +16,7 @@ if has('gui_running')
     set guifont=InconsolataLGC\ Nerd\ Font\ 12,Hack\ 12
   else
     set guifont=Inconsolata\ XL:h17,Inconsolata:h20,Monaco:h17
-  end
+  endif
 else
   let g:CSApprox_loaded = 1
 
@@ -39,7 +39,3 @@ else
 
 endif
 
-let g:lightline.colorscheme = 'solarized'
-
-colorscheme solarized
-set background=dark

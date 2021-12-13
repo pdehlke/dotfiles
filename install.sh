@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e # -e: exit on error
 
@@ -8,6 +8,7 @@ script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 if [ ! "$(command -v chezmoi)" ]; then
   bin_dir="$script_dir/bin"
   chezmoi="$bin_dir/chezmoi"
+  echo "Installing chezmoi to $chezmoi"
   if [ "$(command -v curl)" ]; then
     sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$bin_dir"
   elif [ "$(command -v wget)" ]; then
@@ -20,5 +21,6 @@ else
   chezmoi=chezmoi
 fi
 
+echo "Running chezmoi init"
 # exec: replace current process with chezmoi init
 exec "$chezmoi" init --apply "--source=$script_dir"

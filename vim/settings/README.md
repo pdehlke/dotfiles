@@ -1,8 +1,10 @@
+# Settings
+
 This directory contains settings for various vim plugins and vim itself.
 
 ## Plugin Settings
 
-Each plugin's overrides/settings should be put in a separate file named `{plugin-name}.vim`.
+Each plugin's overrides/settings should be put in a separate file named `plugin-{plugin-name}.vim`.
 
 ## Vim Settings
 

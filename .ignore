@@ -1,1 +1,4 @@
+# Tells RipGrep to search this paths
 !.chezmoitemplates/
+!.chezmoiscripts/
+!.chezmoi*

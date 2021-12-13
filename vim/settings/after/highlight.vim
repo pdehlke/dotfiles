@@ -2,5 +2,5 @@
 highlight! link CursorLineNr LineNr
 
 " Hide ~ for blank lines
-highlight! NonText guifg=bg
+" highlight! NonText guifg=bg
 

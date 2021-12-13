@@ -56,7 +56,9 @@ function! lib#ColorSchemeExists(colorscheme) abort
 endfunction
 
 " http://vimcasts.org/episodes/soft-wrapping-text/
-function lib#setupWrapping()
-  set wrap linebreak nolist
+function! lib#setupWrapping() abort
+  set wrap linebreak nolist " breakindent, must fix shift break or similar
+  set textwidth=80
+  " Good chars for the job: … ↳ ⭞ 🡶
   set showbreak=…
 endfunction

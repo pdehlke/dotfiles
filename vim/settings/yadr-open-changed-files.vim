@@ -13,7 +13,7 @@ function! OpenChangedFiles()
     for filename in filenames[1:]
       exec 'tabedit ' . filename
     endfor
-  end
+  endif
 endfunction
 command! OpenChangedFiles :call OpenChangedFiles()
 
