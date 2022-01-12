@@ -21,6 +21,18 @@ else
   chezmoi=chezmoi
 fi
 
-echo "Running chezmoi init"
-# exec: replace current process with chezmoi init
-exec "$chezmoi" init --apply "--source=$script_dir"
+if [ -z "CODESPACES" ]; then
+  echo "Running chezmoi init"
+  "$chezmoi" init "--source=$script_dir"
+  "$chezmoi" diff --verbose
+  read -p 'Apply modifications? (y/n) ' r
+  case $r in
+    y|Y|s|S)
+      "$chezmoi" apply --verbose "--source=$script_dir"
+      ;;
+    *)
+  esac
+else
+  # exec: replace current process with chezmoi
+  exec "$chezmoi" init --apply --verbose "--source=$script_dir"
+fi
