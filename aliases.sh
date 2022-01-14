@@ -47,11 +47,12 @@ alias ar='source $yadr/aliases.sh' # alias reload
 alias gar='killall -HUP -u "$USER" zsh' # global alias reload
 
 # chezmoi aliases
-alias czc='chezmoi cd'
-alias cze='chezmoi edit --apply -v'
 alias cza='chezmoi apply -v'
+alias czc='chezmoi cd'
 alias czd='chezmoi diff'
+alias cze='chezmoi edit --apply -v'
 alias czm='chezmoi merge'
+alias czu='chezmoi update -v'
 
 
 # vim using
