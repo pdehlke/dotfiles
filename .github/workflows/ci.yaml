@@ -13,16 +13,11 @@ jobs:
         CODESPACES: true
     steps:
       - uses: actions/checkout@v2
-      - run: ./install.sh
+      - name: install
+        run: ./install.sh
       - name: chezmoi data
         run: './bin/chezmoi data --format yaml'
       - name: chezmoi managed
         run: './bin/chezmoi managed -i all'
       - name: installed font files
         run: 'ls -lha ~/.local/share/fonts/**/*'
-      - name: template x created 'mrtrust'
-        run: './bin/chezmoi execute-template < ./create_dot_mrtrust.tmpl |
-        diff - ~/.mrtrust || cat ~/.mrtrust'
-      - name: template x created 'gitconfig.user'
-        run: './bin/chezmoi execute-template < ./create_dot_gitconfig.user.tmpl |
-        diff - ~/.gitconfig.user || cat ~/.gitconfig.user'
