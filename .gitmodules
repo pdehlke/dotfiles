@@ -1,4 +1,0 @@
-[submodule "prezto"]
-  path = zsh/prezto
-  url = https://github.com/sorin-ionescu/prezto
-  ignore = dirty

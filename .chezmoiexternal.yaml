@@ -1,0 +1,11 @@
+---
+'.zprezto':
+  url: 'https://github.com/sorin-ionescu/prezto.git'
+  type: 'git-repo'
+  refreshPeriod: '168h' # 7 days
+  clone:
+    args:
+      - '--recursive'
+  pull:
+    args:
+      - '--recurse-submodules=yes'
