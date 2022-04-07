@@ -3,7 +3,7 @@
 
     {{- if (joinPath .chezmoi.homeDir ".asdf" | stat | not) }}
 
-git clone --branch v0.8.1 -- \
+git clone -- \
     'https://github.com/asdf-vm/asdf.git' "$HOME/.asdf"
 
     {{- end }}
@@ -21,14 +21,8 @@ asdf update
 # add direnv plugins
 asdf plugin add direnv
 
-# create direnv system install dirs
-mkdir -vp ~/.asdf/installs/direnv/system/{bin,env}
-
-# link system direnv
-direnvPath="$(direnv status | head -1 | cut -d' ' -f4)"
-ln -vnfs "$direnvPath" ~/.asdf/installs/direnv/system/bin/direnv
-
-asdf reshim && asdf global direnv system
+# setup asdf direnv
+asdf direnv setup --version system --shell zsh
 
     {{- else }}
 
