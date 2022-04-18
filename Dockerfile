@@ -26,15 +26,10 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && \
 RUN DEBIAN_FRONTEND=noninteractive \
   apt-get update && \
   apt-get -yqq install \
-    autoconf \
     build-essential \
     curl \
-    fasd \
     fontconfig \
     git \
-    python \
-    python-setuptools \
-    python-dev \
     ruby-full \
     sudo \
     tmux \
