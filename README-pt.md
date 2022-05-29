@@ -14,7 +14,7 @@ Este é um fork dedicado ao **GNU/Linux** do @[skwp/dotfiles](https://github.com
 
 Select Language: [English](https://github.com/nandalopes/dotfiles), **Portuguese**
 
-#### sh -c "\`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/bin/yadr/install.sh \`"
+#### sh -c "\`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/root/bin/yadr/install.sh \`"
 
 **Gerenciado com [chezmoi](https://chezmoi.io/).**
 
@@ -47,7 +47,7 @@ Use os problemas do GitHub apenas para solicitações de pull ou relatórios de 
 Para começar, execute:
 
 ```bash
-sh -c "`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/bin/yadr/install.sh`"
+sh -c "`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/root/bin/yadr/install.sh`"
 ```
 
 **Observação**: o YADR instalará automaticamente todos os seus subcomponentes.
@@ -55,7 +55,7 @@ sh -c "`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/bin/yadr/inst
 ### Script de conveniência
 
 Caso não tenha o `chezmoi` Instalado - Execute o script
-[`bin/yadr/install.sh`](./bin/yadr/install.sh)
+[`root/bin/yadr/install.sh`](./root/bin/yadr/install.sh)
 após fazer o download dele.
 
 ### Manual com `git`
