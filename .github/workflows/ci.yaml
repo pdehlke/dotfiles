@@ -15,8 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: install
         run: ./install.sh
-      - name: check git status
-        run: 'git status --verbose'
       - name: chezmoi data
         run: './root/bin/chezmoi data --format yaml'
       - name: chezmoi managed
