@@ -211,14 +211,14 @@ YADR provides a config framework to manage not only git repositories, but any ve
 
 You'll have under a `.config/mr` folder:
 
-  * [`.mrconfig`](./dot_mrconfig) - uses [`library_loaders`](./private_dot_config/mr/library_loaders) to load all the components below:
-    * [`groups.d/`](./private_dot_config/mr/groups.d) - groups of `mr` repo definitions
-    * [`lib.d/`](./private_dot_config/mr/lib.d) which contains
+  * [`.mrconfig`](./root/dot_mrconfig) - uses [`library_loaders`](./root/private_dot_config/mr/library_loaders) to load all the components below:
+    * [`groups.d/`](./root/private_dot_config/mr/groups.d) - groups of `mr` repo definitions
+    * [`lib.d/`](./root/private_dot_config/mr/lib.d) which contains
       * various shell snippets which get auto-loaded in the context of `mr`'s `lib` parameter
       * definitions of various `mr` actions and other `mr` parameters
-    * [`sh.d/`](./private_dot_config/mr/sh.d) - various shell helper functions used by the files in `lib.d/`.  Parts of these could be reused by other people, e.g.:
-      * [`sh.d/git`](./private_dot_config/mr/sh.d/git) - various generic `git`-related helper functions
-      * [`sh.d/git-remotes`](./private_dot_config/mr/sh.d/git-remotes) - various helper functions relating to management of git remotes
+    * [`sh.d/`](./root/private_dot_config/mr/sh.d) - various shell helper functions used by the files in `lib.d/`.  Parts of these could be reused by other people, e.g.:
+      * [`sh.d/git`](./root/private_dot_config/mr/sh.d/git) - various generic `git`-related helper functions
+      * [`sh.d/git-remotes`](./root/private_dot_config/mr/sh.d/git-remotes) - various helper functions relating to management of git remotes
 
 ### RubyGems
 
