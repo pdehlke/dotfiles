@@ -211,14 +211,14 @@ YADR provê um framework de configuração para gerenciar não apenas repositór
 
 Você terá dentro de uma pasta `.config/mr`:
 
-  * [`.mrconfig`](./dot_mrconfig) - usa [`library_loaders`](./private_dot_config/mr/library_loaders) para carregar todos os componentes abaixo:
-    * [`groups.d/`](./private_dot_config/mr/groups.d) - grupos de definiçoes de repos `mr`
-    * [`lib.d/`](./private_dot_config/mr/lib.d) que contém
+  * [`.mrconfig`](./root/dot_mrconfig) - usa [`library_loaders`](./root/private_dot_config/mr/library_loaders) para carregar todos os componentes abaixo:
+    * [`groups.d/`](./root/private_dot_config/mr/groups.d) - grupos de definiçoes de repos `mr`
+    * [`lib.d/`](./root/private_dot_config/mr/lib.d) que contém
       * vários snippets shell que são carregados automaticamente no contexto do parâmetro `mr`'s `lib`
       * definições de várias ações `mr` e outros parâmetros `mr`
-    * [`sh.d/`](./private_dot_config/mr/sh.d) - várias funções shell auxiliares usadas nos arquivos em `lib.d/`.  Podem ser reutilizadas por terceiros, por exemplo:
-      * [`sh.d/git`](./private_dot_config/mr/sh.d/git) - várias funções auxiliares relacionadas com `git`
-      * [`sh.d/git-remotes`](./private_dot_config/mr/sh.d/git-remotes) - várias funções auxiliares para gerenciamento de remotos git
+    * [`sh.d/`](./root/private_dot_config/mr/sh.d) - várias funções shell auxiliares usadas nos arquivos em `lib.d/`.  Podem ser reutilizadas por terceiros, por exemplo:
+      * [`sh.d/git`](./root/private_dot_config/mr/sh.d/git) - várias funções auxiliares relacionadas com `git`
+      * [`sh.d/git-remotes`](./root/private_dot_config/mr/sh.d/git-remotes) - várias funções auxiliares para gerenciamento de remotos git
 
 
 ### RubyGems
