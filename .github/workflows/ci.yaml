@@ -16,8 +16,8 @@ jobs:
       - name: install
         run: ./install.sh
       - name: chezmoi data
-        run: './bin/chezmoi data --format yaml'
+        run: './root/bin/chezmoi data --format yaml'
       - name: chezmoi managed
-        run: './bin/chezmoi managed -i all'
+        run: './root/bin/chezmoi managed -i all'
       - name: installed font files
         run: 'ls -lha ~/.local/share/fonts/**/*'
