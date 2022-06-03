@@ -1,5 +1,5 @@
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
-{{- $interactive := stdinIsATTY -}}
+{{- $interactive := env "ACT" | not | and stdinIsATTY -}}
 
 {{- /* Initializes the name variable with a default value */ -}}
 {{- $name  := "Your Name" -}}
