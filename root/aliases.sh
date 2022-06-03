@@ -47,13 +47,18 @@ alias ar='source $yadr/aliases.sh' # alias reload
 alias gar='killall -HUP -u "$USER" zsh' # global alias reload
 
 # chezmoi aliases
-alias cza='chezmoi apply -v'
-alias czc='chezmoi cd'
-alias czd='chezmoi diff'
-alias cze='chezmoi edit --apply -v'
-alias czm='chezmoi merge'
-alias czu='chezmoi update -v'
-
+alias czh='chezmoi cd' # chezmoi [h]ome
+alias cza='chezmoi apply -v' # chezmoi [a]pply
+alias czA='chezmoi add' # chezmoi [A]dd
+alias czc='chezmoi cat' # chezmoi [c]at
+alias cze='chezmoi edit --apply -v' # chezmoi [e]dit
+alias czE='chezmoi edit-config' # chezmoi [E]dit-config
+alias czf='chezmoi forget' # chezmoi [f]orget
+alias czg='chezmoi git' # chezmoi [g]it
+alias czu='chezmoi update -v' # chezmoi [u]pdate
+alias czd='chezmoi diff' # chezmoi [d]iff
+alias czD='chezmoi data --format yaml' # chezmoi [D]ata
+alias czm='chezmoi merge' # chezmoi [m]erge
 
 # vim using
 mvim --version > /dev/null 2>&1
