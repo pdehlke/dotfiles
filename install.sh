@@ -6,7 +6,7 @@ set -e # -e: exit on error
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 
 if [ ! "$(command -v chezmoi)" ]; then
-  bin_dir="$script_dir/bin"
+  bin_dir="$script_dir/root/bin"
   chezmoi="$bin_dir/chezmoi"
   echo "Installing chezmoi to $chezmoi"
   if [ "$(command -v curl)" ]; then
