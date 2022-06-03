@@ -44,6 +44,52 @@ export FZF_CTRL_T_COMMAND="command find -L . -mindepth 1 \
 
 
 # ------------------------------------------------------------------------
+# [ASDF](https://github.com/junegunn/fzf/wiki/Examples#asdf)
+
+# Install one or more versions of specified language
+# e.g. `vmi rust` # => fzf multimode, tab to mark, enter to install
+# if no plugin is supplied (e.g. `vmi<CR>`), fzf will list them for you
+# Mnemonic [V]ersion [M]anager [I]nstall
+vmi() {
+  local lang=${1}
+
+  if [[ ! $lang ]]; then
+    lang=$(asdf plugin-list | fzf --height=5)
+  fi
+
+  if [[ $lang ]]; then
+    local versions=$(asdf list-all $lang | fzf --height=30% --no-sort --tac --multi)
+    if [[ $versions ]]; then
+      for version in $(echo $versions); do
+      asdf install $lang $version; done
+    fi
+  fi
+}
+
+# Remove one or more versions of specified language
+# e.g. `vmi rust` # => fzf multimode, tab to mark, enter to remove
+# if no plugin is supplied (e.g. `vmi<CR>`), fzf will list them for you
+# Mnemonic [V]ersion [M]anager [C]lean
+vmc() {
+  local lang=${1}
+
+  if [[ ! $lang ]]; then
+    lang=$(asdf plugin-list | fzf --height=5)
+  fi
+
+  if [[ $lang ]]; then
+    local versions=$(asdf list $lang | fzf --height=30% --multi)
+    if [[ $versions ]]; then
+      for version in $(echo $versions); do
+        echo asdf uninstall $lang $version
+        asdf uninstall $lang $version
+      done
+    fi
+  fi
+}
+
+
+# ------------------------------------------------------------------------
 # tmux
 
 # tmuxp profiles
