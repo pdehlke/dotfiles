@@ -1,34 +1,42 @@
-{{- $codespaces:= env "CODESPACES" | not | not -}}
-{{- $name  := get . "name" -}}
-{{- $email := get . "email" -}}
+{{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
+{{- $interactive := stdinIsATTY -}}
+
+{{- /* Initializes the name variable with a default value */ -}}
+{{- $name  := "Your Name" -}}
+{{- $email := "your@email.com" -}}
 {{- $color := dig "param" "color" "" . -}}
 {{- $supportedColors := list "solarized" "gruvbox" "dracula" -}}
-{{- if and (not $codespaces) stdinIsATTY -}}{{/* Interactive setup, so prompt for an email address */}}
-  {{- if not $name -}}
-  {{-   $name = promptString "name" -}}
-  {{- end -}}
-  {{- if not $email -}}
-  {{-   $email = promptString "email" -}}
-  {{- end -}}
-  {{- if not $color -}}
-  {{-   $color =  printf "color (%s)" (join "/" $supportedColors) | promptString -}}
-  {{- end -}}
+
+{{- /* If vars were previously set, reuses it */ -}}
+{{- if hasKey . "name" -}}
+{{-   $name = .name -}}
 {{- end -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- end -}}
+
+{{- /* Otherwise, if running interactively, prompts for values */ -}}
+{{- if $interactive -}}
+{{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
+{{-   $name  = promptString "name" $name -}}
+{{-   $email = promptString "email" $email -}}
+{{-   $stringColor := join "/" $supportedColors | printf "color (%s)" -}}
+{{-   $color = promptString $stringColor $color -}}
+{{- end -}}
+
 ---
 sourceDir: '{{ .chezmoi.sourceDir }}'
 
 data:
-  codespaces: {{ $codespaces }}
-  name: '{{ default "Your Name" $name }}'
-  email: '{{ default "your@email.com" $email }}'
+  interactive: {{ $interactive }}
+  name: {{ quote $name }}
+  email: {{ quote $email }}
   param:
-    color: '
-      {{- if has $color $supportedColors -}}
-        {{- $color -}}
+    color: {{ if has $color $supportedColors -}}
+        {{- quote $color -}}
       {{- else -}}
-        solarized
-      {{- end -}}
-    '
+        'solarized'
+      {{- end }}
     # Choose any of {{ join ", " $supportedColors }}
 
 # diff:
@@ -37,6 +45,8 @@ data:
 #   format: git
 # edit:
 #   command: vim
+#   args:
+#     - -p # open files in new tabs
 
 # encryption: gpg
 # gpg:
