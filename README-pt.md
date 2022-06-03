@@ -169,29 +169,20 @@ Muitas coisas que fazemos todos os dias são feitas com dois ou três caracteres
 **Aliases / Apelidos para gerenciar seus dotfiles**
 
   * `czh` - chezmoi (h)ome - mudar para a pasta dos dotfiles
-  * `cza [ file(s) | folder(s) ]` - chezmoi (a)pply - aplica o *source state*
-    (estado fonte, estado na pasta dotfiles) ao arquivo destino.
+  * `cza [ file(s) | folder(s) ]` - chezmoi (a)pply - aplica o *source state* (estado fonte, estado na pasta dotfiles) ao arquivo destino.
     Adicione `--dry-run` para prever as diferenças sem modificar o destino.
-  * `czA [ file(s) | -r folder(s) ]` - chezmoi (A)dd - adiciona arquivos ao
-    *source state*
-  * `czc file(s)` - chezmoi (c)at - mostra o *target state* (estado alvo) de um
-    ou mais arquivos, baseado no *source state*
-  * `cze file(s)` - chezmoi (e)dit - edita o *source state* de um arquivo e
-    aplica as mudanças em seguida.
+  * `czA [ file(s) | -r folder(s) ]` - chezmoi (A)dd - adiciona arquivos ao *source state*
+  * `czc file(s)` - chezmoi (c)at - mostra o *target state* (estado alvo) de um ou mais arquivos, baseado no *source state*
+  * `cze file(s)` - chezmoi (e)dit - edita o *source state* de um arquivo e aplica as mudanças em seguida.
     Adicione `--dry-run` para prever as diferenças sem modificar o destino.
-  * `czE` - chezmoi (E)dit-config - edita o arquivo de configuração
-    `chezmoi.yaml`
-  * `czf [ file(s) | -r folder(s) ]` - chezmoi (f)orget - remove um arquivo do
-    *source state*, mantém o destino
+  * `czE` - chezmoi (E)dit-config - edita o arquivo de configuração `chezmoi.yaml`
+  * `czf [ file(s) | -r folder(s) ]` - chezmoi (f)orget - remove um arquivo do *source state*, mantém o destino
   * `czg` - chezmoi (g)it - executar comando do git na pasta dotfiles
-  * `czu` - chezmoi (u)pdate - faz o download do repositório e aplica as
-    mudanças.
+  * `czu` - chezmoi (u)pdate - faz o download do repositório e aplica as mudanças.
     Adicione `--dry-run` para prever as diferenças sem modificar o destino.
-  * `czd [ file(s) | -r folder(s) ]` - chezmoi (d)iff - compara destino com
-    *target state*
+  * `czd [ file(s) | -r folder(s) ]` - chezmoi (d)iff - compara destino com *target state*
   * `czD` - chezmoi (D)ata - lista as variáveis do chezmoi, útil para templates
-  * `czm file(s)` - chezmoi (m)erge - inicia um *merge* entre arquivo de
-    destino, *source state* e *target state*
+  * `czm file(s)` - chezmoi (m)erge - inicia um *merge* entre arquivo de destino, *source state* e *target state*
 
 ### Customizações do Git:
 
