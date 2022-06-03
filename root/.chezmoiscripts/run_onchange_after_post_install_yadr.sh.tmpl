@@ -1,7 +1,17 @@
   {{- if eq .chezmoi.os "linux" "darwin" -}}
 #!/usr/bin/env bash
 
+
+    {{- if lookPath "zsh" }}
+
 chsh --shell /bin/zsh
+
+    {{- else }}
+
+echo 'Install zsh, then run:'
+echo '  $ chezmoi apply --source-path {{ joinPath .chezmoi.sourceDir .chezmoi.sourceFile }}'
+
+    {{- end }}
 
 exit 0
   {{- end -}}
