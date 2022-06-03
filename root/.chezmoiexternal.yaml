@@ -5,6 +5,8 @@
   refreshPeriod: '168h' # 7 days
   clone:
     args:
+      - '--depth=1'
+      - '--shallow-submodules'
       - '--recursive'
   pull:
     args:
