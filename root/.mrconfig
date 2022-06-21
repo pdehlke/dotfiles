@@ -1,5 +1,0 @@
-[zsh/prezto]
-checkout = true
-order = 7
-update = ff_only && git_submodules
-pre_update = git checkout master

@@ -18,11 +18,11 @@ cfg_lfs_local() {
 }
 
 ff_only() {
-    git pull --ff-only
+    git pull --ff-only "$@"
 }
 
 git_submodules() {
-    git submodule update --init --recursive
+    git submodule update --init --recursive "$@"
 }
 
 git_bundleall() {
@@ -35,11 +35,20 @@ git_bundleall() {
 }
 
 gplr() {
-    git pull --rebase
+    git pull --rebase "$@"
+}
+
+fetch_tags() {
+    git fetch --tags "$@"
 }
 
 gplrt() {
-    git pull --rebase --tags
+    fetch_tags --force
+    gplr "$@"
+}
+
+gplmod() {
+    git pull --recurse-submodules=true "$@"
 }
 
 git_last_tag () {
