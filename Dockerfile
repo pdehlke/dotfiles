@@ -52,10 +52,13 @@ RUN DEBIAN_FRONTEND=noninteractive \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ARG CACHEBUST
+RUN echo
 
 # Install dotfiles
 COPY . /root/.yadr
-RUN cd /root/.yadr && ./install.sh
+WORKDIR /root/.yadr
+RUN ./install.sh
 
 # Install vim plugins
 # RUN vim -es -u ~/.vimrc -i NONE -c 'PlugClean!' -c 'PlugInstall! --sync' -c 'qall'
