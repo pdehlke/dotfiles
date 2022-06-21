@@ -1,3 +1,4 @@
+
 # <type>(<scope>): <subject>
 # If applied, this commit will...
 
@@ -6,16 +7,17 @@
 # Why is this change needed?
 # Prior to this change,
 
+
 # How does it address the issue?
 # This change
+
 
 # <footer>
 # Provide links to any relevant tickets, articles or other resources
 # Add commit metadata
-#
 # * Co-authored-by: User Name <user@email.com>
 # * On-Behalf-Of: @company-name <company@email.com>
-
+#
 # ## Type
 #
 # * feat (feature)

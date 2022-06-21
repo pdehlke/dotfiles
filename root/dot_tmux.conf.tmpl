@@ -7,10 +7,10 @@ set -gq status-utf8 on
 
 # Make sure we have true colors
 set -s default-terminal 'tmux-256color'
-set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
 
 
 # Session option terminal-overrides
+set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
   {{- range .tmux_terminal_features -}}
     {{- if hasKey . "overrides" }}
 set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
@@ -34,6 +34,7 @@ set-option -sa terminal-features ',{{ .term_name }}:{{ .features }}'
   {{- end }}
 {{- end }}
 
+
 # Screen like binding
 unbind C-b
 set -g prefix C-a
@@ -56,7 +57,7 @@ bind -r L resize-pane -R 5
 # Break out the current pane to a window
 bind b break-pane -d
 
-{{ template "tmux-navigator.conf" }}
+{{ template "tmux/tmux-navigator.conf" }}
 
 
 # Use vi keybindings for tmux commandline input.
@@ -152,11 +153,9 @@ set-window-option -g window-status-activity-style none
 set-window-option -g window-status-separator ''
 
 {{
-  include (
-    printf
-      ".chezmoitemplates/colors/tmux.%s.conf"
-      (index .color .param.color "tmux")
-  )
+  index .color .param.color "tmux" |
+  printf ".chezmoitemplates/tmux/color-%s.conf" |
+  include
 }}
 
 # Local config

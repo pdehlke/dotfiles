@@ -4,8 +4,6 @@
 {{- /* Initializes the name variable with a default value */ -}}
 {{- $name  := "Your Name" -}}
 {{- $email := "your@email.com" -}}
-{{- $color := dig "param" "color" "" . -}}
-{{- $supportedColors := list "solarized" "gruvbox" "dracula" -}}
 
 {{- /* If vars were previously set, reuses it */ -}}
 {{- if hasKey . "name" -}}
@@ -14,6 +12,8 @@
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
 {{- end -}}
+{{- $color := dig "param" "color" "solarized" . -}}
+{{- $supportedColors := list "solarized" "gruvbox" "dracula" -}}
 
 {{- /* Otherwise, if running interactively, prompts for values */ -}}
 {{- if $interactive -}}
@@ -24,6 +24,10 @@
 {{-   $color = promptString $stringColor $color -}}
 {{- end -}}
 
+{{- if not (has $color $supportedColors) -}}
+{{-   $color = "solarized" -}}
+{{- end -}}
+
 ---
 sourceDir: '{{ .chezmoi.sourceDir }}'
 
@@ -32,11 +36,7 @@ data:
   name: {{ quote $name }}
   email: {{ quote $email }}
   param:
-    color: {{ if has $color $supportedColors -}}
-        {{- quote $color -}}
-      {{- else -}}
-        'solarized'
-      {{- end }}
+    color: {{ quote $color }}
     # Choose any of {{ join ", " $supportedColors }}
 
 # diff:

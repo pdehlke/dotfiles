@@ -107,7 +107,7 @@
   cdef = "!f() { git checkout $(git originhead ${1:-origin}); } ; f"
   originhead = "!f() { git remote show ${1:-origin} | grep 'HEAD branch' | cut -d ' ' -f5; } ; f"
 [format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+  pretty = format:%C(blue)%ad%C(reset) %C(yellow)%h%C(green)%d%C(reset) %C(blue)%s %C(magenta) [%an]%C(reset)
 [mergetool]
   prompt = false
   keepBackup = false
