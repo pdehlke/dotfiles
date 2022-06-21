@@ -4,9 +4,11 @@ LABEL maintainer="Nanda Lopes <nandalopes@gmail.com>"
 ENV TERM xterm-256color
 ENV CODESPACES true
 
+# Let the container know that there is no tty
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Bootstrapping packages needed for installation
-RUN \
-  apt-get update && \
+RUN apt-get update && \
   apt-get install -yqq \
     locales \
     lsb-release \
@@ -22,9 +24,7 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && \
 # Install dependencies
 # `universe` is needed for ruby
 # `security` is needed for fontconfig and fc-cache
-# Let the container know that there is no tty
-RUN DEBIAN_FRONTEND=noninteractive \
-  apt-get update && \
+RUN apt-get update && \
   apt-get -yqq install \
     build-essential \
     curl \
@@ -40,9 +40,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install more dependencies
-# Let the container know that there is no tty
-RUN DEBIAN_FRONTEND=noninteractive \
-  apt-get update && \
+RUN apt-get update && \
   apt-get -yqq install \
     direnv \
     myrepos \
