@@ -10,6 +10,9 @@ function! CloseWindowOrKillBuffer()
   if matchstr(expand('%'), 'NERD') ==# 'NERD'
     wincmd c
     return
+  elseif &filetype =~? 'fugitive'
+    wincmd c
+    return
   endif
 
   if number_of_windows_to_this_buffer > 1
