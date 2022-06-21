@@ -1,5 +1,5 @@
 "" fzf.vim
-let $FZF_DEFAULT_COMMAND =  "find -path '*/.git' -prune -o -path '*/node_modules' -prune -o -path '*/target' -prune -o -path '*/dist' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+let $FZF_DEFAULT_COMMAND = "find -L -mindepth 1 \\( -path '*/\\.git' -o -path '*/node_modules' -o -path '*/target' -o -path '*/dist' \\) -prune -o \\( -type f -o -type l \\) -print 2> /dev/null"
 set grepprg=git\ grep\ --line-number
 
 " The Silver Searcher
@@ -19,7 +19,7 @@ endif
 " Additional mapping for buffer search
 nnoremap <silent> <leader>b :Buffers<CR>
 " File search
-nnoremap <silent> <leader>t :FZF<CR>
+nnoremap <silent> <leader>t :Files<CR>
 " Files under version control
 nnoremap <silent> <leader>e :GFiles<CR>
 "Recovery commands from history through FZF
