@@ -1,5 +1,13 @@
+{{- if lookPath "direnv" -}}
+{{-   $direnvVersion := output "direnv" "--version" | trim -}}
+# Direnv version <{{ $direnvVersion }}>
 [global]
 # bash_path = "/usr/bin/bash"
+{{-   if semverCompare ">=2.31.0" $direnvVersion }}
+# load_dotenv = false
+{{-   else }}
+# skip_dotenv = true
+{{-   end }}
 
 [whitelist]
 # exact = [
@@ -8,4 +16,5 @@
 # prefix = [
 #   "{{ .chezmoi.sourceDir }}"
 # ]
+{{- end -}}
 
