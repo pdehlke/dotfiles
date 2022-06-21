@@ -13,7 +13,8 @@ RUN apt-get update && \
     locales \
     lsb-release \
     software-properties-common && \
-  apt-get clean
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set locale to UTF-8
 ENV LANGUAGE en_US.UTF-8
