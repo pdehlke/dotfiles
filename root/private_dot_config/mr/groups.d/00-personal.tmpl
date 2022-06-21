@@ -1,12 +1,16 @@
+{{- $simpleSourceDir := trimPrefix .chezmoi.homeDir .chezmoi.workingTree |
+      trimPrefix "/" -}}
 # vim:fileencoding=utf-8:ft=conf
 
-[ {{- .chezmoi.sourceDir -}} ]
-checkout =
-  git clone 'https://github.com/nandalopes/dotfiles.git' '{{ .chezmoi.sourceDir }}'
-# load {{ .chezmoi.sourceDir }}/.mrconfig
-chain = true
+[ {{- $simpleSourceDir -}} ]
 order = 3
+checkout =
+  git clone -- \
+      'git@github.com:nandalopes/dotfiles.git' '{{- $simpleSourceDir -}}'
 update = gplr
+Clean =
+  git rerere gc
+  git gc
 post_checkout =
   cd "$MR_REPO"
   # config
@@ -16,18 +20,23 @@ post_checkout =
     upstream https://github.com/skwp/dotfiles.git
     lfilho   https://github.com/lfilho/dotfiles.git
   "
+  {{- block "lfs-pull" "" }}
+    {{- if lookPath "git-lfs" }}
+post_update = git lfs pull
+    {{- end }}
+  {{- end }}
 
 
 [${XDG_CONFIG_HOME:-.config}/gitstatus]
+order = 9
 checkout =
-  if ! [ -s "$HOME/.zprezto" ] ; then
+  if ! [ -d "$HOME/.zprezto" ] ; then
     git clone --depth=1 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
   else
     ln -nfs \
       ~/.zprezto/modules/prompt/external/powerlevel10k/gitstatus \
       'gitstatus'
   fi
-order = 9
 update =
   if ! [ -s "$MR_REPO" ]; then
     git pull
@@ -36,8 +45,18 @@ fetch =
   if ! [ -s "$MR_REPO" ]; then
     git fetch
   fi
-post_status = git_last_tag
 make =
   ./build -w -s -d docker
   sudo chown $USER:$USER -R usrbin deps
+post_status = git_last_tag
+
+
+[.zprezto]
+order = 7
+checkout =
+  git clone --recursive -- \
+      'https://github.com/sorin-ionescu/prezto.git' '.zprezto'
+update = ff_only
+pre_update = git checkout master
+post_update = git_submodules
 
