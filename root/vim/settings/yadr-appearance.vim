@@ -7,7 +7,10 @@ if has('gui_running')
   " Show tab number (useful for Cmd-1, Cmd-2.. mapping)
   " For some reason this doesn't work as a regular set command,
   " (the numbers don't show up) so I made it a VimEnter event
-  autocmd VimEnter * set guitablabel=%N:\ %t\ %M
+  augroup yadr-appearance
+    autocmd!
+    autocmd VimEnter * set guitablabel=%N:\ %t\ %M
+  augroup END
 
   set lines=60
   set columns=190

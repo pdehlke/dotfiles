@@ -57,7 +57,7 @@ endfunction
 
 " http://vimcasts.org/episodes/soft-wrapping-text/
 function! lib#setupWrapping() abort
-  set wrap linebreak nolist " breakindent, must fix shift break or similar
+  set wrap linebreak " breakindent, must fix shift break or similar
   set textwidth=80
   " Good chars for the job: … ↳ ⭞ 🡶
   set showbreak=…

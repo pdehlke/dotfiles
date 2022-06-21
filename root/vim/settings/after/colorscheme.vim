@@ -1,6 +1,6 @@
 " Make it beautiful - colors
 
-set notermguicolors
+set termguicolors
 
 " Disable Solarized Enhancements so Gruvbox or other theme load correctly
 " let g:yadr_disable_solarized_enhancements=1

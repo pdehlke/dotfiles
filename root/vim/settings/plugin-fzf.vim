@@ -12,7 +12,7 @@ endif
 if executable('rg')
   " Caution, it uses gitignore patterns, to include vcs ignored, add
   " `--no-ignore-vcs`
-  let $FZF_DEFAULT_COMMAND = "rg --files --hidden --follow --glob '!.git'"
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
 endif
 

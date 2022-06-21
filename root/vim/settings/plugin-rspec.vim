@@ -11,7 +11,7 @@ function! ChangePendingRspecToXit()
   " Find the next occurrence of pending
   while(search('pending(') > 0)
     " Delete it
-    normal dd
+    delete _
     " Search backwards to the it block
     ?it\s
     " add an 'x' to the 'it' to make it 'xit'
