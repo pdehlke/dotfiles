@@ -11,6 +11,7 @@ set mouse+=a                   " Enable mouse
 set visualbell                 " No sounds
 set autoread                   " Reload files changed outside vim
 set path=.,**                  " Search path for :find
+set tags^=.git/tags
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
