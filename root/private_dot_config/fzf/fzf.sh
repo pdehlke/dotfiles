@@ -5,6 +5,42 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' \
   --preview-window down:3:wrap \
   --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --bind '?:toggle-preview'"
+export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \
+\\( \
+  -fstype 'sysfs' \
+  -o -fstype 'devfs' \
+  -o -fstype 'devtmpfs' \
+  -o -fstype 'proc' \
+\\) -prune -o \
+\\( \
+  -path '*/\\.git' \
+  -o -path '*/node_modules' \
+  -o -path '*/target' \
+  -o -path '*/dist' \
+\\) -prune -o \
+-type d -print 2> /dev/null | cut -b3-"
+export FZF_CTRL_T_COMMAND="command find -L . -mindepth 1 \
+\\( \
+  -fstype 'sysfs' \
+  -o -fstype 'devfs' \
+  -o -fstype 'devtmpfs' \
+  -o -fstype 'proc' \
+\\) \
+-prune -o \
+\\( \
+  -path '*/\\.git/*/*' \
+  -o -path '*/node_modules' \
+  -o -path '*/target' \
+  -o -path '*/dist' \
+\\) \
+-prune -o \
+\\( \
+  -type f \
+  -o -type d \
+  -o -type l \
+\\) \
+-print 2> /dev/null | cut -b3-"
+
 
 
 # ------------------------------------------------------------------------
