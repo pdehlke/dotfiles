@@ -10,8 +10,8 @@ elif [[ $unamestr == 'Darwin' ]]; then
 fi
 
 # PS
-alias psa="ps aux"
-alias psg="ps aux | grep "
+alias psa='ps aux'
+alias psg='ps aux | grep '
 alias psr='ps aux | grep ruby'
 
 # Kill
@@ -64,7 +64,7 @@ alias czm='chezmoi merge' # chezmoi [m]erge
 mvim --version > /dev/null 2>&1
 MACVIM_INSTALLED=$?
 if [ $MACVIM_INSTALLED -eq 0 ]; then
-  alias vim="mvim -v"
+  alias vim='mvim -v'
 fi
 
 # mimic vim functions
@@ -79,7 +79,7 @@ alias ze='vim ~/.zshrc'
 # asdf
 alias aua='asdf update --head && asdf plugin-update --all'
 alias ala='asdf list-all'
-alias rlv="asdf list-all ruby | rg '^\d'"
+alias rlv='asdf list-all ruby | rg "^\d"'
 
 # Git Aliases
 alias gs='git status'
@@ -196,7 +196,6 @@ alias srgm='spring rails g migration'
 alias srdm='spring rake db:migrate'
 alias srdt='spring rake db:migrate'
 alias srdmt='spring rake db:migrate db:test:prepare'
-
 
 # Sprintly - https://github.com/nextbigsoundinc/Sprintly-GitHub
 alias sp='sprintly'

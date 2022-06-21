@@ -1,7 +1,9 @@
 # ------------------------------------------------------------------------
 # FZF options
 
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap --bind '?:toggle-preview'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' \
+  --preview-window down:3:wrap \
+  --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --bind '?:toggle-preview'"
 
 
@@ -10,6 +12,8 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --bind '?:toggle-previ
 
 # tmuxp profiles
 ftmux() {
+  local tprofiles
+
   tprofiles=( $(find ${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp -type f \
     -printf "%P\n" | cut -d\. -f1 | fzf --multi --query="$1") )
   if [ -z "$tprofiles" ]; then
@@ -48,9 +52,9 @@ ftpane() {
 # fasd
 
 av() {
-    [ $# -gt 0 ] && fasd -f -e ${EDITOR} "$*" && return
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+  [ $# -gt 0 ] && fasd -f -e ${EDITOR} "$*" && return
+  local file
+  file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
 if type z >/dev/null 2>&1; then
@@ -64,4 +68,4 @@ z() {
   fi
 }
 
-# vim: ft=bash
+# vim: ft=sh

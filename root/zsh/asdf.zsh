@@ -9,7 +9,6 @@ if [ -d "$HOME/.asdf" ]; then
   PATH="$ASDF_DIR/bin:$PATH"
 
   source $ASDF_DIR/lib/asdf.sh # just load the asdf wrapper function
-
 fi
 
 ##### direnv

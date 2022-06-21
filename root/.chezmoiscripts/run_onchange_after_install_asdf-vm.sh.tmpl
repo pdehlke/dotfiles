@@ -1,4 +1,4 @@
-  {{- if (eq .chezmoi.os "linux" "darwin") -}}
+  {{- if eq .chezmoi.os "linux" "darwin" -}}
 #!/usr/bin/env bash
 
     {{- if (joinPath .chezmoi.homeDir ".asdf" | stat | not) }}
@@ -8,6 +8,8 @@ git clone -- \
 
     {{- end }}
 
+
+
 ASDF_DIR="$HOME/.asdf"
 PATH="$ASDF_DIR/bin:$PATH"
   . $ASDF_DIR/lib/asdf.sh # just load the asdf wrapper function
@@ -16,7 +18,7 @@ asdf update
 
 
 
-    {{- if (lookPath "direnv") }}
+    {{- if lookPath "direnv" }}
 
 # add direnv plugins
 asdf plugin add direnv
@@ -33,5 +35,5 @@ echo '  $ chezmoi apply --source-path {{ joinPath .chezmoi.sourceDir .chezmoi.so
 
 exit 0
 
-  {{- end -}}
+  {{- end }}
 

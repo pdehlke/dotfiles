@@ -23,8 +23,8 @@ vim
 # ZSH
 zsh
 
-# Kitty
 {{ if not (eq .param.color "solarized" "dracula") }}
+# Kitty
 .config/kitty/diff.conf
 {{ end }}
 
