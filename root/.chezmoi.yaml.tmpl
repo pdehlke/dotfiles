@@ -1,5 +1,8 @@
+{{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata.yaml" | include | fromYaml }}
+{{- $supportedColors := keys $data.color -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not) -}}
+
 
 {{- /* Initializes the name variable with a default value */ -}}
 {{- $name  := "Your Name" -}}
@@ -13,7 +16,6 @@
 {{-   $email = .email -}}
 {{- end -}}
 {{- $color := dig "param" "color" "solarized" . -}}
-{{- $supportedColors := list "solarized" "gruvbox" "dracula" -}}
 
 {{- /* Otherwise, if running interactively, prompts for values */ -}}
 {{- if $interactive -}}
@@ -29,7 +31,7 @@
 {{- end -}}
 
 ---
-sourceDir: '{{ .chezmoi.sourceDir }}'
+sourceDir: {{ quote .chezmoi.sourceDir }}
 
 data:
   interactive: {{ $interactive }}
@@ -58,3 +60,4 @@ data:
 # format: yaml
 # verbose: true
 # mode: file
+
