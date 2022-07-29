@@ -4,30 +4,21 @@
 {{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not) -}}
 
 
-{{- /* Initializes the name variable with a default value */ -}}
+{{- /* Initializes variables with a default value */ -}}
 {{- $name  := "Your Name" -}}
 {{- $email := "your@email.com" -}}
-
-{{- /* If vars were previously set, reuses it */ -}}
-{{- if hasKey . "name" -}}
-{{-   $name = .name -}}
-{{- end -}}
-{{- if hasKey . "email" -}}
-{{-   $email = .email -}}
-{{- end -}}
-{{- $color := dig "param" "color" "solarized" . -}}
+{{- $color := "solarized" -}}
 
 {{- /* Otherwise, if running interactively, prompts for values */ -}}
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
-{{-   $name  = promptString "name" $name -}}
-{{-   $email = promptString "email" $email -}}
+{{-   $name  = promptStringOnce . "name" "Name used in gitconfig" $name -}}
+{{-   $email = promptStringOnce . "email" "Email used in gitconfig" $email -}}
 {{-   $stringColor := join "/" $supportedColors | printf "color (%s)" -}}
-{{-   $color = promptString $stringColor $color -}}
-{{- end -}}
-
-{{- if not (has $color $supportedColors) -}}
-{{-   $color = "solarized" -}}
+{{-   $color = promptStringOnce .param "color" $stringColor $color -}}
+{{-   if not (has $color $supportedColors) -}}
+{{-     $color = "solarized" -}}
+{{-   end -}}
 {{- end -}}
 
 ---
