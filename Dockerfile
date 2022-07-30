@@ -27,25 +27,31 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && \
 # `security` is needed for fontconfig and fc-cache
 RUN apt-get update && \
   apt-get -yqq install \
-    build-essential \
     curl \
-    fontconfig \
     git \
-    ruby-full \
     sudo \
-    tmux \
-    vim \
-    wget \
-    zsh && \
+    wget && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install more dependencies
 RUN apt-get update && \
   apt-get -yqq install \
+    tmux \
+    vim \
+    zsh && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install optional dependencies
+RUN apt-get update && \
+  apt-get -yqq install \
+    build-essential \
     direnv \
+    fontconfig \
     myrepos \
     ripgrep \
+    ruby-full \
     silversearcher-ag \
     universal-ctags && \
   apt-get clean && \
