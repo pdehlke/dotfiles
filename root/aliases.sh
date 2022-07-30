@@ -77,7 +77,7 @@ alias ve='vim ~/.vimrc'
 alias ze='vim ~/.zshrc'
 
 # asdf
-alias aua='asdf update --head && asdf plugin-update --all'
+alias aua='asdf update && asdf plugin-update --all'
 alias ala='asdf list-all'
 alias rlv='asdf list-all ruby | rg "^\d"'
 
