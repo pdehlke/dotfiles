@@ -1,10 +1,19 @@
 ---
 color:
   solarized: &defaultColors
+    kitty: &kittyDefault
+      name: 'Solarized Dark'
+      file: 'Solarized_Dark'
     tmux: &tmuxDefault 'solarized'
   gruvbox:
+    kitty:
+      name: 'Gruvbox Dark'
+      file: 'gruvbox-dark'
     tmux: 'gruvbox'
   dracula:
+    kitty:
+      name: 'Dracula'
+      file: 'Dracula'
     tmux: 'dracula'
 
 sayings:
