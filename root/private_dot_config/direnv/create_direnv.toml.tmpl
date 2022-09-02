@@ -1,20 +1,19 @@
-{{- if lookPath "direnv" -}}
-{{-   $direnvVersion := output "direnv" "--version" | trim -}}
-# Direnv version <{{ $direnvVersion }}>
-[global]
+{{- /*
+ vim: ft=toml.gotmpl
+*/ -}}
+## Direnv example config
+# [global]
 # bash_path = "/usr/bin/bash"
-{{-   if semverCompare ">=2.31.0" $direnvVersion }}
+## if direnv >= 2.31.0
 # load_dotenv = false
-{{-   else }}
+## if direnv < 2.31.0
 # skip_dotenv = true
-{{-   end }}
 
-[whitelist]
+# [whitelist]
 # exact = [
-#   "{{ .chezmoi.sourceDir }}"
+#   "{{ .chezmoi.workingTree }}"
 # ]
 # prefix = [
-#   "{{ .chezmoi.sourceDir }}"
+#   "{{ .chezmoi.workingTree }}"
 # ]
-{{- end -}}
 
