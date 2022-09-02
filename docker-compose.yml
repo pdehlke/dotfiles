@@ -6,8 +6,6 @@ services:
     image: yadr
     volumes:
       - ./:/root/.yadr/
-      - vim_plug:/root/.yadr/root/vim/plugged/
-      - prezto:/root/.zprezto/
-volumes:
-  vim_plug:
-  prezto:
+      - /tmp/plugged-yadr:/root/.yadr/root/vim/plugged/
+      - ~/.cache/dotfiles/zprezto:/root/.zprezto/
+
