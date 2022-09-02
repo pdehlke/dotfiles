@@ -7,10 +7,5 @@ Clean =
     make clean
   fi
 
-make =
-  if has_makefile ; then
-    make
-  fi
-
 # skip = default_skipper $MR_ACTION
 
