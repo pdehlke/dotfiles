@@ -1,0 +1,14 @@
+  {{- if eq .chezmoi.os "linux" "darwin" -}}
+  {{-   $fzf := expandenv "$HOME/.fzf" -}}
+#!/usr/bin/env bash
+
+if [ ! -d " {{- $fzf -}} " ]; then
+  git clone --depth 1 -- \
+      'https://github.com/junegunn/fzf.git' " {{- $fzf -}} "
+fi
+
+" {{- $fzf -}} /install" --xdg --all \
+  --no-update-rc --no-fish --no-bash
+
+  {{- end }}
+
