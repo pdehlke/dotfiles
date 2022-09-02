@@ -1,0 +1,6 @@
+{{-
+  include (
+    printf "private_dot_config/kitty/themes/%s.conf"
+    (index .color .param.color "kitty" "file")
+  )
+-}}
