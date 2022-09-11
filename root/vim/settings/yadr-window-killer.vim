@@ -10,6 +10,9 @@ function! CloseWindowOrKillBuffer()
   if matchstr(expand('%'), 'NERD') ==# 'NERD'
     wincmd c
     return
+  elseif !buflisted(this_buffer)
+    wincmd c
+    return
   elseif &filetype =~? 'fugitive'
     wincmd c
     return
