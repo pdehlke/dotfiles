@@ -1,5 +1,5 @@
   {{- if eq .chezmoi.os "linux" "darwin" -}}
-  {{-   $fzf := expandenv "$HOME/.fzf" -}}
+  {{-   $fzf := joinPath .chezmoi.homeDir ".fzf" -}}
 #!/usr/bin/env bash
 
 if [ ! -d " {{- $fzf -}} " ]; then
