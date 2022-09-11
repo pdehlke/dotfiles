@@ -1,4 +1,4 @@
-{{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata.yaml" | include | fromYaml }}
+{{- $data := joinPath .chezmoi.sourceDir ".chezmoidata.yaml" | include | fromYaml }}
 {{- $supportedColors := keys $data.color -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not) -}}
@@ -49,6 +49,6 @@ data:
 #     - --homedir=/media/{{ .chezmoi.username }}/path/to/.gnupg
 
 # format: yaml
-# verbose: true
 # mode: file
+# verbose: true
 
