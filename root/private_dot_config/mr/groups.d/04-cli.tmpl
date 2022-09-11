@@ -5,9 +5,7 @@ skip = third_party_skipper $MR_ACTION
 checkout =
   git clone -- \
       'https://github.com/asdf-vm/asdf.git' '.asdf'
-update = ~/.asdf/bin/asdf update
-post_checkout =
-  cd "$MR_REPO"
-  ./bin/asdf update
+update = ${MR_REPO}/bin/asdf update
+post_checkout = ${MR_REPO}/bin/asdf update
 post_update = git_last_tag
 
