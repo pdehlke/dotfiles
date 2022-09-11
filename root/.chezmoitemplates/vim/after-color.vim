@@ -1,6 +1,9 @@
+  {{- /* fix neovim */}}
 if !has('nvim')
   let g:lightline.colorscheme = '{{ . }}'
 endif
+
+  {{- /* fix solarized theme */}}
   {{- if eq . "solarized" }}
 " set notermguicolors
 let g:yadr_disable_solarized_enhancements = 0
