@@ -1,6 +1,5 @@
 {{- $simpleSourceDir := trimPrefix .chezmoi.homeDir .chezmoi.workingTree |
       trimPrefix "/" -}}
-# vim:fileencoding=utf-8:ft=conf
 
 [ {{- $simpleSourceDir -}} ]
 order = 3
@@ -59,3 +58,4 @@ checkout =
 update = gplmod --ff-only
 pre_update = git checkout master
 
+# vim:fileencoding=utf-8:ft=conf
