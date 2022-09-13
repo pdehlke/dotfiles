@@ -11,7 +11,7 @@ function! GetVisual()
 endfunction
 
 "grep the current word using ,k (mnemonic Kurrent)
-nnoremap <silent> <leader>k :Ag <cword><CR>
+nnoremap <silent> <leader>k :execute "Ag " . expand("<cword>")<CR>
 
 "grep visual selection
 vnoremap <leader>k :<C-U>execute "Ag " . GetVisual()<CR>
@@ -20,11 +20,11 @@ vnoremap <leader>k :<C-U>execute "Ag " . GetVisual()<CR>
 nnoremap <leader>K viwf!:<C-U>execute "Ag " . GetVisual()<CR>
 
 "grep for 'def foo'
-nnoremap <silent> <leader>gd :Ag 'def <cword>'<CR>
+nnoremap <silent> <leader>gd :execute "Ag def " . expand("<cword>")<CR>
 
 ",gg = Grep! - using Ag the silver searcher
 " open up a grep line, with a quote started for the search
-nnoremap <leader>gg :Ag ""<left>
+nnoremap <leader>gg :Ag 
 
 "Grep for usages of the current file
 nnoremap <leader>gcf :exec "Ag " . expand("%:t:r")<CR>
