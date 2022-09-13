@@ -26,14 +26,14 @@ nnoremap <leader>K viwf!:<C-U>execute "Rg " . GetVisual()<CR>
 "grep for 'def foo'
 nnoremap <silent> <leader>gd :execute "Rg def " . expand("<cword>")<CR>
 
-",gg = Grep! - using Ripgrep
+",gg = Grep! - using RipGrep
 " open up a grep line, with a quote started for the search
 nnoremap <leader>gg :Rg 
 
 "Grep for usages of the current file
 nnoremap <leader>gcf :exec "Rg " . expand("%:t:r")<CR>
 
-" Rg for the last search.
+" RipGrep for the last search.
 nnoremap <silent> <leader>qa/ :execute "Rg! " . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "")<CR>
 
 elseif executable('ag')
