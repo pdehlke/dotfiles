@@ -2,12 +2,11 @@
 LICENSE
 README*.md
 CHANGELOG.md
-docs
+docs/
 install.sh
 
 # YADR install
-Rakefile
-bin
+bin/
 aliases.sh
 
 # Docker tests
@@ -15,13 +14,13 @@ Dockerfile
 docker-compose.yml
 
 # Chrome Custom.css
-chrome
+chrome/
 
 # Vimfiles
-vim
+vim/
 
 # ZSH
-zsh
+zsh/
 
 {{ if not (eq .param.color "solarized" "dracula") }}
 # Kitty
@@ -30,11 +29,11 @@ zsh
 
 {{ if (ne .chezmoi.os "darwin") }}{{/* Don't install MacOS files */}}
 # no darwin files
-Library
-iTerm2
+Library/
+iTerm2/
 {{ end }}
 
 {{ if (ne .chezmoi.os "linux" ) }}{{/* Don't install Linux files */}}
 # no linux files
-.local/share/fonts
+.local/share/fonts/
 {{ end }}
