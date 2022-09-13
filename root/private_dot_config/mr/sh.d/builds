@@ -1,5 +1,11 @@
 # -*- mode: sh -*-
 
+general_build() {
+  if has_makefile ; then
+    make
+  fi
+}
+
 has_makefile() {
   if missing_file Makefile && missing_file GNUmakefile ; then
     return 1
