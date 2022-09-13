@@ -28,19 +28,19 @@ nnoremap <silent> <leader>e :GFiles<CR>
 " Idea from : http://www.charlietanksley.net/blog/blog/2011/10/18/vim-navigation-with-lustyexplorer-and-lustyjuggler/
 " Open FZF starting from a particular path, making it much
 " more likely to find the correct thing first. mnemonic 'jump to [something]'
-map <leader>ja :FZF app/assets<CR>
-map <leader>jm :FZF app/models<CR>
-map <leader>jc :FZF app/controllers<CR>
-map <leader>jv :FZF app/views<CR>
-map <leader>jj :FZF app/assets/javascripts<CR>
-map <leader>jh :FZF app/helpers<CR>
-map <leader>jl :FZF lib<CR>
-map <leader>jp :FZF public<CR>
-map <leader>js :FZF spec<CR>
-map <leader>jf :FZF fast_spec<CR>
-map <leader>jd :FZF db<CR>
-map <leader>jC :FZF config<CR>
-map <leader>jV :FZF vendor<CR>
-map <leader>jF :FZF factories<CR>
-map <leader>jT :FZF test<CR>
+map <leader>ja :Files app/assets<CR>
+map <leader>jm :Files app/models<CR>
+map <leader>jc :Files app/controllers<CR>
+map <leader>jv :Files app/views<CR>
+map <leader>jj :Files app/assets/javascripts<CR>
+map <leader>jh :Files app/helpers<CR>
+map <leader>jl :Files lib<CR>
+map <leader>jp :Files public<CR>
+map <leader>js :Files spec<CR>
+map <leader>jf :Files fast_spec<CR>
+map <leader>jd :Files db<CR>
+map <leader>jC :Files config<CR>
+map <leader>jV :Files vendor<CR>
+map <leader>jF :Files factories<CR>
+map <leader>jT :Files test<CR>
 
