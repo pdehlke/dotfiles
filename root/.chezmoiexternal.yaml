@@ -1,4 +1,27 @@
 ---
+# Nerd Fonts
+{{- range (list "InconsolataLGC" "Meslo") }}
+{{- $NerdFontsRelease := gitHubLatestRelease "ryanoasis/nerd-fonts" }}
+{{- $url_download := replace "releases/tag" "releases/download"
+                     $NerdFontsRelease.GetHTMLURL }}
+'
+  {{- if eq $.chezmoi.os "linux" -}}
+.local/share/fonts
+  {{- else if eq $.chezmoi.os "darwin" -}}
+Library/Fonts
+  {{- end -}}
+/ {{- substr 0 1 . | lower -}}':
+  url: '{{- $url_download -}} / {{- . -}} .zip'
+  type: 'archive'
+  executable: true
+  refreshPeriod: '720h' # 30 days
+  exclude:
+    - '*Windows*'
+    - '*Mono*'
+{{- end }}
+    - '*DZ*'
+    - '*LG [LM]*'
+
 # Prezto
 '.zprezto':
   url: 'https://github.com/sorin-ionescu/prezto.git'
