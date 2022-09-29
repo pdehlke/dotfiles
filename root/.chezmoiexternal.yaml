@@ -4,9 +4,9 @@
 {{- $url_download := replace "releases/tag" "releases/download"
                      $NerdFontsRelease.GetHTMLURL }}
 {{- $fontPath := "" }}
-{{- if eq $.chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "linux" }}
 {{-   $fontPath = ".local/share/fonts" }}
-{{- else if eq $.chezmoi.os "darwin" }}
+{{- else if eq .chezmoi.os "darwin" }}
 {{-   $fontPath = "Library/Fonts" }}
 {{- end }}
 {{- range (list "InconsolataLGC" "Meslo") }}
