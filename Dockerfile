@@ -4,6 +4,9 @@ LABEL maintainer="Nanda Lopes <nandalopes@gmail.com>"
 ENV TERM xterm-256color
 ENV CODESPACES true
 
+VOLUME /root/.vim/plugged
+VOLUME /root/.zprezto
+
 # Let the container know that there is no tty
 ARG DEBIAN_FRONTEND=noninteractive
 
