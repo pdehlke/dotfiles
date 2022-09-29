@@ -7,7 +7,7 @@ services:
     image: yadr
     volumes:
       - ./:/root/.yadr/
-      - plugged:/root/.vim/plugged
+      - plugged:/root/.yadr/root/vim/plugged
       - zprezto:/root/.zprezto
 volumes:
   plugged:
