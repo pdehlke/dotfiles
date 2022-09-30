@@ -1,7 +1,9 @@
+{{- /* DATA NOT AVAILABLE ON INIT */ -}}
 {{- $data := joinPath .chezmoi.sourceDir ".chezmoidata.yaml" | include | fromYaml }}
 {{- $supportedColors := keys $data.color -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not) -}}
+{{- /* END DATA NOT AVAILABLE */ -}}
 
 
 {{- /* Initializes variables with a default value */ -}}
@@ -25,9 +27,9 @@
 sourceDir: {{ quote .chezmoi.workingTree }}
 
 data:
-  interactive: {{ $interactive }}
   name: {{ quote $name }}
   email: {{ quote $email }}
+  interactive: {{ $interactive }}
   param:
     color: {{ quote $color }}
     # Choose any of {{ join ", " $supportedColors }}
