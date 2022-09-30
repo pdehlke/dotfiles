@@ -4,3 +4,4 @@
 " the plugins.
 let mapleader=','
 
+" let maplocalleader='\'
