@@ -10,7 +10,7 @@
 {{-   $fontPath = "Library/Fonts" }}
 {{- end }}
 {{- range (list "InconsolataLGC" "Meslo") }}
-'{{- $fontPath -}} / {{- substr 0 1 . | lower -}} / {{- . -}}':
+'{{- joinPath $fontPath (substr 0 1 . | lower) . -}}':
   url: '{{- $url_download -}} / {{- . -}} .zip'
   type: 'archive'
   executable: true
