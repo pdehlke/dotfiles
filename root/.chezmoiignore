@@ -4,8 +4,6 @@ README*.md
 CHANGELOG.md
 docs/
 install.sh
-
-# YADR install
 bin/
 aliases.sh
 
@@ -16,24 +14,24 @@ docker-compose.yml
 # Chrome Custom.css
 chrome/
 
-# Vimfiles
-vim/
-
 # ZSH
 zsh/
 
-{{ if not (eq .param.color "solarized" "dracula") }}
+# Vimfiles
+vim/
+
+{{- if not (eq .param.color "solarized" "dracula") }}
 # Kitty
 .config/kitty/diff.conf
-{{ end }}
+{{- end }}
 
-{{ if (ne .chezmoi.os "darwin") }}{{/* Don't install MacOS files */}}
+{{- if (ne .chezmoi.os "darwin") }}{{/* Don't install MacOS files */}}
 # no darwin files
 Library/
 iTerm2/
-{{ end }}
+{{- end }}
 
-{{ if (ne .chezmoi.os "linux" ) }}{{/* Don't install Linux files */}}
+{{- if (ne .chezmoi.os "linux" ) }}{{/* Don't install Linux files */}}
 # no linux files
 .local/share/fonts/
-{{ end }}
+{{- end }}
