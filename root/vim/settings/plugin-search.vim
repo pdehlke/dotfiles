@@ -24,7 +24,7 @@ if executable('rg')
   nnoremap <leader>K viwf!:<C-U>execute "Rg " . GetVisual()<CR>
 
   "grep for 'def foo'
-  nnoremap <silent> <leader>gd :execute "Rg def " . expand("<cword>")<CR>
+  nnoremap <silent> <leader>ggd :execute "Rg def " . expand("<cword>")<CR>
 
   ",gg = Grep! - using RipGrep
   " open up a grep line, with a quote started for the search
@@ -49,7 +49,7 @@ elseif executable('ag')
   nnoremap <leader>K viwf!:<C-U>execute "Ag " . GetVisual()<CR>
 
   "grep for 'def foo'
-  nnoremap <silent> <leader>gd :execute "Ag def " . expand("<cword>")<CR>
+  nnoremap <silent> <leader>ggd :execute "Ag def " . expand("<cword>")<CR>
 
   ",gg = Grep! - using Ag the silver searcher
   " open up a grep line, with a quote started for the search
