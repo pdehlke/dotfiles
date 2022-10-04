@@ -332,7 +332,7 @@ Essa não é uma lista compreensiva. Para obter um conhecimento mais profundo, p
   * `,hp`: Antevisão Html (abrir no Safari)
   * `Cmd-Shift-A`: alinha as coisas (digite um caractere/expressão para alinhar, funciona no modo visual ou sozinho) (`,A` no Linux)
   * `:ColorToggle`: ative o realce de cor #abc123 (útil para css)
-  * `:Gitv`: navegadores de registro Git
+  * `:GV`: navegadores de registro Git
   * `,hi`: mostra o grupo realce atual.  se você não gosta da cor de alguma coisa, use isto, então use `oi!  link [groupname] [anothergroupname]` em seu vimrc.after para remapear a cor. Você pode ver as cores disponíveis usando `:hi`
   * `,gt`: Go Tidy - arruma seu código html (funciona em uma seleção visual)
   * `:Wrap`: quebra linhas longas (por exemplo, ao editar arquivos markdown)
