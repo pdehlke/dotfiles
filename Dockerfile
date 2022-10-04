@@ -60,9 +60,6 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG CACHEBUST
-RUN echo
-
 # Install dotfiles
 COPY . /root/.yadr
 WORKDIR /root/.yadr
