@@ -13,23 +13,18 @@
 # -e: exit on error
 set -e
 
-  {{-   if ne .chezmoi.os "android" }}
-# {{ .chezmoi.osRelease.name }} - {{ .chezmoi.osRelease.versionCodename }}
-  {{-   end }}
-
-  {{- if lookPath "zsh" }}
-
 {{    if eq .chezmoi.os "android" -}}
 chsh -s zsh
-{{-   else -}}
+{{-   else if eq .chezmoi.os "linux" -}}
 chsh --shell /bin/zsh
 {{-   end }}
 
-  {{- else }}
+{{- if lookPath "subl" }}
+subl --command "install_package_control"
+{{- end }}
 
-echo 'Install zsh, then run:'
-echo '  $ chezmoi apply --source-path {{ joinPath .chezmoi.sourceDir .chezmoi.sourceFile }}'
-
-  {{- end }}
+{{- if lookPath "vim" }}
+vim +PluginInstall +qall
+{{- end }}
 
 {{- end }}
