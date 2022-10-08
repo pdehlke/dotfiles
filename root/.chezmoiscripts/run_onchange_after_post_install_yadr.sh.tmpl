@@ -24,7 +24,7 @@ subl --command "install_package_control"
 {{- end }}
 
 {{- if lookPath "vim" }}
-vim +PluginInstall +qall
+vim -es -u ~/.vimrc -i NONE -c 'PlugClean!' -c 'PlugInstall!' -c 'qa'
 {{- end }}
 
 {{- end }}
