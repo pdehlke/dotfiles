@@ -44,14 +44,14 @@ echo "Running 'chezmoi $*'" >&2
 # exec: replace current process with chezmoi
 exec "$chezmoi" "$@"
 
-# Set up sublime text and vim
+# # Set up sublime text and vim
 
-if $(command -v subl) >/dev/null; then
-  echo "Setting up Sublime Text packages"
-  subl --command "install_package_control"
-fi
+# if $(command -v subl) >/dev/null; then
+#   echo "Setting up Sublime Text packages"
+#   subl --command "install_package_control"
+# fi
 
-if $(command -v vim) >/dev/null; then
-  echo "Installing vim plugins for the first time"
-fi
-vim +PluginInstall +qall
+# if $(command -v vim) >/dev/null; then
+#   echo "Installing vim plugins for the first time"
+# fi
+# vim +PluginInstall +qall
