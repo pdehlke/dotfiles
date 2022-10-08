@@ -19,10 +19,6 @@ if quiet_which rbenv; then
   eval "$(rbenv init -)"
 fi
 
-if quiet_which asdf; then
-  . $(brew --prefix asdf)/libexec/asdf.sh
-fi
-
 if quiet_which goenv; then
   export GOENV_ROOT="$HOME/.goenv"
   export PATH="$GOENV_ROOT/bin:$PATH"
