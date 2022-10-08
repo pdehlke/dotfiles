@@ -1,0 +1,83 @@
+startup_message off
+termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+termcapinfo rxvt-unicode ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
+#termcapinfo wy* CS=\E[?1h:CE=\E[?1l:vi=\E[?25l:ve=\E[?25h:VR=\E[?5h:VN=\E[?5l:cb=\E[1K:CD=\E[1J
+terminfo rxvt-unicode ti@:te@:
+#term screen-256color
+setenv LC_CTYPE en_US.UTF-8
+defutf8 on
+setenv DISPLAY ':0'
+nonblock on
+vbell off
+msgwait 10
+
+screen            1
+screen            2
+#screen    -t log       9 sudo tail -f /var/log/everything.log
+select 1
+
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+bind c screen 1 # Window numbering starts at 1, not 0.
+bind 0 select 10
+# f1 moves to the previous screen, f2 moves to the next screen
+bindkey -k k1 prev
+bindkey -k k2 next
+
+# windows select with Shift-Fn. May not work in all terminals.
+# (screen only seems to understand up to FA)
+bindkey -k F3 select 1
+bindkey -k F4 select 2
+bindkey -k F5 select 3
+bindkey -k F6 select 4
+bindkey -k F7 select 5
+bindkey -k F8 select 6
+bindkey -k F9 select 7
+bindkey -k FA select 8
+
+#bindkey -k k7 detach # bind F7  to detach screen session from this terminal
+#bindkey -k k8 kill   # bind F8  to kill current screen window.
+#bindkey -k k9 next   # bind F9 to move to previous window
+#bindkey -k F1 prev   # bind F11 to move to next window
+#bindkey -k F2 hardstatus alwaysignore # F12 to turn the status bar on
+#bindkey -k k9 screen # bind F9  to create a new screen
+#bindkey -k k; title  # bind F10 to rename current screen window
+
+# These don't work on OSX; spaces/expose gets in the way. I don't want to override Spaces :)
+#bindkey -k F1 prev   # bind F11 to move to previous window
+#bindkey -k F2 next   # bind F12 to move to next window
+#bindkey "^[Od" prev  # change window with ctrl-left
+#bindkey "^[Oc" next  # change window with ctrl-right
+
+# add CPU idle/sustem/user/interrupt stats
+#backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
+#caption always '%{= wk} %= %100` %='
+caption always '%{= k.}%{.b}[%{.g}%H%{.b}][%= %{.B}%?%-Lw%?%{.r}(%{+b .C}%n*%f %t%?(%u)%?%{-b .r})%{.B}%?%+Lw%?%?%= %{.b}][%{.c}%m/%d %c%{.b}]%{= dd}'
+
+
+# An alternative hardstatus to display a bar at the bottom listing the
+# windownames and highlighting the current windowname in blue. (This is only
+# enabled if there is no hardstatus setting for your terminal)
+#hardstatus on
+#hardstatus alwayslastline
+#hardstatus string "%w"
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%?"            #B&W
+# PETE
+# hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
+# hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%{=b kw}%?%+w%? %=%c %m/%d/%Y" #B&W & date&time
+#hardstatus alwayslastline "%{=}%{+b kR}%H %{+b kY}%M %d %{+b kG}%2c %{kw}%?%-Lw%?%{kr}(%{kW}%t%?%?%{r})%{w}%?%+Lw%?%?"
+
+#hardstatus string '%{= R}[%{w}%H%{R}][%{w}%=%?%-Lw%?%{R}%n*%f%t%?(%u)%? %{w}%?%+Lw%?%?%=%{R}][%{w}%m/%d %{W}%C%A%{R}]'
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%+w %=%C %a "
+#hardstatus string "%{=b kw} %?%-Lw%?%{=br kw}[%n %t]%{=b kw}%?%+Lw%? %="
+#hardstatus alwayslastline '%{bk}[ %{W}%H %{b}][ %{w}%l%{b} ]   %{b}[%{w} %D %d.%m %c:%s%{b} ]'
+#hardstatus alwayslastline '%{bk}[%{W}%H%{b}] %{w} %l %= %n*%t%{-b r}%{w}%+w %= %{w}%d %D %{w}%c'
+#hardstatus alwayslastline '%{wk}[ %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+sorendition kw
+
+# hardcopydir:  The directory which contains all hardcopies.
+#hardcopydir ~/.hardcopy
+hardcopydir ~/.screen
+

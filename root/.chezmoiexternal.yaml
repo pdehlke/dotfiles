@@ -8,6 +8,20 @@
 # ZSH shell
 #
 
+# tmux themepack
+'.tmux-themepack':
+  url: 'https://github.com/jimeh/tmux-themepack.git'
+  type: 'git-repo'
+  refreshPeriod: '168h' # 7 days
+  clone:
+    args:
+      - '--depth=1'
+      - '--shallow-submodules'
+      - '--recursive'
+  pull:
+    args:
+      - '--recurse-submodules=yes'
+
 # Prezto
 '.zprezto':
   url: 'https://github.com/sorin-ionescu/prezto.git'
