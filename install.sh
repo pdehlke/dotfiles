@@ -26,21 +26,21 @@ fi
 if [ -z "${ACT:+false}${CODESPACES:+false}${DEBIAN_FRONTEND:+false}" ]; then
   echo "Running interactive"
   "${chezmoi}" init "--source=${script_dir}"
-  "${chezmoi}" diff --verbose
-  read -p 'Apply modifications? (y/n) ' r
-  case "${r}" in
-  y | Y | s | S)
-    set -- apply --verbose "--source=${script_dir}"
-    ;;
-  *)
-    set -- diff
-    ;;
-  esac
-else
-  set -- init --apply --verbose --source="${script_dir}"
+  set -- apply --verbose "--source=${script_dir}"
+#   "${chezmoi}" diff --verbose
+#   read -p 'Apply modifications? (y/n) ' r
+#   case "${r}" in
+#   y | Y | s | S)
+#     set -- apply --verbose "--source=${script_dir}"
+#     ;;
+#   *)
+#     set -- diff
+#     ;;
+#   esac
+# else
+#   set -- init --apply --verbose --source="${script_dir}"
 fi
 
 echo "Running 'chezmoi $*'" >&2
 # exec: replace current process with chezmoi
 exec "$chezmoi" "$@"
-
