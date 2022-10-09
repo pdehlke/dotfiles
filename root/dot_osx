@@ -180,7 +180,7 @@ defaults write com.apple.dock expose-animation-duration -float 0.15
 defaults write com.apple.dock showhidden -bool true
 
 # Enable the 'reduce transparency' option. Save GPU cycles.
-defaults write com.apple.universalaccess reduceTransparency -bool true
+# defaults write com.apple.universalaccess reduceTransparency -bool true
 
 # Hot corners
 # Possible values:
