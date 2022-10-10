@@ -26,7 +26,7 @@ fi
 if [ -z "${ACT:+false}${CODESPACES:+false}${DEBIAN_FRONTEND:+false}" ]; then
   echo "Running interactive"
 #  "${chezmoi}" init "--source=${script_dir}"
-  set -- apply --verbose "--source=${script_dir}"
+  set -- apply --force --verbose "--source=${script_dir}"
 #   "${chezmoi}" diff --verbose
 #   read -p 'Apply modifications? (y/n) ' r
 #   case "${r}" in
