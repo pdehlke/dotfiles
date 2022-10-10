@@ -10,4 +10,3 @@ export HOMEBREW_NO_ANALYTICS=1
 export BAT_THEME="Solarized (dark)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=cyan,underline"
-export GITHUB_TOKEN=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
