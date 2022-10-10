@@ -21,7 +21,7 @@ function setup_venv() {
     pyenv install "${SOURCE_VERSION}"
   fi
   if ! [ -f "${PYENV_ROOT}/versions/${VENV_NAME}/bin/activate" ]; then
-    log info "Setting up python2 environment"
+    log info "Setting up python environment"
     pyenv virtualenv "${SOURCE_VERSION}" "${VENV_NAME}"
   fi
 }
@@ -103,6 +103,10 @@ PYTHON_3_VERSION="${PYTHON_3_VERSION:-"3.9.1"}"
 
 # make sure our python environments are up to date
 pyenv_init
+
+# We need python2 for cqlsh until we move to cassandra 4 :()
+setup_venv 2.7.18 py2
+
 ensure_venv
 # activate the current default python virtualenv
 pydefault
