@@ -13,6 +13,7 @@ fi
 
 if quiet_which jenv; then
   eval "$(jenv init -)"
+  jenv enable-plugin export
 fi
 
 if quiet_which rbenv; then
