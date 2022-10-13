@@ -1,6 +1,7 @@
 {{-
-  include (
-    printf "private_dot_config/kitty/themes/%s.conf"
-    (index .color .param.color "kitty" "file")
-  )
+  $kittyTheme := index .color .param.color "kitty" "file" |
+                 printf "%s/.config/kitty/themes/%s.conf" .chezmoi.homeDir
 -}}
+{{- if stat $kittyTheme -}}
+{{-   include $kittyTheme -}}
+{{- end -}}
