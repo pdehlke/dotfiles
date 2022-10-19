@@ -22,7 +22,7 @@ vim/
 
 {{- if not (eq .param.color "solarized" "dracula") }}
 # Kitty
-.config/kitty/diff.conf
+#.config/kitty/diff.conf
 {{- end }}
 
 {{- if (ne .chezmoi.os "darwin") }}{{/* Don't install MacOS files */}}
