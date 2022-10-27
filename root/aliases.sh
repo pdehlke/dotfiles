@@ -47,6 +47,7 @@ alias ar='source $yadr/aliases.sh' # alias reload
 alias gar='killall -HUP -u "$USER" zsh' # global alias reload
 
 # chezmoi aliases
+alias czI='chezmoi init' # chezmoi [I]nit
 alias czh='chezmoi cd' # chezmoi [h]ome
 alias cza='chezmoi apply -v' # chezmoi [a]pply
 alias czA='chezmoi add' # chezmoi [A]dd
