@@ -168,6 +168,7 @@ Muitas coisas que fazemos todos os dias são feitas com dois ou três caracteres
 
 **Aliases / Apelidos para gerenciar seus dotfiles**
 
+  * `czI` - chezmoi (I)init - escrever ou reescrever o arquivo de configuração
   * `czh` - chezmoi (h)ome - mudar para a pasta dos dotfiles
   * `cza [ file(s) | folder(s) ]` - chezmoi (a)pply - aplica o *source state* (estado fonte, estado na pasta dotfiles) ao arquivo destino.
     Adicione `--dry-run` para prever as diferenças sem modificar o destino.

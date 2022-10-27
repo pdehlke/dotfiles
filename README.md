@@ -168,6 +168,7 @@ Lots of things we do every day are done with two or three charactera mnemonic al
 
 **Dotfiles management aliases**
 
+  * `czI` - chezmoi (I)init - re-generate the config file
   * `czh` - chezmoi (h)ome - cd into dotfiles dir
   * `cza [ file(s) | folder(s) ]` - chezmoi (a)pply - apply *source state* to *destination*.
     Add `--dry-run` to preview only.
