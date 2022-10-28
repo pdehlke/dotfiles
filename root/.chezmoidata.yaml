@@ -24,22 +24,32 @@ sayings:
     author: "Truman Burbank"
 
 # PS: Only tmux >= 3.1 supports terminal-features
-tmux_terminal_features:
-  01_tmux:
+tmux_terminal_settings:
+  10_tmux:
     term_name: 'tmux*'
     features: 'title'
-    overrides: 'Ss=\E[%p1%d q:Se=\E[3 q' # reset and set cursor shape
-  02_xterm:
+    overrides: 'XT:Ss=\E[%p1%d q:Se=\E[3 q' # reset and set cursor shape
+  20_xterm:
     term_name: 'xterm*'
-    overrides: 'Tc:RGB:smxx=\E[9m' # enable strikethrough text
-  03_kitty:
-    term_name: 'xterm-kitty'
-    features:  'Tc:RGB:256:usstyle:extkeys'
+    # features: 'clipboard:ccolour:cstyle:focus:title'
+    # overrides: 'XT:...'
+  30_256color:
+    term_name: '*256color'
+    features: '256'
+    overrides: '256'
+  30_direct:
+    term_name: '*direct'
+    features:  'Tc:RGB:256:smxx=\E[9m' # enable strikethrough text
+    overrides: 'Tc:RGB:256'
+  40_kitty:
+    term_name: '*kitty*'
+    features:  'Tc:RGB:256:clipboard:ccolour:cstyle:focus:title:usstyle:extkeys:overline:strikethrough'
+    overrides: 'Tc:RGB:256:XT'
     # Kitty supports RGB and 256 colors, underscore style and color
     # overrides: 'Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
     # underscore colours - needs tmux-3.0
-  04_alacritty:
+  40_alacritty:
     term_name: 'alacritty'
-    features:  'clipboard:ccolour:cstyle:focus:title:RGB:256:usstyle:extkeys'
-    overrides: 'Tc:RGB'
+    features:  'RGB:256:clipboard:ccolour:cstyle:focus:title:extkeys:overline'
+    overrides: 'RGB:256:XT'
 

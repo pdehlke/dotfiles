@@ -9,14 +9,6 @@ set -gq status-utf8 on
 set -s default-terminal 'tmux-256color'
 
 
-# Session option terminal-overrides
-set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
-  {{- range .tmux_terminal_features -}}
-    {{- if hasKey . "overrides" }}
-set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
-    {{- end }}
-  {{- end }}
-
 {{/* Only tmux >= 3.2 supports terminal-features */}}
 {{- $tmuxV := false -}}
 {{- if lookPath "tmux" -}}
@@ -28,12 +20,21 @@ set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
 
 {{ if $tmuxV -}}
 # Session option terminal-features (requires tmux>=3.2)
-  {{- range .tmux_terminal_features -}}
+  {{- range .tmux_terminal_settings -}}
     {{- if hasKey . "features" }}
 set-option -sa terminal-features ',{{ .term_name }}:{{ .features }}'
     {{- end }}
   {{- end }}
 {{- end }}
+
+
+# Session option terminal-overrides
+set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
+  {{- range .tmux_terminal_settings -}}
+    {{- if hasKey . "overrides" }}
+set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
+    {{- end }}
+  {{- end }}
 
 
 # Screen like binding
