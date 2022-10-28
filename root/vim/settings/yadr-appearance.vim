@@ -32,7 +32,7 @@ else
   if $COLORTERM ==? 'gnome-terminal'
     set term=gnome-256color
     set t_Co=256
-  elseif $TERM ==? 'xterm'
+  elseif $TERM =~? 'xterm'
     set term=xterm-256color
     set t_Co=256
   elseif $TERM ==? 'tmux-256color'
