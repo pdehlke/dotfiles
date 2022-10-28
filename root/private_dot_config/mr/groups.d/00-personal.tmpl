@@ -1,10 +1,11 @@
+{{- $nproc := output "nproc" | trim -}}
 {{- $simpleSourceDir := trimPrefix .chezmoi.homeDir .chezmoi.workingTree |
                         trimPrefix "/" -}}
 
 [ {{- $simpleSourceDir -}} ]
 order = 3
 checkout =
-  git clone -- \
+  git clone -j{{- $nproc }} -- \
       'git@github.com:nandalopes/dotfiles.git' '{{- $simpleSourceDir -}}'
 update = gplr
 Clean =
@@ -53,7 +54,7 @@ post_status = git_last_tag
 [.zprezto]
 order = 7
 checkout =
-  git clone --recursive -- \
+  git clone -j{{- $nproc }} --recursive -- \
       'https://github.com/sorin-ionescu/prezto.git' '.zprezto'
 update = gplmod --ff-only
 pre_update = git checkout master
