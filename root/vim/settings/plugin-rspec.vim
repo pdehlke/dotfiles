@@ -15,7 +15,7 @@ function! ChangePendingRspecToXit()
     " Search backwards to the it block
     ?it\s
     " add an 'x' to the 'it' to make it 'xit'
-    normal ix
+    normal! ix
   endwhile
 endfunction
 
