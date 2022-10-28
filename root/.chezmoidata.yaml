@@ -19,7 +19,8 @@ color:
 sayings:
   - phrase: "So long and thanks for all the fish."
     author: "Douglas Adams"
-  - phrase: "Good morning! And in case I don't see ya, good afternoon, good evening and goodnight."
+  - phrase: "Good morning! And in case I don't see ya, good afternoon,
+    good evening and goodnight."
     author: "Truman Burbank"
 
 # PS: Only tmux >= 3.1 supports terminal-features
