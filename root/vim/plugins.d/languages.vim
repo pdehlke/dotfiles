@@ -19,4 +19,6 @@ Plug 'skwp/vim-html-escape'
 Plug 'jparise/vim-graphql'
 
 "" Javascript
+Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mogelbrod/vim-jsonpath'
