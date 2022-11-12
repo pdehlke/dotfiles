@@ -1,15 +1,6 @@
 # Dotfiles
-LICENSE
-README*.md
-CHANGELOG.md
-docs/
-install.sh
 bin/
 aliases.sh
-
-# Docker tests
-Dockerfile
-docker-compose.yml
 
 # Chrome Custom.css
 chrome/
