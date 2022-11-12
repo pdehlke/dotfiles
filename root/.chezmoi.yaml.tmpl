@@ -40,8 +40,15 @@ data:
 #   format: git
 # edit:
 #   command: vim
+#   args: # valid vim/neovim args
+#     - -p
+# merge:
+#   command: "vim"
 #   args:
-#     - -p # open files in new tabs
+#     - "-d"
+#     - "{{ `{{` }} .Destination {{ `}}` }}"
+#     - "{{ `{{` }} .Source {{ `}}` }}"
+#     - "{{ `{{` }} .Target {{ `}}` }}"
 
 # encryption: gpg
 # gpg:
