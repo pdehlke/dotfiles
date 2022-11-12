@@ -7,7 +7,11 @@ endif
   {{- if regexMatch "solarized" . }}
 " set notermguicolors
 let g:yadr_disable_solarized_enhancements = 0
-let g:airline_theme = 'solarized_flood'
+let g:airline_theme = 'solarized
+    {{- if not (regexMatch "light" .) -}}
+_flood
+    {{- end -}}
+'
   {{- else }}
 " set termguicolors
 let g:yadr_disable_solarized_enhancements = 1
