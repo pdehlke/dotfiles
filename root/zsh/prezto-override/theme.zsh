@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Tell `p10k configure` which file it should overwrite.
-# To customize prompt, run `p10k configure` or edit $POWERLEVEL9K_CONFIG_FILE.
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 POWERLEVEL9K_CONFIG_FILE=~/.p10k.zsh
 [[ ! -f "${POWERLEVEL9K_CONFIG_FILE}" ]] || source "${POWERLEVEL9K_CONFIG_FILE}"
 
