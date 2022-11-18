@@ -15,9 +15,9 @@ RUN apt-get update && \
   apt-get install -yqq \
     locales \
     lsb-release \
-    software-properties-common && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    software-properties-common \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set locale to UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -33,18 +33,18 @@ RUN apt-get update && \
     curl \
     git \
     sudo \
-    wget && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    wget \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install more dependencies
 RUN apt-get update && \
   apt-get -yqq install \
     tmux \
     vim \
-    zsh && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    zsh \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install optional dependencies
 RUN apt-get update && \
@@ -56,9 +56,9 @@ RUN apt-get update && \
     ripgrep \
     ruby-full \
     silversearcher-ag \
-    universal-ctags && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    universal-ctags \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install dotfiles
 COPY . /root/.yadr
