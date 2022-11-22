@@ -2,7 +2,8 @@
 {{- $data := joinPath .chezmoi.sourceDir ".chezmoidata.yaml" | include | fromYaml }}
 {{- $supportedColors := keys $data.color -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
-{{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not) -}}
+{{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not)
+                    (expandenv "$DEBIAN_FRONTEND" | ne "noninteractive") -}}
 {{- /* END DATA NOT AVAILABLE */ -}}
 
 

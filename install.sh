@@ -23,7 +23,7 @@ if ! chezmoi="$(command -v chezmoi)"; then
   unset chezmoi_install_script bin_dir
 fi
 
-if [ -z "${CODESPACES:+false}" ]; then
+if [ -z "${CODESPACES:+false}${DEBIAN_FRONTEND:+false}" ]; then
   echo "Running interactive"
   "${chezmoi}" init "--source=${script_dir}"
   "${chezmoi}" diff --verbose
