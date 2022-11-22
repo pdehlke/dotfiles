@@ -11,8 +11,8 @@ VOLUME /root/.zprezto
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Bootstrapping packages needed for installation
-RUN apt-get update && \
-  apt-get install -yqq \
+RUN apt-get update \
+  && apt-get install -qqy \
     locales \
     lsb-release \
     software-properties-common \
@@ -26,35 +26,33 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 && \
   /usr/sbin/update-locale LANG=$LANG
 
 # Install dependencies
-# `universe` is needed for ruby
-# `security` is needed for fontconfig and fc-cache
-RUN apt-get update && \
-  apt-get -yqq install \
+RUN apt-get update \
+  && apt-get install -qqy \
     curl \
     git \
     sudo \
-    wget \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install more dependencies
-RUN apt-get update && \
-  apt-get -yqq install \
+# Install YADR dependencies
+RUN apt-get update \
+  && apt-get install -qqy \
+    fontconfig \
+    ruby-full \
     tmux \
     vim \
+    wget \
     zsh \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install optional dependencies
-RUN apt-get update && \
-  apt-get -yqq install \
+RUN apt-get update \
+  && apt-get install -qqy \
     build-essential \
     direnv \
-    fontconfig \
     myrepos \
     ripgrep \
-    ruby-full \
     silversearcher-ag \
     universal-ctags \
   && apt-get clean \
