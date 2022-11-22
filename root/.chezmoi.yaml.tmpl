@@ -1,6 +1,6 @@
 {{- /* DATA NOT AVAILABLE ON INIT */ -}}
 {{- $data := joinPath .chezmoi.sourceDir ".chezmoidata.yaml" | include | fromYaml }}
-{{- $supportedColors := keys $data.color -}}
+{{- $supportedColors := keys $data.color | sortAlpha -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not)
                     (expandenv "$DEBIAN_FRONTEND" | ne "noninteractive") -}}
@@ -18,7 +18,7 @@
 {{-   $name  = promptStringOnce . "name" "Name used in gitconfig" $name -}}
 {{-   $email = promptStringOnce . "email" "Email used in gitconfig" $email -}}
 {{-   $stringColor := join "/" $supportedColors | printf "color (%s)" -}}
-{{-   $color = promptStringOnce .param "color" $stringColor $color -}}
+{{-   $color = promptStringOnce . "param.color" $stringColor $color -}}
 {{-   if not (has $color $supportedColors) -}}
 {{-     $color = "solarized" -}}
 {{-   end -}}
@@ -33,7 +33,12 @@ data:
   interactive: {{ $interactive }}
   param:
     color: {{ quote $color }}
-    # Choose any of {{ join ", " $supportedColors }}
+{{
+  join ", " $supportedColors
+  | printf "# Choose any of %s"
+  | wrapWith 50 "\n# " | indent 4
+}}
+
 
 # diff:
 #   exclude:
@@ -41,15 +46,18 @@ data:
 #   format: git
 # edit:
 #   command: vim
-#   args: # valid vim/neovim args
+#   # valid vim/neovim args
+#   args:
 #     - -p
 # merge:
-#   command: "vim"
+#   command: vim
 #   args:
-#     - "-d"
-#     - "{{ `{{` }} .Destination {{ `}}` }}"
-#     - "{{ `{{` }} .Source {{ `}}` }}"
-#     - "{{ `{{` }} .Target {{ `}}` }}"
+#     - -d
+#     - -o
+#     - " {{- `{{` }} .Destination {{ `}}` -}} "
+#     - " {{- `{{` }} .Source {{ `}}` -}} "
+#     - " {{- `{{` }} .Target {{ `}}` -}} "
+
 
 # encryption: gpg
 # gpg:
@@ -58,7 +66,7 @@ data:
 #     - --quiet
 #     - --homedir=/media/{{ .chezmoi.username }}/path/to/.gnupg
 
+
 # format: yaml
 # mode: file
 # verbose: true
-
