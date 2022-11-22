@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
+
 LABEL maintainer="Nanda Lopes <nandalopes@gmail.com>"
 
 ENV TERM xterm-256color
-ENV CODESPACES true
 
 VOLUME /root/.yadr/root/vim/plugged
 VOLUME /root/.zprezto
