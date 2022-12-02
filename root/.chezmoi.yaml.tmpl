@@ -1,5 +1,5 @@
 {{- /* DATA NOT AVAILABLE ON INIT */ -}}
-{{- $data := joinPath .chezmoi.sourceDir ".chezmoidata.yaml" | include | fromYaml }}
+{{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata.yaml" | include | fromYaml }}
 {{- $supportedColors := keys $data.color | sortAlpha -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not)
@@ -11,6 +11,7 @@
 {{- $name  := "Your Name" -}}
 {{- $email := "your@email.com" -}}
 {{- $color := "solarized" -}}
+
 
 {{- /* Otherwise, if running interactively, prompts for values */ -}}
 {{- if $interactive -}}
@@ -24,8 +25,11 @@
 {{-   end -}}
 {{- end -}}
 
+
+
 ---
 sourceDir: {{ quote .chezmoi.workingTree }}
+
 
 data:
   name: {{ quote $name }}
@@ -33,38 +37,43 @@ data:
   interactive: {{ $interactive }}
   param:
     color: {{ quote $color }}
-{{
-  join ", " $supportedColors
-  | printf "# Choose any of %s"
-  | wrapWith 50 "\n# " | indent 4
+{{-
+    join ", " $supportedColors |
+    printf "Choose any of %s" |
+    wrap 50 | comment "# " | nindent 4
 }}
 
 
 # diff:
 #   exclude:
-#     - scripts
-#   format: git
+#     - "scripts"
+#   format: "git"
+
+
 # edit:
-#   command: vim
+#   command: "vim"
 #   # valid vim/neovim args
 #   args:
-#     - -p
+#     - "-f"
+#     - "-p"
+
+
 # merge:
-#   command: vim
+#   command: "vim"
 #   args:
-#     - -d
-#     - -o
-#     - " {{- `{{` }} .Destination {{ `}}` -}} "
-#     - " {{- `{{` }} .Source {{ `}}` -}} "
-#     - " {{- `{{` }} .Target {{ `}}` -}} "
+#     - "-d"
+#     - "-o"
+#     - "{{ `{{` }} .Destination {{ `}}` }}"
+#     - "{{ `{{` }} .Source {{ `}}` }}"
+#     - "{{ `{{` }} .Target {{ `}}` }}"
 
 
 # encryption: gpg
 # gpg:
-#   recipient: 'YOUR-GPG-KEY'
+#   recipient: "YOUR-GPG-KEY"
 #   args:
-#     - --quiet
-#     - --homedir=/media/{{ .chezmoi.username }}/path/to/.gnupg
+#     - "--quiet"
+#     - "--homedir=/media/{{ .chezmoi.username }}/path/to/.gnupg"
 
 
 # format: yaml
