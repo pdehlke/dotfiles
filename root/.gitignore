@@ -35,5 +35,5 @@ custom/zsh
 # General files
 bin/subl
 tags
-**/.uuid
+.uuid
 
