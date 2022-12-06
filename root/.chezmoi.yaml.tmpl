@@ -2,8 +2,8 @@
 {{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata.yaml" | include | fromYaml }}
 {{- $supportedColors := keys $data.color | sortAlpha -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
-{{- $interactive := and stdinIsATTY (env "CODESPACES" | not) (env "ACT" | not)
-                    (expandenv "$DEBIAN_FRONTEND" | ne "Noninteractive") -}}
+{{- $interactive := and stdinIsATTY (env "ACT" | not) (env "CODESPACES" | not)
+                    (env "DEBIAN_FRONTEND" | ne "Noninteractive") -}}
 {{- /* END DATA NOT AVAILABLE */ -}}
 
 
