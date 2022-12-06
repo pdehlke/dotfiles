@@ -1,6 +1,6 @@
 # before settings
-!settings/before/main.vim
+!/settings/before/main.vim
 # after settings
-!settings/after/main.vim
-!settings/after/colorscheme.vim
-!settings/after/highlight.vim
+!/settings/after/main.vim
+!/settings/after/colorscheme.vim
+!/settings/after/highlight.vim
