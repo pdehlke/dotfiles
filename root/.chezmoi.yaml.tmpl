@@ -34,7 +34,6 @@ sourceDir: {{ quote .chezmoi.workingTree }}
 data:
   name: {{ quote $name }}
   email: {{ quote $email }}
-  interactive: {{ $interactive }}
   param:
     color: {{ quote $color }}
 {{-
@@ -42,6 +41,7 @@ data:
     printf "Choose any of %s" |
     wrap 50 | comment "# " | nindent 4
 }}
+    interactive: {{ $interactive }}
 
 
 # diff:
