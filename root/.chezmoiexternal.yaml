@@ -1,8 +1,13 @@
 ---
+{{- $releaseURLS := joinPath .chezmoi.homeDir ".backup/chezmoi" "gitHubLatestRelease.yaml" }}
+{{- if stat $releaseURLS }}
+{{-   $releaseURLS = include $releaseURLS | fromYaml }}
+{{- else }}
+{{-   $releaseURLS = .external }}
+{{- end }}
+
 # Nerd Fonts
-{{- $NerdFontsRelease := gitHubLatestRelease "ryanoasis/nerd-fonts" }}
-{{- $url_download := replace "releases/tag" "releases/download"
-                     $NerdFontsRelease.GetHTMLURL }}
+{{- $url_download := $releaseURLS.fonts.url }}
 {{- $fontPath := "" }}
 {{- if eq .chezmoi.os "linux" }}
 {{-   $fontPath = ".local/share/fonts" }}
