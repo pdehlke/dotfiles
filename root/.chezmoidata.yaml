@@ -17,6 +17,12 @@ color:
     tmux: 'dracula'
 
 
+external:
+  fonts:
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2"
+    version: "v2.2.2"
+
+
 sayings:
   - phrase: "So long and thanks for all the fish."
     author: "Douglas Adams"
