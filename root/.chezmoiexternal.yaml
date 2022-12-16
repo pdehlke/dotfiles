@@ -42,9 +42,8 @@
   clone:
     args:
       - '--depth=1'
-      - '--shallow-submodules'
       - '--recursive'
+      - '--shallow-submodules'
   pull:
     args:
       - '--recurse-submodules=yes'
-
