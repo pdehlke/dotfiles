@@ -16,12 +16,14 @@ color:
       file: 'Dracula'
     tmux: 'dracula'
 
+
 sayings:
   - phrase: "So long and thanks for all the fish."
     author: "Douglas Adams"
   - phrase: "Good morning! And in case I don't see ya, good afternoon,
     good evening and goodnight."
     author: "Truman Burbank"
+
 
 # PS: Only tmux >= 3.1 supports terminal-features
 tmux_terminal_settings:
@@ -52,4 +54,3 @@ tmux_terminal_settings:
     term_name: 'alacritty'
     features:  'RGB:256:clipboard:ccolour:cstyle:focus:title:extkeys:overline'
     overrides: 'RGB:256:XT'
-
