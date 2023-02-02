@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-bundleall = git_bundleall $MR_REPO $@
+git_bundleall = git_bundleall $MR_REPO $@
 
 Clean =
   if has_makefile ; then
