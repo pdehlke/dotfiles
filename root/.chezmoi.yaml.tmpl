@@ -3,7 +3,8 @@
 {{- $supportedColors := keys $data.color | sortAlpha -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "ACT" | not) (env "CODESPACES" | not)
-                    (env "DEBIAN_FRONTEND" | ne "Noninteractive") -}}
+                    (env "DEBIAN_FRONTEND" | ne "Noninteractive")
+  -}}
 {{- /* END DATA NOT AVAILABLE */ -}}
 
 
@@ -36,17 +37,22 @@ data:
   email: {{ quote $email }}
   param:
     color: {{ quote $color }}
-{{-
+{{
     join ", " $supportedColors |
     printf "Choose any of %s" |
-    wrap 50 | comment "# " | nindent 4
+    wrap 50 | comment "    # "
 }}
     interactive: {{ $interactive }}
 
 
+# status:
+#   exclude:
+#     - "always"
+
+
 # diff:
 #   exclude:
-#     - "scripts"
+#     - "always"
 #   format: "git"
 
 
