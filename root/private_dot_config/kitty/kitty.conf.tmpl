@@ -173,7 +173,7 @@ tab_bar_style powerline
 #:     tab_bar.py in the kitty config directory. For examples of how to
 #:     write such a function, see the functions named draw_tab_with_* in
 #:     kitty's source code: kitty/tab_bar.py. See also
-#:     this discussion https://github.com/kovidgoyal/kitty/discussions/4447
+#:     this discussion <https://github.com/kovidgoyal/kitty/discussions/4447>
 #:     for examples from kitty users.
 #: hidden
 #:     The tab bar is hidden. If you use this, you might want to create a mapping
@@ -211,7 +211,7 @@ tab_title_template "{index}. {title}"
 # background_image_layout scaled
 
 #: Whether to tile, scale or clamp the background image. The value can
-#: be one of tiled, mirror-tiled, scaled, clamped.
+#: be one of tiled, mirror-tiled, scaled, clamped or centered.
 
 dynamic_background_opacity yes
 
@@ -628,7 +628,7 @@ map kitty_mod+t     launch --cwd=current --type=tab
 
 #: Similarly, to switch back to the previous layout::
 
-#:    map ctrl+alt+p last_used_layout
+#:     map ctrl+alt+p last_used_layout
 
 #: There is also a toggle_layout action that switches to the named
 #: layout or back to the previous layout if in the named layout.
@@ -745,9 +745,14 @@ map kitty_mod+t     launch --cwd=current --type=tab
 
 #: Miscellaneous {{ `{{{` }}
 
+#: Show documentation
+
+# map kitty_mod+f1 show_kitty_doc overview
+
 #: Toggle fullscreen
 
 # map kitty_mod+f11 toggle_fullscreen
+# map ctrl+cmd+f    toggle_fullscreen
 
 #: Toggle maximized
 
