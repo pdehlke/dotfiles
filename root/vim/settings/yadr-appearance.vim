@@ -40,5 +40,9 @@ else
     set t_Co=256
   endif
 
+  if has('patch-9.0.0930')
+    set keyprotocol=kitty:kitty,xterm:mok2,alacritty:mok2
+  endif
+
 endif
 
