@@ -5,14 +5,16 @@ custom/zsh
 # (Neo)Vim plugins
 /vim/plugged
 /vim/autoload/plug.vim
+/vim/autoload/plug.vim.old
 
 # (Neo)Vim plugins/bundles
 # /vim/plugins.d/**/*.vim
 /vim/local_bundles.vim
 
 # (Neo)Vim settings
-/vim/settings/**/*.vim
-/vim/settings/{before,after}/*.vim
+/vim/settings/*.vim
+/vim/settings/before/*.vim
+/vim/settings/after/*.vim
 /vim/settings/plugin-vimwiki.vim
 
 # (Neo)Vim dicts
@@ -30,7 +32,9 @@ custom/zsh
 /vim/after/.vimrc.after
 
 # Other (Neo)Vim directories
-/vim/{backups,view,sessions}/
+/vim/backups/
+/vim/view/
+/vim/sessions/
 
 # General files
 bin/subl
