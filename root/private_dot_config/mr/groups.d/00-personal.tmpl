@@ -27,6 +27,15 @@ post_update = git lfs pull
   {{- end }}
 
 
+[.zprezto]
+order = 7
+checkout =
+  git clone -j{{- $nproc }} --recursive -- \
+      'https://github.com/sorin-ionescu/prezto.git' '.zprezto'
+update = gplmod --ff-only
+pre_update = git checkout master
+
+
 [${XDG_CONFIG_HOME:-.config}/gitstatus]
 order = 9
 checkout =
@@ -49,14 +58,5 @@ make =
   ./build -w -s -d docker
   sudo chown $USER:$USER -R usrbin deps
 post_status = git_last_tag
-
-
-[.zprezto]
-order = 7
-checkout =
-  git clone -j{{- $nproc }} --recursive -- \
-      'https://github.com/sorin-ionescu/prezto.git' '.zprezto'
-update = gplmod --ff-only
-pre_update = git checkout master
 
 # vim:fileencoding=utf-8:ft=conf
