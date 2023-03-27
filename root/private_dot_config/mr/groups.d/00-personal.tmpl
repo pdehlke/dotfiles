@@ -16,6 +16,7 @@ post_checkout =
   # config
   cfg_rcv_warn
   cfg_shared
+  # remotes
   git_add_remotes "
     upstream https://github.com/skwp/dotfiles.git
     lfilho   https://github.com/lfilho/dotfiles.git
@@ -36,27 +37,25 @@ update = gplmod --ff-only
 pre_update = git checkout master
 
 
-[${XDG_CONFIG_HOME:-.config}/gitstatus]
+{{
+  if (joinPath .chezmoi.homeDir ".zprezto"
+    "modules/prompt/external/powerlevel10k/gitstatus" | stat)
+  -}}
+[.zprezto/modules/prompt/external/powerlevel10k/gitstatus]
 order = 9
+skip = lazy
+checkout = true
+update = true
+fetch = true
+status = true
+{{- else -}}
+[${XDG_CONFIG_HOME:-.config}/gitstatus]
 checkout =
-  if ! [ -d "$HOME/.zprezto" ] ; then
-    git clone --depth=1 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
-  else
-    ln -nfs \
-      ~/.zprezto/modules/prompt/external/powerlevel10k/gitstatus \
-      'gitstatus'
-  fi
-update =
-  if ! [ -s "$MR_REPO" ]; then
-    git pull
-  fi
-fetch =
-  if ! [ -s "$MR_REPO" ]; then
-    git fetch
-  fi
+  git clone 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
+post_status = git_last_tag
+{{- end }}
 make =
   ./build -w -s -d docker
   sudo chown $USER:$USER -R usrbin deps
-post_status = git_last_tag
 
 # vim:fileencoding=utf-8:ft=conf
