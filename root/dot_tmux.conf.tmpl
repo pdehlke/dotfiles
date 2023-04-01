@@ -59,6 +59,9 @@ bind -r L resize-pane -R 5
 # Break out the current pane to a window
 bind b break-pane -d
 
+# Select pane
+bind P choose-tree -ZG
+
 {{ template "tmux/tmux-navigator.conf" }}
 
 
