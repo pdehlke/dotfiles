@@ -1,17 +1,23 @@
 ### ASDF Config
-
-if [ -d "$HOME/.asdf" ]; then
+if [ -d "${ASDF_DIR:-$HOME/.asdf}" ]; then
   ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
   ASDF_DATA_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
   export ASDF_DIR ASDF_DATA_DIR
 
-  # Dont source `~/.asdf/asdf.sh`
+  # Don't source `$ASDF_DIR/asdf.sh`
+  #source $ASDF_DIR/asdf.sh
+
+  # prepend $ASDF_DIR/bin to PATH
   PATH="$ASDF_DIR/bin:$PATH"
 
-  source $ASDF_DIR/lib/asdf.sh # just load the asdf wrapper function
+  ### append zsh completions
+  fpath=(
+    $fpath
+    $ASDF_DIR/completions
+  )
 fi
 
-##### direnv
+##### Direnv
 # direnv hook zsh
 if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv" ]; then
   source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
