@@ -36,7 +36,8 @@ tmux_terminal_settings:
   10_tmux:
     term_name: 'tmux*'
     features: 'title'
-    overrides: 'XT:Ss=\E[%p1%d q:Se=\E[3 q' # reset and set cursor shape
+    overrides: 'XT:Ss=\E[%p1%d q:Se=\E[3 q'
+    # reset and set cursor shape
   20_xterm:
     term_name: 'xterm*'
     # features: 'clipboard:ccolour:cstyle:focus:title'
@@ -47,16 +48,17 @@ tmux_terminal_settings:
     overrides: '256'
   30_direct:
     term_name: '*direct'
-    features:  'Tc:RGB:256:smxx=\E[9m' # enable strikethrough text
+    features: 'Tc:RGB:256:smxx=\E[9m'
+    # enable strikethrough text
     overrides: 'Tc:RGB:256'
   40_kitty:
     term_name: '*kitty*'
-    features:  'Tc:RGB:256:clipboard:ccolour:cstyle:focus:title:usstyle:extkeys:overline:strikethrough'
+    features: 'Tc:RGB:256:clipboard:ccolour:cstyle:focus:title:usstyle:extkeys:overline:strikethrough'
     overrides: 'Tc:RGB:256:XT'
     # Kitty supports RGB and 256 colors, underscore style and color
     # overrides: 'Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
     # underscore colours - needs tmux-3.0
   40_alacritty:
     term_name: 'alacritty'
-    features:  'RGB:256:clipboard:ccolour:cstyle:focus:title:extkeys:overline'
+    features: 'RGB:256:clipboard:ccolour:cstyle:focus:title:extkeys:overline'
     overrides: 'RGB:256:XT'

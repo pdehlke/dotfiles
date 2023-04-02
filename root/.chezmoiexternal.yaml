@@ -1,10 +1,14 @@
+{{- /*
+  vim:ft=yaml.gotmpl:
+    */ -}}
+
+{{- $releaseURLS := joinPath .chezmoi.homeDir ".backup/chezmoi" "gitHubLatestRelease.yaml" -}}
+{{- if stat $releaseURLS -}}
+{{-   $releaseURLS = include $releaseURLS | fromYaml -}}
+{{- else -}}
+{{-   $releaseURLS = .external -}}
+{{- end -}}
 ---
-{{- $releaseURLS := joinPath .chezmoi.homeDir ".backup/chezmoi" "gitHubLatestRelease.yaml" }}
-{{- if stat $releaseURLS }}
-{{-   $releaseURLS = include $releaseURLS | fromYaml }}
-{{- else }}
-{{-   $releaseURLS = .external }}
-{{- end }}
 
 # Nerd Fonts
 {{- $url_download := $releaseURLS.fonts.url }}
