@@ -1,18 +1,21 @@
+{{- /*
+  vim:ft=yaml.gotmpl:
+    */ -}}
+
 {{-
   $dictProjects := dict
     "fonts"  "ryanoasis/nerd-fonts"
--}}
+  -}}
 {{-
   $dictVersions := dict
     "fonts"  "v2.2.2"
--}}
+  -}}
 
 ---
 {{ range $title, $project := $dictProjects -}}
-{{
-  $default := dig $title "v0.0.1" $dictVersions | printf
-    "https://github.com/%s/releases/download/%s" $project
--}}
+{{ $default := dig $title "v0.0.1" $dictVersions | printf
+  "https://github.com/%s/releases/download/%s" $project
+  -}}
 {{ $title -}} :
     url: {{
         replace "releases/tag" "releases/download"

@@ -1,8 +1,9 @@
 {{- /*
   vim:ft=bash.gotmpl:
-*/ -}}
+    */ -}}
 
   {{- if eq .chezmoi.os "linux" "darwin" -}}
+
   {{-   $fzf := joinPath .chezmoi.homeDir ".fzf" -}}
 #!/usr/bin/env bash
 
