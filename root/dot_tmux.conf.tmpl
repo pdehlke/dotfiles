@@ -120,8 +120,10 @@ bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel 'reattach-to-user-namesp
 
 {{- else if eq .chezmoi.os "linux" -}}
 
-{{-   $copyPrg := "xclip -in -selection clipboard" }}
-{{-   if lookPath "xsel" -}}
+{{-   $copyPrg := "" }}
+{{-   if lookPath "xclip" -}}
+{{-     $copyPrg = "xclip -in -selection clipboard" }}
+{{-   else if lookPath "xsel" -}}
 {{-     $copyPrg = "xsel --input --clipboard" }}
 {{-   else if lookPath "wl-copy" -}}
 {{-     $copyPrg = "wl-copy" }}
