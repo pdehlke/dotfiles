@@ -19,8 +19,8 @@ color:
 
 external:
   fonts:
-    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2"
-    version: "v2.2.2"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3"
+    version: "v2.3.3"
 
 
 sayings:
