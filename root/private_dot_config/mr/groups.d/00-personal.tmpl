@@ -22,9 +22,10 @@ post_checkout =
     lfilho   https://github.com/lfilho/dotfiles.git
   "
   {{- block "lfs-pull" "" }}
-    {{- if lookPath "git-lfs" }}
-post_update = git lfs pull
-    {{- end }}
+post_update =
+  if command -v "git-lfs" >/dev/null; then
+    git lfs pull
+  fi
   {{- end }}
 
 
