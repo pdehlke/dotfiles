@@ -1,0 +1,21 @@
+---
+session_name: dotfiles
+start_directory: {{ .chezmoi.workingTree }}
+suppress_history: true
+options:
+  automatic-rename: false
+windows:
+  - options:
+      main-pane-width: " {{- template `tmux/main-pane-width` . -}} "
+    window_name: YADR
+    layout: main-vertical
+    panes:
+      - shell_command:
+        - vim README.md:11
+        focus: true
+      - ls
+      - tmux clock-mode -t 3
+
+{{- /*
+# vim:ft=yaml.gotmpl:
+*/}}
