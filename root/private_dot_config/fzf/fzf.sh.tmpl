@@ -99,7 +99,7 @@ ftmux() {
   local tprofiles
 
   tprofiles=( $(find ${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp -type f \
-    -printf "%P\n" | cut -d\. -f1 | fzf --multi --query="$1") )
+    -printf "%P\n" | cut -d\. -f1 | fzf --multi --query="$*") )
 
   if [[ -z "$tprofiles" ]]; then
     tmux ls
