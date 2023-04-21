@@ -13,7 +13,11 @@ fi
 
 ASDF_DIR="$HOME/.asdf"
 PATH="$ASDF_DIR/bin:$PATH"
-  . $ASDF_DIR/lib/asdf.sh # just load the asdf wrapper function
+
+# just load the asdf wrapper function
+if [[ -f "$HOME/.asdf/lib/asdf.sh" ]]; then
+  . "$HOME/.asdf/lib/asdf.sh"
+fi
 
 asdf update
 
