@@ -1,13 +1,15 @@
+{{- $paneWidth := "60" -}}
+{{- if lookPath "tmux" -}}
 {{-
   $tmuxV := output "tmux" "-V" | regexFind "[0-9][0-9.]*" |
             semverCompare ">= 3.2"
 -}}
-{{- $paneWidth := "" -}}
-{{- if $tmuxV -}}
-{{-   $paneWidth = "50%" -}}
-{{- else if eq .param.monitor "desktop" -}}
-{{-   $paneWidth = "80" -}}
-{{- else -}}
-{{-   $paneWidth = "60" -}}
+{{-   if $tmuxV -}}
+{{-     $paneWidth = "50%" -}}
+{{-   else if eq .param.monitor "desktop" -}}
+{{-     $paneWidth = "80" -}}
+{{-   else -}}
+{{-     $paneWidth = "60" -}}
+{{-   end -}}
 {{- end -}}
 {{- $paneWidth -}}
