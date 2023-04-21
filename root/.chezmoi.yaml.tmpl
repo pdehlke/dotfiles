@@ -1,5 +1,5 @@
 {{- /* DATA NOT AVAILABLE ON INIT */ -}}
-{{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata.yaml" | include | fromYaml }}
+{{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata.yaml" | include | fromYaml -}}
 {{- $supportedColors := keys $data.color | sortAlpha -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "ACT" | not) (env "CODESPACES" | not)
