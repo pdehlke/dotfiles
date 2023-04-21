@@ -11,7 +11,7 @@ zsh/
 # Vimfiles
 vim/
 
-{{- if not (eq .param.color "solarized" "dracula") }}
+{{- if (eq .param.color "solarized" "dracula" | not) }}
 # Kitty
 #.config/kitty/diff.conf
 {{- end }}
