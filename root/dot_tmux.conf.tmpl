@@ -29,7 +29,7 @@ set-option -sa terminal-features ',{{ .term_name }}:{{ .features }}'
 
 
 # Session option terminal-overrides
-set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
+#set-option -sa terminal-overrides ',xterm-256color:Tc:RGB'
   {{- range .tmux_terminal_settings -}}
     {{- if hasKey . "overrides" }}
 set-option -sa terminal-overrides ',{{ .term_name }}:{{ .overrides }}'
