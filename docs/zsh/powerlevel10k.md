@@ -5,18 +5,22 @@
   - 24h time
   - 2 lines
   - compact
+  - transient_prompt
   - instant_prompt=verbose
+
+## Wizard options (all but pure)
+
+  - unicode
+  - disconnected
+  - many icons
+  - concise
 
 ## Wizard options (classic/rainbow)
 
   - classic light / rainbow
-  - unicode
   - angled separators
   - sharp heads
   - flat tails
-  - disconnected
   - full frame
   - light-ornaments
-  - many icons
-  - concise
 
