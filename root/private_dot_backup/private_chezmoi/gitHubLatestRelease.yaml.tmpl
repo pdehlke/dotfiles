@@ -13,16 +13,14 @@
 
 ---
 {{ range $title, $project := $dictProjects -}}
-{{ $default := dig $title "v0.0.1" $dictVersions | printf
-  "https://github.com/%s/releases/download/%s" $project
-  -}}
+{{ $default := get (get $.external $title) "url" -}}
 {{ $title -}} :
     url: {{
         replace "releases/tag" "releases/download"
         (gitHubLatestRelease $project).GetHTMLURL | default $default | quote
     }}
     version: {{
-        default (dig $title "v0.0.1" $dictVersions)
+        default (get $dictVersions $title)
         (gitHubLatestRelease $project).GetTagName | quote
     }}
 {{ end -}}
