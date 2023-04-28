@@ -15,7 +15,7 @@ export FZF_ALT_C_COMMAND="command find -L . -mindepth 1 \
   -o -path '*/dist' \
 \\) -prune -o \
 -type d -print 2> /dev/null | cut -b3-"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS='--preview "tree -n {} | head -$FZF_PREVIEW_LINES" --bind "?:toggle-preview"'
 
 export FZF_CTRL_R_OPTS="--preview 'echo {}' \
   --preview-window down:3:wrap \
