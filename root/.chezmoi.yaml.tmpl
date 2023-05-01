@@ -13,6 +13,25 @@
 {{- $email := "your@email.com" -}}
 {{- $color := "solarized" -}}
 
+{{- /* From https://www.chezmoi.io/user-guide/machines/general/ */ -}}
+{{- $chassisType := "desktop" -}}
+{{- if (eq .chezmoi.os "darwin") -}}
+{{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") -}}
+{{-     $chassisType = "laptop" -}}
+{{-   else -}}
+{{-     $chassisType = "desktop" -}}
+{{-   end -}}
+{{- else if (eq .chezmoi.os "linux") -}}
+{{-   if $interactive -}}
+{{-     if contains "laptop" (output "hostnamectl") -}}
+{{-       $chassisType = "laptop" -}}
+{{-     else -}}
+{{-       $chassisType = "desktop" -}}
+{{-     end -}}
+{{-   end -}}
+{{- else if (eq .chezmoi.os "windows") -}}
+{{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") -}}
+{{- end -}}
 
 {{- /* Otherwise, if running interactively, prompts for values */ -}}
 {{- if $interactive -}}
@@ -43,6 +62,7 @@ data:
     wrap 50 | comment "    # "
 }}
     interactive: {{ $interactive }}
+    monitor: {{ quote $chassisType }}
 
 
 # status:
