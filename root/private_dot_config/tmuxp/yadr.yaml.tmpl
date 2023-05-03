@@ -10,10 +10,9 @@ windows:
     window_name: YADR
     layout: main-vertical
     panes:
-      - shell_command:
-        - vim README.md:11
+      - shell: vim README.md:11
         focus: true
-      - ls
+      - ls -a
       - tmux clock-mode -t 3
 
 {{- /*
