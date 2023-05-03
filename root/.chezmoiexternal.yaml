@@ -25,11 +25,14 @@
   executable: true
   refreshPeriod: '720h' # 30 days
   exclude:
-    - '*Complete*Windows*'
-    - '*Complete*Mono*'
+    - '*NerdFontMono*'
+    - '*NFM*'
+    - '*NerdFontPropo*'
+    - '*NFP*'
 {{- end }}
     - '*DZ*'
-    - '*LG [LM]*'
+    - '*LGM*'
+    - '*LGL*'
 
 
 # Prezto
