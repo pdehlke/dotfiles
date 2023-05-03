@@ -19,6 +19,6 @@ fi
 
 ##### Direnv
 # direnv hook zsh
-if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv" ]; then
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]; then
   source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
 fi
