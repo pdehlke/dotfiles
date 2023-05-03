@@ -6,17 +6,17 @@
 
 #!/usr/bin/env bash
 
-if [ ! -d "$HOME/.asdf" ]; then
-  git clone -- \
-      'https://github.com/asdf-vm/asdf.git' "$HOME/.asdf"
-fi
-
-ASDF_DIR="$HOME/.asdf"
+ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
 PATH="$ASDF_DIR/bin:$PATH"
 
+if [ ! -d "$ASDF_DIR" ]; then
+  git clone -- \
+      'https://github.com/asdf-vm/asdf.git' "$ASDF_DIR"
+fi
+
 # just load the asdf wrapper function
-if [[ -f "$HOME/.asdf/lib/asdf.sh" ]]; then
-  . "$HOME/.asdf/lib/asdf.sh"
+if [[ -f "$ASDF_DIR/lib/asdf.sh" ]]; then
+  . "$ASDF_DIR/lib/asdf.sh"
 fi
 
 asdf update
@@ -30,5 +30,7 @@ asdf direnv setup --version latest --shell zsh
 # Tip: install direnv in $PATH
 echo "Tip: you can install direnv somewhere in PATH, then execute:"
 echo "     asdf direnv setup --version system --shell zsh"
+
+exit 0
 
   {{- end }}
