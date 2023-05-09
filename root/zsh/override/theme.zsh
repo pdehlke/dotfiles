@@ -12,6 +12,8 @@ POWERLEVEL9K_CONFIG_FILE=~/.p10k.zsh
 
 ### Overwrite Powerlevel10k options
 
+POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
 POWERLEVEL9K_TRANSIENT_PROMPT=same-dir # Options: off, always, same-dir
 # POWERLEVEL9K_INSTANT_PROMPT=quiet    # Options: off, quiet, verbose
 
