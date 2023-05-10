@@ -19,7 +19,7 @@ color:
 
 external:
   fonts:
-    url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0"
+    url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
     version: "v3.0.0"
 
 
