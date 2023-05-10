@@ -16,8 +16,8 @@
 {{ $default := get (get $.external $title) "url" -}}
 {{ $title -}} :
     url: {{
-        replace "releases/tag" "releases/download"
-        (gitHubLatestRelease $project).GetHTMLURL | default $default | quote
+        printf "https://github.com/%s/releases/latest/download" $project |
+        quote
     }}
     version: {{
         default (get $dictVersions $title)
