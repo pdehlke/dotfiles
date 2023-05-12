@@ -8,7 +8,7 @@ VOLUME /root/.yadr/root/vim/plugged
 VOLUME /root/.zprezto
 
 # Let the container know that there is no tty
-ARG DEBIAN_FRONTEND=Noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Bootstrapping packages needed for installation
 RUN apt-get update \

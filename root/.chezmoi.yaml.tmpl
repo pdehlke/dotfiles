@@ -3,7 +3,7 @@
 {{- $supportedColors := keys $data.color | sortAlpha -}}
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "ACT" | not) (env "CODESPACES" | not)
-                    (env "DEBIAN_FRONTEND" | ne "Noninteractive")
+                    (env "DEBIAN_FRONTEND" | ne "noninteractive")
   -}}
 {{- /* END DATA NOT AVAILABLE */ -}}
 
