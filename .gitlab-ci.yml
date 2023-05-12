@@ -1,0 +1,80 @@
+---
+default:
+  interruptible: true
+  artifacts:
+    expire_in: 1 hour
+  before_script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+
+.default_rules:
+  rules:
+    - when: never
+      if: $CI_COMMIT_BRANCH =~ /(friends|back2skwp)/
+    - when: never
+      changes:
+        - "root/**/*encrypted_*"
+    - when: on_success
+      if: >
+        $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+        &&
+        $CI_PIPELINE_SOURCE == "push"
+    - when: on_success
+      if: $CI_PIPELINE_SOURCE =~ /(web|schedule|trigger)/
+    - when: on_success
+      if: >
+        $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+        ||
+        $CI_COMMIT_BRANCH =~ /mine/
+      exists:
+        - Dockerfile
+      changes:
+        - .chezmoiroot
+        - .chezmoiversion
+        - .dockerignore
+        - .gitlab-ci.yml
+        - install.sh
+        - Dockerfile
+        - "root/**/*"
+
+variables:
+  DEBIAN_FRONTEND: noninteractive
+
+install-script:
+  image: ubuntu:22.04
+  inherit:
+    default: true
+    variables: true
+  rules:
+    - !reference [.default_rules, rules]
+  variables:
+    LANGUAGE: en_US.UTF-8
+    LANG: en_US.UTF-8
+  stage: test
+  before_script:
+    - apt-get update
+    - >
+      apt-get install -qqy
+      locales
+      lsb-release
+      software-properties-common
+    - >
+      localedef -i en_US -f UTF-8 en_US.UTF-8
+      &&
+      /usr/sbin/update-locale LANG=en_US.UTF-8
+    - >
+      apt-get install -qqy
+      curl
+      git
+      sudo
+  script:
+    - ./install.sh
+    - ./root/bin/chezmoi data --format yaml
+    - ./root/bin/chezmoi managed -i all
+    - ls -lha ~/.local/share/fonts/**/*
