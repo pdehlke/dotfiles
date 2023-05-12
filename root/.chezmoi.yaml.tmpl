@@ -48,7 +48,8 @@
 
 
 ---
-sourceDir: {{ quote .chezmoi.workingTree }}
+workingTree: {{ quote .chezmoi.workingTree }}
+sourceDir: {{ joinPath .chezmoi.workingTree "root" | quote }}
 
 
 data:
