@@ -1,0 +1,1 @@
+{{- includeTemplate "dot_local/share/fonts/.chezmoiexternal.yaml" . -}}

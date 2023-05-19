@@ -20,7 +20,7 @@ color:
 external:
   fonts:
     url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
-    version: "v3.0.0"
+    version: "v3.0.1"
 
 
 sayings:
