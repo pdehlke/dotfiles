@@ -74,7 +74,6 @@ data:
 # diff:
 #   exclude:
 #     - "always"
-#   format: "git"
 
 
 # edit:
@@ -103,9 +102,11 @@ data:
 #     - "--homedir=/media/{{ .chezmoi.username }}/path/to/.gnupg"
 
 
-# format: yaml
-# mode: file
+format: yaml
+mode: file
 # verbose: true
+
+
 # umask: 0o022
 
 {{- /*
