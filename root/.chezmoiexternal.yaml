@@ -2,38 +2,11 @@
   vim:ft=yaml.gotmpl:
     */ -}}
 
-{{- $releaseURLS := joinPath .chezmoi.homeDir ".backup/chezmoi" "gitHubLatestRelease.yaml" -}}
-{{- if stat $releaseURLS -}}
-{{-   $releaseURLS = include $releaseURLS | fromYaml -}}
-{{- else -}}
-{{-   $releaseURLS = .external -}}
-{{- end -}}
 ---
 
-# Nerd Fonts
-{{- $url_download := $releaseURLS.fonts.url }}
-{{- $fontPath := "" }}
-{{- if eq .chezmoi.os "linux" }}
-{{-   $fontPath = ".local/share/fonts" }}
-{{- else if eq .chezmoi.os "darwin" }}
-{{-   $fontPath = "Library/Fonts" }}
-{{- end }}
-{{- range (list "InconsolataLGC" "Meslo") }}
-'{{- joinPath $fontPath (substr 0 1 . | lower) . -}}':
-  url: '{{- $url_download -}} / {{- . -}} .zip'
-  type: 'archive'
-  executable: true
-  refreshPeriod: '720h' # 30 days
-  exclude:
-    - '*NerdFontMono*'
-    - '*NFM*'
-    - '*NerdFontPropo*'
-    - '*NFP*'
-{{- end }}
-    - '*DZ*'
-    - '*LGM*'
-    - '*LGL*'
-
+#
+# ZSH shell
+#
 
 # Prezto
 '.zprezto':

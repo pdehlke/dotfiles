@@ -1,0 +1,28 @@
+{{- /*
+  vim:ft=yaml.gotmpl:
+    */ -}}
+
+{{- $releaseURLS := joinPath .chezmoi.homeDir ".backup/chezmoi" "gitHubLatestRelease.yaml" -}}
+{{- if stat $releaseURLS -}}
+{{-   $releaseURLS = include $releaseURLS | fromYaml -}}
+{{- else -}}
+{{-   $releaseURLS = .external -}}
+{{- end -}}
+---
+
+{{- $url_download := $releaseURLS.fonts.url }}
+{{- range (list "InconsolataLGC" "Meslo") }}
+'{{- joinPath (substr 0 1 . | lower) . -}}':
+  url: '{{- $url_download -}} / {{- . -}} .tar.xz'
+  type: 'archive'
+  executable: true
+  refreshPeriod: '720h' # 30 days
+  exclude:
+    - '*NerdFontMono*'
+    - '*NFM*'
+    - '*NerdFontPropo*'
+    - '*NFP*'
+{{- end }}
+    - '*DZ*'
+    - '*LGM*'
+    - '*LGL*'
