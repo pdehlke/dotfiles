@@ -34,8 +34,6 @@ else
     set t_Co=256
   elseif $TERM =~? 'kitty'
     set term=xterm-kitty
-  elseif $TERM =~? 'direct'
-    set term=xterm-direct
   elseif $TERM =~? 'xterm'
     set term=xterm-256color
     set t_Co=256
