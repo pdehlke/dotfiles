@@ -22,7 +22,21 @@ Library/
 iTerm2/
 {{- end }}
 
-{{- if (ne .chezmoi.os "linux" ) }}{{/* Don't install Linux files */}}
+{{- if not (eq .chezmoi.os "linux" "android") }}{{/* Don't install Linux files */}}
 # no linux files
 .local/share/fonts/
+{{- end }}
+
+{{- if (ne .chezmoi.os "android") }}{{/* Don't install Android files */}}
+# no android files
+.oh-my-zsh/
+.termux/
+{{- else if (eq .chezmoi.os "android") }}
+.config/kitty/
+.backup/look_and_feel/kitty/
+.zprezto
+.zpreztorc
+.zshenv
+.zlogin
+.zprofile
 {{- end }}

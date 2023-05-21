@@ -21,3 +21,10 @@
   pull:
     args:
       - '--recurse-submodules=yes'
+
+# Oh my Zsh
+'.oh-my-zsh':
+  url: 'https://github.com/ohmyzsh/ohmyzsh/archive/refs/heads/master.tar.gz'
+  type: 'archive'
+  stripComponents: 1
+  refreshPeriod: '720h' # 30 days

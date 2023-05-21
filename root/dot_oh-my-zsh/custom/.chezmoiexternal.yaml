@@ -1,0 +1,24 @@
+'themes/powerlevel10k':
+  url: 'https://github.com/romkatv/powerlevel10k.git'
+  type: 'git-repo'
+  refreshPeriod: '168h' # 7 days
+  clone:
+    args:
+      - '--depth=1'
+      - '--recursive'
+      - '--shallow-submodules'
+  pull:
+    args:
+      - '--recurse-submodules=yes'
+'plugins/zsh-completions':
+  url: 'https://github.com/zsh-users/zsh-completions.git'
+  type: 'git-repo'
+  refreshPeriod: '168h' # 7 days
+  clone:
+    args:
+      - '--depth=1'
+      - '--recursive'
+      - '--shallow-submodules'
+  pull:
+    args:
+      - '--recurse-submodules=yes'
