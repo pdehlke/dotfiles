@@ -45,7 +45,9 @@ POWERLEVEL9K_VCS_BRANCH_ICON=''
 # POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle" # use default strategy truncate_to_unique
 # POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 
-POWERLEVEL9K_TIME_FORMAT='%D{%Y-%m-%d %H:%M:%S}' # Shows date and time
+if [[ -z "${TERMUX_VERSION}" ]]; then
+    POWERLEVEL9K_TIME_FORMAT='%D{%Y-%m-%d %H:%M:%S}' # Shows date and time
+fi
 
 # Uncomment to enable sparse mode (newline before prompt)
 # POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
