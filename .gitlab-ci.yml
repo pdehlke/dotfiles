@@ -26,7 +26,7 @@ default:
         &&
         $CI_PIPELINE_SOURCE == "push"
     - when: on_success
-      if: $CI_PIPELINE_SOURCE =~ /(web|schedule|trigger)/
+      if: $CI_PIPELINE_SOURCE =~ /(api|web|schedule|trigger)/
     - when: on_success
       if: >
         $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
