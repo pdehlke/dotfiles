@@ -10,55 +10,32 @@ function! GetVisual()
   return selection
 endfunction
 
-
 if executable('rg')
-  " ripgrep
+  const g:fzf_grep_prg = "Rg"
+elseif executable('ag')
+  const g:fzf_grep_prg = "Ag"
+endif
 
+if exists('g:fzf_grep_prg')
   "grep the current word using ,k (mnemonic Kurrent)
-  nnoremap <silent> <leader>k :execute "Rg " . expand("<cword>")<CR>
+  nnoremap <silent> <leader>k :execute g:fzf_grep_prg . " " . expand("<cword>")<CR>
 
   "grep visual selection
-  vnoremap <leader>k :<C-U>execute "Rg " . GetVisual()<CR>
+  vnoremap <leader>k :<C-U>execute g:fzf_grep_prg . " " . GetVisual()<CR>
 
   "grep current word up to the next exclamation point using ,K
-  nnoremap <leader>K viwf!:<C-U>execute "Rg " . GetVisual()<CR>
+  nnoremap <leader>K viwf!:<C-U>execute g:fzf_grep_prg . " " . GetVisual()<CR>
 
   "grep for 'def foo'
-  nnoremap <silent> <leader>ggd :execute "Rg def " . expand("<cword>")<CR>
+  nnoremap <silent> <leader>ggd :execute g:fzf_grep_prg . " def " . expand("<cword>")<CR>
 
   ",gg = Grep! - using RipGrep
   " open up a grep line, with a quote started for the search
-  nnoremap <leader>gg :Rg 
+  nnoremap <leader>gg :g:fzf_grep_prg 
 
   "Grep for usages of the current file
-  nnoremap <leader>gcf :exec "Rg " . expand("%:t:r")<CR>
+  nnoremap <leader>gcf :exec g:fzf_grep_prg . " " . expand("%:t:r")<CR>
 
-  " RipGrep for the last search.
-  nnoremap <silent> <leader>qa/ :execute "Rg! " . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "")<CR>
-
-elseif executable('ag')
-  " The Silver Searcher
-
-  "grep the current word using ,k (mnemonic Kurrent)
-  nnoremap <silent> <leader>k :execute "Ag " . expand("<cword>")<CR>
-
-  "grep visual selection
-  vnoremap <leader>k :<C-U>execute "Ag " . GetVisual()<CR>
-
-  "grep current word up to the next exclamation point using ,K
-  nnoremap <leader>K viwf!:<C-U>execute "Ag " . GetVisual()<CR>
-
-  "grep for 'def foo'
-  nnoremap <silent> <leader>ggd :execute "Ag def " . expand("<cword>")<CR>
-
-  ",gg = Grep! - using Ag the silver searcher
-  " open up a grep line, with a quote started for the search
-  nnoremap <leader>gg :Ag 
-
-  "Grep for usages of the current file
-  nnoremap <leader>gcf :exec "Ag " . expand("%:t:r")<CR>
-
-  " Ag for the last search.
-  nnoremap <silent> <leader>qa/ :execute "Ag! " . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "")<CR>
+  " Grep for the last search.
+  nnoremap <silent> <leader>qa/ :execute g:fzf_grep_prg . "! " . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "")<CR>
 endif
-
