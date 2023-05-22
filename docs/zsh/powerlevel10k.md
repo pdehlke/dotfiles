@@ -15,6 +15,11 @@
   - many icons
   - concise
 
+## Wizard options (lean)
+
+  - lean / lean_8colors
+  - no frame
+
 ## Wizard options (classic/rainbow)
 
   - classic light / rainbow
@@ -23,4 +28,10 @@
   - flat tails
   - full frame
   - light-ornaments
+
+## Wizard options (pure)
+
+  - pure
+  - original / snazzy
+  - rprompt
 
