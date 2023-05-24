@@ -1,7 +1,15 @@
 {{-
-  $kittyTheme := index .color .param.color "kitty" "file" |
-                 printf "%s/.config/kitty/themes/%s.conf" .chezmoi.homeDir
--}}
-{{- if stat $kittyTheme -}}
-{{-   include $kittyTheme -}}
+  $kittyTheme := index .color .param.color "kitty" "file" | printf "%s.conf"
+  -}}
+{{-
+  $kittyXdg := joinPath .chezmoi.homeDir ".config/kitty" "themes"
+  -}}
+{{-
+  $kittyExt := joinPath .chezmoi.homeDir ".backup/look_and_feel/kitty/themes"
+  "themes"
+  -}}
+{{- if (joinPath $kittyXdg $kittyTheme | stat) -}}
+{{-   joinPath $kittyXdg $kittyTheme | include -}}
+{{- else if (joinPath $kittyExt $kittyTheme | stat) -}}
+{{-   joinPath $kittyExt $kittyTheme | include -}}
 {{- end -}}
