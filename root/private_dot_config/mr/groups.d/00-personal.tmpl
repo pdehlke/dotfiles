@@ -6,21 +6,21 @@
 order = 3
 checkout =
   git clone -j{{- $nproc }} -- \
-      'git@github.com:nandalopes/dotfiles.git' '{{- $simpleSourceDir -}}'
+      'https://github.com/nandalopes/dotfiles.git' '{{- $simpleSourceDir -}}'
 update = gplr
 Clean =
   git rerere gc
   git gc
 post_checkout =
   cd "$MR_REPO"
-  # config
-  cfg_rcv_warn
-  cfg_shared
   # remotes
   git_add_remotes "
     upstream https://github.com/skwp/dotfiles.git
     lfilho   https://github.com/lfilho/dotfiles.git
   "
+  # config
+  cfg_rcv_warn
+  cfg_shared
   {{- block "lfs-pull" "" }}
 post_update =
   if command -v "git-lfs" >/dev/null; then
@@ -31,6 +31,7 @@ post_update =
 
 [.zprezto]
 order = 7
+skip = lazy
 checkout =
   git clone -j{{- $nproc }} --recursive -- \
       'https://github.com/sorin-ionescu/prezto.git' '.zprezto'
