@@ -42,7 +42,9 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'fasd' \
   'git' \
+{{- if eq .chezmoi.os "darwin" }}
   'osx' \
+{{- end }}
   'ruby' \
   'syntax-highlighting' \
   'history-substring-search' \
