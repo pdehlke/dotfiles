@@ -1,0 +1,16 @@
+# -*- mode: sh -*-
+
+cfg_rcv_warn() {
+    git config --local receive.denyCurrentBranch   warn
+    git config --local receive.denyNonFastforwards false
+}
+
+cfg_shared() {
+    git config --local core.sharedRepository ${1:-group}
+}
+
+cfg_lfs_local() {
+    if which "git-lfs" >/dev/null 2>&1; then
+        git lfs install --local
+    fi
+}

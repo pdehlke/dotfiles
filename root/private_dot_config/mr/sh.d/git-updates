@@ -1,0 +1,26 @@
+# -*- mode: sh -*-
+
+ff_only() {
+    git pull --ff-only "$@"
+}
+
+git_submodules() {
+    git submodule update --init --recursive "$@"
+}
+
+gplr() {
+    git pull --rebase "$@"
+}
+
+fetch_tags() {
+    git fetch --tags "$@"
+}
+
+gplrt() {
+    fetch_tags --force
+    gplr "$@"
+}
+
+gplmod() {
+    git pull --recurse-submodules=true "$@"
+}

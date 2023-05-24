@@ -2,29 +2,6 @@
 
 # Generic git helper functions.
 
-cfg_rcv_warn() {
-    git config receive.denyCurrentBranch   warn
-    git config receive.denyNonFastforwards false
-}
-
-cfg_shared() {
-    git config core.sharedRepository group
-}
-
-cfg_lfs_local() {
-    if which "git-lfs" >/dev/null 2>&1; then
-        git lfs install --local
-    fi
-}
-
-ff_only() {
-    git pull --ff-only "$@"
-}
-
-git_submodules() {
-    git submodule update --init --recursive "$@"
-}
-
 git_bundleall() {
     # b=$(git rev-parse --show-toplevel)
     local f=${1:-$MR_REPO}
@@ -34,42 +11,13 @@ git_bundleall() {
     git bundle create $d/${f##.}.gitrepo.$(date +%+4Y%m%d-%H%M) --all
 }
 
-gplr() {
-    git pull --rebase "$@"
-}
-
-fetch_tags() {
-    git fetch --tags "$@"
-}
-
-gplrt() {
-    fetch_tags --force
-    gplr "$@"
-}
-
-gplmod() {
-    git pull --recurse-submodules=true "$@"
-}
-
-git_last_tag () {
-    git describe --abbrev=0 --tags --always
-}
-
-git_last_version_tag () {
-    if [ -z "$1" ]; then
-        git tag -n0 --sort=-version:refname | head -n1
-    else
-        git tag -n0 --sort=-version:refname | grep "$1" | head -n1
-    fi
-}
-
 is_branch_present () {
     local branch="$1"
     git rev-parse "$branch" >/dev/null 2>&1
 }
 
 ensure_remote_tracked_locally () {
-    # Return true (0) iff managed to ensure the remote is tracked locally
+    # Return true (0) if managed to ensure the remote is tracked locally
     local remote="$1"
     local upstream="$2"
     #
@@ -83,7 +31,7 @@ ensure_remote_tracked_locally () {
 }
 
 fetch_and_switch_upstream_to () {
-    # Return true (0) iff the switch was made
+    # Return true (0) if the switch was made
     local remote="$1"
     local upstream="$remote/$remote_branch"
     #
@@ -92,7 +40,7 @@ fetch_and_switch_upstream_to () {
 }
 
 configure_upstream () {
-    # Return true (0) iff the upstream was configured
+    # Return true (0) if the upstream was configured
     local remote="$1"
     #
     if [ -z `git config "remote.$remote.url"` ]; then

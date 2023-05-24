@@ -1,15 +1,18 @@
 # -*- mode: sh -*-
 
+# This gets loaded via "chain = yes" from ~/.mrconfig
+
+[ALIAS]
+up = update
+
 [DEFAULT]
 include =
   if [ -e ~/.config/mr/library_loaders ]; then
-    # mr-config already checked out
     . ~/.config/mr/library_loaders
     load_libraries ~/.config/mr/sh.d/*
     include_lib_dirs ~/.config/mr/lib.d
     include_lib_dirs ~/.config/mr/groups.d
   fi
 
-[ALIAS]
-up = update
-
+# N.B. anything placed here (i.e. after the above include) will not have
+# any impact in any repositories pulled in by the include.

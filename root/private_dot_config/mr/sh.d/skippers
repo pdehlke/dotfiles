@@ -4,19 +4,6 @@ debug_skippers () {
     echo "# SKIP $MR_NAME?  $*"
 }
 
-default_skipper() { return 1; }
-
-third_party_skipper() {
-    case $1 in
-        update|fetch)
-            ! hours_since $1 2
-        ;;
-        *)
-            return 1 # false
-        ;;
-    esac
-}
-
 missing_exe () {
     if [ $# != 1 ]; then
 	echo >&2 "BUG: missing_exe called with parameters: $*"
@@ -60,3 +47,20 @@ missing_dir () {
     fi
 }
 
+third_party_skipper () {
+    case $1 in
+        update|fetch)
+            debug_skippers ". Skipping $1 by hours_since"
+            ! hours_since $1 2
+        ;;
+        *)
+            default_skipper
+        ;;
+    esac
+}
+
+default_skipper () {
+    # Default policy.
+    debug_skippers ". Default policy - don't skip"
+    return 1 # false
+}

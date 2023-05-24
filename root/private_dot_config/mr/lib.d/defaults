@@ -6,6 +6,3 @@ Clean =
   if has_makefile ; then
     make clean
   fi
-
-# skip = default_skipper $MR_ACTION
-

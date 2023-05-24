@@ -37,4 +37,3 @@ _ignore_lib () {
     esac
     return 1
 }
-
