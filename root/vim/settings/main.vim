@@ -1,3 +1,6 @@
+" fix scriptencoding
+scriptencoding utf-8
+
 " ================ General Config ===================
 
 set number                     " Line numbers are good

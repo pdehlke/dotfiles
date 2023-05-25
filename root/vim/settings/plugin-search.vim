@@ -11,9 +11,9 @@ function! GetVisual()
 endfunction
 
 if executable('rg')
-  const g:fzf_grep_prg = "Rg"
+  let g:fzf_grep_prg = 'Rg'
 elseif executable('ag')
-  const g:fzf_grep_prg = "Ag"
+  let g:fzf_grep_prg = 'Ag'
 endif
 
 if exists('g:fzf_grep_prg')
