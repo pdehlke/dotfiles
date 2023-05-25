@@ -1,6 +1,9 @@
 " Author: @tony/vim-config-framework
 " https://github.com/tony/vim-config-framework/blob/master/autoload/lib.vim
 
+" fix scriptencoding
+scriptencoding utf-8
+
 " Environment {
 
     " Platform idenfitication {
@@ -23,7 +26,6 @@
     " }
 
     " Basics {
-        set nocompatible        " Must be first line
         if !UNIXLIKE()
             set shell=/bin/sh
         endif

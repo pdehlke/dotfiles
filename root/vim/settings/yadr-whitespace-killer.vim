@@ -6,7 +6,7 @@ function! <SID>StripTrailingWhitespaces()
     let l = line('.')
     let c = col('.')
     " Do the business:
-    %snomagic/\s\+$//e
+    global/\s\+$/normal $diw
     " Clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
