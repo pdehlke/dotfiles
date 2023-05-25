@@ -31,7 +31,7 @@ noremap <Leader>gA  <Cmd>Gwrite!<CR>
 noremap <Leader>gc  <Cmd>Git commit --verbose<CR>
 noremap <Leader>gsh <Cmd>Git push<CR>
 noremap <Leader>gll <Cmd>Git pull<CR>
-noremap <Leader>gs  <Cmd>Git<CR>
+noremap <Leader>gs  <Cmd>topleft Git<CR>
 noremap <Leader>gb  <Cmd>Git blame<CR>
 noremap <Leader>gd  <Cmd>Gvdiffsplit<CR>
 noremap <Leader>gr  <Cmd>GRemove<CR>
