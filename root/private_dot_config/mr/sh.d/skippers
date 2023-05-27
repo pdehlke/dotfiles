@@ -54,7 +54,7 @@ third_party_skipper () {
             ! hours_since $1 2
         ;;
         *)
-            default_skipper
+            return 1 # false
         ;;
     esac
 }
