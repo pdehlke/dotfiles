@@ -9,7 +9,7 @@ Run `p10k configure` to access the builtin configuration wizard right from your 
     # Type `p10k configure` to generate another config.
 
 
-The following settings are overwritten in `zsh/prezto-override/theme.zsh`:
+The following settings are overwritten in `zsh/override/theme.zsh`:
 
   - Transient prompt on same dir
   - Fewer elements on right prompt
