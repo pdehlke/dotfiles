@@ -21,22 +21,19 @@ post_checkout =
   # config
   cfg_rcv_warn
   cfg_shared
-  {{- block "lfs-pull" "" }}
 post_update =
   if command -v "git-lfs" >/dev/null; then
     git lfs pull
   fi
-  {{- end }}
 
 
 [.zprezto]
 order = 7
 skip = lazy
 checkout =
-  git clone -j{{- $nproc }} --recursive -- \
+  git clone -j{{- $nproc }} --depth=1 --recursive --shallow-submodules -- \
       'https://github.com/sorin-ionescu/prezto.git' '.zprezto'
 update = gplmod --ff-only
-pre_update = git checkout master
 
 
 {{
@@ -45,19 +42,22 @@ pre_update = git checkout master
   -}}
 [.zprezto/modules/prompt/external/powerlevel10k/gitstatus]
 order = 9
-skip = lazy
 checkout = true
 update = true
 fetch = true
 status = true
-{{- else -}}
+  {{- else -}}
 [${XDG_CONFIG_HOME:-.config}/gitstatus]
-checkout =
-  git clone 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
+checkout = git clone 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
 post_status = git_last_tag
-{{- end }}
+  {{- end }}
+skip = lazy
 make =
-  ./build -w -s -d docker
-  sudo chown $USER:$USER -R usrbin deps
+  if command -v "docker" >/dev/null; then
+    "$MR_REPO/build" -w -s -d docker
+  else
+    sudo "$MR_REPO/build" -w -s
+  fi
+  sudo chown $USER:$USER --changes -R "$MR_REPO"/{usrbin,deps}
 
 # vim:fileencoding=utf-8:ft=conf
