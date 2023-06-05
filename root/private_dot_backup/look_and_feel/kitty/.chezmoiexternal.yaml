@@ -9,3 +9,11 @@
   type: 'file'
   executable: false
   refreshPeriod: '168h' # 7 days
+
+  {{- range (omit .color "dracula" | values) }}
+'themes/ {{- .kitty.file -}} .conf':
+  url: 'https://github.com/kovidgoyal/kitty-themes/raw/master/themes/ {{- .kitty.file -}} .conf'
+  type: 'file'
+  executable: false
+  refreshPeriod: '168h' # 7 days
+  {{- end }}

@@ -6,7 +6,6 @@
   -}}
 {{-
   $kittyExt := joinPath .chezmoi.homeDir ".backup/look_and_feel/kitty/themes"
-  "themes"
   -}}
 {{- if (joinPath $kittyXdg $kittyTheme | stat) -}}
 {{-   joinPath $kittyXdg $kittyTheme | include -}}
