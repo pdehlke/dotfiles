@@ -1,63 +1,86 @@
 ---
-variables:
-  DEBIAN_FRONTEND: noninteractive
+.defaults:
+  rules: &defaultRules
+    - if: $CI_PIPELINE_SOURCE =~ /(api|web*|schedule|trigger|pipeline)/
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
 
-.default_rules:
+workflow:
   rules:
-    - when: on_success
-      if: $CI_PIPELINE_SOURCE =~ /(api|web*|schedule|trigger)/
+    - if: $CI_COMMIT_BRANCH &&
+          $CI_OPEN_MERGE_REQUESTS &&
+          $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - *defaultRules
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH =~ /mine/
+
+default:
+  interruptible: true
+  timeout: 10m
+  cache: &defaultCache
+    key: $CI_COMMIT_REF_SLUG
+    fallback_keys:
+      - $CI_DEFAULT_BRANCH
+    #when: on_failure
+    paths:
+      - "root/bin/chezmoi"
+
+variables:
+  DEBIAN_FRONTEND:
+    value: "noninteractive"
+    description: "Run apt and chezmoi non interactive"
+  MY_CHEZMOI_ROOT: "root/"
+  UBUNTU_TAG: ":20.04"
 
 install-script:
   stage: test
-  image: ubuntu:22.04
-  inherit:
-    variables: true
-  interruptible: true
+  image: "ubuntu$UBUNTU_TAG"
   variables:
     LANGUAGE: en_US.UTF-8
     LANG: en_US.UTF-8
   rules:
-    - !reference [.default_rules, rules]
-    - if: >
-        $CI_PIPELINE_SOURCE == "push"
-        &&
-        (
-          $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-          ||
-          $CI_COMMIT_BRANCH =~ /mine/
-        )
+    - &encryptedRule
+      if: $CI_PIPELINE_SOURCE == "push"
+      when: never
+      changes:
+        paths:
+          - "$MY_CHEZMOI_ROOT**/*encrypted_*"
+    - *defaultRules
+    - if: $CI_PIPELINE_SOURCE == "push"
       changes:
         paths:
           - .chezmoiroot
           - .chezmoiversion
           - .gitlab-ci.yml
           - install.sh
-          - "root/**/*"
+          - "$MY_CHEZMOI_ROOT**/.*"
+          - "$MY_CHEZMOI_ROOT**/*"
   before_script:
     - apt-get update -qq
-    - >
-      apt-get install -qqy
-      locales
-      lsb-release
-      software-properties-common
-    - >
-      localedef -i en_US -f UTF-8 en_US.UTF-8
-      &&
-      /usr/sbin/update-locale LANG=en_US.UTF-8
-    - >
-      apt-get install -qqy
-      curl
-      git
-      sudo
+    - apt-get install -qqy
+        locales
+        lsb-release
+        software-properties-common
+    - (
+        localedef -i ${LANGUAGE%\.*} -f ${LANGUAGE#*\.} $LANGUAGE
+        &&
+        /usr/sbin/update-locale LANG=$LANG
+      )
+    - apt-get install -qqy
+        curl
+        git
+        sudo
   script:
     - ./install.sh
     - ./root/bin/chezmoi data --format yaml
     - ./root/bin/chezmoi ignored
     - ./root/bin/chezmoi managed -i all
-    - |
-      if [[ "$CI_COMMIT_BRANCH" != "basic" ]]; then
+    - (
+        [ -d "${HOME}/.local/share/fonts" ]
+        &&
         ls -lha ~/.local/share/fonts/**/*
-      fi
+      )
 
 docker-test:
   stage: test
@@ -65,30 +88,24 @@ docker-test:
   image: docker:latest
   services:
     - docker:dind
-  interruptible: true
-  artifacts:
-    expire_in: 1 hour
+  cache:
+    []
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: "/certs"
+  allow_failure: true
+  when: manual
   rules:
-    - !reference [.default_rules, rules]
-    - if: >
-        $CI_PIPELINE_SOURCE == "push"
-        &&
-        (
-          $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-          ||
-          $CI_COMMIT_BRANCH =~ /mine/
-        )
-      when: delayed
-      start_in: 15 minutes
+    - *defaultRules
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: on_success
       changes:
         paths:
           - .dockerignore
           - Dockerfile
           - docker-compose.yml
           - install.sh
+    - if: $CI_PIPELINE_SOURCE == "push"
   before_script:
     - |
       if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
