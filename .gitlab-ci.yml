@@ -15,33 +15,22 @@ default:
 
 .default_rules:
   rules:
-    - when: never
-      if: $CI_COMMIT_BRANCH =~ /(friends|back2skwp)/
-    - when: never
-      changes:
-        - "root/**/*encrypted_*"
     - when: on_success
-      if: >
-        $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-        &&
-        $CI_PIPELINE_SOURCE == "push"
-    - when: on_success
-      if: $CI_PIPELINE_SOURCE =~ /(api|web|schedule|trigger)/
+      if: $CI_PIPELINE_SOURCE =~ /(api|web*|schedule|trigger)/
     - when: on_success
       if: >
         $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
         ||
         $CI_COMMIT_BRANCH =~ /mine/
-      exists:
-        - Dockerfile
       changes:
-        - .chezmoiroot
-        - .chezmoiversion
-        - .dockerignore
-        - .gitlab-ci.yml
-        - install.sh
-        - Dockerfile
-        - "root/**/*"
+        paths:
+          - .chezmoiroot
+          - .chezmoiversion
+          - .dockerignore
+          - .gitlab-ci.yml
+          - install.sh
+          - Dockerfile
+          - "root/**/*"
 
 variables:
   DEBIAN_FRONTEND: noninteractive
