@@ -1,53 +1,40 @@
 ---
-default:
-  interruptible: true
-  artifacts:
-    expire_in: 1 hour
-  before_script:
-    - |
-      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-        tag=""
-        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
-      else
-        tag=":$CI_COMMIT_REF_SLUG"
-        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
-      fi
+variables:
+  DEBIAN_FRONTEND: noninteractive
 
 .default_rules:
   rules:
     - when: on_success
       if: $CI_PIPELINE_SOURCE =~ /(api|web*|schedule|trigger)/
-    - when: on_success
-      if: >
-        $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-        ||
-        $CI_COMMIT_BRANCH =~ /mine/
+
+install-script:
+  stage: test
+  image: ubuntu:22.04
+  inherit:
+    variables: true
+  interruptible: true
+  variables:
+    LANGUAGE: en_US.UTF-8
+    LANG: en_US.UTF-8
+  rules:
+    - !reference [.default_rules, rules]
+    - if: >
+        $CI_PIPELINE_SOURCE == "push"
+        &&
+        (
+          $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+          ||
+          $CI_COMMIT_BRANCH =~ /mine/
+        )
       changes:
         paths:
           - .chezmoiroot
           - .chezmoiversion
-          - .dockerignore
           - .gitlab-ci.yml
           - install.sh
-          - Dockerfile
           - "root/**/*"
-
-variables:
-  DEBIAN_FRONTEND: noninteractive
-
-install-script:
-  image: ubuntu:22.04
-  inherit:
-    default: true
-    variables: true
-  rules:
-    - !reference [.default_rules, rules]
-  variables:
-    LANGUAGE: en_US.UTF-8
-    LANG: en_US.UTF-8
-  stage: test
   before_script:
-    - apt-get update
+    - apt-get update -qq
     - >
       apt-get install -qqy
       locales
@@ -65,5 +52,52 @@ install-script:
   script:
     - ./install.sh
     - ./root/bin/chezmoi data --format yaml
+    - ./root/bin/chezmoi ignored
     - ./root/bin/chezmoi managed -i all
-    - ls -lha ~/.local/share/fonts/**/*
+    - |
+      if [[ "$CI_COMMIT_BRANCH" != "basic" ]]; then
+        ls -lha ~/.local/share/fonts/**/*
+      fi
+
+docker-test:
+  stage: test
+  # Use the official docker image.
+  image: docker:latest
+  services:
+    - docker:dind
+  interruptible: true
+  artifacts:
+    expire_in: 1 hour
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: "/certs"
+  rules:
+    - !reference [.default_rules, rules]
+    - if: >
+        $CI_PIPELINE_SOURCE == "push"
+        &&
+        (
+          $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+          ||
+          $CI_COMMIT_BRANCH =~ /mine/
+        )
+      when: delayed
+      start_in: 15 minutes
+      changes:
+        paths:
+          - .dockerignore
+          - Dockerfile
+          - docker-compose.yml
+          - install.sh
+  before_script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    # - docker push "$CI_REGISTRY_IMAGE${tag}"
