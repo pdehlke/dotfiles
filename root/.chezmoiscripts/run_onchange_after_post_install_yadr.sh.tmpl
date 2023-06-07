@@ -15,11 +15,11 @@ set -e
 
   {{- if lookPath "zsh" }}
 
-  {{    if eq .chezmoi.os "android" -}}
+{{    if eq .chezmoi.os "android" -}}
 chsh -s zsh
-  {{-   else -}}
+{{-   else -}}
 chsh --shell /bin/zsh
-  {{-   end }}
+{{-   end }}
 
   {{- else }}
 
