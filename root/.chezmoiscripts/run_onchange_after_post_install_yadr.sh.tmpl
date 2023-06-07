@@ -1,17 +1,25 @@
 {{- /*
-  vim:ft=bash.gotmpl:
+# vim:ft=sh.gotmpl:
     */ -}}
 
 {{- if (eq .chezmoi.os "linux" "android" "darwin") -}}
 
+  {{-   if eq .chezmoi.os "android" -}}
+#!/bin/sh
+  {{-   else -}}
 #!/usr/bin/env bash
+  {{-   end }}
 
 # -e: exit on error
 set -e
 
   {{- if lookPath "zsh" }}
 
+  {{    if eq .chezmoi.os "android" -}}
+chsh -s zsh
+  {{-   else -}}
 chsh --shell /bin/zsh
+  {{-   end }}
 
   {{- else }}
 
