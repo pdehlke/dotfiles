@@ -15,6 +15,7 @@ skip = third_party_skipper $MR_ACTION
 checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
 update = gplrt
 install =
-  ${MR_REPO}/install --xdg --all --no-update-rc --no-fish --no-bash
+  "${MR_REPO}/install" --xdg --all --no-update-rc \
+    --no-fish --no-bash
 post_update = git_last_tag
 
