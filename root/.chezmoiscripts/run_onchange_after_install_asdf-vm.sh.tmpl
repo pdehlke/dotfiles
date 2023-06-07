@@ -1,10 +1,14 @@
 {{- /*
-  vim:ft=bash.gotmpl:
+# vim:ft=sh.gotmpl:
     */ -}}
 
   {{- if eq .chezmoi.os "linux" "android" "darwin" -}}
 
+  {{-   if eq .chezmoi.os "android" -}}
+#!/bin/sh
+  {{-   else -}}
 #!/usr/bin/env bash
+  {{-   end }}
 
 ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
 PATH="$ASDF_DIR/bin:$PATH"

@@ -1,11 +1,16 @@
 {{- /*
-  vim:ft=bash.gotmpl:
+# vim:ft=sh.gotmpl:
     */ -}}
 
   {{- if eq .chezmoi.os "linux" "android" "darwin" -}}
 
   {{-   $fzf := joinPath .chezmoi.homeDir ".fzf" -}}
+
+  {{-   if eq .chezmoi.os "android" -}}
+#!/bin/sh
+  {{-   else -}}
 #!/usr/bin/env bash
+  {{-   end }}
 
 if [ ! -d " {{- $fzf -}} " ]; then
   git clone --depth 1 -- \
