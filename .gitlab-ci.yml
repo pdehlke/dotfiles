@@ -30,6 +30,7 @@ variables:
   DEBIAN_FRONTEND:
     value: "noninteractive"
     description: "Run apt and chezmoi non interactive"
+  MY_CHEZMOI_BIN: "./root/bin/chezmoi"
   MY_CHEZMOI_ROOT: "root/"
   UBUNTU_TAG: ":20.04"
 
@@ -73,13 +74,13 @@ install-script:
         sudo
   script:
     - ./install.sh
-    - ./root/bin/chezmoi data --format yaml
-    - ./root/bin/chezmoi ignored
-    - ./root/bin/chezmoi managed -i all
+    - $MY_CHEZMOI_BIN data
+    - $MY_CHEZMOI_BIN ignored
+    - $MY_CHEZMOI_BIN managed -i all
     - (
-        [ -d "${HOME}/.local/share/fonts" ]
-        &&
-        ls -lha ~/.local/share/fonts/**/*
+        [ ! -d "${HOME}/.local/share/fonts" ]
+        ||
+        ls -lha ~/.local/share/fonts/**/*/
       )
 
 docker-test:
