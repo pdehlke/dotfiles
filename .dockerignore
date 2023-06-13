@@ -1,3 +1,4 @@
+.gitlab-ci.yml
 docker-compose.yml
 Dockerfile
 root/bin/fix_macvim_external_display.sh
