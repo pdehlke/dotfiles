@@ -31,5 +31,5 @@ jobs:
       run: './root/bin/chezmoi managed -i all'
 
     - name: installed font files
-      run: 'ls -lha ~/.local/share/fonts/**/*'
+      run: 'ls -lha ~/.local/share/fonts/**/*/'
 
