@@ -1,6 +1,6 @@
 # Wizard options (general)
 
-  - nerdfont-complete + powerline
+  - nerdfont-v3 + powerline
   - small icons
   - 24h time
   - 2 lines
