@@ -10,7 +10,7 @@ cfg_shared() {
 }
 
 cfg_lfs_local() {
-    if which "git-lfs" >/dev/null 2>&1; then
+    if command -v "git-lfs" >/dev/null; then
         git lfs install --local
     fi
 }
