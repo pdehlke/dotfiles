@@ -33,6 +33,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     context                 # user@hostname
     vim_shell               # vim shell indicator (:sh)
+    chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
     time                    # current time
     # =========================[ Line #2 ]=========================
     newline
