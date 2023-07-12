@@ -18,6 +18,20 @@ missing_exe () {
     fi
 }
 
+present_exe () {
+    if [ $# != 1 ]; then
+	echo >&2 "BUG: present_exe called with parameters: $*"
+	exit 1
+    fi
+    if command -v "$1" >/dev/null; then
+        debug_skippers "! Found $1 in \$PATH"
+        return 0 # true
+    else
+        debug_skippers ". Didn't find $1 in \$PATH"
+        return 1 # false
+    fi
+}
+
 missing_exes () {
     for i in "$@"; do
 	if missing_exe "$i"; then
