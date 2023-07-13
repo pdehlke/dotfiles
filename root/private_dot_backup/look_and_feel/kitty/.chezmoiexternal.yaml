@@ -1,5 +1,5 @@
 ---
-'Dracula.conf':
+'themes/Dracula.conf':
   url: 'https://github.com/dracula/kitty/raw/master/dracula.conf'
   type: 'file'
   executable: false
