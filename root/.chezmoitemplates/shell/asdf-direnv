@@ -1,11 +1,11 @@
 {{- $direnv_bin := "" -}}
-{{- $toolVersions := joinPath .chezmoi.homeDir ".tool-versions" -}}
-{{- if stat $toolVersions -}}
-{{-   range $tool := include $toolVersions | splitList "\n" -}}
-{{-     if regexMatch `^[ ]*direnv` $tool -}}
-{{-       $direnv_bin = output "asdf" "which" "direnv" | trim -}}
-{{-     end -}}
-{{-   end -}}
+{{- $asdf := "asdf" -}}
+
+{{- $direnv_bin = output `sh` `-c` `asdf which direnv 2>/dev/null || true` -}}
+{{- if regexMatch "No version" $direnv_bin -}}
+{{-   $direnv_bin = "" -}}
+{{- else -}}
+{{-   $direnv_bin = trim $direnv_bin -}}
 {{- end -}}
 
 {{- if not $direnv_bin -}}
@@ -17,6 +17,6 @@
 export ASDF_DIRENV_BIN=" {{- $direnv_bin -}} "
 {{
   regexFind `(ba|z)sh` .chezmoi.sourceFile
-  | output $direnv_bin "hook" | trim
+  | output $direnv_bin "hook"
 }}
 {{- end -}}
