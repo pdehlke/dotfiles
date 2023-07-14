@@ -67,6 +67,8 @@ POWERLEVEL9K_ASDF_SHOW_SYSTEM=false
 
 # Uncomment to show only relevant tools on prompt
 POWERLEVEL9K_ASDF_SHOW_ON_UPGLOB=true
+
+# Improves asdf plugin glob patterns
 POWERLEVEL9K_ASDF_RUBY_SHOW_ON_UPGLOB='*.rb|Gemfile|Rakefile|.bundle'
 POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.py|pyproject.*'
 POWERLEVEL9K_ASDF_GOLANG_SHOW_ON_UPGLOB='*.go|go.mod'
