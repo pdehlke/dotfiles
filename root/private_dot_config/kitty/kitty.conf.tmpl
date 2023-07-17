@@ -1,7 +1,4 @@
 # chezmoi:template:left-delimiter=[[ right-delimiter=]]
-[[- /*
-# vim:ft=kitty.gotmpl:
-*/ -]]
 # vim:fileencoding=utf-8:foldmethod=marker
 
 #: Fonts {{{
@@ -77,10 +74,7 @@ tab_bar_style powerline
 
 # background_image none
 
-# background_image_layout scaled
-
-#: Whether to tile, scale or clamp the background image. The value can
-#: be one of tiled, mirror-tiled, scaled, clamped or centered.
+# background_image_layout cscaled
 
 dynamic_background_opacity yes
 
@@ -119,3 +113,7 @@ map kitty_mod+t     launch --cwd=current --type=tab
 # [[ index .color .param.color "kitty" "name" ]]
 include current-theme.conf
 # END_KITTY_THEME
+
+[[- /*
+# vim:ft=kitty.gotmpl:fileencoding=utf-8:foldmethod=marker:
+*/]]
