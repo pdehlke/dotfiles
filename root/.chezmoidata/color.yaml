@@ -15,3 +15,13 @@ color:
       name: 'Dracula'
       file: 'Dracula'
     tmux: 'dracula'
+  solarized_light:
+    kitty:
+      name: 'Solarized Light'
+      file: 'Solarized_Light'
+    tmux: *tmuxDefault
+  gruvbox_light:
+    kitty:
+      name: 'Gruvbox Light'
+      file: 'gruvbox-light'
+    tmux: 'gruvbox'
