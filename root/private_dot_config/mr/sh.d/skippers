@@ -1,7 +1,7 @@
 # -*- mode: bash -*-
 
 debug_skippers () {
-    echo "# SKIP $MR_NAME?  $*"
+    echo "# SKIP ${MR_REPO##*/}?  $*"
 }
 
 missing_exe () {
