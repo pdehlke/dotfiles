@@ -41,10 +41,10 @@ update = gplmod --ff-only
   -}}
 [.zprezto/modules/prompt/external/powerlevel10k/gitstatus]
 order = 9
-checkout = true
-update = true
-fetch = true
-status = true
+checkout = :
+update = :
+fetch = :
+status = :
   {{- else -}}
 [${XDG_CONFIG_HOME:-.config}/gitstatus]
 checkout = git clone 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
