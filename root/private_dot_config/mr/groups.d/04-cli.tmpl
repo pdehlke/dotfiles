@@ -5,17 +5,18 @@ skip = third_party_skipper $MR_ACTION
 checkout =
   git clone -- \
       'https://github.com/asdf-vm/asdf.git' '.asdf'
-update = ${MR_REPO}/bin/asdf update
-post_checkout = ${MR_REPO}/bin/asdf update
-post_update = git_last_tag
+update =
+  ${MR_REPO}/bin/asdf update
+  git_last_tag
 
 
 [.fzf]
 skip = third_party_skipper $MR_ACTION
 checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
-update = gplrt
+update =
+  gplrt
+  git_last_tag
 install =
   "${MR_REPO}/install" --xdg --all --no-update-rc \
     --no-fish --no-bash
-update_append = git_last_tag
-
+status_append = git_last_tag
