@@ -7,11 +7,15 @@ order = 3
 checkout =
   git clone -j{{- $nproc }} -- \
       'https://github.com/nandalopes/dotfiles.git' '{{- $simpleSourceDir -}}'
-update = gplr
+update =
+  gplr
+  if command -v "git-lfs" >/dev/null; then
+    git lfs pull
+  fi
 Clean =
   git rerere gc
   git gc
-post_checkout =
+checkout_append =
   cd "$MR_REPO"
   # remotes
   git_add_remotes "
@@ -20,10 +24,6 @@ post_checkout =
   "
   # config
   cfg_rcv_warn
-post_update =
-  if command -v "git-lfs" >/dev/null; then
-    git lfs pull
-  fi
 
 
 [.zprezto]
@@ -48,7 +48,7 @@ status = :
   {{- else -}}
 [${XDG_CONFIG_HOME:-.config}/gitstatus]
 checkout = git clone 'https://github.com/romkatv/gitstatus.git' 'gitstatus'
-post_status = git_last_tag
+status_append = git_last_tag
   {{- end }}
 skip = lazy
 make =
