@@ -1,6 +1,18 @@
 {{- /* DATA NOT AVAILABLE ON INIT */ -}}
 {{- $data := joinPath .chezmoi.workingTree "root/.chezmoidata" "color.yaml" | include | fromYaml -}}
-{{- $supportedColors := keys $data.color | sortAlpha -}}
+
+{{- $colorList := keys $data.color | sortAlpha -}}
+{{- $color := dig "param" "color" "solarized" . -}}
+{{- $i := 0 -}}
+{{- $supportedColors := list -}}
+{{- range $c := $colorList -}}
+{{-   $i = add1 $i -}}
+{{-   $supportedColors = printf "%d-%s" $i $c | append $supportedColors -}}
+{{-   if eq $color $c -}}
+{{-     $color = printf "%d-%s" $i $c -}}
+{{-   end -}}
+{{- end -}}
+
 {{- /* Checks if running interactively, which is not the case for GitHub Codespaces */ -}}
 {{- $interactive := and stdinIsATTY (env "ACT" | not) (env "CODESPACES" | not)
                     (env "DEBIAN_FRONTEND" | ne "noninteractive")
@@ -11,7 +23,6 @@
 {{- /* Initializes variables with a default value */ -}}
 {{- $name  := "Your Name" -}}
 {{- $email := "your@email.com" -}}
-{{- $color := "solarized" -}}
 
 {{- /* From https://www.chezmoi.io/user-guide/machines/general/ */ -}}
 {{- $chassisType := "desktop" -}}
@@ -38,11 +49,7 @@
 {{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
 {{-   $name  = promptStringOnce . "name" "Name used in gitconfig" $name -}}
 {{-   $email = promptStringOnce . "email" "Email used in gitconfig" $email -}}
-{{-   $stringColor := join "/" $supportedColors | printf "color (%s)" -}}
-{{-   $color = promptStringOnce . "param.color" $stringColor $color -}}
-{{-   if not (has $color $supportedColors) -}}
-{{-     $color = "solarized" -}}
-{{-   end -}}
+{{-   $color = promptChoiceOnce . "param.color" "color theme" $supportedColors $color -}}
 {{- end -}}
 
 
@@ -56,9 +63,9 @@ data:
   name: {{ quote $name }}
   email: {{ quote $email }}
   param:
-    color: {{ quote $color }}
+    color: {{ regexReplaceAll "[0-9]-" $color "" | quote }}
 {{
-    join ", " $supportedColors |
+    join ", " $colorList |
     printf "Choose any of %s" |
     wrap 50 | comment "    # "
 }}
