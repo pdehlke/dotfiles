@@ -98,8 +98,7 @@ vmc() {
 ftmux() {
   local tprofiles
 
-  tprofiles=( $(find ${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp -type f \
-    -printf "%P\n" | cut -d\. -f1 | fzf --multi --query="$*") )
+  tprofiles=( $(tmuxp ls | fzf --height=5 --multi --query="$*") )
 
   if [[ -z "$tprofiles" ]]; then
     tmux ls
