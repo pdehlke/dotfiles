@@ -83,7 +83,7 @@ vmc() {
   fi
 
   if [[ $lang ]]; then
-    local versions=$(asdf list $lang | fzf --height=~30% --multi)
+    local versions=$(asdf list $lang | sed 's/^[ *]*//' | fzf --height=~30% --multi)
     if [[ ${#versions[@]} -gt 0 ]]; then
       echo $versions[@] | xargs -rpn1 asdf uninstall $lang
     fi
