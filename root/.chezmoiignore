@@ -31,7 +31,7 @@ iTerm2/
 # no android files
 .oh-my-zsh/
 .termux/
-{{- else if (eq .chezmoi.os "android") }}
+{{- else }}
 .config/kitty/
 .backup/look_and_feel/kitty/
 .zprezto
