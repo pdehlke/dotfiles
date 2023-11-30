@@ -4,24 +4,29 @@ color:
     kitty: &kittyDefault
       name: 'Solarized Dark'
       file: 'Solarized_Dark'
+      pygments: 'solarized-dark'
     tmux: &tmuxDefault 'solarized'
   gruvbox:
     kitty:
       name: 'Gruvbox Dark'
       file: 'gruvbox-dark'
+      pygments: 'gruvbox-dark'
     tmux: 'gruvbox'
   dracula:
     kitty:
       name: 'Dracula'
       file: 'Dracula'
+      pygments: 'dracula'
     tmux: 'dracula'
   solarized_light:
     kitty:
       name: 'Solarized Light'
       file: 'Solarized_Light'
+      pygments: 'solarized-light'
     tmux: *tmuxDefault
   gruvbox_light:
     kitty:
       name: 'Gruvbox Light'
       file: 'gruvbox-light'
+      pygments: 'gruvbox-light'
     tmux: 'gruvbox'
