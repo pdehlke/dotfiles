@@ -1,0 +1,37 @@
+# horizontal vim merge
+  {{- range (list "" "g" "m" "n") }}
+[mergetool "h {{- . -}} vimdiff"]
+  cmd = " {{- . -}} vim -c 'Ghdiffsplit!' $MERGED"     # use fugitive.vim for 3-way merge
+  {{- end }}
+
+# vertical vim diff
+  {{- range (list "" "g" "m" "n") }}
+[difftool " {{- . -}} vimdiff"]
+  cmd = " {{- . -}} vim -Od $LOCAL $REMOTE"
+  {{- end }}
+
+# horizontal vim diff
+  {{- range (list "" "g" "m" "n") }}
+[difftool "h {{- . -}} vimdiff"]
+  cmd = " {{- . -}} vim -od $LOCAL $REMOTE"
+  {{- end }}
+
+# kitty diff
+  {{- range list "" ".gui" }}
+[difftool "kitty {{- . -}} "]
+    cmd = kitten diff $LOCAL $REMOTE
+  {{- end }}
+
+# difftool config
+[diff]
+  tool = vimdiff
+  guitool = gvimdiff
+[difftool]
+  prompt = false
+  trustExitCode = true
+
+# vim:ft=gitconfig
+
+{{- /*
+  vim:ft=gitconfig.gotmpl:
+*/}}
