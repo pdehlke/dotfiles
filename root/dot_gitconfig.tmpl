@@ -112,12 +112,11 @@
   prompt = false
   keepBackup = false
   writeToTemp = true
-[mergetool "vimdiff"]
-  cmd="vim  -c 'Gvdiffsplit!' $MERGED"    # use fugitive.vim for 3-way merge
-[mergetool "gvimdiff"]
-  cmd="gvim -c 'Gvdiffsplit!' $MERGED"    # use fugitive.vim for 3-way merge
-[mergetool "mvimdiff"]
-  cmd="mvim -c 'Gvdiffsplit!' $MERGED"    # use fugitive.vim for 3-way merge
+
+  {{- range (list "" "g" "m") }}
+[mergetool " {{- . -}} vimdiff"]
+  cmd = " {{- . -}} vim -c 'Gvdiffsplit!' $MERGED"     # use fugitive.vim for 3-way merge
+  {{- end }}
 [merge]
   summary = true
   verbosity = 1
