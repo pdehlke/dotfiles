@@ -370,7 +370,7 @@ We can use Docker to test some changes in a **Linux** Container.
 
 Assuming your host system has Docker & Docker Compose properly installed, run:
 
-    docker-compose run dotfiles
+    docker compose run dotfiles
 
 This will build the container image if it never built it before (which may take a while -- future times will be faster) and then run a `zsh` session inside that container for you.
 There you can play around, test commands, aliases, etc.
