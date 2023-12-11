@@ -370,7 +370,7 @@ Podemos usar o Docker para testar algumas mudanças em um contêiner **Linux**.
 
 Supondo que seu sistema host tenha Docker e Docker Compose devidamente instalado, execute:
 
-    docker-compose run dotfiles
+    docker compose run dotfiles
 
 Isso construirá a imagem do contêiner se nunca a tiver criado antes (o que pode demorar um pouco - os tempos futuros serão mais rápidos) e, em seguida, executará uma sessão `zsh` dentro desse contêiner para você.
 Lá você pode brincar, testar comandos, aliases, etc.
