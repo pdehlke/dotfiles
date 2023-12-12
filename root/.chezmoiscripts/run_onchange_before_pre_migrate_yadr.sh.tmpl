@@ -1,0 +1,32 @@
+{{- /*
+# vim:ft=sh.gotmpl:
+    */ -}}
+
+{{- if or
+  (joinPath .chezmoi.workingTree "vim/bundle" | stat)
+  (joinPath .chezmoi.workingTree "vim/.vundles.local" | stat)
+  (joinPath .chezmoi.workingTree "zsh/prezto" | stat)
+  -}}
+
+  {{-   if eq .chezmoi.os "android" -}}
+#!/bin/sh
+  {{-   else -}}
+#!/usr/bin/env bash
+  {{-   end }}
+
+mv --verbose \
+  {{ joinPath .chezmoi.workingTree "vim/bundle" }} \
+  {{ joinPath .chezmoi.sourceDir "vim/plugged" }}
+
+mv --verbose \
+  {{ joinPath .chezmoi.workingTree "vim/.vundles.local" }} \
+  {{ joinPath .chezmoi.sourceDir "vim/.vundles.local" }}
+
+rm --verbose --recursive \
+  {{ joinPath .chezmoi.workingTree "zsh/prezto" }}
+
+git -C {{ .chezmoi.workingTree }} clean -dfx -- zsh/
+
+true
+
+{{- end }}
