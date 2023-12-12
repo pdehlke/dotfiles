@@ -12,9 +12,10 @@
 
 This is a **GNU/Linux** focused fork of @[skwp/dotfiles](https://github.com/skwp/dotfiles).
 
-Select Language: **English**, [Portuguese](https://github.com/nandalopes/dotfiles/blob/main/README-pt.md)
+Select Language: **English**, [Portuguese](README-pt.md)
 
 #### sh -c "\`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/root/bin/yadr/install.sh \`"
+{: .no_toc }
 
 **Managed with [chezmoi](https://chezmoi.io/).**
 
@@ -93,18 +94,23 @@ chezmoi apply --verbose
 ## Wait, you're not done! Do this:
 
 #### Install Solarized Colors at your terminal of choice
+
 Change your terminal colors to Solarized. Most terminals on Linux have a solarized colorscheme installed by default.
 
 #### Remap caps-lock to escape with [Karabiner-Elements](https://pqrs.org/osx/karabiner/index.html)
-The escape key is the single most used key in vim.  Old keyboards used to have Escape where Tab is today. Apple keyboards are the worst with their tiny Esc keys. But all this is fixed by remapping Caps to Escape.  If you're hitting a small target in the corner, you are slowing yourself down considerably, and probably damaging your hands with repetitive strain injuries.
+
+The escape key is the single most used key in vim. Old keyboards used to have Escape where Tab is today. Apple keyboards are the worst with their tiny Esc keys. But all this is fixed by remapping Caps to Escape. If you're hitting a small target in the corner, you are slowing yourself down considerably, and probably damaging your hands with repetitive strain injuries.
 
 #### Set up a system wide hotkey for iTerm (Keys=>Hotkey)
+
 Recommended Cmd-Escape, which is really Cmd-Capslock.
 
 #### In iTerm, uncheck "Native full screen windows" on General
+
 This will give you fast full screen windows that are switchable without switching to spaces.
 
 #### in MacVim, uncheck "Prefer native full-screen support" under Advanced settings
+
 Same as iTerm. The native spaces navigation slows everything down for no reason.
 
 ## If you want to run vim in terminal
@@ -125,14 +131,12 @@ colorscheme base16-twilight
 " in ~/.vimrc.after
 ```
 
-### Upgrading
+## Upgrading
 
 Upgrading is easy.
 
 
-      chezmoi cd
-      git pull --rebase
-      chezmoi diff # check updates before apply
+      chezmoi update --verbose --dry-run # check updates before apply
       chezmoi apply --verbose
 
 
@@ -140,13 +144,13 @@ Upgrading is easy.
 
 Read on to learn what YADR provides!
 
-### <del>Homebrew</del>
+### ~~Homebrew~~
 
 TODO: port [homebrew](https://brew.sh/) install script to a `run_once_homebrew_install`.
 
 ### ZSH
 
-Think of Zsh as a more awesome bash without having to learn anything new.
+Think of Zsh as a more awesome Bash without having to learn anything new.
 Automatic spell correction for your commands, syntax highlighting, and more.
 We've also provided lots of enhancements:
 
@@ -185,18 +189,18 @@ Lots of things we do every day are done with two or three charactera mnemonic al
   * `czD` - chezmoi (D)ata - list chezmoi variables, useful for templating
   * `czm file(s)` - chezmoi (m)erge - three-way merge between *destination*, *source state* and *target state*
 
-### Git Customizations:
+### Git Customizations
 
 YADR will take over your `~/.gitconfig`, so if you want to store your usernames, please put them into `~/.gitconfig.user`
 
 It is recommended to use this file to set your user info. Alternately, you can set the appropriate environment variables in your `~/.secrets`.
 
-  * `git l` or `gl`- a much more usable git log
-  * `git b` or `gb`- a list of branches with summary of last commit
+  * `git l` or `gl` - a much more usable git log
+  * `git b` or `gb` - a list of branches with summary of last commit
   * `git r` - a list of remotes with info
-  * `git t` or `gt`- a list of tags with info
-  * `git nb` or `gnb`- a (n)ew (b)ranch - like checkout -b
-  * `git cp` or `gcp`- cherry-pick -x (showing what was cherrypicked)
+  * `git t` or `gt` - a list of tags with info
+  * `git nb` or `gnb` - a (n)ew (b)ranch - like checkout -b
+  * `git cp` or `gcp` - cherry-pick -x (showing what was cherrypicked)
   * `git simple` - a clean format for creating changelogs
   * `git recent-branches` - if you forgot what you've been working on
   * `git unstage` / `guns` (remove from index) and `git uncommit` / `gunc` (revert to the time prior to the last commit - dangerous if already pushed) aliases
@@ -217,7 +221,7 @@ You'll have under a `.config/mr` folder:
     * [`lib.d/`](./root/private_dot_config/mr/lib.d) which contains
       * various shell snippets which get auto-loaded in the context of `mr`'s `lib` parameter
       * definitions of various `mr` actions and other `mr` parameters
-    * [`sh.d/`](./root/private_dot_config/mr/sh.d) - various shell helper functions used by the files in `lib.d/`.  Parts of these could be reused by other people, e.g.:
+    * [`sh.d/`](./root/private_dot_config/mr/sh.d) - various shell helper functions used by the files in `lib.d/`. Parts of these could be reused by other people, e.g.:
       * [`sh.d/git`](./root/private_dot_config/mr/sh.d/git) - various generic `git`-related helper functions
       * [`sh.d/git-remotes`](./root/private_dot_config/mr/sh.d/git-remotes) - various helper functions relating to management of git remotes
 
@@ -227,7 +231,7 @@ A `.gemrc` is included. Never again type `gem install whatever --no-ri --no-rdoc
 
 ### Tmux configuration
 
-`tmux.conf` provides some sane defaults for tmux on Mac OS like a powerful status bar and vim keybindings.
+`tmux.conf` provides some sane defaults for tmux like a powerful status bar and vim keybindings.
 You can customize the configuration in `~/.tmux.conf.user`.
 
 ![screenshot tmux](https://i.imgur.com/Rlh30kg.png)
@@ -242,7 +246,7 @@ We include the [`spaceman-diff`](https://github.com/holman/spaceman-diff) comman
 
 ## Vim - What's included?
 
-  * [Navigation - NERDTree, EasyMotion, CtrlP and more](docs/vim/navigation.md)
+  * [Navigation - NERDTree, EasyMotion and more](docs/vim/navigation.md)
   * [Text Objects - manipulate ruby blocks, and more](docs/vim/textobjects.md)
   * [Code manipulation - rails support, comments, snippets, highlighting](docs/vim/coding.md)
   * [Utils - indents, paste buffer management, lots more](docs/vim/utils.md)
@@ -281,11 +285,10 @@ This is not a comprehensive list. To get deeper knowledge, practice a few of the
   * Spacebar - Sneak - type two characters to move there in a line. Kind of like vim's `f` but more accurate.
   * `:Gsearch foo` - global search, then do your normal `%s/search/replace/g` and follow up with `:Greplace` to replace across all files. When done use `:wall` to write all the files.
 
-
 #### File Navigation
 
-  * `,t` - CtrlP fuzzy file selector
-  * `,b` - CtrlP buffer selector - great for jumping to a file you already have open
+  * `,t` - fuzzy file selector
+  * `,b` - buffer selector - great for jumping to a file you already have open
   * `Cmd-Shift-M` - jump to method - CtrlP tag search within current buffer
   (`,M` in Linux)
   * `,jm` jump to models. Other `,j` mappings: `,jc` for controllers, `,jh` for helpers, etc. If you think of a concept and a letter, we've got you covered.
@@ -332,7 +335,7 @@ This is not a comprehensive list. To get deeper knowledge, practice a few of the
   * `,hp` - Html Preview (open in Safari)
   * `Cmd-Shift-A` - align things (type a character/expression to align by, works in visual mode or by itself) (`,A` in Linux)
   * `:ColorToggle` - turn on #abc123 color highlighting (useful for css)
-  * `:GV` - Git log browsers
+  * `:GV` - Git log browser
   * `,hi` - show current Highlight group. if you don't like the color of something, use this, then use `hi! link [groupname] [anothergroupname]` in your vimrc.after to remap the color. You can see available colors using `:hi`
   * `,gt` - Go Tidy - tidy up your html code (works on a visual selection)
   * `:Wrap` - wrap long lines (e.g. when editing markdown files)
@@ -374,7 +377,6 @@ There you can play around, test commands, aliases, etc.
 
 *Warning*: this repo is primarily Linux oriented. So any support for macOS can only be done with the help of the community.
 
-
 ## Misc
 
 * [Credits & Thanks](docs/credits.md)
@@ -395,6 +397,7 @@ These hacks are Lion-centric. May not work for other OS'es. My favorite mods inc
   * Display the ~/Library folder in finder (hidden in Lion)
 
 ### Macvim troubles with Lua?
+
 ```
 brew uninstall macvim
 brew remove macvim
