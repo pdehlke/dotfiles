@@ -18,8 +18,8 @@
   executable: true
   refreshPeriod: '720h' # 30 days
   exclude:
-    - '*NerdFontMono*'
-    - '*NFM*'
+    # - '*NerdFontMono*'
+    # - '*NFM*'
     - '*NerdFontPropo*'
     - '*NFP*'
 {{- end }}
