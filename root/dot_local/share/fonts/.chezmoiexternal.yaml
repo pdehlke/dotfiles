@@ -4,7 +4,7 @@
 
 {{- $releaseURLS := joinPath .chezmoi.homeDir ".backup/chezmoi" "gitHubLatestRelease.yaml" -}}
 {{- if stat $releaseURLS -}}
-{{-   $releaseURLS = include $releaseURLS | fromYaml -}}
+{{-   $releaseURLS = include $releaseURLS | fromYaml | mergeOverwrite .external | deepCopy -}}
 {{- else -}}
 {{-   $releaseURLS = .external -}}
 {{- end -}}
