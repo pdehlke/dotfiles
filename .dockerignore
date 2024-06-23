@@ -1,6 +1,18 @@
+# folders
+**/plugged/
+.github/
+docs/
+
+# files
+**/.wakatime-project
+.dockerignore
+.editorconfig
+.gitattributes
 .gitlab-ci.yml
-docker-compose.yml
+.mailmap
+CHANGELOG.md
 Dockerfile
-root/bin/fix_macvim_external_display.sh
-root/bin/macos
-**/plugged
+LICENSE
+README-pt.md
+README.md
+compose.yaml
