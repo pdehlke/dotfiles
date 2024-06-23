@@ -1,10 +1,16 @@
-version: "3"
 name: yadr
 services:
   dotfiles:
+    environment:
+      IMAGE_NAME: &imageTag "yadr"
+    container_name: yadr
     build:
       context: .
-    image: yadr
+      args:
+        DEBIAN_FRONTEND: noninteractive
+      tags:
+        - *imageTag
+    image: *imageTag
     volumes:
       - ./:/root/.yadr/
       - plugged:/root/.yadr/root/vim/plugged
