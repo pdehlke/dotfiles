@@ -36,6 +36,7 @@ iTerm2/
 .backup/look_and_feel/kitty/
 .zprezto
 .zpreztorc
+.zprezto-contrib/
 .zshenv
 .zlogin
 .zprofile
