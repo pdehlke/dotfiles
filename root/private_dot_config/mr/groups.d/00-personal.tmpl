@@ -57,6 +57,6 @@ make =
   else
     sudo "$MR_REPO/build" -w -s
   fi
-  sudo chown $USER:$USER --changes -R "$MR_REPO"/{usrbin,deps}
+  find "$MR_REPO"/{usrbin,deps} -type f -exec sudo chown $USER:$USER --changes '{}' \+
 
 # vim:fileencoding=utf-8:ft=conf
