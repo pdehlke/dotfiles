@@ -11,3 +11,6 @@ charset = utf-8
 
 [*.{vim,md}]
 trim_trailing_whitespace = false
+
+[p10k-*]
+trim_trailing_whitespace = false
