@@ -16,6 +16,12 @@ checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
 update =
   gplrt
   git_last_tag
+clean =
+  if [ "${*#*-f}" != "${*}" ]; then
+    git clean --force "$@" -dx -e 'bin/fzf'
+  else
+    git clean --dry-run "$@" -dx -e 'bin/fzf'
+  fi
 install =
   "${MR_REPO}/install" --xdg --all --no-update-rc \
     --no-fish --no-bash
