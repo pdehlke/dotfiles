@@ -32,10 +32,15 @@ variables:
     description: "Run apt and chezmoi non interactive"
   MY_CHEZMOI_BIN: "./root/bin/chezmoi"
   MY_CHEZMOI_ROOT: "root/"
-  UBUNTU_TAG: ":20.04"
 
 install-script:
   stage: test
+  parallel:
+    matrix:
+      - UBUNTU_TAG:
+        - ":20.04"
+        - ":22.04"
+        - ":24.04"
   image: "ubuntu$UBUNTU_TAG"
   variables:
     LANGUAGE: en_US.UTF-8
@@ -104,7 +109,7 @@ docker-test:
         paths:
           - .dockerignore
           - Dockerfile
-          - docker-compose.yml
+          - compose.yaml
           - install.sh
     - if: $CI_PIPELINE_SOURCE == "push"
   before_script:
