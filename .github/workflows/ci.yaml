@@ -14,7 +14,14 @@ on:
 jobs:
   clone-and-install:
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ubuntu-os:
+          - 20
+          - 22
+          - 24
+
+    runs-on: ubuntu-${{ matrix.ubuntu-os }}
 
     env:
       CODESPACES: true
