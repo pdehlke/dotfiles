@@ -76,7 +76,7 @@ WORKDIR /root/.yadr
 RUN \
   --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
-  --mount=type=cache,id=cache-chezmoi,target=/root/.cache/chezmoi \
+  --mount=type=cache,id=cache-yadr,target=/root/.cache/chezmoi \
   ./install.sh
 
 # Install vim plugins
