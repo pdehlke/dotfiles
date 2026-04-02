@@ -29,12 +29,12 @@ if [ -z "${ACT:+false}${CODESPACES:+false}${DEBIAN_FRONTEND:+false}" ]; then
   "${chezmoi}" diff --verbose
   read -p 'Apply modifications? (y/n) ' r
   case "${r}" in
-    y|Y|s|S)
-      set -- apply --verbose "--source=${script_dir}"
-      ;;
-    *)
-      set -- diff
-      ;;
+  y | Y | s | S)
+    set -- apply --verbose "--source=${script_dir}"
+    ;;
+  *)
+    set -- diff
+    ;;
   esac
 else
   set -- init --apply --verbose --source="${script_dir}"
@@ -43,3 +43,15 @@ fi
 echo "Running 'chezmoi $*'" >&2
 # exec: replace current process with chezmoi
 exec "$chezmoi" "$@"
+
+# Set up sublime text and vim
+
+if $(command -v subl) >/dev/null; then
+  echo "Setting up Sublime Text packages"
+  subl --command "install_package_control"
+fi
+
+if $(command -v vim) >/dev/null; then
+  echo "Installing vim plugins for the first time"
+fi
+vim +PluginInstall +qall

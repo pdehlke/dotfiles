@@ -1,0 +1,12 @@
+{
+    "draw_centered": true,
+    "font_size": 14,
+    "rulers":
+    [
+        50,
+        72
+    ],
+    "spell_check": true,
+    "word_wrap": "true",
+    "wrap_width": 72
+}

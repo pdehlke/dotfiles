@@ -14,8 +14,12 @@ This is a **GNU/Linux** focused fork of @[skwp/dotfiles](https://github.com/skwp
 
 Select Language: **English**, [Portuguese](README-pt.md)
 
+<<<<<<< HEAD
 #### sh -c "\`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/root/bin/yadr/install.sh \`"
 {: .no_toc }
+=======
+#### sh -c "\`curl -fsSL https://github.com/pdehlke/dotfiles/raw/main/root/bin/yadr/install.sh \`"
+>>>>>>> 8f2e818 (chore(adHoc): Add customizations for zsh, git, sublime, vim, and peco)
 
 **Managed with [chezmoi](https://chezmoi.io/).**
 

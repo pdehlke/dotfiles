@@ -1,0 +1,4 @@
+// These settings override both User and Default settings for the Markdown Extended syntax
+{
+  "color_scheme": "Packages/Agila Theme/Markdown/Neon Monocyanide Markdown.tmTheme",
+}
