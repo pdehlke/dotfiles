@@ -1,4 +1,12 @@
-{{- $nproc := output "nproc" | trim -}}
+{{- $nproc := 1 }}
+{{- if eq .chezmoi.os "darwin" }}
+  {{-   $nproc = (output "sysctl" "-n" "hw.physicalcpu_max") | trim | atoi }}
+{{- else if eq .chezmoi.os "linux" }}
+  {{-   $nproc = (output "sh" "-c" "lscpu --online --parse | grep --invert-match '^#' | sort --field-separator=',' --key='2,4' --unique | wc --lines") | trim | atoi }}
+{{- else if eq .chezmoi.os "windows" }}
+  {{-   $nproc = (output "pwsh.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -ClassName 'Win32_Processor').NumberOfCores") | trim | atoi }}
+{{- end }}
+
 {{- $simpleSourceDir := trimPrefix .chezmoi.homeDir .chezmoi.workingTree |
                         trimPrefix "/" -}}
 
@@ -6,7 +14,7 @@
 order = 3
 checkout =
   git clone -j{{- $nproc }} -- \
-      'https://github.com/nandalopes/dotfiles.git' '{{- $simpleSourceDir -}}'
+      'https://github.com/pdehlke/dotfiles.git' '{{- $simpleSourceDir -}}'
 update =
   gplr
   if command -v "git-lfs" >/dev/null; then
