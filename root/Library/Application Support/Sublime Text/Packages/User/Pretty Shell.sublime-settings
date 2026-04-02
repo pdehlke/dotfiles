@@ -1,0 +1,4 @@
+{
+    /* Pretty Shell */
+    "shfmt_bin_path": "/opt/homebrew/bin/shfmt"
+}

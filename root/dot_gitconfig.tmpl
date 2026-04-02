@@ -34,11 +34,15 @@
   ren-remote = "!f() { git push origin origin/$1:refs/heads/$2 :$1; } ; f"
   ren-local = branch -m
   ren = !git ren-local $1 $2 && git ren-remote $1 $2
+  cob = checkout -b
 
   # commit
   c = commit -m                     # commit with message
   ca = commit -am                   # commit all with message
   ci = commit                       # commit
+  cm = !git add -A && git commit -m
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = !git add -u && git commit -m "WIP"
   amend = commit --amend            # ammend your last commit
   amend-noedit = commit --amend --no-edit # amend your last commit reusing last commit's message
   ammend = commit --amend           # ammend your last commit
@@ -64,6 +68,13 @@
   simple = log --pretty=format:\" * %s\"
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
   filelog = log -u                  # show changes to a file
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+  ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  lc  = "!f() { git ll "$1"^.."$1"; }; f"
+  lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+  le = log --oneline --decorate
 
   # pull
   pl = pull                         # pull
@@ -108,6 +119,21 @@
   # checkout remote head, via https://twitter.com/jnesselr/status/1334586152691625985
   cdef = "!f() { git checkout $(git originhead ${1:-origin}); } ; f"
   originhead = "!f() { git remote show ${1:-origin} | grep 'HEAD branch' | cut -d ' ' -f5; } ; f"
+
+
+  # ATTENTION: All aliases prefixed with ! run in /bin/sh make sure you use sh syntax, not bash/zsh or whatever
+  recentb = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-master}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-master}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message|author\\n\" && cat) | column -ts'|';}; r"
+
+  ec = config --global -e
+  head-branch = !"git remote show origin | grep 'HEAD branch' | cut -d' ' -f5"
+  up = !"git switch $(git head-branch) && git fetch --all --prune --progress && git pull"
+  default = !"git remote show origin | grep 'HEAD branch' | cut -d' ' -f5"
+  undo = reset HEAD~1 --mixed
+  amend = commit -a --amend
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-$DEFAULT} | grep -v " ${1-$DEFAULT}$" | xargs git branch -d; }; f"
+  bdone = "!f() { DEFAULT=$(git default); git checkout ${1-$DEFAULT} && git up && git bclean ${1-$DEFAULT}; }; f"
+
 [format]
   pretty = format:%C(blue)%ad%C(reset) %C(yellow)%h%C(green)%d%C(reset) %C(blue)%s %C(magenta) [%an]%C(reset)
 [mergetool]
@@ -159,6 +185,12 @@
 [pager]
   branch = false
   stash = false
+[pull]
+     rebase = false
+[credential]
+     helper = osxkeychain
+[ghq]
+  root = ~/src
 [include]
   path = .gitconfig.user
     {{- range $file := list "diff-merge-tools" "gui-config" "aliases" }}
