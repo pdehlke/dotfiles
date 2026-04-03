@@ -10,16 +10,9 @@
 
 [![Join the chat at https://gitter.im/skwp/dotfiles](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/skwp/dotfiles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This is a **GNU/Linux** focused fork of @[skwp/dotfiles](https://github.com/skwp/dotfiles).
+This is a **MacOS** focused fork of @[nandalopes/dotfiles](https://github.com/nandalopes/dotfiles), which is itself a **GNU/Linux** focused fork of @[skwp/dotfiles](https://github.com/skwp/dotfiles).
 
-Select Language: **English**, [Portuguese](README-pt.md)
-
-<<<<<<< HEAD
-#### sh -c "\`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/root/bin/yadr/install.sh \`"
-{: .no_toc }
-=======
 #### sh -c "\`curl -fsSL https://github.com/pdehlke/dotfiles/raw/main/root/bin/yadr/install.sh \`"
->>>>>>> 8f2e818 (chore(adHoc): Add customizations for zsh, git, sublime, vim, and peco)
 
 **Managed with [chezmoi](https://chezmoi.io/).**
 
@@ -34,12 +27,7 @@ This repo has been built for my own benefit, however feel free to sneak in and s
   * Many zsh plugins, starting with the wonderful Prezto base, and adding a few niceties on top.
   * All things are vimized: irb, postgres command line, etc.
 
-*MacOS is not supported! If it works, great. If it doesn't, please don't complain. You may need to install zsh if you don't already have it.*
-*That being said, check the Docker section below*
-
-## Mailing List
-
-Got questions, concerns, want to hear announcements? Join the [Google Group](https://groups.google.com/forum/#!forum/yadr-users)
+*The main difference between this repo and @[nandalopes/dotfiles] upstream is that MacOS is fully supported in this fork, just as it was in skwp's original work. If it doesn't work, please open an issue or submit a PR*
 
 Please use GitHub Issues for pull requests or bug reports only.
 
@@ -52,7 +40,7 @@ Please use GitHub Issues for pull requests or bug reports only.
 To get started please run:
 
 ```bash
-sh -c "`curl -fsSL https://github.com/nandalopes/dotfiles/raw/main/root/bin/yadr/install.sh`"
+sh -c "`curl -fsSL https://github.com/pdehlke/dotfiles/raw/main/root/bin/yadr/install.sh`"
 ```
 
 **Note:** YADR will automatically install all of its subcomponents.
@@ -73,7 +61,7 @@ You will have to clone the repo and from its root directory, execute the
 Leveraging Chezmoi capabilities
 
 ```bash
-chezmoi init --apply --verbose --source ~/.yadr --https nandalopes/dotfiles
+chezmoi init --apply --verbose --source ~/.yadr --https pdehlke/dotfiles
 ```
 
 ### _What if I already have a chezmoi dotfiles repo?_
