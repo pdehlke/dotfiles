@@ -1,7 +1,7 @@
 "" All languages
 Plug 'sheerun/vim-polyglot' " language pack for Vim
 Plug 'vim-syntastic/syntastic'
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
 " SnipMate files
 Plug 'MarcWeber/vim-addon-mw-utils'

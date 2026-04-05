@@ -4,7 +4,6 @@ scriptencoding utf-8
 " ================ General Config ===================
 
 set number                     " Line numbers are good
-set relativenumber             " Relative line numbers
 set backspace=indent,eol,start " Allow backspace in insert mode
 set history=1000               " Store lots of :cmdline history
 set showcmd                    " Show incomplete cmds down the bottom
