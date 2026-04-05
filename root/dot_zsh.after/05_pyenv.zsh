@@ -104,8 +104,11 @@ PYTHON_3_VERSION="${PYTHON_3_VERSION:-"3.9.1"}"
 # make sure our python environments are up to date
 pyenv_init
 
+# I have never been happier to dump a piece of software than I am
+# to have dumped cassandra version 3
+#
 # We need python2 for cqlsh until we move to cassandra 4 :()
-setup_venv 2.7.18 py2
+# setup_venv 2.7.18 py2
 
 ensure_venv
 # activate the current default python virtualenv
