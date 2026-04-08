@@ -8,6 +8,12 @@
 # ZSH shell
 #
 
+# tmux plugins
+'.tmux/plugins/tpm':
+  url: 'https://github.com/tmux-plugins/tpm'
+  type: 'git-repo'
+  refreshPeriod: '168h' # 7 days
+
 # tmux themepack
 '.tmux-themepack':
   url: 'https://github.com/jimeh/tmux-themepack.git'
@@ -37,6 +43,12 @@
   pull:
     args:
       - '--recurse-submodules=yes'
+
+# bash-my-aws
+'.bash-my-aws':
+  url: 'https://github.com/bash-my-aws/bash-my-aws.git'
+  type: 'git-repo'
+  refreshPeriod: '168h'
 
 # Oh my Zsh
 '.oh-my-zsh':
