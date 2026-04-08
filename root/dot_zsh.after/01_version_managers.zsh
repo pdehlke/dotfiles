@@ -33,7 +33,7 @@ if quiet_which jenv; then
   for i in /Library/Java/JavaVirtualMachines/*; do
     jenv add $i/Contents/Home >/dev/null 2>&1
   done
-  jenv global 1.8
+  jenv global 17
 fi
 
 # We don't use much ruby, but if you do, here's your huckleberry.
