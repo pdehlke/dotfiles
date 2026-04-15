@@ -15,7 +15,8 @@ quiet_which() {
 # alias listening="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
 alias du='${HOMEBREW_PREFIX}/bin/gdu -h -t 2'
-alias ls='/bin/ls -FGh -C'
+#alias ls='/bin/ls -FGh -C'
+alias ls='/opt/homebrew/opt/coreutils/libexec/gnubin/ls -AF --color=auto'
 alias t='todo.sh'
 alias cat=bat
 #alias cat="bat --theme=$(defaults read -globalDomain AppleInterfaceStyle &>/dev/null && echo DarkNeon || echo GitHub)"
