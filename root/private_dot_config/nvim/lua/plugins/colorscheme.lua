@@ -1,0 +1,50 @@
+-- return {
+--   "maxmx03/solarized.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   ---@type solarized.config
+--   opts = { variant = "winter" },
+--   config = function(_, opts)
+--     vim.o.termguicolors = true
+--     vim.o.background = "dark"
+--     require("solarized").setup(opts)
+--     vim.cmd.colorscheme("solarized")
+--   end,
+
+return {
+  {
+    "maxmx03/solarized.nvim",
+    lazy = false,
+    priority = 1000,
+    ---@type solarized.config
+    opts = {
+      variant = "autumn",
+      styles = {
+        comments = { italic = true, bold = false },
+        types = { bold = true },
+        functions = { bold = true },
+        parameters = { bold = true },
+        strings = { bold = true },
+        keywords = { bold = true },
+        variables = { bold = true },
+        constants = { bold = true },
+      },
+      transparent = {
+        enabled = false,
+      },
+      on_highlights = function(colors, color)
+        ---@type solarized.highlights
+        local groups = {
+          SpellBad = { underline = false, strikethrough = false, undercurl = true },
+        }
+        return groups
+      end,
+    },
+    config = function(_, opts)
+      vim.o.termguicolors = true
+      vim.o.background = "dark"
+      require("solarized").setup(opts)
+      vim.cmd.colorscheme("solarized")
+    end,
+  },
+}
