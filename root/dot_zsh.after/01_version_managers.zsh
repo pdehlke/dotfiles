@@ -27,14 +27,14 @@ fi
 # in the right place and jenv will handle it all.
 # Use 1.8 by default
 #
-if quiet_which jenv; then
-  eval "$(jenv init -)"
-  jenv enable-plugin export >/dev/null 2>&1
-  for i in /Library/Java/JavaVirtualMachines/*; do
-    jenv add $i/Contents/Home >/dev/null 2>&1
-  done
-  jenv global 17
-fi
+#if quiet_which jenv; then
+#  eval "$(jenv init -)"
+#  jenv enable-plugin export >/dev/null 2>&1
+#  for i in /Library/Java/JavaVirtualMachines/*; do
+#    jenv add $i/Contents/Home >/dev/null 2>&1
+#  done
+#  jenv global 17
+#fi
 
 # We don't use much ruby, but if you do, here's your huckleberry.
 #
