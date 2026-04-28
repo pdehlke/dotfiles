@@ -1,16 +1,3 @@
--- return {
---   "maxmx03/solarized.nvim",
---   lazy = false,
---   priority = 1000,
---   ---@type solarized.config
---   opts = { variant = "winter" },
---   config = function(_, opts)
---     vim.o.termguicolors = true
---     vim.o.background = "dark"
---     require("solarized").setup(opts)
---     vim.cmd.colorscheme("solarized")
---   end,
-
 return {
   {
     "maxmx03/solarized.nvim",
@@ -19,6 +6,9 @@ return {
     ---@type solarized.config
     opts = {
       variant = "autumn",
+      plugins = {
+        lualine = false,
+      },
       styles = {
         comments = { italic = true, bold = false },
         types = { bold = true },
