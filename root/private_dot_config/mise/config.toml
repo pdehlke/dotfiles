@@ -1,0 +1,46 @@
+[tools]
+gh = "latest"
+java = "21"
+jq = "latest"
+just = "latest"
+oc = "latest"
+opentofu = "latest"
+python = "3"
+shfmt = "latest"
+yq = "latest"
+popeye = "latest"
+conftest = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
+node = "24"
+maven = "latest"
+yarn = "latest"
+uv = "latest"
+
+[settings]
+color_theme = "catpucchin"
+java.shorthand_vendor = "temurin"
+legacy_version_file = true
+idiomatic_version_file_enable_tools = ["python", "node", "java"]
+python.github_attestations = false
+python.uv_venv_auto = true
+
+# ==> Pin versions of tools to specifics for faster switches and specific versions for projects
+
+# Node versionss
+[tool_alias.node.versions]
+18 = "18.20.8"
+20 = "20.18.3"
+22 = "22.22.0"
+24 = "24.13.0"
+
+# Java versions
+[tool_alias.java.versions]
+11 = "11.0.30+7"
+17 = "17.0.18+8"
+21 = "21.0.10+7.0.LTS"
+25 = "25.0.2+10.0.LTS"
+
+# Python versions
+[tool_alias.python.versions]
+3 = "3.14.3"
+2 = "2.7.18"

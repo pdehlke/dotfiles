@@ -44,6 +44,9 @@ zd() {
 alias j=zd
 
 #alias v='f -e vim'
+if $(command -v nvim > /dev/null 2>&1); then
+  alias vim=nvim
+fi
 alias ts='tmux new-session -s'
 alias ave='aws-vault exec --duration=12h'
 alias avc='aws-vault clear'

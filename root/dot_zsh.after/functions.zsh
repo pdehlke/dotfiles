@@ -1,4 +1,4 @@
-function copy() { 
+function copy() {
     if (( $# != 1))
     then echo "usage: copy <filename>"; return 1
     fi
@@ -332,4 +332,66 @@ flap ()
         bat "$result";
     fi;
     cd - > /dev/null
+}
+
+# Use a combination of direnv, uv, and mise-en-place to manage python
+# environments. This function relies on the mise and uv functions defined
+# in ${HOME}/.config/direnv/lib/layout_uv.sh and ${HOME}/.config/direnv/lib/use_mise.sh
+
+uv-create() {
+	local flag_help
+	local arg_python=(3.14.3) # set a default
+	local arg_type=(default)  # the default uv project_type
+	local usage=(
+		"uv-create [-h|--help]"
+		"uv-create [-p|--python=<python_version>] [-t|--type=<project_type (default|app|package|lib)>]"
+	)
+
+	# -D pulls parsed flags out of $@
+	# -E allows flags/args and positionals to be mixed, which we don't want in this example
+	# -F says fail if we find a flag that wasn't defined
+	# -M allows us to map option aliases (ie: h=flag_help -help=h)
+	# -K allows us to set default values without zparseopts overwriting them
+	# Remember that the first dash is automatically handled, so long options are -opt, not --opt
+	zmodload zsh/zutil
+	zparseopts -D -F -K -- \
+		{h,-help}=flag_help \
+		{p,-python}:=arg_python \
+		{t,-type}:=arg_type ||
+		return 1
+
+	[[ -z "$flag_help" ]] || { print -l $usage && return; }
+
+	if ! [[ "$arg_type[-1]" =~ ^(default|app|package|lib)$ ]]; then
+		print -l $usage && return 1
+	fi
+
+	if [[ -f .tool-versions || -f .envrc || -d .venv ]]; then
+		log FATAL ".tool-versions or .envrc or .venv already exists. Not clobbering."
+	fi
+
+	for i in uv direnv mise; do
+		command -v $i >/dev/null 2>&1 || log FATAL "$i not found in your PATH"
+	done
+
+	cat >.tool-versions <<EOF
+	uv latest
+	python $arg_python[-1]
+EOF
+
+	case "$arg_type[-1]" in
+	default)
+		cat >.envrc <<EOF
+	use mise
+	layout uv
+EOF
+		;;
+	*)
+		cat >.envrc <<EOF
+	use mise
+	layout uv-$arg_type[-1]
+EOF
+		;;
+	esac
+
 }
