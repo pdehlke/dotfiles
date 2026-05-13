@@ -1,13 +1,15 @@
 return {
-  {
-    "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-      },
+    {
+        "mason-org/mason.nvim",
+        dependencies = { "Zeioth/mason-extra-cmds", opts = {} },
+
+        opts = {
+            ui = {
+                border = "rounded",
+            },
+            cmd = {
+                "MasonUpdateAll", -- this cmd is provided by mason-extra-cmds
+            },
+        },
     },
-  },
 }
