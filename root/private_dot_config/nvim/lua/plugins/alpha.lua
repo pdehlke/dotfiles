@@ -1,0 +1,276 @@
+-- Strip author attribution from formatted fortune output.
+-- fortune.nvim's format_line() removes the "- " prefix from author
+-- lines and right-justifies them with leading spaces, so the naive
+-- "^%s*%-" pattern cannot match. Instead we detect right-justified
+-- lines (many leading spaces) and trim surrounding whitespace lines.
+local function strip_attribution(lines)
+    while #lines > 0 and lines[#lines]:match("^%s*$") do
+        table.remove(lines)
+    end
+    if #lines > 0 and #lines[#lines]:match("^(%s*)") > 2 then
+        table.remove(lines)
+    end
+    while #lines > 0 and lines[#lines]:match("^%s*$") do
+        table.remove(lines)
+    end
+    while #lines > 0 and lines[1]:match("^%s*$") do
+        table.remove(lines, 1)
+    end
+    return lines
+end
+
+-- Compute the rendered line count of a single alpha layout section.
+local function section_height(s)
+    if s.type == "padding" then
+        return s.val
+    end
+    if s.type == "group" then
+        local n = type(s.val) == "table" and #s.val or 0
+        local sp = (s.opts and s.opts.spacing) or 0
+        return n + sp * math.max(0, n - 1)
+    end
+    local v = s.val
+    if type(v) == "string" then
+        return 1
+    end
+    if type(v) == "table" then
+        return #v
+    end
+    return 1
+end
+
+-- Set layout[1] (top padding) so the content is vertically centered.
+local function center_layout(layout)
+    local total = 0
+    for i = 2, #layout do
+        total = total + section_height(layout[i])
+    end
+    layout[1].val = math.max(0, math.floor((vim.o.lines - total) / 3))
+end
+
+return {
+    {
+        "goolord/alpha-nvim",
+        event = "VimEnter",
+        dependencies = { "rubiin/fortune.nvim" },
+
+        opts = function()
+            local dashboard = require("alpha.themes.dashboard")
+
+            -- header
+            local header = {
+                [[                                                    ]],
+                [[ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ]],
+                [[ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ]],
+                [[ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ]],
+                [[ ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ]],
+                [[ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ]],
+                [[ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ]],
+                [[                                                    ]],
+            }
+            dashboard.section.header.val = vim.split(table.concat(header, "\n"), "\n")
+
+            -- greeting
+            local function getGreeting(name)
+                local t = os.date("*t")
+                local datetime = os.date(" %Y-%m-%d   %I:%M %p")
+                local idx = (t.hour == 23 or t.hour < 7) and 1
+                    or (t.hour < 12) and 2
+                    or (t.hour < 18) and 3
+                    or (t.hour < 21) and 4
+                    or 5
+                local g = {
+                    [1] = "  Sleep well",
+                    [2] = "  Good morning",
+                    [3] = "  Good afternoon",
+                    [4] = "  Good evening",
+                    [5] = "󰖔  Good night",
+                }
+                return ("%s\t%s, %s"):format(datetime, g[idx], name)
+            end
+            dashboard.section.greeting = {
+                type = "text",
+                val = getGreeting("Pete"),
+                opts = { hl = "MyGreetingHighlight", position = "center" },
+            }
+
+            -- stylua: ignore
+            dashboard.section.buttons.val = {
+                dashboard.button("f", " " .. " Find file", "<cmd> lua LazyVim.pick('files', { hidden = true })() <cr>"),
+                dashboard.button("n", " " .. " New file", [[<cmd> ene <BAR> startinsert <cr>]]),
+                dashboard.button("r", " " .. " Recent files", [[<cmd> lua LazyVim.pick("oldfiles")() <cr>]]),
+                dashboard.button("g", " " .. " Find text", [[<cmd> lua LazyVim.pick("live_grep")() <cr>]]),
+                dashboard.button("c", " " .. " Config", "<cmd> lua LazyVim.pick.config_files()() <cr>"),
+                dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
+                dashboard.button("x", " " .. " Lazy Extras", "<cmd> LazyExtras <cr>"),
+                dashboard.button("l", "󰒲 " .. " Lazy", "<cmd> Lazy <cr>"),
+                dashboard.button("u", "󰑓 " .. " Lazy Sync", "<cmd> Lazy sync<cr>"),
+                dashboard.button("q", " " .. " Quit", "<cmd> qa <cr>"),
+            }
+            for _, b in ipairs(dashboard.section.buttons.val) do
+                b.opts.hl = "MyButtonsHighlight"
+                b.opts.hl_shortcut = "MyAlphaShortcut"
+            end
+
+            dashboard.section.header.opts.hl = "MyHeaderHighlight"
+            dashboard.section.buttons.opts.hl = "MyButtonsHighlight"
+            dashboard.section.footer.opts.hl = "MyFooterHighlight"
+
+            -- configure fortune width/format
+            pcall(function()
+                require("fortune").setup({
+                    max_width = 60,
+                    display_format = "mixed", -- "short" | "long" | "mixed"
+                    content_type = "quotes", -- "quotes" | "tips" | "mixed"
+                })
+            end)
+
+            -- quotes section (strip author attribution to save vertical space)
+            local fortune = require("fortune")
+            local fortune_lines = strip_attribution(fortune.get_fortune())
+            dashboard.section.fortune = {
+                type = "text",
+                val = fortune_lines,
+                opts = { position = "center", hl = "MyQuoteText" },
+            }
+
+            -- layout (top padding is computed by center_layout)
+            dashboard.opts.layout = {
+                { type = "padding", val = 0 },
+                dashboard.section.header,
+                { type = "padding", val = 1 },
+                dashboard.section.greeting,
+                { type = "padding", val = 2 },
+                dashboard.section.buttons,
+                { type = "padding", val = 1 },
+                dashboard.section.footer,
+                { type = "padding", val = 1 },
+                dashboard.section.fortune,
+            }
+            center_layout(dashboard.opts.layout)
+
+            return dashboard
+        end,
+        config = function(_, dashboard)
+            -- Set alpha highlight groups after colorscheme has loaded
+            vim.api.nvim_set_hl(0, "MyHeaderHighlight", { fg = "#88C0D0", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "MyGreetingHighlight", { fg = "#81A1C1", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "MyButtonsHighlight", { fg = "#D8DEE9", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "MyAlphaShortcut", { fg = "#A3BE8C", bold = true })
+            vim.api.nvim_set_hl(0, "MyFooterHighlight", { fg = "#EBCB8B", bg = "NONE" })
+            vim.api.nvim_set_hl(0, "MyQuoteText", { fg = "#8FBCBB", italic = true })
+
+            if vim.o.filetype == "lazy" then
+                vim.cmd.close()
+                vim.api.nvim_create_autocmd("User", {
+                    once = true,
+                    pattern = "AlphaReady",
+                    callback = function()
+                        require("lazy").show()
+                    end,
+                })
+            end
+
+            require("alpha").setup(dashboard.opts)
+
+            vim.api.nvim_create_autocmd("WinResized", {
+                callback = function()
+                    local buf = vim.api.nvim_get_current_buf()
+                    if vim.bo[buf].filetype == "alpha" then
+                        center_layout(dashboard.opts.layout)
+                        local win = vim.api.nvim_get_current_win()
+                        if vim.api.nvim_win_is_valid(win) then
+                            pcall(vim.cmd.AlphaRedraw)
+                        end
+                    end
+                end,
+            })
+
+            local function apply_lock(buf)
+                -- giant margins keep cursor centered; neutralize scroll actions
+                vim.wo[0].scrolloff = 999
+                vim.wo[0].sidescrolloff = 999
+                local opts = { buffer = buf, silent = true, nowait = true }
+                for _, lhs in ipairs({
+                    "<ScrollWheelUp>",
+                    "<ScrollWheelDown>",
+                    "<S-ScrollWheelUp>",
+                    "<S-ScrollWheelDown>",
+                    "<ScrollWheelLeft>",
+                    "<ScrollWheelRight>",
+                    "<C-y>",
+                    "<C-e>",
+                    "<C-u>",
+                    "<C-d>",
+                    "<C-b>",
+                    "<C-f>",
+                    "zh",
+                    "zl",
+                    "zH",
+                    "zL",
+                    "zt",
+                    "zb",
+                    "gg",
+                    "G",
+                }) do
+                    vim.keymap.set("n", lhs, "<nop>", opts)
+                end
+            end
+
+            -- Run when Alpha has actually drawn its buffer
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "AlphaReady",
+                callback = function()
+                    local buf = vim.api.nvim_get_current_buf()
+                    if vim.bo[buf].filetype ~= "alpha" then
+                        return
+                    end
+
+                    vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
+
+                    apply_lock(buf)
+                end,
+            })
+
+            -- Safety net: if Alpha is already open before AlphaReady fired (rare), catch on BufEnter
+            vim.api.nvim_create_autocmd("BufEnter", {
+                callback = function(args)
+                    if vim.bo[args.buf].filetype ~= "alpha" then
+                        return
+                    end
+
+                    vim.api.nvim_set_option_value("buflisted", false, { buf = args.buf })
+
+                    -- avoid double-setup by setting a buffer var
+                    if vim.b[args.buf].__alpha_center_applied then
+                        return
+                    end
+                    vim.b[args.buf].__alpha_center_applied = true
+                    apply_lock(args.buf)
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("User", {
+                once = true,
+                pattern = "LazyVimStarted",
+                callback = function()
+                    local s = require("lazy").stats()
+                    local ms = (math.floor(s.startuptime * 100 + 0.5) / 100)
+                    dashboard.section.footer.val = ("⚡ Neovim loaded %d/%d plugins in %sms"):format(
+                        s.loaded,
+                        s.count,
+                        ms
+                    )
+
+                    local ok, fortune = pcall(require, "fortune")
+                    if ok then
+                        dashboard.section.fortune.val = strip_attribution(fortune.get_fortune())
+                    end
+
+                    center_layout(dashboard.opts.layout)
+                    pcall(vim.cmd.AlphaRedraw)
+                end,
+            })
+        end,
+    },
+}
