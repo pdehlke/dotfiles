@@ -5,7 +5,7 @@
 local opt = vim.opt
 local g = vim.g
 
-opt.relativenumber = false -- Relative line numbers
+-- opt.relativenumber = false -- Relative line numbers
 opt.shiftwidth = 4 -- Size of an indent
 opt.tabstop = 4 -- Number of spaces tabs count for
 opt.wrap = true -- Line wrapping

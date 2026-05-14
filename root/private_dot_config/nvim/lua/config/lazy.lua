@@ -16,6 +16,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
+        {
+            --[[
+      We put this here before even loading core plugins since we want to
+      ensure that any plugins depending on direnv resources can access them.
+    ]]
+            "actionshrimp/direnv.nvim",
+            opts = {},
+        },
         -- add LazyVim and import its plugins
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         -- import/override with your plugins
