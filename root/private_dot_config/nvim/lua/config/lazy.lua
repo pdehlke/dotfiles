@@ -17,12 +17,41 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         {
-            --[[
-      We put this here before even loading core plugins since we want to
-      ensure that any plugins depending on direnv resources can access them.
-    ]]
-            "actionshrimp/direnv.nvim",
-            opts = {},
+            -- We put this here before even loading core plugins since we want to
+            -- ensure that any plugins depending on direnv resources can access them.
+            "NotAShelf/direnv.nvim",
+            opts = {
+                bin = "direnv",
+                autoload_direnv = true,
+                statusline = {
+                    enabled = true,
+                    icon = "󱚟 ",
+                },
+                keybindings = {
+                    allow = "<Leader>da",
+                    deny = "<Leader>dd",
+                    reload = "<Leader>dr",
+                    edit = "<Leader>de",
+                },
+                notifications = {
+                    level = vim.log.levels.INFO,
+                    silent_autoload = true,
+                },
+            },
+            config = function(_, opts)
+                require("direnv").setup(opts)
+                vim.api.nvim_create_autocmd("User", {
+                    pattern = "DirenvLoaded",
+                    callback = function()
+                        vim.api.nvim_create_autocmd("DirChanged", {
+                            once = true,
+                            callback = function()
+                                direnv.check_direnv()
+                            end,
+                        })
+                    end,
+                })
+            end,
         },
         -- add LazyVim and import its plugins
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
