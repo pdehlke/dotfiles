@@ -120,6 +120,32 @@ return {
                 return mutagen[cwd]
             end
 
+            ---@type table<string, {updated:number, allowed: boolean}>
+            local direnv = {}
+
+            local function direnv_status()
+                if vim.fn.executable("direnv") == 0 then
+                    return nil
+                end
+
+                local direnv_file = vim.fs.find(".envrc", { path = vim.uv.cwd() or ".", upward = true })[1]
+                if not direnv_file then
+                    return nil
+                end
+
+                local cwd = vim.uv.cwd() or "."
+                direnv[cwd] = direnv[cwd] or { updated = 0, allowed = false }
+
+                local now = vim.uv.now() -- timestamp in milliseconds
+                if direnv[cwd].updated + 5000 < now then
+                    local output = vim.fn.system("direnv status")
+                    direnv[cwd].allowed = output:find("allow ok") ~= nil
+                    direnv[cwd].updated = now
+                end
+
+                return direnv[cwd]
+            end
+
             local error_color = { fg = Snacks.util.color("DiagnosticError") }
             local ok_color = { fg = Snacks.util.color("DiagnosticInfo") }
             table.insert(opts.sections.lualine_x, {
@@ -136,6 +162,23 @@ return {
                         msg = msg .. " | " .. table.concat(s.status, " | ")
                     end
                     return (s.total == 0 and "󰋘 " or "󰋙 ") .. msg
+                end,
+            })
+
+            table.insert(opts.sections.lualine_x, {
+                cond = function()
+                    return direnv_status() ~= nil
+                end,
+                color = function()
+                    local status = direnv_status()
+                    return status and status.allowed and ok_color or error_color
+                end,
+                function()
+                    local status = direnv_status()
+                    if not status then
+                        return ""
+                    end
+                    return (status.allowed and "󱥒 " or "󱥒 ") .. "direnv"
                 end,
             })
         end,
