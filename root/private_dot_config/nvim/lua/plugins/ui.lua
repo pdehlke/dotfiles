@@ -138,8 +138,8 @@ return {
 
                 local now = vim.uv.now() -- timestamp in milliseconds
                 if direnv[cwd].updated + 5000 < now then
-                    local output = vim.fn.system("direnv status")
-                    direnv[cwd].allowed = output:find("allow ok") ~= nil
+                    local output = vim.fn.system("direnv status --json | jq -e '.state.loadedRC.allowed == 0'")
+                    direnv[cwd].allowed = vim.v.shell_error == 0
                     direnv[cwd].updated = now
                 end
 
