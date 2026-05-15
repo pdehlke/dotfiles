@@ -147,6 +147,20 @@ return {
                 "fileformat",
                 "filetype",
             })
+            table.insert(opts.sections.lualine_x, {
+                cond = function()
+                    return vim.bo.filetype == "python"
+                end,
+                function()
+                    local handle = io.popen("python --version 2>&1")
+                    if handle then
+                        local version = handle:read("*a"):gsub("\n", ""):gsub("Python ", "")
+                        handle:close()
+                        return "🐍 " .. version
+                    end
+                    return ""
+                end,
+            })
         end,
     },
 }
