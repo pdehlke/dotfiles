@@ -29,6 +29,57 @@ local function lsp_status()
     return table.concat(names, ", ")
 end
 
+local mutagen = {}
+
+local function mutagen_status()
+    local cwd = vim.uv.cwd() or "."
+    mutagen[cwd] = mutagen[cwd]
+        or {
+            updated = 0,
+            total = 0,
+            enabled = vim.fs.find("mutagen.yml", { path = cwd, upward = true })[1] ~= nil,
+            status = {},
+        }
+    local now = vim.uv.now() -- timestamp in milliseconds
+    local refresh = mutagen[cwd].updated + 10000 < now
+    if #mutagen[cwd].status > 0 then
+        refresh = mutagen[cwd].updated + 1000 < now
+    end
+    if mutagen[cwd].enabled and refresh then
+        ---@type {name:string, status:string, idle:boolean}[]
+        local sessions = {}
+        local lines = vim.fn.systemlist("mutagen project list")
+        local status = {}
+        local name = nil
+        for _, line in ipairs(lines) do
+            local n = line:match("^Name: (.*)")
+            if n then
+                name = n
+            end
+            local s = line:match("^Status: (.*)")
+            if s then
+                table.insert(sessions, {
+                    name = name,
+                    status = s,
+                    idle = s == "Watching for changes",
+                })
+            end
+        end
+        for _, session in ipairs(sessions) do
+            if not session.idle then
+                table.insert(status, session.name .. ": " .. session.status)
+            end
+        end
+        mutagen[cwd].updated = now
+        mutagen[cwd].total = #sessions
+        mutagen[cwd].status = status
+        if #sessions == 0 then
+            vim.notify("Mutagen is not running", vim.log.levels.ERROR, { title = "Mutagen" })
+        end
+    end
+    return mutagen[cwd]
+end
+
 -- Open Trouble workspace diagnostics on click
 local function open_trouble_diag()
     -- Prefer Trouble v3 Lua API if available
@@ -88,56 +139,6 @@ return {
         "nvim-lualine/lualine.nvim",
         opts = function(_, opts)
             ---@type table<string, {updated:number, total:number, enabled: boolean, status:string[]}>
-            local mutagen = {}
-
-            local function mutagen_status()
-                local cwd = vim.uv.cwd() or "."
-                mutagen[cwd] = mutagen[cwd]
-                    or {
-                        updated = 0,
-                        total = 0,
-                        enabled = vim.fs.find("mutagen.yml", { path = cwd, upward = true })[1] ~= nil,
-                        status = {},
-                    }
-                local now = vim.uv.now() -- timestamp in milliseconds
-                local refresh = mutagen[cwd].updated + 10000 < now
-                if #mutagen[cwd].status > 0 then
-                    refresh = mutagen[cwd].updated + 1000 < now
-                end
-                if mutagen[cwd].enabled and refresh then
-                    ---@type {name:string, status:string, idle:boolean}[]
-                    local sessions = {}
-                    local lines = vim.fn.systemlist("mutagen project list")
-                    local status = {}
-                    local name = nil
-                    for _, line in ipairs(lines) do
-                        local n = line:match("^Name: (.*)")
-                        if n then
-                            name = n
-                        end
-                        local s = line:match("^Status: (.*)")
-                        if s then
-                            table.insert(sessions, {
-                                name = name,
-                                status = s,
-                                idle = s == "Watching for changes",
-                            })
-                        end
-                    end
-                    for _, session in ipairs(sessions) do
-                        if not session.idle then
-                            table.insert(status, session.name .. ": " .. session.status)
-                        end
-                    end
-                    mutagen[cwd].updated = now
-                    mutagen[cwd].total = #sessions
-                    mutagen[cwd].status = status
-                    if #sessions == 0 then
-                        vim.notify("Mutagen is not running", vim.log.levels.ERROR, { title = "Mutagen" })
-                    end
-                end
-                return mutagen[cwd]
-            end
 
             local error_color = { fg = Snacks.util.color("DiagnosticError") }
             local ok_color = { fg = Snacks.util.color("DiagnosticInfo") }
@@ -171,9 +172,6 @@ return {
                 function()
                     return require("direnv").statusline()
                 end,
-                --                "encoding",
-                --               "fileformat",
-                --              "filetype",
             })
             table.insert(opts.sections.lualine_x, {
                 copilot_icon,
@@ -188,6 +186,20 @@ return {
                     if vim.bo.buftype == "" then
                         toggle_copilot_for_buf()
                     end
+                end,
+            })
+            table.insert(opts.sections.lualine_y, {
+                cond = function()
+                    return vim.bo.filetype == "go"
+                end,
+                function()
+                    local handle = io.popen("go version | awk '{sub(/^go/, \"\", $3); print $3}'")
+                    if handle then
+                        local version = handle:read("*a"):gsub("\n", ""):gsub("go ", "")
+                        handle:close()
+                        return " " .. version
+                    end
+                    return ""
                 end,
             })
             table.insert(opts.sections.lualine_y, {
@@ -244,12 +256,6 @@ return {
                     end
                 end,
             })
-            opts.sections.lualine_x = vim.tbl_filter(function(component)
-                if type(component) == "table" and component[2] == "copilot" then
-                    return false
-                end
-                return true
-            end, opts.sections.lualine_x)
         end,
     },
 }
