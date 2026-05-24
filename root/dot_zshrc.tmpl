@@ -3,13 +3,33 @@
 # variables such as PATH) in this file or in files sourced from it.
 #
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
-
+#
 # Don't change. The following determines where YADR is installed.
-export yadr=/Users/dotfiles/.yadr/root
+export yadr={{ .chezmoi.sourceDir }}
 
-z4h source /Users/dotfiles/.yadr/root/zsh/override/theme.zsh
+source {{ joinPath .chezmoi.sourceDir "zsh/override/theme.zsh" }}
 
-# z4h source /Users/dotfiles/.zprezto/runcoms/zshrc
+{{ if ne .chezmoi.os "android" -}}
+# source {{ joinPath .chezmoi.homeDir ".zprezto/runcoms/zshrc" }}
+{{- else -}}
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Disable update remainder
+zstyle ':omz:update' mode disabled
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# User configuration
+{{- end }}
+
 
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 # You can manually run `z4h update` to update everything.
@@ -74,8 +94,8 @@ export GPG_TTY=$TTY
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
 z4h source $yadr/aliases.sh
-for config_file (/Users/dotfiles/.zsh.after/*.zsh) z4h source $config_file
-z4h source /Users/dotfiles/.config/shell/p10k.mise.zsh
+for config_file ( {{- joinPath .chezmoi.homeDir ".zsh.after/*.zsh" -}} ) z4h source $config_file
+z4h source  {{ joinPath .chezmoi.homeDir ".config/shell/p10k.mise.zsh" }}
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
@@ -85,7 +105,7 @@ z4h source /Users/dotfiles/.config/shell/p10k.mise.zsh
 # Start ssh-agent and add our github identity to it. We let omz handle
 # this because z4h doesn't have an identity manager.
 zstyle :omz:plugins:ssh-agent identities id_github
-z4h load   ohmyzsh/ohmyzsh/plugins/ssh-agent
+z4h load ohmyzsh/ohmyzsh/plugins/ssh-agent
 
 # Define key bindings.
 z4h bindkey undo Ctrl+/   Shift+Tab  # undo the last command line change
