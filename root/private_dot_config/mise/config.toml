@@ -12,7 +12,7 @@ popeye = "latest"
 conftest = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
 node = "24"
-maven = "latest"
+# maven = "latest"
 yarn = "latest"
 uv = "latest"
 
