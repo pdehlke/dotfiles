@@ -107,6 +107,10 @@ function getcertnames() {
     fi
 }
 
+if hash git &>/dev/null ; then
+	unalias diff &>/dev/null
+fi
+
 # Use Git’s colored diff when available
 if hash git &>/dev/null; then
     diff() {
