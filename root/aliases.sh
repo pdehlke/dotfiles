@@ -21,6 +21,17 @@ alias k9='kill -9'
 # Moving around
 alias cdb='cd -'
 alias cls='clear;ls'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+
+# common pipelines
+alias -g C='| wc -l'
+alias -g H='| head'
+alias -g L='| less'
+alias -g N='| /dev/null'
+alias -g S='| sort'
+alias -g G='| grep' # now you can do: ls foo G something
 
 # Show human friendly numbers and colors
 alias df='df -h'

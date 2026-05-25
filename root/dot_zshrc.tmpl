@@ -7,7 +7,7 @@
 # Don't change. The following determines where YADR is installed.
 export yadr={{ .chezmoi.sourceDir }}
 
-source {{ joinPath .chezmoi.sourceDir "zsh/override/theme.zsh" }}
+#source {{ joinPath .chezmoi.homeDir ".config/shell/theme.zsh" }}
 
 {{ if ne .chezmoi.os "android" -}}
 # source {{ joinPath .chezmoi.homeDir ".zprezto/runcoms/zshrc" }}
@@ -95,7 +95,7 @@ export GPG_TTY=$TTY
 z4h source ~/.env.zsh
 z4h source $yadr/aliases.sh
 for config_file ( {{- joinPath .chezmoi.homeDir ".zsh.after/*.zsh" -}} ) z4h source $config_file
-z4h source  {{ joinPath .chezmoi.homeDir ".config/shell/p10k.mise.zsh" }}
+z4h source  {{ joinPath .chezmoi.homeDir ".config/shell/theme.zsh" }}
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
