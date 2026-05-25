@@ -277,6 +277,7 @@ zd() {
 }
 
 alias j=zd
+alias z=zd
 
 #alias v='f -e vim'
 if $(command -v nvim > /dev/null 2>&1); then
