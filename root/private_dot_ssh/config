@@ -2,5 +2,19 @@ host github
     User git
     HostName github.com
     AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_github
+    # IdentityFile ~/.ssh/id_github
 
+
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  PasswordAuthentication no
+  KbdInteractiveAuthentication no
+  ChallengeResponseAuthentication no
+  ExitOnForwardFailure yes
+  ForwardX11Trusted yes
+  ServerAliveInterval 45
+  StrictHostKeyChecking no
+  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlMaster auto
+  ConnectTimeout 10
+  HostKeyAlgorithms ssh-ed25519
