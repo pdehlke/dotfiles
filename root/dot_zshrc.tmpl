@@ -104,8 +104,11 @@ z4h source  {{ joinPath .chezmoi.homeDir ".config/shell/theme.zsh" }}
 
 # Start ssh-agent and add our github identity to it. We let omz handle
 # this because z4h doesn't have an identity manager.
-zstyle :omz:plugins:ssh-agent identities id_github
-z4h load ohmyzsh/ohmyzsh/plugins/ssh-agent
+#
+# Commented out because we prefer the 1password agent. Adjust accordingly
+# if you love to make life harder by not usint 1p.
+# zstyle :omz:plugins:ssh-agent identities id_github
+# z4h load ohmyzsh/ohmyzsh/plugins/ssh-agent
 
 # Define key bindings.
 z4h bindkey undo Ctrl+/   Shift+Tab  # undo the last command line change
