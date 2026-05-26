@@ -7,8 +7,8 @@
      _____| / ___ ( (_| | |
     (_______\_____|\____|_|
 
-    # Yet Another Dotfile Repo v2.0
-    # Now with Chezmoi, Prezto , direnv, mise-en-place, and Vim-Plug!
+    # Yet Another Dotfile Repo v3.0
+    # Now with Chezmoi, zsh4humans, direnv, mise-en-place, Vim-Plug, and a complete neovim IDE!
 
 <!-- mtoc-start -->
 <details>
@@ -73,10 +73,10 @@ This repo has been built for my own benefit, however feel free to sneak in and s
 
 * The best bits of all the top dotfile repos, vim and zsh plugins curated in one place, into a simple and cohesive way of working.
 * More than 90 vim plugins, all under one roof, working together, each plugin researched and configured to be at its best, often with better shortcut keys.
-* Many zsh plugins, starting with the wonderful Prezto base, and adding a few niceties on top.
+* A heavily customized, developer focused ZSH environment based on [zsh4humans](https://github.com/romkatv/zsh4humans) with lots of extras
 * All things are vimized: irb, postgres command line, etc.
 
-*The main difference between this repo and @[nandalopes/dotfiles] upstream is that MacOS is fully supported in this fork, just as it was in skwp's original work. If it doesn't work, please open an issue or submit a PR*
+*The main difference between this repo and @[nandalopes/dotfiles](https://github.com/nandalopes/dotfiles) upstream is that MacOS is fully supported in this fork, just as it was in skwp's original work. If it doesn't work, please open an issue or submit a PR!*
 
 Please use GitHub Issues for pull requests or bug reports only.
 
