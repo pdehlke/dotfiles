@@ -9,7 +9,7 @@
 {{-   $arch = .chezmoi.arch }}
 {{- end }}
 'asdf':
-  url: {{ printf `asdf-*-linux-%s.tar.gz` $arch | gitHubLatestReleaseAssetURL "asdf-vm/asdf" | quote }}
+  url: {{ printf `asdf-*-%s-%s.tar.gz` .chezmoi.os $arch | gitHubLatestReleaseAssetURL "asdf-vm/asdf" | quote }}
   type: 'archive-file'
   executable: true
   refreshPeriod: '168h' # 7 days
