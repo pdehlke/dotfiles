@@ -9,39 +9,29 @@ Run `p10k configure` to access the builtin configuration wizard right from your 
     # Type `p10k configure` to generate another config.
 
 
-The following settings are overwritten in `zsh/override/theme.zsh`:
+The following settings are overwritten in `${HOME}/.config/shell/theme.zsh`:
 
   - Transient prompt on same dir
   - Fewer elements on right prompt
-  - Asdf glob patterns to show version tools
+  - mise-en-place glob patterns to show tool versions
 
 Keep in mind that only the following theme options will match your terminal color settings: **rainbow**, **lean with 8 colors** and **pure original**.
 All the remaining options have fixed colors.
 
-### Adding your own ZSH theme
+### Customizing ZSH with `~/.zsh.after/`
 
-If you want to add your own zsh theme, you can place it in `~/.zsh.prompts` and it will automatically be picked up by the prompt loader.
+If you want to customize your zsh experience, yadr provides hooks via the `${HOME}/.zsh.after/` directory. You can add options
+and short snippets to `${HOME}/.zshrc` if you like, and this is the preferred method for `zsh4humans`. YADR includes extensive
+additional customizations in `.zsh.after` to keep the configuration modular and easily digestible. 
+Files in `.zsh.after` that have a `.zsh` suffix will be sourced after other zsh customizations that come from `zsh4humans`; they will
+be read in lexical order.
 
-Make sure you follow the naming convention of `prompt_[name]_setup`
-
-```
-touch ~/.zsh.prompts/prompt_mytheme_setup
-```
-
-See also the [Prezto](https://github.com/sorin-ionescu/prezto) project for more info on themes.
-
-### Customizing ZSH with ~/.zsh.after/ and ~/.zsh.before/
-
-If you want to customize your zsh experience, yadr provides two hooks via `~/.zsh.after/` and `~/.zsh.before/` directories.
-In these directories, you can place files to customize things that load before and after other zsh customizations that come from `~/.yadr/zsh/*`
 
 
 ### Overriding the theme
 
-To override the theme, you can do something like this:
+YADR uses [zsh4humans](https://github.com/romkatv/zsh4humans), and z4h uses [powerlevel10k](https://github.com/romkatv/powerlevel10k). p10k is 
+[wildly configurable](https://github.com/romkatv/zsh4humans#customizing-prompt), but YADR, like zsh4humans, is an extremely opinionated setup 
+and major surgery may be required if you really want to use a different prompt. I cannot offere any guidance, and issues opened about this
+will be immediately closed as _won't fix_
 
-```
-echo "prompt yourprompt" > ~/.zsh.after/prompt.zsh
-```
-
-Next time you load your shell, this file will be read and your prompt will be the youprompt prompt. Use `prompt -l` to see the available prompts.
