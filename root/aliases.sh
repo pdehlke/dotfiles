@@ -50,7 +50,8 @@ alias lsg='ll | grep'
 
 # Alias Editing
 TRAPHUP() {
-  source $yadr/aliases.sh
+  # shellcheck disable=SC2154
+  source "$yadr/aliases.sh"
 }
 
 alias ae='vim $yadr/aliases.sh'    # alias edit
@@ -267,7 +268,7 @@ v() {
 vd() {
     local dir
     local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir"
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir" || return
 }
 
 # cd into recent directories
@@ -280,6 +281,8 @@ alias j=zd
 alias z=zd
 
 #alias v='f -e vim'
+
+# shellcheck disable=SC2328,2327,2091
 if $(command -v nvim > /dev/null 2>&1); then
   alias vim=nvim
 fi
@@ -288,7 +291,7 @@ alias ave='aws-vault exec --duration=12h'
 alias avc='aws-vault clear'
 alias avl='aws-vault list'
 
-alias current_tomcat='instances tomcat  | grep running | awk "{print \$2}" | uniq | xargs aws ec2 describe-images --image-ids | jq -r ".Images[].Name" | rev | cut -c 9- | rev'
+# shellcheck disable=SC1091
 [ -e "$HOMEBREW_PREFIX/etc/grc.zsh" ] && source "$HOMEBREW_PREFIX/etc/grc.zsh"
 #alias weather='curl  "wttr.in?format=2"'
 alias weather='http --body "wttr.in?format=2"'
