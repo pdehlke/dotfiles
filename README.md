@@ -100,7 +100,7 @@ Please use GitHub Issues for pull requests or bug reports only.
 
 ## Screenshot
 
-![screenshot vim](https://i.imgur.com/IhPYpNV.png)
+![screenshot vim](https://i.imgur.com/5VWlFrJ.png)
 
 ## Installation
 
@@ -395,7 +395,7 @@ default.
 `tmux.conf` provides some sane defaults for tmux like a powerful status bar and vim keybindings. You can customize the
 configuration in `~/.tmux.conf.user`.
 
-![screenshot tmux](https://i.imgur.com/Rlh30kg.png)
+![screenshot tmux](https://i.imgur.com/wUCuZjj.png)
 
 ### Vimization of everything
 
