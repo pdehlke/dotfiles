@@ -150,3 +150,9 @@ zstyle ':completion:*' users {{ .chezmoi.username }} root
 
 # clear the screen so the initial prompt is always on the bottom line
 z4h-clear-screen-soft-bottom
+
+# Set up mise last, so its path doesn't get overwritten
+export MISE_DEFAULT_CONFIG_FILENAME=".mise.toml"
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi

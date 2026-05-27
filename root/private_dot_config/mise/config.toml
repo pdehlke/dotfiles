@@ -17,6 +17,7 @@ yarn = "latest"
 uv = "latest"
 
 [settings]
+experimental = true
 color_theme = "catpucchin"
 java.shorthand_vendor = "temurin"
 legacy_version_file = true
@@ -44,3 +45,7 @@ python.uv_venv_auto = true
 [tool_alias.python.versions]
 3 = "3.14.3"
 2 = "2.7.18"
+
+# I do not know why | grep -v 'JAVA|PATH' fails here :(
+[hooks]
+enter = "mise env | grep -v JAVA | grep -v PATH | sed s/export/mise:\\ setting/g"
