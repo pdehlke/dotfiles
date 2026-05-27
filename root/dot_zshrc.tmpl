@@ -40,8 +40,13 @@ zstyle ':z4h:' auto-update-days '28'
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'mac'
 
-# Don't start tmux.
-zstyle ':z4h:' start-tmux       no
+# Always start tmux. This is the default
+#
+# If you set this to no, prompt-at-bottom won't work
+# zstyle ':z4h:' start-tmux       yes
+
+# Move prompt to the bottom when zsh starts and on Ctrl+L.
+zstyle ':z4h:' prompt-at-bottom 'yes'
 
 # Mark up shell's output with semantic information.
 zstyle ':z4h:' term-shell-integration 'yes'
@@ -143,3 +148,5 @@ setopt cdablevars    # $yadr=${HOME}/.yadr/root. to cd there from anywhere, type
 # limit users completions to {{ .chezmoi.username }} and root
 zstyle ':completion:*' users {{ .chezmoi.username }} root
 
+# clear the screen so the initial prompt is always on the bottom line
+z4h-clear-screen-soft-bottom
