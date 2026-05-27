@@ -395,7 +395,7 @@ default.
 `tmux.conf` provides some sane defaults for tmux like a powerful status bar and vim keybindings. You can customize the
 configuration in `~/.tmux.conf.user`.
 
-![screenshot tmux](https://i.imgur.com/wUCuZjj.png)
+![screenshot tmux](https://i.imgur.com/K7DE9Ra.png)
 
 ### Vimization of everything
 
