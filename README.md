@@ -355,6 +355,10 @@ mise. asdf is still supported in YADR; if you prefer to use it instead of mise, 
 lines of `${HOME}/.zshrc`. There's a good [migration guide](https://mise.jdx.dev/faq.html#how-do-i-migrate-from-asdf) if
 you'd like to make the switch.
 
+Here's a quick demo video, from [the mise site](https://mise.jdx.dev/demo.html)
+
+https://github.com/user-attachments/assets/f5e71dba-b758-46a1-93bb-a966dacbbc9f
+
 There's a mise plugin for powerlevel10k in `${HOME}/.config/shell/theme.zsh` that displays non-default tool versions on
 the right hand side of your prompt. It overloads the `asdf` segment that p10k would normally display, so that's where
 you'll need to look if you want asdf instead of mise in your prompt.
