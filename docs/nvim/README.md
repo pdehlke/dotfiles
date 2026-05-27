@@ -1,6 +1,8 @@
 # 💤 LazyVim Configuration
 
 <!-- prettier-ignore-start -->
+Heavily based on the great lazyvim IDE setup created by [Andrea Arturo Venti Fuentes ](https://github.com/av1155/nvim)
+
 
 An opinionated Neovim setup built on top of [LazyVim](https://github.com/LazyVim/LazyVim).
 
@@ -18,8 +20,6 @@ optimizations. For LazyVim's base features, refer to the [official documentation
 <summary>Table of Contents</summary>
 
 - [💤 LazyVim Configuration](#-lazyvim-configuration)
-  - [Quick Start](#quick-start)
-    - [Post-install tips](#post-install-tips)
   - [Configuration Overview](#configuration-overview)
   - [LazyVim Extras](#lazyvim-extras)
     - [Summary](#summary)
@@ -97,34 +97,6 @@ optimizations. For LazyVim's base features, refer to the [official documentation
 
 ---
 
-## Quick Start
-
-```bash
-# backup any existing config
-mv ~/.config/nvim{,.bak}
-
-# optional but recommended
-mv ~/.local/share/nvim{,.bak}
-mv ~/.local/state/nvim{,.bak}
-mv ~/.cache/nvim{,.bak}
-
-# clone this repo as your Neovim config
-git clone https://github.com/av1155/nvim ~/.config/nvim
-
-# start nvim (plugins bootstrap automatically)
-nvim
-```
-
-### Post-install tips
-
-- Run `:checkhealth` to verify dependencies.
-- `:Lazy` to manage plugins; `:Mason` to install language tools if needed.
-- If using Python plugins, export:
-
-    ```bash
-    export NVIM_PYTHON_PATH="$(pyenv which python || which python3)"
-    ```
-
 **Requirements**: See
 [LazyVim's requirements](https://www.lazyvim.org/#%EF%B8%8F-requirements).
 Additional dependencies: `yazi` for file manager integration, Kitty terminal for
@@ -147,7 +119,7 @@ optimal keybind support.
 
 ## LazyVim Extras
 
-> **36 extras enabled** (from `lazyvim.json`). Manage with `:LazyExtras`.  
+> **37 extras enabled** (from `lazyvim.json`). Manage with `:LazyExtras`.  
 > Docs: <https://www.lazyvim.org/extras>
 
 ### Summary
@@ -161,7 +133,7 @@ optimal keybind support.
 | **Formatting** | black, prettier                                                                                                         |     2 |
 | **Languages**  | ansible, clangd, cmake, docker, git, go, java, json, markdown, python, sql, tailwind, terraform, toml, typescript, yaml |    16 |
 | **Test**       | core                                                                                                                    |     1 |
-| **UI**         | alpha, edgy, mini-animate, treesitter-context                                                                           |     4 |
+| **UI**         | alpha, edgy, mini-animate, treesitter-context, breadcrumbs                                                                           |     5 |
 | **Util**       | dot, mini-hipatterns, project                                                                                           |     3 |
 
 ---
@@ -380,16 +352,23 @@ Code execution plugin with toggleterm integration.
 
 ### UI Enhancements
 
+#### barbecue.nvim (`lua/plugins/barbeque.lua`)
+
+A breadcrumb navigation UI for code context/navic integration
+
 #### lualine.nvim (`lua/plugins/lualine.lua`)
 
-Custom statusline with bubbles theme and selective interactive components.
+Custom statusline with selective interactive components.
 
 - **Mode indicator**: Shows current mode (Normal/Insert/Visual/etc.)
 - **Filename**: Current buffer filename
 - **Branch**: Git branch with `` icon
 - **Diagnostics**: Error/warn/info/hint counts (click to open Trouble workspace diagnostics)
 - **LSP status**: Active LSP clients (click for LspInfo), hides copilot
-- **Python interpreter**: Shows active pyenv environment name
+- **java interpreter**: Shows active java runtime via mise
+- **Python interpreter**: Shows active python runtime via mise
+- **golang interpreter**: Shows active golang runtime via mise
+- **node.js interpreter**: Shows active node.js runtime via mise
 - **Diff stats**: Git added/modified/removed (click to open git status picker)
 - **Lazy updates**: Shows pending plugin updates
 - **DAP status**: Shows debugger status when active
@@ -399,8 +378,7 @@ Custom statusline with bubbles theme and selective interactive components.
   - Click to toggle Copilot for current buffer
   - Displays notification on toggle
   - Only visible when Copilot is installed
-- Theme: custom bubbles with transparent backgrounds
-- Disabled for: neo-tree, alpha
+- Disabled for: neo-tree, alph
 - Responsive: Hides components on narrow windows (<100 cols)
 
 #### noice.nvim (`lua/plugins/noice.lua`)
@@ -514,7 +492,7 @@ Code screenshot generator with macOS window bar.
 
 Live Markdown preview in your web browser.
 
-- Default theme: light
+- Default theme: dark
 - `<leader>cp`: Open Markdown preview (Markdown buffers only)
 - Command: `:MarkdownPreview`
 

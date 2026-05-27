@@ -21,6 +21,7 @@ chsh --shell /bin/zsh
 
 {{- if lookPath "subl" }}
 subl --command "install_package_control"
+osascript -e 'quit app "Sublime Text"'
 {{- end }}
 
 {{- if lookPath "vim" }}
