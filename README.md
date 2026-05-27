@@ -42,6 +42,62 @@ moved off of [prezto](https://github.com/sorin-ionescu/prezto) in favor of
 
 Please use GitHub Issues for pull requests or bug reports only.
 
+---
+
+<!--toc:start-->
+
+<details>
+<summary>Table of Contents</summary>
+
+- [About YADR](#about-yadr)
+- [Screenshot](#screenshot)
+- [Installation](#installation)
+  - [Convenience script](#convenience-script)
+  - [Manually with `git`](#manually-with-git)
+  - [Manually with `chezmoi`](#manually-with-chezmoi)
+  - [I already have a chezmoi repo](#i-already-have-a-chezmoi-repo)
+- [Finish the install with fonts and colors](#finish-the-install-with-fonts-and-colors)
+  - [Install Solarized Colors at your terminal of choice](#install-solarized-colors-at-your-terminal-of-choice)
+  - [Remap caps-lock to escape with Karabiner-Elements](#remap-caps-lock-to-escape-with-karabiner-elements)
+  - [Set up a system wide hotkey for iTerm](#set-up-a-system-wide-hotkey-for-iterm)
+  - [In iTerm uncheck "Native full screen windows" on General](#in-iterm-uncheck-native-full-screen-windows-on-general)
+  - [in MacVim uncheck "Prefer native full-screen support" under Advanced settings](#in-macvim-uncheck-prefer-native-full-screen-support-under-advanced-settings)
+- [If you want to run vim in terminal](#if-you-want-to-run-vim-in-terminal)
+- [Upgrading](#upgrading)
+- [Whats included and how to customize](#whats-included-and-how-to-customize)
+  - [Homebrew](#homebrew)
+  - [ZSH](#zsh)
+    - [Aliases](#aliases)
+    - [Dotfiles management aliases](#dotfiles-management-aliases)
+  - [Git Customizations](#git-customizations)
+  - [Myrepos framework configuration](#myrepos-framework-configuration)
+  - [SSH agent and identities](#ssh-agent-and-identities)
+  - [Developer experience enhancements](#developer-experience-enhancements)
+    - [Tool management via mise-en-place](#tool-management-via-mise-en-place)
+    - [bash-my-aws](#bash-my-aws)
+    - [Automatic python venvs with uv direnv and mise](#automatic-python-venvs-with-uv-direnv-and-mise)
+    - [RubyGems](#rubygems)
+    - [Tmux configuration](#tmux-configuration)
+    - [Vimization of everything](#vimization-of-everything)
+    - [Image diffs: spaceman-diff](#image-diffs-spaceman-diff)
+  - [Editor configurations](#editor-configurations)
+    - [Extensive neovim customization based on LazyVim](#extensive-neovim-customization-based-on-lazyvim)
+    - [Whats included in vim](#whats-included-in-vim)
+  - [Extending and overriding YADR settings](#extending-and-overriding-yadr-settings)
+- [Testing with Docker](#testing-with-docker)
+- [Misc](#misc)
+  - [macOS Hacks](#macos-hacks)
+  - [Macvim troubles with Lua](#macvim-troubles-with-lua)
+  - [Terminal Vim troubles with Lua](#terminal-vim-troubles-with-lua)
+  - [Pry](#pry)
+- [License](#license)
+
+</details>
+
+<!--toc:end-->
+
+---
+
 ## Screenshot
 
 ![screenshot vim](https://i.imgur.com/IhPYpNV.png)
@@ -307,7 +363,7 @@ tip: Using mise, you can inject environment variables and secrets from 1password
 [this great tip](https://jarv.org/posts/mise-and-1password/) for the details. For a plugin-based approach, see
 [mise-env-1password](https://github.com/kujenga/mise-env-1password)
 
-## bash-my-aws
+### bash-my-aws
 
 If you work on AWS from the command line, [bash-my-aws](https://bash-my-aws.org/) is the best thing ever to happen to
 the AWS cli. It's included here by default, and enabled by a `.zsh.after` script. I wish I'd known about `bash-my-aws`
