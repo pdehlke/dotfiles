@@ -78,6 +78,8 @@ This repo has been built for my own benefit, however feel free to sneak in and s
 
 *The main difference between this repo and @[nandalopes/dotfiles](https://github.com/nandalopes/dotfiles) upstream is that MacOS is fully supported in this fork, just as it was in skwp's original work. If it doesn't work, please open an issue or submit a PR!*
 
+*The main difference between this repo and @[skwp/dotfiles](https://github.com/skwp/dotfiles) upstream is that I've moved off of [prezto](https://github.com/sorin-ionescu/prezto) in favor of [zsh4humans](https://github.com/romkatv/zsh4humans#customizing-prompt).*
+
 Please use GitHub Issues for pull requests or bug reports only.
 
 ## Screenshot
@@ -110,7 +112,7 @@ You will have to clone the repo and from its root directory, execute the
 Leveraging Chezmoi capabilities
 
 ```bash
-chezmoi init --apply --verbose --source ~/.yadr --https pdehlke/dotfiles
+chezmoi init --apply --verbose --source ~/.yadr --no-pager pdehlke/dotfiles
 ```
 
 ### I already have a chezmoi repo
@@ -193,11 +195,16 @@ Think of Zsh as a more awesome Bash without having to learn anything new.
 Automatic spell correction for your commands, syntax highlighting, and more.
 We've also provided lots of enhancements:
 
+* [zsh4humans - the power behind YADR's zsh](https://github.com/romkatv/zsh4humans). All previous versions of YADR that I am aware of are based
+on [Prezto](https://github.com/sorin-ionescu/prezto). Prezto is a fantastic framework, and Sorin is due all
+the praise in the world for his contributions to the `zsh` community. But over the years, `zsh` startup time had crept up to ~2.5 seconds on an M3 Macbook
+Pro with 64 GB of RAM. `zprof` showed that most of that time was spent loading prezto modules and zsh completions.
+It was time for a change, and romkatv's `zsh4humans` easily achieved feature parity with the old prezto setup, with
+a startup time of under 300 ms on the same Macbook Pro. 
 * Vim mode and bash style `Ctrl-R` for reverse history finder
 * `Ctrl-x,Ctrl-l` to insert output of last command
 * Fuzzy matching - if you mistype a directory name, tab completion will fix it
 * [fasd](https://github.com/clvv/fasd) integration - hit `z` and partial match for recently used directory. Tab completion enabled.
-* [Prezto - the power behind YADR's zsh](https://github.com/sorin-ionescu/prezto)
 * [How to add your own ZSH theme](docs/zsh/themes.md)
 
 ### Aliases
@@ -261,6 +268,24 @@ You'll have under a `.config/mr` folder:
   * [`sh.d/`](./root/private_dot_config/mr/sh.d) - various shell helper functions used by the files in `lib.d/`. Parts of these could be reused by other people, e.g.:
     * [`sh.d/git`](./root/private_dot_config/mr/sh.d/git) - various generic `git`-related helper functions
     * [`sh.d/git-remotes`](./root/private_dot_config/mr/sh.d/git-remotes) - various helper functions relating to management of git remotes
+
+### SSH agent and identities
+
+I've long since abandoned various schemes for keeping my `ssh` keys secret _and_ consistent across all my systems. [1password](https://1password.com/)
+has long supported [an ssh agent and key management](https://www.1password.dev/ssh/agent) inside the product. Your keys are
+securely held in a 1password vault and made available to your environment through a dedicated agent. There is no need to store keys
+on disk any more, no need to start a standalone agent, and no need to add your keys to it. You'll see the default `IdentityAgent` line
+in `${HOME}/.ssh/config`; I very strongly encourage you to use this feature of 1password.
+
+### Tool management via mise-en-place
+
+TODO: describe mise here
+
+### bash-my-aws
+
+If you work on AWS from the command line, [bash-my-aws](https://bash-my-aws.org/) is the best thing ever to happen to the AWS cli. It's
+included here by default, and enabled by a `.zsh.after` script. I wish I'd known about `bash-my-aws` at any point
+before I spent a month badly implementing about 2 percent of what it does.
 
 ### Automatic python venvs with uv direnv and mise
 

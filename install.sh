@@ -27,17 +27,18 @@ if [ -z "${ACT:+false}${CODESPACES:+false}${DEBIAN_FRONTEND:+false}" ]; then
   echo "Running interactive"
   "${chezmoi}" init "--source=${script_dir}"
   "${chezmoi}" diff --verbose
+  # shellcheck disable=SC3045,2162
   read -p 'Apply modifications? (y/n) ' r
   case "${r}" in
-    y|Y|s|S)
-      set -- apply --verbose "--source=${script_dir}"
-      ;;
-    *)
-      set -- diff
-      ;;
+  y | Y | s | S)
+    set -- apply --verbose "--source=${script_dir}"
+    ;;
+  *)
+    set -- diff
+    ;;
   esac
 else
-  set -- init --apply --verbose --source="${script_dir}"
+  set -- init --apply --verbose --source="${script_dir} --no-pager"
 fi
 
 echo "Running 'chezmoi $*'" >&2
