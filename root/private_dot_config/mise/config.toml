@@ -46,6 +46,5 @@ python.uv_venv_auto = true
 3 = "3.14.3"
 2 = "2.7.18"
 
-# I do not know why | grep -v 'JAVA|PATH' fails here :(
 [hooks]
-enter = "mise env | grep -v JAVA | grep -v PATH | sed s/export/mise:\\ setting/g"
+enter = "mise env | grep -vE 'JAVA|PATH' | sed s/export/mise:\\ setting/g"
