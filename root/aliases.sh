@@ -245,7 +245,7 @@ quiet_which() {
 alias du='${HOMEBREW_PREFIX}/bin/gdu -h -t 2'
 
 alias t='todo.sh'
-[[ $platform == "darwin" ]] || alias cat=bat || alias cat=batcat
+alias cat=bat
 #alias cat="bat --theme=$(defaults read -globalDomain AppleInterfaceStyle &>/dev/null && echo DarkNeon || echo GitHub)"
 alias pfm=npm
 alias history='history -i'

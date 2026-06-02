@@ -1,7 +1,10 @@
 FROM fedora:44
 
+ENV LOCALE=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
+ENV TERM=tmux-256color
+
 # Let the container know that there is no tty
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -14,6 +17,9 @@ RUN dnf copr enable -y jdxcode/mise && \
   vim \
   tmux \
   mise \
+  myrepos \
+  neovim \
+  direnv \
   git && \
   dnf clean all
 

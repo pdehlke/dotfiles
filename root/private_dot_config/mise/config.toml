@@ -1,5 +1,6 @@
 [tools]
 gh = "latest"
+ghq = "latest"
 java = "21"
 jq = "latest"
 just = "latest"
