@@ -242,7 +242,7 @@ quiet_which() {
 
 # alias listening="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
-alias du='${HOMEBREW_PREFIX}/bin/gdu -h -t 2'
+[[ -x ${HOMEBREW_PREFIX}/bin/gdu ]] && alias du='${HOMEBREW_PREFIX}/bin/gdu -h -t 2'
 
 alias t='todo.sh'
 alias cat=bat
