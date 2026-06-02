@@ -1,18 +1,19 @@
 [tools]
 gh = "latest"
 ghq = "latest"
-java = "21"
 jq = "latest"
 just = "latest"
-opentofu = "latest"
+# These four combine for nearly 1 GB in docker. Enable them if you need them.
+# node = "24"
+# java = "21"
+# opentofu = "latest"
+# aws-cli = { version = "latest", symlink_bins = "true" }
 peco = "latest"
 python = "3"
 shfmt = "latest"
 yq = "latest"
 popeye = "latest"
 conftest = "latest"
-aws-cli = { version = "latest", symlink_bins = "true" }
-node = "24"
 # maven = "latest"
 yarn = "latest"
 uv = "latest"
