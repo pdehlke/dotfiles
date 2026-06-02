@@ -22,8 +22,8 @@ osascript -e 'quit app "Sublime Text"'
 vim  -i NONE -c 'PlugClean!' -c 'PlugInstall!' -c 'qa'
 {{- end }}
 
-{{- if lookPath "nvim" }}
-nvim --headless "+Lazy! sync" +qa
-{{- end }}
+# {{- if lookPath "nvim" }}
+# nvim --headless "+Lazy! sync" +qa
+# {{- end }}
 
 {{- end }}
