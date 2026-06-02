@@ -41,8 +41,8 @@ if [[ $platform == 'linux' ]]; then
   alias ll='ls -alh --color=auto'
   alias ls='ls --color=auto'
 elif [[ $platform == 'darwin' ]]; then
-  alias ll='ls -alGh'
-  alias ls='ls -Gh'
+  alias ll='/bin/ls -alGhAF'
+  alias ls='/bin/ls -GhAF'
 fi
 
 # show me files matching "ls grep"
@@ -76,13 +76,6 @@ alias czm='chezmoi merge' # chezmoi [m]erge
 alias czM='chezmoi managed' # chezmoi [M]anaged
 alias czU='chezmoi unmanaged' # chezmoi [U]nmanaged
 alias czX='chezmoi execute-template' # chezmoi e[X]ecute-template
-
-# vim using
-mvim --version > /dev/null 2>&1
-MACVIM_INSTALLED=$?
-if [ $MACVIM_INSTALLED -eq 0 ]; then
-  alias vim='mvim -v'
-fi
 
 # mimic vim functions
 alias :q='exit'
@@ -240,7 +233,6 @@ if (( $+commands[grc] )); then
 fi
 
 (( ${+aliases[du]} )) && unalias du
-(( ${+aliases[ls]} )) && unalias ls
 
 alias path='echo $PATH | tr : "\n"'
 
@@ -251,10 +243,9 @@ quiet_which() {
 # alias listening="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
 alias du='${HOMEBREW_PREFIX}/bin/gdu -h -t 2'
-#alias ls='/bin/ls -FGh -C'
-alias ls='/opt/homebrew/opt/coreutils/libexec/gnubin/ls -AF --color=auto'
+
 alias t='todo.sh'
-alias cat=bat
+[[ $platform == "darwin" ]] || alias cat=bat || alias cat=batcat
 #alias cat="bat --theme=$(defaults read -globalDomain AppleInterfaceStyle &>/dev/null && echo DarkNeon || echo GitHub)"
 alias pfm=npm
 alias history='history -i'

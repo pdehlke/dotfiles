@@ -148,9 +148,6 @@ setopt cdablevars    # $yadr=${HOME}/.yadr/root. to cd there from anywhere, type
 # limit users completions to {{ .chezmoi.username }} and root
 zstyle ':completion:*' users {{ .chezmoi.username }} root
 
-# clear the screen so the initial prompt is always on the bottom line
-z4h-clear-screen-soft-bottom
-
 # Set up mise last, so its path doesn't get overwritten
 export MISE_DEFAULT_CONFIG_FILENAME=".mise.toml"
 if command -v mise >/dev/null 2>&1; then

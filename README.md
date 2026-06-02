@@ -111,7 +111,13 @@ To get started please run:
 sh -c "`curl -fsSL https://github.com/pdehlke/dotfiles/raw/main/root/bin/yadr/install.sh`"
 ```
 
-**Note:** YADR will automatically install all of its subcomponents. The last thing it will do is
+Note: YADR will automatically install all of its subcomponents, vim/neovim plugins, and mise packages.
+
+**_If you are not logged in to github or
+do not have a github token, the installation will almost certainly fail due to github's unauthenticated
+request limit of 60/hour._** 
+
+The last thing it will do is
 pre-install plugins for Sublime Text, vim, and neovim. Particularly in the case of neovim, this
 may take some time, and nvim may quit before mason has finished. You can safely ignore any errors
 this generates.

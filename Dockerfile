@@ -1,9 +1,10 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:20.04
+FROM ubuntu:26.04
 
 LABEL maintainer="Nanda Lopes <nandalopes@gmail.com>"
 
 ENV TERM=xterm-256color
+ENV PATH=$PATH:/root/.yadr/root/bin
 
 VOLUME /root/.yadr/root/vim/plugged
 VOLUME /root/.zprezto
@@ -17,9 +18,9 @@ RUN \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   apt-get update \
   && apt-get install -qqy \
-    locales \
-    lsb-release \
-    software-properties-common \
+  locales \
+  lsb-release \
+  software-properties-common \
   && apt-get clean
 
 # Set locale to UTF-8
@@ -34,10 +35,10 @@ RUN \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   apt-get update \
   && apt-get install -qqy \
-    curl \
-    git \
-    sudo \
-    wget \
+  curl \
+  git \
+  sudo \
+  wget \
   && apt-get clean
 
 # Install YADR dependencies
@@ -46,11 +47,11 @@ RUN \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   apt-get update \
   && apt-get install -qqy \
-    fontconfig \
-    ruby-full \
-    tmux \
-    vim \
-    zsh \
+  fontconfig \
+  ruby-full \
+  tmux \
+  vim \
+  zsh \
   && apt-get clean
 
 # Install optional dependencies
@@ -59,16 +60,20 @@ RUN \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   apt-get update \
   && apt-get install -qqy \
-    build-essential \
-    direnv \
-    myrepos \
-    ripgrep \
-    silversearcher-ag \
-    universal-ctags \
+  build-essential \
+  direnv \
+  myrepos \
+  ripgrep \
+  silversearcher-ag \
+  universal-ctags \
   && apt-get clean
 
 # disable docker-clean
 RUN mv /etc/apt/apt.conf.d/docker-clean /etc/apt/apt.conf.d/docker-clean.disabled
+
+# Install mise-en-place and chezmoi.
+RUN curl https://mise.run | MISE_INSTALL_PATH=/usr/local/bin/mise sh
+RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 
 # Install dotfiles
 COPY . /root/.yadr
@@ -79,8 +84,7 @@ RUN \
   --mount=type=cache,id=cache-yadr,target=/root/.cache/chezmoi \
   ./install.sh
 
-# Install vim plugins
-# RUN vim -es -u ~/.vimrc -i NONE -c 'PlugClean!' -c 'PlugInstall! --sync' -c 'qall'
+RUN mise install
 
 SHELL [ "/bin/zsh", "--command" ]
 

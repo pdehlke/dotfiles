@@ -11,5 +11,9 @@ set background=dark
 let g:lightline.colorscheme='solarized'
 
 """ Colorscheme
-colorscheme solarized
-
+""" Don't abort if our color scheme is not installed.
+try
+  colorscheme solarized
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme default
+endtry

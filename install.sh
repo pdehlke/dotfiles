@@ -38,7 +38,7 @@ if [ -z "${ACT:+false}${CODESPACES:+false}${DEBIAN_FRONTEND:+false}" ]; then
     ;;
   esac
 else
-  set -- init --apply --verbose --source="${script_dir} --no-pager"
+  set -- init --apply --verbose --source="${script_dir}" --no-pager
 fi
 
 echo "Running 'chezmoi $*'" >&2
