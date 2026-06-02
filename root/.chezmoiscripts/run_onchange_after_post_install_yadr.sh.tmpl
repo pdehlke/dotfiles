@@ -13,12 +13,6 @@
 # -e: exit on error
 set -e
 
-{{    if eq .chezmoi.os "android" -}}
-chsh -s zsh
-{{-   else if eq .chezmoi.os "linux" -}}
-chsh --shell /bin/zsh
-{{-   end }}
-
 {{- if lookPath "subl" }}
 subl --command "install_package_control"
 osascript -e 'quit app "Sublime Text"'
