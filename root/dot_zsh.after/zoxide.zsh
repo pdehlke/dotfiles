@@ -1,5 +1,6 @@
 if (( $+commands[zoxide] )); then
   eval "$(zoxide init zsh --cmd cd)"
+  eval "$(zoxide init zsh)"
 fi
 
 if [ -z "$ZOXIDIFY_EDITORS" ]; then
