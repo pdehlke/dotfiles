@@ -250,26 +250,26 @@ alias cat=bat
 alias pfm=npm
 alias history='history -i'
 
-v() {
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
-}
+# v() {
+#     local file
+#     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
+# }
+#
+# # cd into the directory containing a recently used file
+# vd() {
+#     local dir
+#     local file
+#     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir" || return
+# }
+#
+# # cd into recent directories
+# zd() {
+#     local dir
+#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+# }
 
-# cd into the directory containing a recently used file
-vd() {
-    local dir
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir" || return
-}
-
-# cd into recent directories
-zd() {
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
-
-alias j=zd
-alias z=zd
+# alias j=zd
+# alias z=zd
 
 #alias v='f -e vim'
 
