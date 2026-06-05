@@ -14,12 +14,12 @@
 set -e
 
 {{- if lookPath "subl" }}
-subl --command "install_package_control"
-osascript -e 'quit app "Sublime Text"'
+subl --command "install_package_control" || true
+osascript -e 'quit app "Sublime Text"' || true
 {{- end }}
 
 {{- if lookPath "vim" }}
-vim  -i NONE -c 'PlugClean!' -c 'PlugInstall!' -c 'qa'
+vim  -i NONE -c 'PlugClean!' -c 'PlugInstall!' -c 'qa' || true
 {{- end }}
 
 # {{- if lookPath "nvim" }}
