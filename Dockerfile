@@ -20,6 +20,7 @@ RUN dnf copr enable -y jdxcode/mise && \
   myrepos \
   neovim \
   direnv \
+  zoxide \
   git && \
   dnf clean all
 
