@@ -5,10 +5,10 @@
 " gotpl.vim: Vim syntax file for Go templates.
 
 " Quit when a (custom) syntax file was already loaded
-if exists("b:current_syntax")
-  finish
-endif
-
+" if exists("b:current_syntax")
+"   finish
+" endif
+"
 syn case match
 
 " Go escapes
