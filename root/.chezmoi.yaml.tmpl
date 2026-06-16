@@ -52,7 +52,23 @@
 {{-   $color = promptChoiceOnce . "param.color" "color theme" $supportedColors $color -}}
 {{- end -}}
 
-
+{{- /* Are we running in a container? */ -}}
+{{- $isContainer := "false" -}}
+{{- if (eq .chezmoi.os "linux") -}}
+{{-   if stat "/.dockerenv" -}}
+{{-     $isContainer = "true" -}}
+{{-   else if contains "docker" (output "cat" "/proc/self/mountinfo") -}}
+{{-     $isContainer = "true" -}}
+{{-   else if contains "docker" (output "cat" "/proc/self/cgroup")  -}}
+{{-     $isContainer = "true" -}}
+{{-   else if stat "/run/.containerenv" -}}
+{{-     $isContainer = "true" -}}
+{{  else if stat "/sys/bus/virtio/devices" -}}
+{{-     $isContainer = "true" -}}
+{{-   else if contains "apple" (output "cat" "/sys/class/dmi/id/sys_vendor")  -}}
+{{-     $isContainer = "true" -}}
+{{-   end -}}
+{{- end -}}
 
 ---
 workingTree: {{ quote .chezmoi.workingTree }}
@@ -62,6 +78,7 @@ sourceDir: {{ joinPath .chezmoi.workingTree "root" | quote }}
 data:
   name: {{ quote $name }}
   email: {{ quote $email }}
+  isContainer: {{ $isContainer }}
   param:
     color: {{ regexReplaceAll "[0-9]-" $color "" | quote }}
 {{

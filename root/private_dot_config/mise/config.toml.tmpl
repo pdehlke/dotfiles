@@ -3,11 +3,13 @@ gh = "latest"
 ghq = "latest"
 jq = "latest"
 just = "latest"
-# These four combine for nearly 1 GB in docker. Enable them if you need them.
-# node = "24"
-# java = "21"
-# opentofu = "latest"
-# aws-cli = { version = "latest", symlink_bins = "true" }
+{{ if not .isContainer }}
+# These four combine for nearly 1 GB in docker. Only install them if we're not in a container.
+node = "24"
+java = "21"
+opentofu = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
+{{ end }}
 peco = "latest"
 python = "3"
 shfmt = "latest"
