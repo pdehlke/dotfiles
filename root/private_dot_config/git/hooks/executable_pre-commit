@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Chain to any project-local pre-commit hook that predates this global one.
+# core.hooksPath replaces .git/hooks entirely, so local hooks won't run
+# unless we call them explicitly.
+local_hook="$(git rev-parse --git-dir)/hooks/pre-commit"
+if [[ -x "$local_hook" ]]; then
+  "$local_hook"
+fi
+
+if ! command -v trufflehog >/dev/null 2>&1; then
+  exit 0
+fi
+
+trufflehog git file://. \
+  --since-commit HEAD \
+  --results=verified,unverified \
+  --filter-unverified \
+  --no-update \
+  --fail
