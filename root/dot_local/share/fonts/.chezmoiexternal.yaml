@@ -4,18 +4,28 @@
 
 ---
 
-{{- range (list "InconsolataLGC" "Meslo") }}
-'{{- joinPath (substr 0 1 . | lower) . -}}':
-  url: {{ printf "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/%s.tar.xz" . | quote }}
+'i/InconsolataLGC':
+  url: 'https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/InconsolataLGC.tar.xz'
   type: 'archive'
   executable: true
   refreshPeriod: '720h' # 30 days
+  checksum: 'sha256:59b5961b83f0fd64ef579099ca0209dd706d5025feac813c80fcc2d0648d717f'
   exclude:
-    # - '*NerdFontMono*'
-    # - '*NFM*'
     - '*NerdFontPropo*'
     - '*NFP*'
-{{- end }}
+    - '*DZ*'
+    - '*LGM*'
+    - '*LGL*'
+
+'m/Meslo':
+  url: 'https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.tar.xz'
+  type: 'archive'
+  executable: true
+  refreshPeriod: '720h' # 30 days
+  checksum: 'sha256:a57936d96aefb5cfff0660f3294210ee04705529af6cf811e2274b0923a03939'
+  exclude:
+    - '*NerdFontPropo*'
+    - '*NFP*'
     - '*DZ*'
     - '*LGM*'
     - '*LGL*'

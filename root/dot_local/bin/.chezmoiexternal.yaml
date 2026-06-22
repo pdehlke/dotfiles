@@ -4,13 +4,22 @@
 
 ---
 # ASDF <https://asdf-vm.com>
+{{- $asdfVersion := "v0.19.0" }}
 {{- $arch := "amd64" }}
-{{- if ne .chezmoi.arch $arch }}
+{{- if ne .chezmoi.arch "amd64" }}
 {{-   $arch = .chezmoi.arch }}
 {{- end }}
+{{- $platform := printf "%s-%s" .chezmoi.os $arch }}
+{{- $checksum := "" }}
+{{- if eq $platform "darwin-amd64" }}{{- $checksum = "61aedba2a133a9cb98da9ddf886b948d142d370e83bcad2f052729cd7792f7e8" }}
+{{- else if eq $platform "darwin-arm64" }}{{- $checksum = "91be65f410acea7c42ec123cf92b0532595b4fe6d0fdc180d533059b63ce2fd8" }}
+{{- else if eq $platform "linux-amd64" }}{{- $checksum = "f6aa14de1348c9a85f3095f79792a5cd04305c466e6458c69a36a1621cd729ef" }}
+{{- else if eq $platform "linux-arm64" }}{{- $checksum = "b0543dc68c9616a6a5c42c5b24e250eb5f97c892b628d9178ac87966415663f9" }}
+{{- end }}
 'asdf':
-  url: {{ printf `asdf-*-%s-%s.tar.gz` .chezmoi.os $arch | gitHubLatestReleaseAssetURL "asdf-vm/asdf" | quote }}
+  url: {{ printf "https://github.com/asdf-vm/asdf/releases/download/%s/asdf-%s-%s-%s.tar.gz" $asdfVersion $asdfVersion .chezmoi.os $arch | quote }}
   type: 'archive-file'
   executable: true
   refreshPeriod: '168h' # 7 days
   path: 'asdf'
+  checksum: {{ printf "sha256:%s" $checksum | quote }}

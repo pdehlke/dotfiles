@@ -52,7 +52,8 @@
 
 # Oh my Zsh
 '.oh-my-zsh':
-  url: 'https://github.com/ohmyzsh/ohmyzsh/archive/refs/heads/master.tar.gz'
+  url: 'https://github.com/ohmyzsh/ohmyzsh/archive/df34d2b8d575777465aed8ae9b7cd90d63fdcd6e.tar.gz'
   type: 'archive'
   stripComponents: 1
   refreshPeriod: '720h' # 30 days
+  checksum: 'sha256:60969c3315807de30ef68322e9f93c4b1d7b1ea42ceedafa8104f1d5c0b8a25d'
