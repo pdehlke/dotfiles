@@ -1,24 +1,24 @@
 [tools]
-gh = "latest"
-ghq = "latest"
-jq = "latest"
-just = "latest"
+gh = "2.92.0"
+ghq = "1.10.1"
+jq = "1.8.1"
+just = "1.50.0"
 {{ if not .isContainer }}
 # These four combine for nearly 1 GB in docker. Only install them if we're not in a container.
 node = "24"
 java = "21"
-opentofu = "latest"
-aws-cli = { version = "latest", symlink_bins = "true" }
+opentofu = "1.12.3"
+aws-cli = { version = "2.35.9", symlink_bins = "true" }
 {{ end }}
-peco = "latest"
+peco = "0.6.0"
 python = "3"
-shfmt = "latest"
-yq = "latest"
-popeye = "latest"
-conftest = "latest"
+shfmt = "3.13.1"
+yq = "4.53.2"
+popeye = "0.22.1"
+conftest = "0.68.2"
 # maven = "latest"
-yarn = "latest"
-uv = "latest"
+yarn = "4.14.1"
+uv = "0.11.10"
 
 [settings]
 experimental = true
@@ -26,8 +26,9 @@ color_theme = "catpucchin"
 java.shorthand_vendor = "temurin"
 legacy_version_file = true
 idiomatic_version_file_enable_tools = ["python", "node", "java"]
-python.github_attestations = false
+python.github_attestations = true
 python.uv_venv_auto = true
+locked = true
 
 # ==> Pin versions of tools to specifics for faster switches and specific versions for projects
 
