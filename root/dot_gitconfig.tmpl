@@ -186,6 +186,11 @@
 [commit]
   template = {{ .chezmoi.homeDir -}}
     /.config/git/templates/commit_message.txt
+  gpgsign = true
+[gpg]
+  format = ssh
+[tag]
+  gpgsign = true
 [pager]
   branch = false
   stash = false

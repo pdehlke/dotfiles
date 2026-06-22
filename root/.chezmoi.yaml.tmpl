@@ -21,8 +21,9 @@
 
 
 {{- /* Initializes variables with a default value */ -}}
-{{- $name  := "Your Name" -}}
-{{- $email := "your@email.com" -}}
+{{- $name       := "Your Name" -}}
+{{- $email      := "your@email.com" -}}
+{{- $signingkey := "" -}}
 
 {{- /* From https://www.chezmoi.io/user-guide/machines/general/ */ -}}
 {{- $chassisType := "desktop" -}}
@@ -47,9 +48,10 @@
 {{- /* Otherwise, if running interactively, prompts for values */ -}}
 {{- if $interactive -}}
 {{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
-{{-   $name  = promptStringOnce . "name" "Name used in gitconfig" $name -}}
-{{-   $email = promptStringOnce . "email" "Email used in gitconfig" $email -}}
-{{-   $color = promptChoiceOnce . "param.color" "color theme" $supportedColors $color -}}
+{{-   $name       = promptStringOnce . "name"       "Name used in gitconfig"                        $name -}}
+{{-   $email      = promptStringOnce . "email"      "Email used in gitconfig"                       $email -}}
+{{-   $signingkey = promptStringOnce . "signingkey" "SSH public key for commit signing (blank=skip)" $signingkey -}}
+{{-   $color      = promptChoiceOnce . "param.color" "color theme" $supportedColors $color -}}
 {{- end -}}
 
 {{- /* Are we running in a container? */ -}}
@@ -78,6 +80,7 @@ sourceDir: {{ joinPath .chezmoi.workingTree "root" | quote }}
 data:
   name: {{ quote $name }}
   email: {{ quote $email }}
+  signingkey: {{ quote $signingkey }}
   isContainer: {{ $isContainer }}
   param:
     color: {{ regexReplaceAll "[0-9]-" $color "" | quote }}

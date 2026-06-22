@@ -1,6 +1,9 @@
 [user]
   name = {{ .name }}
   email = {{ .email }}
+{{- if .signingkey }}
+  signingkey = {{ .signingkey }}
+{{- end }}
 
 {{- if not .param.interactive }}
 [safe]
