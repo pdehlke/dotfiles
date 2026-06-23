@@ -1,59 +1,55 @@
-{{- /*
-  vim:ft=yaml.gotmpl:
-    */ -}}
-
 ---
-
 #
 # ZSH shell
 #
 
 # tmux plugins
-'.tmux/plugins/tpm':
-  url: 'https://github.com/tmux-plugins/tpm'
-  type: 'git-repo'
-  refreshPeriod: '168h' # 7 days
+".tmux/plugins/tpm":
+  url: "https://github.com/tmux-plugins/tpm"
+  type: "git-repo"
+  refreshPeriod: "168h" # 7 days
 
 # tmux themepack
-'.tmux-themepack':
-  url: 'https://github.com/jimeh/tmux-themepack.git'
-  type: 'git-repo'
-  refreshPeriod: '168h' # 7 days
+".tmux-themepack":
+  url: "https://github.com/jimeh/tmux-themepack.git"
+  type: "git-repo"
+  refreshPeriod: "168h" # 7 days
   clone:
     args:
-      - '--depth=1'
-      - '--shallow-submodules'
-      - '--recursive'
+      - "--depth=1"
+      - "--shallow-submodules"
+      - "--recursive"
   pull:
     args:
-      - '--recurse-submodules=yes'
+      - "--recurse-submodules=yes"
 
 # Prezto
-'.zprezto':
-  url: 'https://github.com/sorin-ionescu/prezto.git'
-  type: 'git-repo'
-  refreshPeriod: '168h' # 7 days
+".zprezto":
+  url: "https://github.com/sorin-ionescu/prezto.git"
+  type: "git-repo"
+  refreshPeriod: "168h" # 7 days
   clone:
     args:
-      - '--depth=1'
-      - '--recursive'
-      - '--shallow-submodules'
-      - '--config'
-      - 'core.sharedRepository=0640'
+      - "--depth=1"
+      - "--recursive"
+      - "--shallow-submodules"
+      - "--config"
+      - "core.sharedRepository=0640"
   pull:
     args:
-      - '--recurse-submodules=yes'
+      - "--recurse-submodules=yes"
 
 # bash-my-aws
-'.bash-my-aws':
-  url: 'https://github.com/bash-my-aws/bash-my-aws.git'
-  type: 'git-repo'
-  refreshPeriod: '168h'
+".bash-my-aws":
+  url: "https://github.com/bash-my-aws/bash-my-aws.git"
+  type: "git-repo"
+  refreshPeriod: "168h"
 
 # Oh my Zsh
-'.oh-my-zsh':
-  url: 'https://github.com/ohmyzsh/ohmyzsh/archive/df34d2b8d575777465aed8ae9b7cd90d63fdcd6e.tar.gz'
-  type: 'archive'
+".oh-my-zsh":
+  url: "https://github.com/ohmyzsh/ohmyzsh/archive/df34d2b8d575777465aed8ae9b7cd90d63fdcd6e.tar.gz"
+  type: "archive"
   stripComponents: 1
-  refreshPeriod: '720h' # 30 days
-  checksum: 'sha256:60969c3315807de30ef68322e9f93c4b1d7b1ea42ceedafa8104f1d5c0b8a25d'
+  refreshPeriod: "720h" # 30 days
+  checksum:
+    sha256: "60969c3315807de30ef68322e9f93c4b1d7b1ea42ceedafa8104f1d5c0b8a25d"
