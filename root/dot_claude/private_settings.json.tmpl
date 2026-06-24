@@ -101,7 +101,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/pde/.config/tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-track.sh'"
+            "command": "bash '{{ .chezmoi.homeDir }}/.tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-track.sh'"
           }
         ]
       }
@@ -112,7 +112,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/pde/.config/tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-cleanup.sh'"
+            "command": "bash '{{ .chezmoi.homeDir }}/.tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-cleanup.sh'"
           }
         ]
       }
@@ -133,7 +133,9 @@
     "skill-codex@skill-codex": true,
     "typescript-lsp@claude-plugins-official": true,
     "semgrep@claude-plugins-official": true,
-    "plannotator@plannotator": true
+    "plannotator@plannotator": true,
+    "chezmoi@christianromney-claude-plugins": true,
+    "sync@christianromney-claude-plugins": true
   },
   "extraKnownMarketplaces": {
     "claude-notifications-go": {
@@ -157,13 +159,19 @@
     "vercel-vercel-plugin": {
       "source": {
         "source": "directory",
-        "path": "/Users/pde/.cache/plugins/github.com-vercel-vercel-plugin"
+        "path": "{{ .chezmoi.homeDir }}/.cache/plugins/github.com-vercel-vercel-plugin"
       }
     },
     "plannotator": {
       "source": {
         "source": "github",
         "repo": "backnotprop/plannotator"
+      }
+    },
+    "christianromney-claude-plugins": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/christianromney/claude-plugins.git"
       }
     }
   },

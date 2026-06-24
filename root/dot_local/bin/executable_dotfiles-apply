@@ -1,0 +1,69 @@
+#!/bin/zsh
+# Apply public dotfiles layer, then private layer with ephemeral age key.
+# The age identity is retrieved from 1Password at runtime and never written
+# to a persistent path -- it lives only in a restricted temp directory for
+# the duration of this script, then is deleted via trap.
+#
+# Requires: op CLI installed (brew install 1password-cli)
+# Passes all arguments through to chezmoi (e.g. -n -v for dry run).
+set -eu
+
+source "${HOME}/.zsh.after/000_functions.zsh"
+
+PRIVATE_REPO="${HOME}/.yadr-private"
+OP_ITEM="op://Private/dotfiles-private age key"
+
+# --- public layer ---
+chezmoi apply "$@"
+
+# --- private layer ---
+if [ ! -d "${PRIVATE_REPO}" ]; then
+  log INFO "No private dotfiles repo found at ${PRIVATE_REPO}, skipping private layer."
+  exit 0
+fi
+
+if ! command -v op >/dev/null 2>&1; then
+  log FATAL "1Password CLI (op) not found. Install it with: brew install 1password-cli"
+fi
+
+if ! op whoami >/dev/null 2>&1; then
+  log INFO "Not signed in to 1Password, attempting signin..."
+  SIGNIN="$(op signin)" || log FATAL "1Password signin failed. Run 'eval \$(op signin)' manually and retry."
+  eval "${SIGNIN}"
+  if ! op whoami >/dev/null 2>&1; then
+    log FATAL "1Password signin appeared to succeed but session is not active."
+  fi
+  log INFO "Signed in to 1Password."
+fi
+
+SCRATCH="$(mktemp -d)"
+chmod 700 "${SCRATCH}"
+if command -v shred >/dev/null 2>&1; then
+  trap 'find "${SCRATCH}" -type f -exec shred -u {} +; rm -rf "${SCRATCH}"' EXIT
+else
+  trap 'rm -rf "${SCRATCH}"' EXIT
+fi
+
+IDENTITY="${SCRATCH}/age-identity.txt"
+CONFIG="${SCRATCH}/chezmoi-private.yaml"
+
+log INFO "Retrieving age identity from 1Password..."
+op read "${OP_ITEM}/private_key" > "${IDENTITY}"
+chmod 600 "${IDENTITY}"
+
+RECIPIENT="$(op read "${OP_ITEM}/public_key")"
+
+cat > "${CONFIG}" << EOF
+workingTree: "${PRIVATE_REPO}"
+sourceDir: "${PRIVATE_REPO}/root"
+encryption: age
+age:
+  identity: "${IDENTITY}"
+  recipient: "${RECIPIENT}"
+format: yaml
+mode: file
+verbose: true
+EOF
+
+log INFO "Applying private dotfiles layer..."
+chezmoi apply --config "${CONFIG}" "$@"

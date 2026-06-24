@@ -28,6 +28,9 @@
   - [Manually with `git`](#manually-with-git)
   - [Manually with `chezmoi`](#manually-with-chezmoi)
   - [I already have a chezmoi repo](#i-already-have-a-chezmoi-repo)
+- [Private dotfiles](#private-dotfiles)
+  - [dotfiles-apply](#dotfiles-apply)
+  - [Setting up the private repo](#setting-up-the-private-repo)
 - [Finish the install with fonts and colors](#finish-the-install-with-fonts-and-colors)
   - [Install Solarized Colors at your terminal of choice](#install-solarized-colors-at-your-terminal-of-choice)
   - [Remap caps-lock to escape with Karabiner-Elements](#remap-caps-lock-to-escape-with-karabiner-elements)
@@ -157,6 +160,46 @@ chezmoi verify
 # Then apply updates
 chezmoi apply --verbose
 ```
+
+## Private dotfiles
+
+This repo is public. Anything that cannot be committed in public -- credentials,
+work-specific config, private SSH and Git identity, API tokens -- lives in a
+companion private repo,
+[pdehlke/dotfiles-private](https://github.com/pdehlke/dotfiles-private), checked
+out at `~/.yadr-private`. The two repos are independent chezmoi sources that
+share the same destination (`~`). The rule is that any given file is managed by
+exactly one of them.
+
+### dotfiles-apply
+
+Normally you apply YADR with `chezmoi apply`. When the private repo is also
+present, use `dotfiles-apply` instead -- it applies the public layer first,
+then the private layer:
+
+```sh
+dotfiles-apply        # apply both layers
+dotfiles-apply -n -v  # dry run with verbose output
+```
+
+The script skips the private layer gracefully if `~/.yadr-private` does not
+exist, so it is safe to use as your default apply command on any machine.
+
+The private layer uses [age](https://age-encryption.org) encryption for
+sensitive files. The age key is stored in 1Password and retrieved at apply-time;
+it is never written to a persistent path on disk. Applying the private layer
+therefore requires the `op` CLI to be signed in:
+
+```sh
+eval $(op signin)
+dotfiles-apply
+```
+
+### Setting up the private repo
+
+See [docs/dotfiles-private.md](docs/dotfiles-private.md) for full setup
+instructions, including how to create the age key in 1Password, bootstrap the
+repo on a new machine, and add encrypted files.
 
 ## Finish the install with fonts and colors
 

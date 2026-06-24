@@ -36,7 +36,6 @@ log() {
   FATAL)
     highlight="${LIGHTRED}"
     emoji="💀 "
-    exit 1
     ;;
   ERR*)
     highlight="${RED}"
