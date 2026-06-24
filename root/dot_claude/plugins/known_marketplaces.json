@@ -1,0 +1,66 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-06-24T18:47:50.664Z"
+  },
+  "claude-notifications-go": {
+    "source": {
+      "source": "github",
+      "repo": "777genius/claude-notifications-go"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/claude-notifications-go",
+    "lastUpdated": "2026-06-22T17:13:37.739Z"
+  },
+  "skill-codex": {
+    "source": {
+      "source": "github",
+      "repo": "skills-directory/skill-codex"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/skill-codex",
+    "lastUpdated": "2026-06-22T17:13:41.301Z"
+  },
+  "ui-ux-pro-max-skill": {
+    "source": {
+      "source": "github",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/ui-ux-pro-max-skill",
+    "lastUpdated": "2026-06-22T17:13:45.114Z"
+  },
+  "plannotator": {
+    "source": {
+      "source": "github",
+      "repo": "backnotprop/plannotator"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/plannotator",
+    "lastUpdated": "2026-06-22T17:13:49.623Z"
+  },
+  "karpathy-skills": {
+    "source": {
+      "source": "github",
+      "repo": "forrestchang/andrej-karpathy-skills"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/karpathy-skills",
+    "lastUpdated": "2026-06-22T17:17:51.327Z"
+  },
+  "christianromney-claude-plugins": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/christianromney/claude-plugins.git"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/christianromney-claude-plugins",
+    "lastUpdated": "2026-06-23T22:04:29.739Z"
+  },
+  "caveman": {
+    "source": {
+      "source": "github",
+      "repo": "JuliusBrussee/caveman"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/caveman",
+    "lastUpdated": "2026-06-24T17:59:09.727Z"
+  }
+}
