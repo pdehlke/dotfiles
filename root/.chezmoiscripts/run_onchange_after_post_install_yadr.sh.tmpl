@@ -26,8 +26,4 @@ vim  -i NONE -c 'PlugClean!' -c 'PlugInstall!' -c 'qa' || true
 # nvim --headless "+Lazy! sync" +qa
 # {{- end }}
 
-{{- if lookPath "claude" }}
-claude /plugins install || true
-{{- end }}
-
 {{- end }}
