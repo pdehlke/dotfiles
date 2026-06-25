@@ -74,7 +74,6 @@
         ]
       }
     ],
-    "PreToolUse": [],
     "Stop": [
       {
         "hooks": [
@@ -120,7 +119,8 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh",
+    "command": "ccstatusline",
+    "padding": 0,
     "refreshInterval": 2
   },
   "enabledPlugins": {
@@ -135,7 +135,8 @@
     "semgrep@claude-plugins-official": true,
     "plannotator@plannotator": true,
     "chezmoi@christianromney-claude-plugins": true,
-    "sync@christianromney-claude-plugins": true
+    "sync@christianromney-claude-plugins": true,
+    "caveman@caveman": true
   },
   "extraKnownMarketplaces": {
     "claude-notifications-go": {
@@ -173,11 +174,19 @@
         "source": "git",
         "url": "https://github.com/christianromney/claude-plugins.git"
       }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
     }
   },
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": ["Thinking"]
+    "verbs": [
+      "Thinking"
+    ]
   },
   "outputStyle": "Default",
   "effortLevel": "xhigh",
