@@ -13,3 +13,6 @@ export HOMEBREW_NO_INSECURE_REDIRECT=1
 export BAT_THEME="Solarized (dark)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=cyan,underline"
+
+# Our private dotfiles repo
+export yprivate=$HOME/.yadr-private/root
