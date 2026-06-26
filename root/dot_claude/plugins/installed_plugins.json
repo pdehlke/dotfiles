@@ -11,26 +11,6 @@
         "gitCommitSha": "85f4d74a83dbbb7d0154c12d1a42059689f9f0a2"
       }
     ],
-    "code-review@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/claude-plugins-official/code-review/unknown",
-        "version": "unknown",
-        "installedAt": "2026-06-22T17:17:37.959Z",
-        "lastUpdated": "2026-06-22T17:17:48.187Z",
-        "gitCommitSha": "5fc2987a44918a455ef7dc583b51f8faf875c3ed"
-      }
-    ],
-    "frontend-design@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
-        "version": "unknown",
-        "installedAt": "2026-06-22T17:17:37.959Z",
-        "lastUpdated": "2026-06-22T17:17:48.187Z",
-        "gitCommitSha": "5fc2987a44918a455ef7dc583b51f8faf875c3ed"
-      }
-    ],
     "lua-lsp@claude-plugins-official": [
       {
         "scope": "user",
@@ -61,36 +41,6 @@
         "gitCommitSha": "5fc2987a44918a455ef7dc583b51f8faf875c3ed"
       }
     ],
-    "skill-codex@skill-codex": [
-      {
-        "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/skill-codex/skill-codex/1.3.0",
-        "version": "1.3.0",
-        "installedAt": "2026-06-22T17:17:37.959Z",
-        "lastUpdated": "2026-06-22T17:17:37.959Z",
-        "gitCommitSha": "0cce7fc7c49b08fd60ae05bdf7934590d7bc34b5"
-      }
-    ],
-    "typescript-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-06-22T17:17:37.959Z",
-        "lastUpdated": "2026-06-22T17:17:37.959Z",
-        "gitCommitSha": "5fc2987a44918a455ef7dc583b51f8faf875c3ed"
-      }
-    ],
-    "plannotator@plannotator": [
-      {
-        "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/plannotator/plannotator/0.21.1",
-        "version": "0.21.1",
-        "installedAt": "2026-06-22T17:17:37.959Z",
-        "lastUpdated": "2026-06-22T17:17:37.959Z",
-        "gitCommitSha": "e385ca90f506f5ffe6991414394bb06bc6f9bdc8"
-      }
-    ],
     "andrej-karpathy-skills@karpathy-skills": [
       {
         "scope": "user",
@@ -114,11 +64,11 @@
     "semgrep@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/claude-plugins-official/semgrep/2.0.2",
-        "version": "2.0.2",
+        "installPath": "/Users/pde/.claude/plugins/cache/claude-plugins-official/semgrep/2.0.3",
+        "version": "2.0.3",
         "installedAt": "2026-06-22T17:53:32.705Z",
-        "lastUpdated": "2026-06-22T18:59:52.997Z",
-        "gitCommitSha": "5ee984a4aeee83b3edae3ed44be4be8d333d24d1"
+        "lastUpdated": "2026-06-26T11:49:28.359Z",
+        "gitCommitSha": "8e652ba6f586bb20377a72792c402c5a85a9b284"
       }
     ],
     "chezmoi@christianromney-claude-plugins": [
@@ -149,6 +99,36 @@
         "installedAt": "2026-06-24T17:59:10.009Z",
         "lastUpdated": "2026-06-24T17:59:10.009Z",
         "gitCommitSha": "25d22f864ad68cc447a4cb93aefde918aa4aec9f"
+      }
+    ],
+    "check-zsh-scripts@agent-harness-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/pde/.claude/plugins/cache/agent-harness-plugins/check-zsh-scripts/2.1.4",
+        "version": "2.1.4",
+        "installedAt": "2026-06-26T16:00:40.470Z",
+        "lastUpdated": "2026-06-26T16:00:40.470Z",
+        "gitCommitSha": "198131160f398640b20d13e52f9b4068c1dc919d"
+      }
+    ],
+    "write-zsh-scripts@agent-harness-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/pde/.claude/plugins/cache/agent-harness-plugins/write-zsh-scripts/1.0.2",
+        "version": "1.0.2",
+        "installedAt": "2026-06-26T16:00:40.512Z",
+        "lastUpdated": "2026-06-26T16:00:40.512Z",
+        "gitCommitSha": "198131160f398640b20d13e52f9b4068c1dc919d"
+      }
+    ],
+    "write-bash-scripts@agent-harness-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/pde/.claude/plugins/cache/agent-harness-plugins/write-bash-scripts/2.0.2",
+        "version": "2.0.2",
+        "installedAt": "2026-06-26T16:01:50.851Z",
+        "lastUpdated": "2026-06-26T16:01:50.851Z",
+        "gitCommitSha": "198131160f398640b20d13e52f9b4068c1dc919d"
       }
     ]
   }

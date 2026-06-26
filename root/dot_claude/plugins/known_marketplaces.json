@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-06-24T18:47:50.664Z"
+    "lastUpdated": "2026-06-26T17:51:40.149Z"
   },
   "claude-notifications-go": {
     "source": {
@@ -15,14 +15,6 @@
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/claude-notifications-go",
     "lastUpdated": "2026-06-22T17:13:37.739Z"
   },
-  "skill-codex": {
-    "source": {
-      "source": "github",
-      "repo": "skills-directory/skill-codex"
-    },
-    "installLocation": "/Users/pde/.claude/plugins/marketplaces/skill-codex",
-    "lastUpdated": "2026-06-22T17:13:41.301Z"
-  },
   "ui-ux-pro-max-skill": {
     "source": {
       "source": "github",
@@ -30,14 +22,6 @@
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/ui-ux-pro-max-skill",
     "lastUpdated": "2026-06-22T17:13:45.114Z"
-  },
-  "plannotator": {
-    "source": {
-      "source": "github",
-      "repo": "backnotprop/plannotator"
-    },
-    "installLocation": "/Users/pde/.claude/plugins/marketplaces/plannotator",
-    "lastUpdated": "2026-06-22T17:13:49.623Z"
   },
   "karpathy-skills": {
     "source": {
@@ -62,5 +46,13 @@
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/caveman",
     "lastUpdated": "2026-06-24T17:59:09.727Z"
+  },
+  "agent-harness-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "cboone/agent-harness-plugins"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/agent-harness-plugins",
+    "lastUpdated": "2026-06-26T16:00:20.749Z"
   }
 }
