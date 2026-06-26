@@ -70,6 +70,8 @@ Frequently relevant global skills:
 
 Before changing skills, rules, AGENTS.md, plugins, MCP, or harness wiring, load `agentic-coding-harnesses`.
 
+When a task involves a named tool or system that has a skill (e.g., chezmoi, Terraform, Playwright), load that skill before writing any code or making placement/naming decisions. The surface action ("write a script") does not override the domain ("for chezmoi"). Load domain skill first, then any language/style skill.
+
 When training data may be stale or wrong, fetch from the source:
 
 - `ctx7` CLI and `find-docs` skill: library, framework, SDK, API, CLI, or cloud docs (Next.js, React, Prisma, AWS, etc.). Use even for well-known libraries.
