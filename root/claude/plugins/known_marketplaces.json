@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-06-26T17:51:40.149Z"
+    "lastUpdated": "2026-06-27T15:20:05.712Z"
   },
   "claude-notifications-go": {
     "source": {
@@ -53,6 +53,22 @@
       "repo": "cboone/agent-harness-plugins"
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/agent-harness-plugins",
-    "lastUpdated": "2026-06-26T16:00:20.749Z"
+    "lastUpdated": "2026-06-26T16:00:20.754Z"
+  },
+  "skill-codex": {
+    "source": {
+      "source": "github",
+      "repo": "skills-directory/skill-codex"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/skill-codex",
+    "lastUpdated": "2026-06-27T11:33:57.377Z"
+  },
+  "plannotator": {
+    "source": {
+      "source": "github",
+      "repo": "backnotprop/plannotator"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/plannotator",
+    "lastUpdated": "2026-06-27T11:34:02.474Z"
   }
 }
