@@ -130,6 +130,16 @@
         "lastUpdated": "2026-06-26T16:01:50.851Z",
         "gitCommitSha": "198131160f398640b20d13e52f9b4068c1dc919d"
       }
+    ],
+    "skill-codex@skill-codex": [
+      {
+        "scope": "user",
+        "installPath": "/Users/pde/.claude/plugins/cache/skill-codex/skill-codex/1.3.0",
+        "version": "1.3.0",
+        "installedAt": "2026-06-27T15:17:21.022Z",
+        "lastUpdated": "2026-06-27T15:17:21.022Z",
+        "gitCommitSha": "0cce7fc7c49b08fd60ae05bdf7934590d7bc34b5"
+      }
     ]
   }
 }

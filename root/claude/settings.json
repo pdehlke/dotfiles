@@ -100,7 +100,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '{{ .chezmoi.homeDir }}/.tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-track.sh'"
+            "command": "bash '/Users/pde/.tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-track.sh'"
           }
         ]
       }
@@ -111,7 +111,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '{{ .chezmoi.homeDir }}/.tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-cleanup.sh'"
+            "command": "bash '/Users/pde/.tmux/plugins/tmux-assistant-resurrect/hooks/claude-session-cleanup.sh'"
           }
         ]
       }
@@ -159,7 +159,7 @@
     "vercel-vercel-plugin": {
       "source": {
         "source": "directory",
-        "path": "{{ .chezmoi.homeDir }}/.cache/plugins/github.com-vercel-vercel-plugin"
+        "path": "/Users/pde/.cache/plugins/github.com-vercel-vercel-plugin"
       }
     },
     "plannotator": {
