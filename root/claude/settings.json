@@ -135,7 +135,8 @@
     "caveman@caveman": true,
     "check-zsh-scripts@agent-harness-plugins": true,
     "write-zsh-scripts@agent-harness-plugins": true,
-    "write-bash-scripts@agent-harness-plugins": true
+    "write-bash-scripts@agent-harness-plugins": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-notifications-go": {

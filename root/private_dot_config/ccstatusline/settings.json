@@ -1,0 +1,77 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "9c7b77bd-5abc-44eb-a3b3-0cb4bbce71f4",
+        "type": "context-bar",
+        "backgroundColor": "bgBrightYellow"
+      },
+      {
+        "id": "0276b540-cb6f-4ef6-81ad-02f0a436ca21",
+        "type": "reset-timer",
+        "backgroundColor": "bgBrightBlack"
+      },
+      {
+        "id": "9b988a7e-5e48-4924-87d3-b2d92286653a",
+        "type": "weekly-usage",
+        "backgroundColor": "bgYellow"
+      },
+      {
+        "id": "ab151ea5-385d-4418-b66d-0688afc5ca7d",
+        "type": "session-clock",
+        "backgroundColor": "bgRed"
+      },
+      {
+        "id": "eb5b9cec-e9e9-4ee1-baf6-31c2a238b22c",
+        "type": "session-cost",
+        "backgroundColor": "bgBrightRed"
+      }
+    ],
+    [
+      {
+        "id": "78f64fdb-dc97-4172-aa8e-c999c96e13b5",
+        "type": "git-root-dir",
+        "backgroundColor": "bgBlue"
+      },
+      {
+        "id": "b10c0a21-f4f0-446e-93db-a9f5f592db40",
+        "type": "git-branch",
+        "backgroundColor": "bgBrightYellow"
+      },
+      {
+        "id": "69c3f76d-297e-438a-a415-78383f605096",
+        "type": "git-changes",
+        "backgroundColor": "bgBrightWhite"
+      }
+    ],
+    [],
+    []
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": true,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false,
+    "continueThemeAcrossLines": true,
+    "theme": "solarized"
+  },
+  "defaultPadding": " ",
+  "installation": {
+    "method": "pinned",
+    "installedVersion": "2.2.22"
+  }
+}
