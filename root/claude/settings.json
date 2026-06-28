@@ -130,13 +130,13 @@
     "security-guidance@claude-plugins-official": true,
     "skill-codex@skill-codex": true,
     "semgrep@claude-plugins-official": true,
-    "chezmoi@christianromney-claude-plugins": true,
     "sync@christianromney-claude-plugins": true,
     "caveman@caveman": true,
     "check-zsh-scripts@agent-harness-plugins": true,
     "write-zsh-scripts@agent-harness-plugins": true,
     "write-bash-scripts@agent-harness-plugins": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "chezmoi@pdehlke-claude-plugins": true
   },
   "extraKnownMarketplaces": {
     "claude-notifications-go": {
@@ -155,12 +155,6 @@
       "source": {
         "source": "github",
         "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
-      }
-    },
-    "vercel-vercel-plugin": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/pde/.cache/plugins/github.com-vercel-vercel-plugin"
       }
     },
     "plannotator": {
@@ -185,6 +179,12 @@
       "source": {
         "source": "github",
         "repo": "cboone/agent-harness-plugins"
+      }
+    },
+    "pdehlke-claude-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "pdehlke/claude-plugins"
       }
     }
   },
