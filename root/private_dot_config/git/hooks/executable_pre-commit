@@ -9,16 +9,9 @@ if [[ -x "$local_hook" ]]; then
 	"$local_hook"
 fi
 
-if ! command -v trufflehog >/dev/null 2>&1; then
-	echo "trufflehog not found, cannot scan for secrets"
-	exit 128
+if ! command -v gitleaks &>/dev/null; then
+	echo "gitleaks not installed. Install: https://github.com/gitleaks/gitleaks" >&2
+	exit 1
 fi
 
-# Tell trufflehog we're running in pre-commit mode
-export TRUFFLEHOG_PRE_COMMIT=1
-
-trufflehog git file://. \
-	--results=verified,unverified \
-	--filter-unverified \
-	--no-update \
-	--fail
+gitleaks protect --staged --redact --exit-code 1 --verbose
