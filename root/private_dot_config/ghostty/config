@@ -2,3 +2,5 @@ theme = dark:Solarized Dark Higher Contrast,light:Catppuccin Latte
 font-family = "MesloLGS NF"
 font-size = 17
 copy-on-select = clipboard
+keybind = option+up=scroll_page_up
+keybind = option+down=scroll_page_down
