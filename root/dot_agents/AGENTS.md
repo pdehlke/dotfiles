@@ -46,6 +46,8 @@ Never:
 - Avoid "not X, but Y" phrasing.
 - Use the number of bullets that fits the content.
 - Prefer direct, concise wording.
+- Do not open responses with affirmations or filler ("Sure!", "Great question!", "Of course!", "Absolutely!").
+- Do not summarize what you just did at the end of a response.
 
 ## Git
 
