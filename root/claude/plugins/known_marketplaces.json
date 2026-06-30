@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-06-27T15:20:05.712Z"
+    "lastUpdated": "2026-06-29T18:36:14.976Z"
   },
   "claude-notifications-go": {
     "source": {
@@ -70,5 +70,13 @@
     },
     "installLocation": "/Users/pde/.claude/plugins/marketplaces/plannotator",
     "lastUpdated": "2026-06-27T11:34:02.474Z"
+  },
+  "pdehlke-claude-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "pdehlke/claude-plugins"
+    },
+    "installLocation": "/Users/pde/.claude/plugins/marketplaces/pdehlke-claude-plugins",
+    "lastUpdated": "2026-06-28T18:59:06.425Z"
   }
 }

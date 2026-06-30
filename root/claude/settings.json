@@ -131,7 +131,6 @@
     "skill-codex@skill-codex": true,
     "semgrep@claude-plugins-official": true,
     "sync@christianromney-claude-plugins": true,
-    "caveman@caveman": true,
     "check-zsh-scripts@agent-harness-plugins": true,
     "write-zsh-scripts@agent-harness-plugins": true,
     "write-bash-scripts@agent-harness-plugins": true,

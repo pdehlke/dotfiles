@@ -56,8 +56,8 @@
         "scope": "user",
         "installPath": "/Users/pde/.claude/plugins/cache/claude-plugins-official/superpowers/6.0.3",
         "version": "6.0.3",
-        "installedAt": "2026-06-22T17:23:32.860Z",
-        "lastUpdated": "2026-06-22T17:23:32.860Z",
+        "installedAt": "2026-06-28T09:38:32.596Z",
+        "lastUpdated": "2026-06-28T09:38:32.596Z",
         "gitCommitSha": "896224c4b1879920ab573417e68fd51d2ccc9072"
       }
     ],
@@ -69,16 +69,6 @@
         "installedAt": "2026-06-22T17:53:32.705Z",
         "lastUpdated": "2026-06-26T11:49:28.359Z",
         "gitCommitSha": "8e652ba6f586bb20377a72792c402c5a85a9b284"
-      }
-    ],
-    "chezmoi@christianromney-claude-plugins": [
-      {
-        "scope": "user",
-        "installPath": "/Users/pde/.claude/plugins/cache/christianromney-claude-plugins/chezmoi/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-06-23T22:04:55.523Z",
-        "lastUpdated": "2026-06-23T22:04:55.523Z",
-        "gitCommitSha": "4c69fffef15012fa3fb5569e7a878f582abfe756"
       }
     ],
     "sync@christianromney-claude-plugins": [
@@ -139,6 +129,16 @@
         "installedAt": "2026-06-27T15:17:21.022Z",
         "lastUpdated": "2026-06-27T15:17:21.022Z",
         "gitCommitSha": "0cce7fc7c49b08fd60ae05bdf7934590d7bc34b5"
+      }
+    ],
+    "chezmoi@pdehlke-claude-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/Users/pde/.claude/plugins/cache/pdehlke-claude-plugins/chezmoi/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-06-28T18:59:16.653Z",
+        "lastUpdated": "2026-06-28T18:59:16.653Z",
+        "gitCommitSha": "d9283e5c41b17ac68af87a9d873206b5651a9db9"
       }
     ]
   }

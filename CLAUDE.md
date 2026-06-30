@@ -87,5 +87,5 @@ Managed via `root/private_dot_config/mise/config.toml.tmpl`. Heavy tools (node, 
 ## Security
 
 - Never commit secrets, credentials, or API tokens to this repo -- they belong in dotfiles-private
-- The `trufflehog`-based pre-commit hook scans for secrets before every commit
+- The `gitleaks`-based pre-commit hook scans for secrets before every commit
 - Encrypted files in the private repo have the `.age` extension
