@@ -43,6 +43,11 @@
         "id": "69c3f76d-297e-438a-a415-78383f605096",
         "type": "git-changes",
         "backgroundColor": "bgBrightWhite"
+      },
+      {
+        "id": "3e0c5cff-a412-4c7a-868b-0dd29a650dd3",
+        "type": "model",
+        "backgroundColor": "bgBrightYellow"
       }
     ],
     [],
@@ -51,6 +56,7 @@
   "flexMode": "full-minus-40",
   "compactThreshold": 60,
   "colorLevel": 2,
+  "defaultPadding": " ",
   "inheritSeparatorColors": false,
   "globalBold": false,
   "gitCacheTtlSeconds": 5,
@@ -65,11 +71,10 @@
     ],
     "startCaps": [],
     "endCaps": [],
+    "theme": "solarized",
     "autoAlign": false,
-    "continueThemeAcrossLines": true,
-    "theme": "solarized"
+    "continueThemeAcrossLines": true
   },
-  "defaultPadding": " ",
   "installation": {
     "method": "pinned",
     "installedVersion": "2.2.22"
