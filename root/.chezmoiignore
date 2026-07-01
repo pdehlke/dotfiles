@@ -1,6 +1,3 @@
-# Claude source-of-truth files (deployed via symlinks from dot_claude/)
-claude/
-
 # Dotfiles
 bin/
 aliases.sh
