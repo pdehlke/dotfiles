@@ -46,6 +46,7 @@ fi
 
 IDENTITY="${SCRATCH}/age-identity.txt"
 CONFIG="${SCRATCH}/chezmoi-private.yaml"
+PERSISTENT_STATE="${HOME}/.local/state/chezmoi-private/chezmoistate.boltdb"
 
 log INFO "Retrieving age identity from 1Password..."
 op read "${OP_ITEM}/private_key" > "${IDENTITY}"
@@ -63,6 +64,7 @@ age:
 format: yaml
 mode: file
 verbose: true
+persistentState: "${PERSISTENT_STATE}"
 EOF
 
 log INFO "Applying private dotfiles layer..."
