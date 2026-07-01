@@ -60,6 +60,8 @@ Alternatively, edit files under `root/` directly and run `chezmoi apply`.
 
 When writing or updating shell scrpts in this repo, pay attention to and use the functions defined in .zsh.after/000_functions.zsh. In particular, make use of the log() function instead of using `echo` or an `echo ... ; exit 1` for error handling. The only exception to this rule is shell scripts like `install.sh` or the `.chezmoiscripts/*` scripts that are expected to execute before chezmoi has installed .zsh.after.
 
+Prefer `zsh` for writing shell scripts. Always load the `write-zsh-scripts` skill before starting, whether you are writing a new zsh script from scratch or editing an existing one. In addition to the instructions in that skill, ensure that every `zsh` script you work on adds PROMPT_SUBST to the initial setopt line and also contains `PS4='+(%x:%I): ${funcstack[1]:+${funcstack[1]}(): }'`. Always add these to new scripts. If they do not exist in scripts you're modifying, ask the user before adding them.
+
 ## Neovim configuration
 
 Source: `root/private_dot_config/nvim/`
