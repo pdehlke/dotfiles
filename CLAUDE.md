@@ -82,6 +82,7 @@ Managed via `root/private_dot_config/mise/config.toml.tmpl`. Heavy tools (node, 
 - Encryption: age keypair stored in 1Password (vault: Private, item: "dotfiles-private age key")
 - The age private key is never written to a persistent path -- retrieved ephemerally via `op read` at apply time
 - To add an encrypted file: `chezmoi-add ~/.secret-file` (deployed by the private repo)
+- `~/.claude` and `~/.agents` are managed entirely by `.yadr-private` (not this repo) -- there is no `dot_claude/` or `dot_agents/` here. Plain `chezmoi apply` (public layer only) does not touch them; only `dotfiles-apply` does.
 - See `docs/dotfiles-private.md` for full setup instructions
 
 ## Security
