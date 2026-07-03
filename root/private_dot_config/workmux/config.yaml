@@ -1,0 +1,24 @@
+# workmux global configuration
+# Settings here apply to all projects. Project-specific .workmux.yaml overrides these.
+# See: https://workmux.raine.dev/guide/configuration
+
+nerdfont: true
+agent: claude
+
+# Per-worktree window layout: agent left, nvim top-right, shell bottom-right.
+# Each split targets the previously created pane, so the vertical split lands
+# under nvim. Projects can swap the shell for a dev server in .workmux.yaml.
+panes:
+  - command: <agent>
+    focus: true
+  - command: nvim .
+    split: horizontal
+  - split: vertical
+    percentage: 25
+
+# Live agent status sidebar (the leftmost pane in the README screenshot).
+# Not part of the panes layout; toggle it with `workmux sidebar`.
+sidebar:
+  position: left
+  layout: tiles
+  width: 40

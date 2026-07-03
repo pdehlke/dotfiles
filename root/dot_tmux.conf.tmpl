@@ -66,6 +66,9 @@ bind b break-pane -d
 # Select pane
 bind P choose-tree -ZG
 
+# Toggle workmux agent status sidebar
+bind-key C-t run-shell "workmux sidebar"
+
 {{ template "tmux/tmux-navigator.conf" }}
 
 
