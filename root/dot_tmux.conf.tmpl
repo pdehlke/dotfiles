@@ -69,6 +69,9 @@ bind P choose-tree -ZG
 # Toggle workmux agent status sidebar
 bind-key C-t run-shell "workmux sidebar"
 
+# Open workmux dashboard in a popup
+bind-key C-w display-popup -h 30 -w 100 -E "workmux dashboard"
+
 {{ template "tmux/tmux-navigator.conf" }}
 
 
