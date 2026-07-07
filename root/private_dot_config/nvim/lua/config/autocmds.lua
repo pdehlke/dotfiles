@@ -209,6 +209,21 @@ end
 
 --- ============================================================= ---
 
+-- Copy yanks (but not deletes/changes) to the system clipboard. Pairs with
+-- `opt.clipboard = ""` in options.lua, which stops LazyVim's default
+-- "unnamedplus" from sending every "d"/"c"/"x" to the macOS pasteboard.
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("yank_to_system_clipboard", { clear = true }),
+    callback = function()
+        if vim.v.event.operator == "y" then
+            vim.fn.setreg("+", vim.v.event.regcontents)
+        end
+    end,
+    desc = "Copy yanked (not deleted) text to the system clipboard",
+})
+
+--- ============================================================= ---
+
 -- Disable spell check in markdown files
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown" },

@@ -13,3 +13,8 @@ opt.showbreak = "↪ "
 
 g.python3_host_prog = os.getenv("NVIM_PYTHON_PATH")
 g.lazyvim_prettier_needs_config = true
+
+-- LazyVim defaults to "unnamedplus", which syncs every delete/change (not
+-- just yanks) to the macOS pasteboard. Turn that off; the TextYankPost
+-- autocmd in autocmds.lua re-adds clipboard sync for yanks only.
+opt.clipboard = ""
