@@ -152,7 +152,7 @@ setopt cdablevars    # $yadr=${HOME}/.yadr/root. to cd there from anywhere, type
 zstyle ':completion:*' users {{ .chezmoi.username }} root
 
 # Set up mise last, so its path doesn't get overwritten
-export MISE_DEFAULT_CONFIG_FILENAME=".mise.toml"
+export MISE_DEFAULT_CONFIG_FILENAME=".config/mise.toml"
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
