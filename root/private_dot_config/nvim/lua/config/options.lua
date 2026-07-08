@@ -18,3 +18,13 @@ g.lazyvim_prettier_needs_config = true
 -- just yanks) to the macOS pasteboard. Turn that off; the TextYankPost
 -- autocmd in autocmds.lua re-adds clipboard sync for yanks only.
 opt.clipboard = ""
+
+vim.opt.listchars = {
+    nbsp = "␣",
+    precedes = "←",
+    extends = "→",
+    tab = "¬ ",
+    conceal = "※",
+    trail = "•",
+}
+vim.opt.list = true
