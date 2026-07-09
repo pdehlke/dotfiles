@@ -39,16 +39,15 @@ Paths below are the deployed names; the chezmoi source uses `dot_` prefixes
       lazy.lua                  # Bootstrap lazy.nvim; direnv.nvim loads before all other plugins
       options.lua               # Editor options, fully commented (4-tab, relnumber, wrap, Neovide)
       keymaps.lua               # 207 lines of custom keybindings
-      autocmds.lua              # 279 lines: highlight overrides + functional autocmds
-    plugins/                    # 35 plugin spec files
+      autocmds.lua              # 295 lines: highlight overrides + functional autocmds
+    plugins/                    # 30 plugin spec files
       alpha.lua
-      avante.lua                # DISABLED
       barbar.lua
-      barbeque.lua              # barbecue.nvim (also spec'd in colorscheme.lua)
+      barbecue.lua              # barbecue.nvim winbar breadcrumbs
       blink-cmp.lua
       code-runner.lua
       codesnap.lua
-      colorscheme.lua           # solarized.nvim + duplicate barbecue spec
+      colorscheme.lua           # solarized.nvim
       comment.lua               # Comment.nvim disabled; ts-comments keymaps
       copilot.lua
       edgy.lua
@@ -63,8 +62,6 @@ Paths below are the deployed names; the chezmoi source uses `dot_` prefixes
       neo-tree.lua
       noice.lua
       nvim-lint.lua
-      opencode-nvim.lua         # DISABLED
-      opencode-terminal.lua     # DISABLED
       searchbox.lua
       sidekick.lua
       statuscol.lua             # also: snacks statuscolumn off, gitsigns, nvim-ufo
@@ -72,8 +69,6 @@ Paths below are the deployed names; the chezmoi source uses `dot_` prefixes
       tiny-code-action.lua
       tiny-inline-diagnostic.lua
       toggleterm.lua
-      ui.lua                    # bufferline opts (dead), which-key dup, extra noice routes
-      vivify.lua                # vivify.vim markdown previewer
       which-key.lua
       yanky.lua
       code_runner/projects.json # Project configs (Dockitect: pnpm run dev)
@@ -84,10 +79,9 @@ Paths below are the deployed names; the chezmoi source uses `dot_` prefixes
 ```
 
 No `ftplugin/`, `after/`, `snippets/`, `spell/`, `.luarc.json`, or
-`.editorconfig` directories/files. Note: `AGENTS.md` says indentation is
-"enforced by `.editorconfig`", but no such file exists (stylua.toml is the
-enforcer). A `README.md` exists in the deployed directory only; it is not
-managed by chezmoi.
+`.editorconfig` directories/files; stylua.toml is the formatting enforcer.
+A `README.md` exists in the deployed directory only; it is not managed by
+chezmoi.
 
 ---
 
@@ -185,7 +179,7 @@ Space is explicitly mapped to `<Nop>` (n, v) to avoid leader races.
 **Go:**
 - `leader+ce` insert `if err != nil` block
 
-### autocmds.lua (279 lines)
+### autocmds.lua (295 lines)
 
 Highlight override system that applies on startup AND after every colorscheme
 change (`ColorScheme` autocmd, deferred via `vim.schedule` so it runs after
@@ -193,8 +187,9 @@ the theme's own callbacks):
 - Blink-cmp menu/doc: transparent backgrounds, borders linked to FloatBorder
 - DAP virtual text: custom fg colors (yellow/red/violet)
 - Barbar: full buffer tab color matrix (current, inactive, alternate, visible,
-  each with git status, diagnostic, and file status variants)
-- CursorLine / Visual colors
+  each with git status, diagnostic, and file status variants), drawn from a
+  local `sol` table of solarized palette hexes
+- CursorLine (solarized base02) / Visual (solarized mix_base1)
 - Window separators (WinSeparator cleared, EdgyWinSep + NeoTree separators set)
 - Neo-tree dotfile/hidden colors
 - VS Code-style CMP item kind colors (Function=purple, Variable=blue,
@@ -260,23 +255,22 @@ Tailwind, Terraform, TOML, TypeScript, YAML
 
 ## Plugin Inventory (95 total in lazy-lock.json)
 
-### Actively Configured (35 spec files)
+### Actively Configured (30 spec files)
 
 #### Theme & Visual
 | Plugin | Config Summary |
 |---|---|
 | **solarized.nvim** | THE colorscheme: autumn variant, dark background, bold styles on nearly everything (types, functions, parameters, strings, keywords, variables, constants), italic comments, not transparent, SpellBad forced to undercurl |
-| **barbecue.nvim** | VS Code-style winbar breadcrumbs via nvim-navic; default opts. Spec'd twice (barbeque.lua and colorscheme.lua), harmlessly merged by lazy.nvim |
+| **barbecue.nvim** | VS Code-style winbar breadcrumbs via nvim-navic; default opts (barbecue.lua) |
 | **lualine** | Extends LazyVim's default statusline with: mutagen project sync status (10s/1s poll, error coloring), encoding/fileformat/filetype, direnv statusline, clickable per-buffer Copilot toggle, per-language version components (Go/Node/Java/Python, shown only in matching filetypes), sorted LSP client list (click -> :LspInfo) |
 | **barbar** | Tab bar with git/diagnostic icons, S-Tab/Tab nav, A-1..9 jump, A-p pin, `leader+ba/bp/bP` close-others variants, `leader+bs*` sort commands; disables bufferline.nvim |
 | **alpha-nvim** | NEOVIM block header, time-based greeting ("Good morning, Pete"), fortune quotes with author attribution stripped, 10 buttons, dynamic vertical centering recomputed on WinResized, scroll fully locked (scrolloff 999 + ~20 scroll keys noop'd) |
 | **statuscol** | 3 segments: DAP signs, line numbers, gitsigns; clicks: left=preview hunk, Ctrl+left/middle=reset, right=stage, DAP sign click toggles breakpoint |
 | **nvim-ufo** | (in statuscol.lua) treesitter+indent folding, foldcolumn 1, foldlevel 99, custom fold virtual text with " N" line count suffix, zR/zM rebound to UFO variants |
 | **mini.animate** | Open animation only (static, 25 steps), skipped for sidekick CLI windows; close animation disabled |
-| **noice** | Cmdline popup (30% row), lsp_doc_border + inc_rename presets, hover enabled, signature help auto-opens (25x90 rounded, scrollbar), routes silencing img-clip "not an image", Snacks "No results found", and Mason registry/update chatter |
-| **which-key** | Helix preset (spec'd in both which-key.lua and ui.lua) |
+| **noice** | Cmdline popup (30% row), lsp_doc_border + inc_rename presets, hover enabled, signature help auto-opens (25x90 rounded, scrollbar), routes silencing img-clip "not an image", LSP hover "No information available", Snacks "No results found", and Mason registry/update chatter; `init` registers noice's markdown keymaps in markdown buffers |
+| **which-key** | Helix preset |
 | **edgy** | Exit when last; window separators highlighted via EdgyWinSep |
-| **ui.lua** | Grab-bag file: bufferline opts (dead, since barbar.lua sets `enabled = false`), duplicate which-key spec, extra noice routes ("No information available" skip, an inert focus-tracking route, markdown key handling autocmd) |
 
 #### LSP & Completion
 | Plugin | Config Summary |
@@ -305,24 +299,20 @@ Tailwind, Terraform, TOML, TypeScript, YAML
 | **toggleterm** | Floating; A-z toggles from normal mode, and in terminal mode exits terminal mode then closes all terminals |
 | **codesnap** | CaskaydiaCove font, breadcrumbs on, ~/Downloads output, clipboard (`leader+cpc`) and file (`leader+cps`) modes |
 | **markdown-preview** | Dark theme, `leader+cp` in markdown buffers |
-| **vivify** | Second markdown previewer (external Vivify viewer); also sets `g:markdown_fenced_languages` for fenced code highlighting |
 | **ts-comments** | Comment.nvim is DISABLED (nil commentstring crash on Neovim 0.12); native gc + ts-comments instead, with `leader+/` toggle (n and visual) |
 | **guess-indent** | 10 excluded filetypes, editorconfig respected |
 | **nvim-lint** | markdownlint-cli2 with `~/.markdownlint-cli2.yaml` config |
 
-#### AI (mostly disabled)
+#### AI
 | Plugin | Config Summary |
 |---|---|
 | **sidekick** | A-a toggles CLI (attaches to running session, else opens **opencode**), A-Tab NES jump/apply, Tab unbound, float layout 90%x85%, tmux mux configured but **disabled** |
-| **avante** | DISABLED; configured for Claude Sonnet 4 + Moonshot Kimi-K2, snacks selector/input |
-| **opencode-nvim** | DISABLED (sudo-tee/opencode.nvim with full `leader+o*` keymap tree) |
-| **opencode-terminal** | DISABLED (NickvanDyke/opencode.nvim variant) |
 
 ### LazyVim-Managed Plugins (from extras, not custom-configured)
 
 aerial.nvim, blink-copilot, bufferline.nvim (disabled by barbar.lua),
-catppuccin + tokyonight.nvim (locked/installed but referenced by no spec;
-tokyonight is the install-time fallback), clangd_extensions.nvim,
+catppuccin + tokyonight.nvim (spec'd by LazyVim core as alternate
+colorschemes; tokyonight is the install-time fallback), clangd_extensions.nvim,
 cmake-tools.nvim, Comment.nvim (locked but disabled), conform.nvim,
 flash.nvim, fortune.nvim, friendly-snippets, gitsigns.nvim (custom
 preview_config: minimal rounded float at cursor), grug-far.nvim,
@@ -385,7 +375,6 @@ replaced with goto-preview floating windows:
 ## Design Patterns
 
 1. **Modular plugin organization**: one file per plugin in lua/plugins/
-   (with ui.lua and colorscheme.lua as multi-plugin exceptions)
 2. **Environment-first bootstrap**: direnv.nvim loads before every other
    plugin so the rest of the config sees direnv-managed env vars
 3. **LazyVim extras for language support**: 16 language packs
@@ -485,13 +474,9 @@ current settings.
   25-line/90-col cap keeps it from covering code.
 - Route filters use Lua patterns via `find`; your Mason route uses `any` with
   anchored patterns, the tidiest form for multi-message silencing.
-- ui.lua adds a focus-tracked `notify_send` route whose `cond` ends in
-  `and false`, so it never fires (dead config, presumably an experiment).
 
 #### which-key
 - 3 presets: `classic`, `modern`, `helix` (yours: compact bottom-right).
-- Two identical specs (which-key.lua, ui.lua) merge cleanly; the ui.lua copy
-  adds a `debug` flag that only activates when cwd matches "which-key".
 - Plugin keymap groups are registered ad hoc via `pcall(require, "which-key")`
   inside each plugin's init/config, a consistent pattern across the config.
 
@@ -612,13 +597,9 @@ current settings.
 - `CodeSnapHighlight` and ASCII-art `CodeSnapASCII` variants available.
 - Breadcrumbs on with `/` separator; transparent padding (bg_padding 0).
 
-#### markdown-preview + vivify
-- Two previewers coexist: markdown-preview.nvim (browser, dark theme,
-  KaTeX/Mermaid/PlantUML support, `leader+cp`) and vivify.vim (uses the
-  external Vivify viewer app, live-follows cursor, no keymap here, `:Vivify`).
-- vivify.lua also sets `g:markdown_fenced_languages`, which improves fenced
-  block highlighting in the legacy regex syntax path (treesitter mostly
-  supersedes it, but it costs nothing).
+#### markdown-preview
+- Browser-based previewer with dark theme, KaTeX/Mermaid/PlantUML support,
+  bound to `leader+cp` in markdown buffers (from the lang.markdown extra).
 
 #### guess-indent
 - Sub-1ms detection, no tuning params; respects .editorconfig by default
@@ -706,31 +687,25 @@ current settings.
 
 ## Framework Analysis
 
-### Duplications and dead config worth cleaning up
+### Duplications and dead config
 
-- **barbecue.nvim is spec'd twice**: identical blocks in `barbeque.lua` and
-  `colorscheme.lua`. lazy.nvim merges them, but one should go (and the
-  filename `barbeque.lua` vs plugin name "barbecue" invites grep misses).
-- **ui.lua bufferline opts are dead**: `barbar.lua` sets
-  `{ "akinsho/bufferline.nvim", enabled = false }`, so the
-  `separator_style = "slope"` opts in ui.lua never apply.
-- **ui.lua duplicates the which-key spec** (same helix preset as
-  which-key.lua) and carries an inert noice route (`cond` ends in
-  `and false`).
-- **catppuccin and tokyonight are installed but unused**: locked in
-  lazy-lock.json with no spec referencing them; tokyonight appears only as
-  the `install.colorscheme` fallback in lazy.lua. Removable if solarized is
-  permanent.
-- **autocmds.lua highlight hexes don't match the colorscheme**: the barbar
-  matrix and CursorLine/Visual colors use a catppuccin-mocha-style palette
-  layered over solarized autumn. They work, but an `on_highlights` pass using
-  solarized's own palette would unify the look.
-- **AGENTS.md references `.editorconfig`**, which does not exist.
-- **Two markdown previewers** (markdown-preview.nvim and vivify.vim) overlap;
-  only markdown-preview has a keymap.
-- **avante.lua, opencode-nvim.lua, opencode-terminal.lua** are disabled specs
-  kept on disk; sidekick owns the AI-CLI role. Candidates for deletion if
-  they are not coming back.
+None outstanding. Points that look like candidates but are deliberate:
+
+- **catppuccin and tokyonight are installed alongside solarized**: both are
+  spec'd by LazyVim core as alternate colorschemes (not orphans), and
+  tokyonight is the `install.colorscheme` fallback in lazy.lua. Kept
+  intentionally.
+- **autocmds.lua carries non-solarized accent colors**: the VS Code-style
+  CMP/Aerial item-kind colors, the Nord-style Alpha dashboard palette, and
+  the `#ffbba6` spell undercurl are intentional cross-theme accents. The
+  barbar matrix and CursorLine/Visual overrides, by contrast, use solarized's
+  own palette (via the local `sol` table; CursorLine = base02,
+  Visual = mix_base1).
+- **Comment.nvim is locked but disabled**: kept as a spec (`enabled = false`
+  with a comment explaining the Neovim 0.12 commentstring crash) rather than
+  deleted, so the rationale travels with the config.
+- **vivify.vim's plugin directory** may linger on machines until a
+  `:Lazy clean`; no spec references it.
 
 ### LazyVim extras not enabled (notable candidates)
 
@@ -772,8 +747,8 @@ LazyVim extras, organized around these pillars:
    rather than quickfix lists or splits.
 
 2. **Theme-agnostic highlight system**: ~100 highlight groups reapplied after
-   every colorscheme change, layering VS Code-ish completion colors and a
-   custom barbar palette over solarized autumn.
+   every colorscheme change, pinning a solarized-palette barbar matrix and
+   VS Code-ish completion colors regardless of the active theme.
 
 3. **Environment-aware bootstrap**: direnv.nvim loads before all other
    plugins, its status lives in lualine, and Raspberry Pi hardware is
@@ -785,8 +760,7 @@ LazyVim extras, organized around these pillars:
    with per-language version readouts in the statusline.
 
 5. **Deliberately restrained AI**: Copilot completions are opt-in per buffer
-   via a statusline toggle; sidekick's A-a fronts an opencode CLI session;
-   avante and two opencode plugins are kept on disk but disabled.
+   via a statusline toggle; sidekick's A-a fronts an opencode CLI session.
 
 6. **Clipboard discipline**: yanks reach the macOS pasteboard, deletes and
    changes never do.

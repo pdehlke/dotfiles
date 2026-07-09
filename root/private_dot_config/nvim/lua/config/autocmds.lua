@@ -24,6 +24,22 @@ do
         return spec
     end
 
+    -- solarized.nvim palette values (see lua/solarized/palette/init.lua in the
+    -- plugin), so the barbar/cursor overrides below stay on the colorscheme's
+    -- own colors
+    local sol = {
+        yellow = "#B58900",
+        orange = "#CB4B16",
+        red = "#DC322F",
+        magenta = "#D33682",
+        blue = "#268BD2",
+        cyan = "#2AA198",
+        green = "#859900",
+        base01 = "#586E75", -- dim gray, used for inactive UI
+        base02 = "#073642", -- highlight background
+        mix_base1 = "#2C4E56", -- solarized's own Visual background
+    }
+
     local overrides = {
         -- =================== BLINK-CMP =======================
         BlinkCmpMenu = fix({ bg = "" }),
@@ -38,67 +54,67 @@ do
 
         -- =================== BAR-BAR =======================
         -- CURRENT BUFFER
-        BufferCurrent = fix({ fg = "#ef9e76", bg = "" }),
-        BufferCurrentIndex = fix({ fg = "#ff5189", bg = "" }),
+        BufferCurrent = fix({ fg = sol.orange, bg = "" }),
+        BufferCurrentIndex = fix({ fg = sol.magenta, bg = "" }),
         -- GIT STATUS - ACTIVE
-        BufferCurrentAdded = fix({ fg = "#a6e3a2", bg = "" }),
-        BufferCurrentDeleted = fix({ fg = "#f38ba9", bg = "" }),
-        BufferCurrentChanged = fix({ fg = "#f9e2b0", bg = "" }),
+        BufferCurrentAdded = fix({ fg = sol.green, bg = "" }),
+        BufferCurrentDeleted = fix({ fg = sol.red, bg = "" }),
+        BufferCurrentChanged = fix({ fg = sol.yellow, bg = "" }),
         -- FILE STATUS - ACTIVE
-        BufferCurrentMod = fix({ fg = "#ef9e76", bg = "" }),
-        BufferCurrentWARN = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferCurrentERROR = fix({ fg = "#f38ba9", bg = "" }),
-        BufferCurrentHINT = fix({ fg = "#93e2d6", bg = "" }),
-        BufferCurrentINFO = fix({ fg = "#89dcec", bg = "" }),
-        BufferCurrentSign = fix({ fg = "#89b4fb", bg = "" }),
-        BufferCurrentSignRight = fix({ fg = "#89b4fb", bg = "" }),
+        BufferCurrentMod = fix({ fg = sol.orange, bg = "" }),
+        BufferCurrentWARN = fix({ fg = sol.yellow, bg = "" }),
+        BufferCurrentERROR = fix({ fg = sol.red, bg = "" }),
+        BufferCurrentHINT = fix({ fg = sol.cyan, bg = "" }),
+        BufferCurrentINFO = fix({ fg = sol.blue, bg = "" }),
+        BufferCurrentSign = fix({ fg = sol.blue, bg = "" }),
+        BufferCurrentSignRight = fix({ fg = sol.blue, bg = "" }),
         -- INACTIVE BUFFERS
-        BufferInactive = fix({ fg = "#6c7087", bg = "" }),
-        BufferInactiveIndex = fix({ fg = "#89b4fb", bg = "" }),
+        BufferInactive = fix({ fg = sol.base01, bg = "" }),
+        BufferInactiveIndex = fix({ fg = sol.blue, bg = "" }),
         -- GIT STATUS - INACTIVE
-        BufferInactiveAdded = fix({ fg = "#a6e3a2", bg = "" }),
-        BufferInactiveDeleted = fix({ fg = "#f38ba9", bg = "" }),
-        BufferInactiveChanged = fix({ fg = "#f9e2b0", bg = "" }),
+        BufferInactiveAdded = fix({ fg = sol.green, bg = "" }),
+        BufferInactiveDeleted = fix({ fg = sol.red, bg = "" }),
+        BufferInactiveChanged = fix({ fg = sol.yellow, bg = "" }),
         -- FILE STATUS - INACTIVE
-        BufferInactiveMod = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferInactiveWARN = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferInactiveERROR = fix({ fg = "#f38ba9", bg = "" }),
-        BufferInactiveHINT = fix({ fg = "#93e2d6", bg = "" }),
-        BufferInactiveINFO = fix({ fg = "#89dcec", bg = "" }),
-        BufferInactiveSign = fix({ fg = "#89b4fb", bg = "" }),
-        BufferInactiveSignRight = fix({ fg = "#89b4fb", bg = "" }),
+        BufferInactiveMod = fix({ fg = sol.yellow, bg = "" }),
+        BufferInactiveWARN = fix({ fg = sol.yellow, bg = "" }),
+        BufferInactiveERROR = fix({ fg = sol.red, bg = "" }),
+        BufferInactiveHINT = fix({ fg = sol.cyan, bg = "" }),
+        BufferInactiveINFO = fix({ fg = sol.blue, bg = "" }),
+        BufferInactiveSign = fix({ fg = sol.blue, bg = "" }),
+        BufferInactiveSignRight = fix({ fg = sol.blue, bg = "" }),
         -- ALTERNATE BUFFERS
-        BufferAlternate = fix({ fg = "#ef9e76", bg = "" }),
+        BufferAlternate = fix({ fg = sol.orange, bg = "" }),
         -- GIT STATUS - ALTERNATE
-        BufferAlternateAdded = fix({ fg = "#a6e3a2", bg = "" }),
-        BufferAlternateDeleted = fix({ fg = "#f38ba9", bg = "" }),
-        BufferAlternateChanged = fix({ fg = "#f9e2b0", bg = "" }),
+        BufferAlternateAdded = fix({ fg = sol.green, bg = "" }),
+        BufferAlternateDeleted = fix({ fg = sol.red, bg = "" }),
+        BufferAlternateChanged = fix({ fg = sol.yellow, bg = "" }),
         -- FILE STATUS - ALTERNATE
-        BufferAlternateMod = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferAlternateWARN = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferAlternateERROR = fix({ fg = "#f38ba9", bg = "" }),
-        BufferAlternateHINT = fix({ fg = "#93e2d6", bg = "" }),
-        BufferAlternateINFO = fix({ fg = "#89dcec", bg = "" }),
-        BufferAlternateSign = fix({ fg = "#89b4fb", bg = "" }),
-        BufferAlternateSignRight = fix({ fg = "#89b4fb", bg = "" }),
+        BufferAlternateMod = fix({ fg = sol.yellow, bg = "" }),
+        BufferAlternateWARN = fix({ fg = sol.yellow, bg = "" }),
+        BufferAlternateERROR = fix({ fg = sol.red, bg = "" }),
+        BufferAlternateHINT = fix({ fg = sol.cyan, bg = "" }),
+        BufferAlternateINFO = fix({ fg = sol.blue, bg = "" }),
+        BufferAlternateSign = fix({ fg = sol.blue, bg = "" }),
+        BufferAlternateSignRight = fix({ fg = sol.blue, bg = "" }),
         -- VISIBLE BUFFERS
-        BufferVisible = fix({ fg = "#8caaee", bg = "" }),
+        BufferVisible = fix({ fg = sol.blue, bg = "" }),
         -- GIT STATUS - VISIBLE
-        BufferVisibleAdded = fix({ fg = "#a6e3a2", bg = "" }),
-        BufferVisibleDeleted = fix({ fg = "#f38ba9", bg = "" }),
-        BufferVisibleChanged = fix({ fg = "#f9e2b0", bg = "" }),
+        BufferVisibleAdded = fix({ fg = sol.green, bg = "" }),
+        BufferVisibleDeleted = fix({ fg = sol.red, bg = "" }),
+        BufferVisibleChanged = fix({ fg = sol.yellow, bg = "" }),
         -- FILE STATUS - VISIBLE
-        BufferVisibleMod = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferVisibleWARN = fix({ fg = "#f9e2b0", bg = "" }),
-        BufferVisibleERROR = fix({ fg = "#f38ba9", bg = "" }),
-        BufferVisibleHINT = fix({ fg = "#93e2d6", bg = "" }),
-        BufferVisibleINFO = fix({ fg = "#89dcec", bg = "" }),
-        BufferVisibleSign = fix({ fg = "#89b4fb", bg = "" }),
-        BufferVisibleSignRight = fix({ fg = "#89b4fb", bg = "" }),
+        BufferVisibleMod = fix({ fg = sol.yellow, bg = "" }),
+        BufferVisibleWARN = fix({ fg = sol.yellow, bg = "" }),
+        BufferVisibleERROR = fix({ fg = sol.red, bg = "" }),
+        BufferVisibleHINT = fix({ fg = sol.cyan, bg = "" }),
+        BufferVisibleINFO = fix({ fg = sol.blue, bg = "" }),
+        BufferVisibleSign = fix({ fg = sol.blue, bg = "" }),
+        BufferVisibleSignRight = fix({ fg = sol.blue, bg = "" }),
 
         -- ========================= CURSOR ======================
-        CursorLine = { bg = "#3a3c47" },
-        Visual = { bg = "#775d46" },
+        CursorLine = { bg = sol.base02 },
+        Visual = { bg = sol.mix_base1 },
 
         -- ========================= WIN-SEPARATOR ======================
         WinSeparator = fix({ fg = "", bg = "" }),

@@ -1,6 +1,17 @@
 return {
     {
         "folke/noice.nvim",
+        init = function()
+            -- Noice's markdown keymaps (e.g. K on links) in markdown buffers
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "markdown",
+                callback = function(event)
+                    vim.schedule(function()
+                        require("noice.text.markdown").keys(event.buf)
+                    end)
+                end,
+            })
+        end,
         opts = {
             cmdline = {
                 enabled = true,
@@ -42,6 +53,9 @@ return {
             routes = {
                 -- skip img-clip warning when using cmd+v
                 { filter = { event = "notify", find = "Content is not an image" }, opts = { skip = true } },
+
+                -- skip the LSP hover "No information available" notification
+                { filter = { event = "notify", find = "No information available" }, opts = { skip = true } },
 
                 -- skip Snacks Picker "No results found" warning (shows when using tiny-code-action with no actions available)
                 { filter = { event = "notify", kind = "warn", find = "No results found for" }, opts = { skip = true } },

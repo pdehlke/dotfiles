@@ -7,7 +7,7 @@
 
 ## Code Style Guidelines
 - **Language**: Lua (Neovim configuration)
-- **Indentation**: 4 spaces (enforced by `.editorconfig` and `stylua.toml`)
+- **Indentation**: 4 spaces (enforced by `stylua.toml`)
 - **Line length**: 120 characters max
 - **Naming**: `snake_case` for functions/variables, `PascalCase` for plugin specs
 - **Imports**: Use `require("module")`, prefer local variables: `local opt = vim.opt`
@@ -18,6 +18,6 @@
 - **Autocmds**: Define in `lua/config/autocmds.lua` using `vim.api.nvim_create_autocmd()`
 - **Error handling**: Use `pcall()` for operations that might fail, check return values
 - **Types**: No strict typing (Lua), but document expected types in comments when helpful
-- **Final newline**: Always insert (enforced by `.editorconfig`)
+- **Final newline**: Always insert
 - **LazyVim integration**: Extend LazyVim defaults, don't replace; use `opts` functions to merge configs
 - **File organization**: Plugins in `lua/plugins/*.lua`, utilities in `lua/util/*.lua`, config in `lua/config/*.lua`
