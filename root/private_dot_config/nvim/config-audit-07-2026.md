@@ -40,7 +40,7 @@ Paths below are the deployed names; the chezmoi source uses `dot_` prefixes
       options.lua               # Editor options, fully commented (4-tab, relnumber, wrap, Neovide)
       keymaps.lua               # 207 lines of custom keybindings
       autocmds.lua              # 295 lines: highlight overrides + functional autocmds
-    plugins/                    # 30 plugin spec files
+    plugins/                    # 31 plugin spec files
       alpha.lua
       barbar.lua
       barbecue.lua              # barbecue.nvim winbar breadcrumbs
@@ -69,6 +69,7 @@ Paths below are the deployed names; the chezmoi source uses `dot_` prefixes
       tiny-code-action.lua
       tiny-inline-diagnostic.lua
       toggleterm.lua
+      uv.lua                    # uv.nvim Python workflow integration
       which-key.lua
       yanky.lua
       code_runner/projects.json # Project configs (Dockitect: pnpm run dev)
@@ -255,7 +256,7 @@ Tailwind, Terraform, TOML, TypeScript, YAML
 
 ## Plugin Inventory (95 total in lazy-lock.json)
 
-### Actively Configured (30 spec files)
+### Actively Configured (31 spec files)
 
 #### Theme & Visual
 | Plugin | Config Summary |
@@ -302,6 +303,7 @@ Tailwind, Terraform, TOML, TypeScript, YAML
 | **ts-comments** | Comment.nvim is DISABLED (nil commentstring crash on Neovim 0.12); native gc + ts-comments instead, with `leader+/` toggle (n and visual) |
 | **guess-indent** | 10 excluded filetypes, editorconfig respected |
 | **nvim-lint** | markdownlint-cli2 with `~/.markdownlint-cli2.yaml` config |
+| **uv.nvim** | uv-based Python workflow (env + script running), snacks picker integration enabled |
 
 #### AI
 | Plugin | Config Summary |
@@ -325,8 +327,7 @@ nvim-ts-autotag, nvim-web-devicons, one-small-step-for-vimkind,
 persistence.nvim, plenary.nvim, project.nvim, promise-async,
 render-markdown.nvim, SchemaStore.nvim, snacks.nvim (statuscolumn disabled),
 telescope-terraform.nvim + telescope-terraform-doc.nvim, todo-comments.nvim,
-trouble.nvim, uv.nvim (via python extra), vim-dadbod + completion + ui,
-venv-selector.nvim
+trouble.nvim, vim-dadbod + completion + ui, venv-selector.nvim
 
 ---
 
@@ -680,8 +681,9 @@ current settings.
   and yanky.
 
 #### uv.nvim
-- Comes with the python extra: uv-based environment and script running for
-  Python; complements venv-selector.
+- Custom spec (uv.lua, not from an extra): uv-based environment and script
+  running for Python, with snacks picker integration; complements
+  venv-selector.
 
 ---
 
