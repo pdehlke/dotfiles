@@ -1,0 +1,27 @@
+{{- /*
+# vim:ft=zsh.gotmpl:
+    */ -}}
+{{- if and (eq .chezmoi.os "darwin" "linux") (not .isContainer) -}}
+#!/usr/bin/env zsh
+setopt ERR_EXIT NO_UNSET PIPE_FAIL PROMPT_SUBST
+PS4='+(%x:%I): ${funcstack[1]:+${funcstack[1]}(): }'
+
+# yarn moved from a mise-managed (vfox) tool to Node's built-in Corepack,
+# since the vfox plugin evaluation was the single biggest per-shell-startup
+# cost in `mise activate zsh`. This script keeps corepack/yarn set up on
+# any machine chezmoi applies to, since mise's installs/ tree (where
+# corepack's shims would otherwise live) is not itself source-controlled.
+readonly YARN_VERSION="4.14.1"
+
+function main() {
+    if ! command -v mise > /dev/null 2>&1; then
+        return 0
+    fi
+
+    mise install node || return 0
+    mise exec node -- corepack enable || true
+    mise exec node -- corepack prepare "yarn@${YARN_VERSION}" --activate || true
+}
+
+main "${@}"
+{{- end }}
