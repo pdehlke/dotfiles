@@ -13,3 +13,6 @@
 
 # 2026-07 functions.zsh merged into 000_functions.zsh (redundant two-file split).
 .zsh.after/functions.zsh
+
+# 2026-07 02_completions.zsh renamed to 02_gitflow.zsh (only git-flow completions remained).
+.zsh.after/02_completions.zsh
