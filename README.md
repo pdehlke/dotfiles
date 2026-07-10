@@ -433,7 +433,7 @@ at any point before I spent a month badly implementing about 2 percent of what i
 
 We include a coupled configuration for the combination of [`uv`](https://docs.astral.sh/uv/),
 [`direnv`](./root/private_dot_config/direnv), and [mise](/root/private_dot_config/mise/). In
-[`functions.zsh`](./root/dot_zsh.after/functions.zsh) we define `uv-create`, which can be used to create a new `uv`
+[`000_functions.zsh`](./root/dot_zsh.after/000_functions.zsh) we define `uv-create`, which can be used to create a new `uv`
 environment in the directory where it's run. `uv-create` can take two arguments: `-p`, to specify the python version
 to use, and `-t`, to specify what type `(default, app, package, or lib)` of environment you want to create. Once an
 environment has been created, it will automatically be activated by direnv: **you'll never again have a bad day

@@ -10,3 +10,6 @@
 .config/fzf
 .zsh.prompts
 .zsh.before
+
+# 2026-07 functions.zsh merged into 000_functions.zsh (redundant two-file split).
+.zsh.after/functions.zsh
