@@ -2,3 +2,11 @@
 # Kitty
 #.config/kitty/diff.conf
 {{ end }}
+
+# 2026-07 zsh config cleanup: files removed from source state.
+# fzf keybindings lost the ^R fight to peco on purpose; the rest were dead.
+.zsh.after/zzz_fzf.zsh
+.zsh.after/zzzz_finish.zsh
+.config/fzf
+.zsh.prompts
+.zsh.before

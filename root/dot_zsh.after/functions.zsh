@@ -5,28 +5,8 @@ function copy() {
     cat $1 | pbcopy
 }
 
-# This is kind of cool. Lets me cd to the parent directory of a file if
-# I happen to call cd with a filename as an argument. This happens a lot
-# when I do things like vi /foo/bar/baz; cd !$
-# Yes, this fails on symlinks to files. Sue me.
-
-function cd() {
-    if [ -z "$1" ]; then
-        builtin cd
-    else
-        if [ -n "$2" ]; then
-            local TRY="${PWD/$1/$2}"
-        else
-            local TRY="$1"
-        fi
-
-        if [ -f "${TRY}" ]; then
-            builtin cd $(dirname "${TRY}")
-        else
-            builtin cd "${TRY}"
-        fi
-    fi
-}
+# NOTE: cd() is defined in zoxide.zsh (must come after zoxide init): it
+# handles cd-to-parent-when-given-a-file and falls through to zoxide.
 
 function tmux() {
     emulate -L zsh
@@ -107,13 +87,11 @@ function getcertnames() {
     fi
 }
 
-if hash git &>/dev/null ; then
-	unalias diff &>/dev/null
-fi
-
-# Use Git’s colored diff when available
+# Use Git’s colored diff when available. The `function` keyword is required:
+# z4h aliases diff, and zsh refuses to parse `diff() {...}` over a live alias.
 if hash git &>/dev/null; then
-    diff() {
+    unalias diff &>/dev/null
+    function diff() {
         git diff --no-index --color-words "$@"
     }
 fi
@@ -257,7 +235,7 @@ function peco-directories() {
     dir=$(echo "$dir" | tr -d '\n')
     dir=$(printf %q "$dir")
 
-    BUFFER="${current_lbuffer}${file}${current_rbuffer}"
+    BUFFER="${current_lbuffer}${dir}${current_rbuffer}"
     CURSOR=$#BUFFER
   fi
 }
@@ -320,6 +298,8 @@ peco-cdr () {
       CURSOR=$#BUFFER
     fi
 }
+zle -N peco-cdr
+bindkey '^Xr' peco-cdr
 
 # get ghq and peco help us find our git repos
 gcd() {

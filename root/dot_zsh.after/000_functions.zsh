@@ -78,19 +78,6 @@ quiet_which() {
   command -v "$1" >/dev/null
 }
 
-# this is a little better than which or command
-findinpath() {
-  test "$#" -lt 1 && warn "Usage: findinpath exe_basename [path]" && return 2
-  local f="$1"
-  local IFS=":$IFS"
-  set -- ${2:-$PATH}
-  while test "$#" -gt 0; do
-    test -x "$1/$f" && echo "$1/$f" && return 0
-    shift
-  done
-  return 1
-}
-
 # Returns true (0) only if it is a directory and searchable.
 test_directory() {
   test "$#" -eq 0 && e2 "Usage: test_directory dirname" && return 2
@@ -126,42 +113,4 @@ dirapp() {
   else
     eval $n=\"$d\"
   fi
-}
-
-# Sanity-check then prepend a directory to a search path.
-# TODO: Allow caller to "move" directory to front with this funcall.
-dirpre() {
-  test "$#" -lt 2 && e2 "Usage: dirpre varname dirname" && return 2
-  local n="$1"
-  local d="$2"
-  d=$(canonicalize_directory "$d") || return 2
-  #    eval in_search_path \"\$$n\" $d && return 1
-  if eval test -n \"\$$n\"; then
-    eval $n=\"$d:\$$n\"
-  else
-    eval $n=\"$d\"
-  fi
-}
-
-# Call dirapp for a list of directories.
-dirapplist() {
-  test "$#" -lt 2 && e2 "Usage: dirapplist varname d1 d2 ..." && return 2
-  local n="$1"
-  shift
-  while test "$#" -gt 0; do
-    dirapp "$n" "$1"
-    shift
-  done
-}
-
-# Call dirpre for a list of directories.
-# NOTE: Directories will appear in reverse order in varname.
-dirprelist() {
-  test "$#" -lt 2 && e2 "Usage: dirapplist varname d1 d2 ..." && return 2
-  local n="$1"
-  shift
-  while test "$#" -gt 0; do
-    dirpre "$n" "$1"
-    shift
-  done
 }

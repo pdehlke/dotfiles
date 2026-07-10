@@ -1,14 +1,10 @@
 #!zsh
 #
-# Set up brew-provided completions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/completions/zsh:$FPATH
-  autoload -Uz compinit
-  compinit
-fi
-[[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Brew-provided completions are added to fpath in .zshrc before `z4h init`
+# runs compinit; zsh-autosuggestions is bundled and loaded by z4h itself.
+# Neither belongs here.
 #
-# Now set up git-flow. This is... extensive. Pay attention.
+# Set up git-flow. This is... extensive. Pay attention.
 #
 # Installation
 # ------------

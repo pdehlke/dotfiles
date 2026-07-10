@@ -1,6 +1,18 @@
 if (( $+commands[zoxide] )); then
-  eval "$(zoxide init zsh --cmd cd)"
   eval "$(zoxide init zsh)"
+
+  # Hybrid cd: two args -> zsh's substitution cd (cd old new); an existing
+  # file -> its parent directory (vi /foo/bar/baz; cd !$); everything else
+  # -> zoxide (real dirs cd normally, keywords jump by frecency).
+  function cd() {
+    if (( $# == 2 )); then
+      builtin cd "$1" "$2"
+    elif [[ -f "$1" ]]; then
+      builtin cd "${1:h}"
+    else
+      __zoxide_z "$@"
+    fi
+  }
 fi
 
 if [ -z "$ZOXIDIFY_EDITORS" ]; then

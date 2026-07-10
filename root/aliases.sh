@@ -1,4 +1,5 @@
-# Aliases in this file are bash and zsh compatible
+# Aliases sourced by .zshrc via z4h. zsh-only: uses alias -g, TRAPHUP,
+# and $+commands, so don't source this from bash.
 
 # Get operating system
 platform='unknown'
@@ -12,7 +13,6 @@ fi
 # PS
 alias psa='ps aux'
 alias psg='ps aux | grep '
-alias psr='ps aux | grep ruby'
 
 # Kill
 alias ka9='killall -9'
@@ -29,7 +29,7 @@ alias -g .....='../../../..'
 alias -g C='| wc -l'
 alias -g H='| head'
 alias -g L='| less'
-alias -g N='| /dev/null'
+alias -g N='> /dev/null'
 alias -g S='| sort'
 alias -g G='| grep' # now you can do: ls foo G something
 
@@ -134,8 +134,6 @@ alias gfch='git fetch'
 alias gd='git diff'
 alias gb='git branch -v'
 alias grb='git recent-branches'
-alias gtr='grb track'
-alias gpub='grb publish'
 # Staged and cached are the same thing
 alias gdc='git diff --cached -w'
 alias gds='git diff --staged -w'
@@ -168,125 +166,31 @@ alias cl='clear'
 # Zippin
 alias gz='tar -zcvf'
 
-# Ruby
-alias c='rails c' # Rails 3
-alias co='script/console' # Rails 2
-alias cod='script/console --debugger'
-
-#If you want your thin to listen on a port for local VM development
-#export VM_IP=10.0.0.1 <-- your vm ip
-alias ts='thin start -a ${VM_IP:-127.0.0.1}'
-alias ms='mongrel_rails start'
-alias tfdl='tail -f log/development.log'
-alias tftl='tail -f log/test.log'
-
-# Gem install
-alias sgi='sudo gem install --no-ri --no-rdoc'
-
-# Forward port 80 to 3000
-alias portforward='sudo ipfw add 1000 forward 127.0.0.1,3000 ip from any to any 80 in'
-
-# db:migrate
-alias rdm='rake db:migrate'
-alias rdmr='rake db:migrate:redo'
-
-# Zeus
-alias zs='zeus server'
-alias zc='zeus console'
-alias zr='zeus rspec'
-alias zrc='zeus rails c'
-alias zrs='zeus rails s'
-alias zrdbm='zeus rake db:migrate'
-alias zrdbtp='zeus rake db:test:prepare'
-alias zzz='rm .zeus.sock; pkill zeus; zeus start'
-
-# Rspec
-alias rs='rspec spec'
-alias sr='spring rspec'
-alias src='spring rails c'
-alias srgm='spring rails g migration'
-alias srdm='spring rake db:migrate'
-alias srdt='spring rake db:migrate'
-alias srdmt='spring rake db:migrate db:test:prepare'
-
-# Sprintly - https://github.com/nextbigsoundinc/Sprintly-GitHub
-alias sp='sprintly'
-# spb = sprintly branch - create a branch automatically based on the bug you're working on
-alias spb="git checkout -b \`sp | tail -2 | grep '#' | sed 's/^ //' | sed 's/[^A-Za-z0-9 ]//g' | sed 's/ /-/g' | cut -d"-" -f1,2,3,4,5\`"
-
 # Finder
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
-# spring
-alias dbtp='spring rake db:test:prepare'
-alias dbm='spring rake db:migrate'
-alias dbmr='spring rake db:migrate:redo'
-alias dbmd='spring rake db:migrate:down'
-alias dbmu='spring rake db:migrate:up'
-
 # Homebrew
 alias brewu='brew update && brew upgrade && brew cleanup && brew doctor'
 
-if (( $+commands[grc] )); then
-   (( ${+aliases[grc]} )) && unalias grc
-fi
-
-(( ${+aliases[du]} )) && unalias du
-
 alias path='echo $PATH | tr : "\n"'
-
-quiet_which() {
-  command -v "\$1" >/dev/null
-}
 
 # alias listening="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
-[[ -x ${HOMEBREW_PREFIX}/bin/gdu ]] && alias du='${HOMEBREW_PREFIX}/bin/gdu -h -t 2'
-
-alias t='todo.sh'
 alias cat=bat
-#alias cat="bat --theme=$(defaults read -globalDomain AppleInterfaceStyle &>/dev/null && echo DarkNeon || echo GitHub)"
 alias pfm=npm
 alias history='history -i'
-
-# v() {
-#     local file
-#     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
-# }
-#
-# # cd into the directory containing a recently used file
-# vd() {
-#     local dir
-#     local file
-#     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir" || return
-# }
-#
-# # cd into recent directories
-# zd() {
-#     local dir
-#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-# }
-
-# alias j=zd
-# alias z=zd
-
-#alias v='f -e vim'
 
 # shellcheck disable=SC2328,2327,2091
 if $(command -v nvim > /dev/null 2>&1); then
   alias vim=nvim
 fi
 alias ts='tmux new-session -s'
-alias ave='aws-vault exec --duration=12h'
-alias avc='aws-vault clear'
-alias avl='aws-vault list'
 
 # shellcheck disable=SC1091
 [ -e "$HOMEBREW_PREFIX/etc/grc.zsh" ] && source "$HOMEBREW_PREFIX/etc/grc.zsh"
-#alias weather='curl  "wttr.in?format=2"'
 alias weather='http --body "wttr.in?format=2"'
-alias cb='git branch --sort=-committerdate | fzf --header Checkout | xargs git checkout'
+alias cb='git branch --sort=-committerdate | peco --prompt "Checkout>" | xargs git checkout'
 
 # Taskwarrior aliases
 alias in="task add +in"

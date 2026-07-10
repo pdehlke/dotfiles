@@ -55,7 +55,6 @@ Alternatively, edit files under `root/` directly and run `chezmoi apply`.
 
 - `root/aliases.sh` -- shell aliases loaded at startup; edit with `ae`, reload with `ar`
 - `root/dot_zsh.after/` -- ZSH snippets sourced after zsh4humans initializes (filename prefix controls load order)
-- `root/dot_zsh.before/` -- snippets sourced before initialization
 - `root/dot_zshrc.tmpl` -- main zshrc (template); sets `$yadr` to the chezmoi source dir
 
 When writing or updating shell scrpts in this repo, pay attention to and use the functions defined in .zsh.after/000_functions.zsh. In particular, make use of the log() function instead of using `echo` or an `echo ... ; exit 1` for error handling. The only exception to this rule is shell scripts like `install.sh` or the `.chezmoiscripts/*` scripts that are expected to execute before chezmoi has installed .zsh.after.
