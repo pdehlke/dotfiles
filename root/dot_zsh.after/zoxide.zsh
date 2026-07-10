@@ -15,32 +15,32 @@ if (( $+commands[zoxide] )); then
   }
 fi
 
-if [ -z "$ZOXIDIFY_EDITORS" ]; then
+if [[ -z "$ZOXIDIFY_EDITORS" ]]; then
     ZOXIDIFY_EDITORS=(
-			nvim
+      nvim
       subl
     )
 fi
 
-if [ -z "$ZOXIDIFY_PREFIX" ]; then
+if [[ -z "$ZOXIDIFY_PREFIX" ]]; then
     ZOXIDIFY_PREFIX='z'
 fi
 
-if [ -z "$ZOXIDIFY_INTERACTIVE_PREFIX" ]; then
+if [[ -z "$ZOXIDIFY_INTERACTIVE_PREFIX" ]]; then
     ZOXIDIFY_INTERACTIVE_PREFIX="${ZOXIDIFY_PREFIX}i"
 fi
 
-__ZOXIDIFY_GET_ALIAS_EXISTS=$(( ! $(functions zoxidify_get_alias &> /dev/null; echo $?)))
-__ZOXIDIFY_GET_INTERACTIVE_ALIAS_EXISTS=$(( ! $(functions zoxidify_get_interactive_alias &> /dev/null; echo $?)))
+__ZOXIDIFY_GET_ALIAS_EXISTS=$(( $+functions[zoxidify_get_alias] ))
+__ZOXIDIFY_GET_INTERACTIVE_ALIAS_EXISTS=$(( $+functions[zoxidify_get_interactive_alias] ))
 
 __zoxidify_get_zoxide_out() {
     local zoxide_args="$1"
-    [ -z "$zoxide_args" ] || zoxide_args="$zoxide_args "
+    [[ -z "$zoxide_args" ]] || zoxide_args="$zoxide_args "
 
     echo "
         local zoxide_out
         zoxide_out=\"\$(zoxide query $zoxide_args\"\$last_arg\")\"
-        [ -z \"\$zoxide_out\" ] && return 1
+        [[ -z \"\$zoxide_out\" ]] && return 1
     "
 }
 
@@ -57,39 +57,40 @@ __ZOXIDIFY_GET_LAST_ARG="
 __zoxidify_patch_editor() {
     local editor="$1"
 
-    local lauch_editor="
+    local launch_editor="
         $editor \"\${(qq)@:1:\$((\$# - 1))}\" \"\$zoxide_out\"
     "
 
-    local alias
-    alias="$([ "$__ZOXIDIFY_GET_ALIAS_EXISTS" -eq 1 ] && zoxidify_get_alias "$editor")"
-    alias="${alias:-$ZOXIDIFY_PREFIX$editor}"
+    local editor_alias
+    editor_alias="$([[ "$__ZOXIDIFY_GET_ALIAS_EXISTS" -eq 1 ]] && zoxidify_get_alias "$editor")"
+    editor_alias="${editor_alias:-$ZOXIDIFY_PREFIX$editor}"
 
     local interactive_alias
-    interactive_alias="$([ "$__ZOXIDIFY_GET_INTERACTIVE_ALIAS_EXISTS" -eq 1 ] && zoxidify_get_interactive_alias "$editor")"
+    interactive_alias="$([[ "$__ZOXIDIFY_GET_INTERACTIVE_ALIAS_EXISTS" -eq 1 ]] && zoxidify_get_interactive_alias "$editor")"
     interactive_alias="${interactive_alias:-$ZOXIDIFY_INTERACTIVE_PREFIX$editor}"
 
     eval "
-        function $alias() {
+        function $editor_alias() {
             $__ZOXIDIFY_GET_LAST_ARG
             $__ZOXIDIFY_GET_ZOXIDE_OUT
-            $lauch_editor
+            $launch_editor
         }
 
         function $interactive_alias() {
             $__ZOXIDIFY_GET_LAST_ARG
             $__ZOXIDIFY_GET_ZOXIDE_INTERACTIVE_OUT
-            $lauch_editor
+            $launch_editor
         }
     "
 }
 
 __zoxidify_main() {
-    if ! command -v zoxide &> /dev/null; then
+    if (( ! $+commands[zoxide] )); then
         echo '[\e[1;31m!\e[0m] \e[1;31mZoxidify (ZSH plugin): Zoxide is not installed. Please install Zoxide first.\e[0m'
         return 1
     fi
 
+    local editor
     for editor in "${ZOXIDIFY_EDITORS[@]}"; do
         if command -v "$editor" &> /dev/null; then
             __zoxidify_patch_editor "$editor"
@@ -99,8 +100,8 @@ __zoxidify_main() {
 
 __zoxidify_main
 
-[ "$__ZOXIDIFY_GET_ALIAS_EXISTS" -eq 1 ] && unset -f zoxidify_get_alias
-[ "$__ZOXIDIFY_GET_INTERACTIVE_ALIAS_EXISTS" -eq 1 ] && unset -f zoxidify_get_interactive_alias
+[[ "$__ZOXIDIFY_GET_ALIAS_EXISTS" -eq 1 ]] && unset -f zoxidify_get_alias
+[[ "$__ZOXIDIFY_GET_INTERACTIVE_ALIAS_EXISTS" -eq 1 ]] && unset -f zoxidify_get_interactive_alias
 
 unset -f __zoxidify_patch_editor __zoxidify_main
 unset -v __ZOXIDIFY_GET_LAST_ARG __ZOXIDIFY_GET_ZOXIDE_OUT __ZOXIDIFY_GET_ZOXIDE_INTERACTIVE_OUT \
