@@ -227,6 +227,17 @@ repo() {
     base_url=$(git config --get remote.origin.url)
     base_url=${base_url%\.git} # remove .git from end of string
 
+    # Fix ssh://[user@]host[:port]/path URLs (any host)
+    if [[ ${base_url} == ssh://* ]]; then
+        local ssh_rest ssh_host ssh_path
+        ssh_rest=${base_url#ssh://}
+        ssh_rest=${ssh_rest#*@}
+        ssh_host=${ssh_rest%%/*}
+        ssh_host=${ssh_host%%:*}
+        ssh_path=${ssh_rest#*/}
+        base_url="https://${ssh_host}/${ssh_path}"
+    fi
+
     # Fix git@github.com: URLs
     base_url=${base_url//git@github\.com:/https:\/\/github\.com\/}
 
