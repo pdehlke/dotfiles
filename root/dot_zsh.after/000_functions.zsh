@@ -196,7 +196,7 @@ function getcertnames() {
 # Use Git’s colored diff when available. The `function` keyword is required:
 # z4h aliases diff, and zsh refuses to parse `diff() {...}` over a live alias.
 if hash git &>/dev/null; then
-    unalias diff &>/dev/null
+    (( ${+aliases[diff]} )) && unalias diff
     function diff() {
         git diff --no-index --color-words "$@"
     }
