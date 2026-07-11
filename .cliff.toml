@@ -1,21 +1,29 @@
 [changelog]
 header = """
 # Changelog
-
 """
 
-# Commits are pre-sorted newest-first (see sort_commits below). We walk them
-# in a single pass, accumulating consecutive commits that fall on the same
-# calendar day into `day_bucket`, then flush that bucket (grouped by
-# conventional-commit type) whenever the day changes. Tera's `group_by` only
-# accepts a literal existing attribute, and there is no per-commit "day"
-# attribute -- only a precise `committer.timestamp` -- so day-level bucketing
-# has to be done by hand with `concat` rather than a nested `group_by`.
+# git-cliff renders `body` once per release (once per tag, plus once more
+# for any commits after the last tag, as "Unreleased"), each with its own
+# `version`/`timestamp`/`commits` in scope. Within that, commits are
+# pre-sorted newest-first (see sort_commits below); we walk them in a single
+# pass, accumulating consecutive commits that fall on the same calendar day
+# into `day_bucket`, then flush that bucket (grouped by conventional-commit
+# type) whenever the day changes. Tera's `group_by` only accepts a literal
+# existing attribute, and there is no per-commit "day" attribute -- only a
+# precise `committer.timestamp` -- so day-level bucketing has to be done by
+# hand with `concat` rather than a nested `group_by`.
 body = """
+{%- if version %}
+## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+{% else %}
+## [Unreleased]
+{% endif -%}
+
 {%- macro render_day(date, day_commits) -%}
-## {{ date }}
+### {{ date }}
 {% for group, group_commits in day_commits | group_by(attribute="group") %}
-### {{ group | striptags | trim }}
+#### {{ group | striptags | trim }}
 {% for commit in group_commits %}
 - {% if commit.scope %}*({{ commit.scope }})* {% endif %}{{ commit.message | trim | upper_first }}
 {%- endfor %}
