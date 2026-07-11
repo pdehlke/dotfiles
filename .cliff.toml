@@ -1,0 +1,79 @@
+[changelog]
+header = """
+# Changelog
+
+"""
+
+# Commits are pre-sorted newest-first (see sort_commits below). We walk them
+# in a single pass, accumulating consecutive commits that fall on the same
+# calendar day into `day_bucket`, then flush that bucket (grouped by
+# conventional-commit type) whenever the day changes. Tera's `group_by` only
+# accepts a literal existing attribute, and there is no per-commit "day"
+# attribute -- only a precise `committer.timestamp` -- so day-level bucketing
+# has to be done by hand with `concat` rather than a nested `group_by`.
+body = """
+{%- macro render_day(date, day_commits) -%}
+## {{ date }}
+{% for group, group_commits in day_commits | group_by(attribute="group") %}
+### {{ group | striptags | trim }}
+{% for commit in group_commits %}
+- {% if commit.scope %}*({{ commit.scope }})* {% endif %}{{ commit.message | trim | upper_first }}
+{%- endfor %}
+{%- if not loop.last %}
+{% endif %}
+{%- endfor -%}
+{%- endmacro render_day -%}
+
+{%- set_global day_bucket = [] -%}
+{%- set_global current_day = "" -%}
+{%- set_global rendered_first = false -%}
+{%- for commit in commits -%}
+    {%- set this_day = commit.committer.timestamp | date(format="%Y-%m-%d") -%}
+    {%- if this_day != current_day -%}
+        {%- if day_bucket | length > 0 -%}
+            {%- if rendered_first %}
+
+{% endif -%}
+{{ self::render_day(date=current_day, day_commits=day_bucket) }}
+            {%- set_global rendered_first = true -%}
+        {%- endif -%}
+        {%- set_global day_bucket = [] -%}
+        {%- set_global current_day = this_day -%}
+    {%- endif -%}
+    {%- set_global day_bucket = day_bucket | concat(with=[commit]) -%}
+{%- endfor -%}
+{%- if day_bucket | length > 0 -%}
+    {%- if rendered_first %}
+
+{% endif -%}
+{{ self::render_day(date=current_day, day_commits=day_bucket) }}
+{%- endif %}
+"""
+
+trim = true
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+sort_commits = "newest"
+
+# No commit_preprocessors here: stripping the "type: " prefix before
+# conventional-commit parsing runs (the default processing order is
+# commit_preprocessors -> conventional_commits -> commit_parsers) makes every
+# commit fail conventional detection, which is why the previous config
+# rendered only the header. `commit.message` is already type/scope-free by
+# the time the body template sees it, so no stripping is needed.
+commit_parsers = [
+  { message = "^feat", group = "<!-- 0 -->Features" },
+  { message = "^fix", group = "<!-- 1 -->Bug Fixes" },
+  { message = "^perf", group = "<!-- 2 -->Performance" },
+  { message = "^refactor", group = "<!-- 3 -->Refactoring" },
+  { message = "^docs", group = "<!-- 4 -->Documentation" },
+  { message = "^style", group = "<!-- 5 -->Style" },
+  { message = "^test", group = "<!-- 6 -->Testing" },
+  { message = "^build", group = "<!-- 7 -->Build" },
+  { message = "^ci", group = "<!-- 8 -->CI" },
+  { message = "^chore", group = "<!-- 9 -->Maintenance" },
+  { message = "^revert", group = "<!-- 10 -->Reverts" },
+  { message = ".*", group = "<!-- 11 -->Other" },
+]
