@@ -1,0 +1,167 @@
+#!/usr/bin/env zsh
+setopt ERR_EXIT NO_UNSET PIPE_FAIL PROMPT_SUBST
+PS4='+(%x:%I): ${funcstack[1]:+${funcstack[1]}(): }'
+zmodload zsh/datetime
+
+readonly SCRIPT_NAME="${0:t}"
+
+# 000_functions.zsh assumes an interactive, non-strict shell (e.g. it runs
+# `unalias diff` unconditionally, which fails our ERR_EXIT if no such alias
+# exists). Relax strict options just for the source, scoped via LOCAL_OPTIONS.
+function _load_shell_functions() {
+    setopt LOCAL_OPTIONS NO_ERR_EXIT NO_UNSET
+    source "${HOME}/.zsh.after/000_functions.zsh"
+}
+_load_shell_functions
+
+readonly ZSHRC="${HOME}/.zshrc"
+readonly SCRATCH="$(mktemp -d)"
+readonly ZSHRC_BACKUP="${SCRATCH}/zshrc.orig"
+readonly TIMES_FILE="${SCRATCH}/times.txt"
+readonly LAST_LOG="${SCRATCH}/last_run.log"
+
+typeset -gi ITERATIONS=0
+
+function cleanup() {
+    if [[ -f "${ZSHRC_BACKUP}" ]]; then
+        cp "${ZSHRC_BACKUP}" "${ZSHRC}"
+        log INFO "restored original .zshrc"
+    fi
+    rm -rf "${SCRATCH}"
+}
+trap cleanup EXIT
+
+function usage() {
+    print -r -- "Usage: ${SCRIPT_NAME} -n <iterations>"
+    print -r -- ""
+    print -r -- "Benchmarks zsh startup time over <iterations> full interactive"
+    print -r -- "invocations (prompt + gitstatusd included). Temporarily wraps"
+    print -r -- "~/.zshrc with zprof, then reports timing stats and the top 5"
+    print -r -- "self-time-consuming functions from the final run."
+}
+
+function parse_args() {
+    local opt
+
+    while getopts "n:h" opt; do
+        case "${opt}" in
+        n)
+            if [[ ! "${OPTARG}" =~ ^[0-9]+$ ]]; then
+                usage
+                log FATAL "-n requires a positive integer, got '${OPTARG}'"
+            fi
+            ITERATIONS="${OPTARG}"
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+        *)
+            usage
+            log FATAL "invalid option"
+            ;;
+        esac
+    done
+
+    if (( ITERATIONS <= 0 )); then
+        usage
+        log FATAL "must supply -n <iterations>"
+    fi
+}
+
+function instrument_zshrc() {
+    cp "${ZSHRC}" "${ZSHRC_BACKUP}"
+    {
+        print -r -- "zmodload zsh/zprof"
+        cat "${ZSHRC_BACKUP}"
+        print -r -- "zprof"
+    } > "${ZSHRC}"
+}
+
+# A real interactive shell (prompt drawn, gitstatusd/p10k initialized) needs
+# a pty: without one, zsh can't enable job control ("monitor") and gitstatus
+# refuses to start its daemon. `-ls < /dev/null` goes through the real
+# interactive read loop and draws the prompt once before hitting EOF, unlike
+# `-lic exit`, which bypasses the precmd hook that triggers p10k/gitstatus
+# setup entirely.
+function run_one_invocation() {
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        script -q "${LAST_LOG}" zsh -ls < /dev/null > /dev/null 2>&1
+    else
+        script -qc "zsh -ls < /dev/null" "${LAST_LOG}" > /dev/null 2>&1
+    fi
+}
+
+function run_benchmark() {
+    local -i i
+    local start end
+
+    log INFO "running ${ITERATIONS} full zsh startup(s)..."
+    : > "${TIMES_FILE}"
+
+    for (( i = 1; i <= ITERATIONS; i++ )); do
+        start=${EPOCHREALTIME}
+        run_one_invocation
+        end=${EPOCHREALTIME}
+        print -r -- "$(( end - start ))" >> "${TIMES_FILE}"
+    done
+}
+
+function report_stats() {
+    print -r -- ""
+    print -r -- "=== startup time (${ITERATIONS} runs) ==="
+    awk '
+        { v[NR] = $1; sum += $1 }
+        END {
+            n = NR
+            mean = sum / n
+            min = v[1]; max = v[1]
+            for (i = 1; i <= n; i++) {
+                if (v[i] < min) min = v[i]
+                if (v[i] > max) max = v[i]
+                ssq += (v[i] - mean) ^ 2
+            }
+            stddev = (n > 1) ? sqrt(ssq / (n - 1)) : 0
+            printf "  min:      %.4fs\n", min
+            printf "  max:      %.4fs\n", max
+            printf "  mean/avg: %.4fs\n", mean
+            printf "  stddev:   %.4fs\n", stddev
+        }
+    ' "${TIMES_FILE}"
+}
+
+function report_top_functions() {
+    local -a top_lines
+
+    top_lines=("${(@f)$(
+        perl -pe '
+            s/\e\][^\a\e]*(\a|\e\\)//g;
+            s/\e[()][A-Za-z0-9]//g;
+            s/\e\[[0-9;?]*[A-Za-z]//g;
+            s/\r//g;
+        ' "${LAST_LOG}" |
+            awk '
+                /num[[:space:]]+calls/ { infound = 1; next }
+                infound && /^-+$/ { next }
+                infound && /^[[:space:]]*[0-9]+\)/ && count < 5 { print; count++ }
+            '
+    )}")
+
+    print -r -- ""
+    print -r -- "=== top 5 self-time-consuming functions (final run) ==="
+    if (( ${#top_lines} == 0 )); then
+        log WARN "could not find zprof output in the final run's log"
+        return
+    fi
+    print -rl -- "${top_lines[@]}"
+}
+
+function main() {
+    parse_args "${@}"
+    instrument_zshrc
+    run_benchmark
+    report_stats
+    report_top_functions
+}
+
+main "${@}"
