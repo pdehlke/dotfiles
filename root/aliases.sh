@@ -1,5 +1,6 @@
 # Aliases sourced by .zshrc via z4h. zsh-only: uses alias -g, TRAPHUP,
 # and $+commands, so don't source this from bash.
+# vim:ft=zsh:
 
 # Get operating system
 platform='unknown'
@@ -9,6 +10,9 @@ if [[ $unamestr == 'Linux' ]]; then
 elif [[ $unamestr == 'Darwin' ]]; then
   platform='darwin'
 fi
+
+# Return the prompt to the bottom if we're in zsh4humans
+(( $+functions[z4h-clear-screen-soft-bottom] )) && alias clear='z4h-clear-screen-soft-bottom'
 
 # PS
 alias psa='ps aux'
@@ -54,28 +58,28 @@ TRAPHUP() {
   source "$yadr/aliases.sh"
 }
 
-alias ae='vim $yadr/aliases.sh'    # alias edit
-alias ar='source $yadr/aliases.sh' # alias reload
+alias ae='vim $yadr/aliases.sh'         # alias edit
+alias ar='source $yadr/aliases.sh'      # alias reload
 alias gar='killall -HUP -u "$USER" zsh' # global alias reload
 
 # chezmoi aliases
-alias czI='chezmoi init' # chezmoi [I]nit
-alias czh='chezmoi cd' # chezmoi [h]ome
-alias cza='chezmoi apply --no-pager' # chezmoi [a]pply
-alias czA='chezmoi add' # chezmoi [A]dd
-alias czc='chezmoi cat' # chezmoi [c]at
+alias czI='chezmoi init'                    # chezmoi [I]nit
+alias czh='chezmoi cd'                      # chezmoi [h]ome
+alias cza='chezmoi apply --no-pager'        # chezmoi [a]pply
+alias czA='chezmoi add'                     # chezmoi [A]dd
+alias czc='chezmoi cat'                     # chezmoi [c]at
 alias cze='chezmoi edit --apply --no-pager' # chezmoi [e]dit
-alias czC='chezmoi cat-config' # chezmoi [C]at-config
-alias czE='chezmoi edit-config' # chezmoi [E]dit-config
-alias czf='chezmoi forget' # chezmoi [f]orget
-alias czg='chezmoi git' # chezmoi [g]it
-alias czu='chezmoi update --no-pager' # chezmoi [u]pdate
-alias czd='chezmoi diff' # chezmoi [d]iff
-alias czD='chezmoi data --format yaml' # chezmoi [D]ata
-alias czm='chezmoi merge' # chezmoi [m]erge
-alias czM='chezmoi managed' # chezmoi [M]anaged
-alias czU='chezmoi unmanaged' # chezmoi [U]nmanaged
-alias czX='chezmoi execute-template' # chezmoi e[X]ecute-template
+alias czC='chezmoi cat-config'              # chezmoi [C]at-config
+alias czE='chezmoi edit-config'             # chezmoi [E]dit-config
+alias czf='chezmoi forget'                  # chezmoi [f]orget
+alias czg='chezmoi git'                     # chezmoi [g]it
+alias czu='chezmoi update --no-pager'       # chezmoi [u]pdate
+alias czd='chezmoi diff'                    # chezmoi [d]iff
+alias czD='chezmoi data --format yaml'      # chezmoi [D]ata
+alias czm='chezmoi merge'                   # chezmoi [m]erge
+alias czM='chezmoi managed'                 # chezmoi [M]anaged
+alias czU='chezmoi unmanaged'               # chezmoi [U]nmanaged
+alias czX='chezmoi execute-template'        # chezmoi e[X]ecute-template
 
 # mimic vim functions
 alias :q='exit'
@@ -182,7 +186,7 @@ alias pfm=npm
 alias history='history -i'
 
 # shellcheck disable=SC2328,2327,2091
-if $(command -v nvim > /dev/null 2>&1); then
+if $(command -v nvim >/dev/null 2>&1); then
   alias vim=nvim
 fi
 alias ts='tmux new-session -s'
