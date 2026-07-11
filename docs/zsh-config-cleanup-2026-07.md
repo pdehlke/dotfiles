@@ -211,3 +211,29 @@ over).
   intended values; `cd /etc/hosts` lands in `/etc`; plain dir cd works;
   `quiet_which` works; `^R` → `peco_select_history`, `^Xf`/`^X^F`/`^Xr` all
   bound to their peco widgets.
+
+## 2026-07-11: fzf reclaims ^R from peco
+
+Reverses one specific piece of the "peco over fzf everywhere they competed"
+decision above, on purpose:
+
+- **What changed.** `10_peco_shell_history.zsh` is deleted (registered in
+  `.chezmoiremove`). `^R` is now bound to fzf's own `fzf-history-widget`,
+  sourced from `key-bindings.zsh` in the new `10_fzf.zsh`, which also binds
+  `^T` (`fzf-file-widget`) and Alt+C (`fzf-cd-widget`) — neither of which
+  peco previously owned. All three widgets are colored Solarized Dark via
+  `FZF_DEFAULT_OPTS`.
+- **Why.** Wanted a colorized, previewable fuzzy history/file/dir search;
+  fzf's built-in widgets give that for `^R`/`^T`/Alt+C with a single
+  well-maintained upstream integration script. This does not reopen the
+  general peco-vs-fzf question — it is scoped to these three widgets only.
+- **Mechanism.** Only `key-bindings.zsh` is sourced from fzf's shell
+  integration directory (`$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh`),
+  never `completion.zsh` or `fzf --zsh` (which bundles both) — z4h's own
+  `:z4h:fzf-complete`-driven TAB completion remains the sole completion
+  mechanism, avoiding the duplicate-loading class of bug this doc's original
+  cleanup fixed elsewhere.
+- **Unchanged, deliberately.** `peco-directories` (`^Xf`), `peco-files`
+  (`^X^f`), `gcd`, and the `cb` alias all remain on peco. peco has no
+  preview pane and was never in competition with fzf for those bindings the
+  way it was for `^R`.
