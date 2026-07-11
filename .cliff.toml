@@ -85,3 +85,11 @@ commit_parsers = [
   { message = "^revert", group = "<!-- 10 -->Reverts" },
   { message = ".*", group = "<!-- 11 -->Other" },
 ]
+
+[bump]
+# By default git-cliff bumps at least a patch version for any commit since
+# the last tag, conventional or not. That would tag a release for a
+# changelog-only or CI-only commit, so the types with no user-facing effect
+# are excluded here; the release workflow (.github/workflows/release.yml)
+# relies on this to skip tagging when nothing bump-worthy happened.
+no_increment_regex = "^(chore|ci|docs|style|test|build)"

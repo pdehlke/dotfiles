@@ -1,0 +1,108 @@
+name: Release
+
+# Tags a new version, updates CHANGELOG.md, and publishes a GitHub Release
+# whenever a merge into main includes commits that warrant one, per
+# conventional-commit rules in .cliff.toml.
+#
+# Merge-only gate: main has no branch protection, so a direct push (not a
+# merge) is possible. The "Determine next version" step checks for a merge
+# commit in the pushed range via `git rev-list --merges` and skips the rest
+# of the job if there isn't one. This catches any merge (a local `git
+# merge` pushed directly included), not just GitHub PR merges -- though
+# GitHub squash/rebase merges don't produce a merge commit and so won't be
+# caught by this check. Manual (workflow_dispatch) runs bypass the check
+# since github.event.before/after don't exist for that event.
+#
+# Loop prevention: the release commit this workflow pushes ends its message
+# with "[skip ci]". GitHub natively skips queuing *any* workflow run
+# (including this one) for a push whose head commit message contains that
+# marker, so there is no need for an extra `if:` guard here.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install git-cliff
+        uses: taiki-e/install-action@2ca9b94c269419b7b0c711c09d0b21c4e1d51145 # v2.83.1
+        with:
+          tool: git-cliff
+
+      - name: Determine next version
+        id: version
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" = "push" ]; then
+            merge_count="$(git rev-list --merges --count "${{ github.event.before }}..${{ github.event.after }}")"
+            if [ "$merge_count" -eq 0 ]; then
+              echo "No merge commits in this push; skipping release (direct pushes to main don't trigger one)."
+              echo "release=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+
+          current="$(git describe --tags --abbrev=0 2>/dev/null || echo '')"
+          next="$(git-cliff --config .cliff.toml --bumped-version 2>/dev/null || echo '')"
+
+          if [ -z "$next" ] || [ "$next" = "$current" ]; then
+            echo "No bump-worthy commits since ${current:-the initial commit}; skipping release."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Next version: $current -> $next"
+          echo "release=true" >> "$GITHUB_OUTPUT"
+          echo "version=$next" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog
+        if: steps.version.outputs.release == 'true'
+        run: |
+          set -euo pipefail
+          git-cliff --config .cliff.toml --bump --output CHANGELOG.md
+          git-cliff --config .cliff.toml --unreleased --tag "${{ steps.version.outputs.version }}" \
+            --strip header --output release-notes.md
+
+      - name: Commit changelog
+        if: steps.version.outputs.release == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "chore(release): ${{ steps.version.outputs.version }} [skip ci]"
+          git push origin HEAD:main
+
+      - name: Tag release
+        if: steps.version.outputs.release == 'true'
+        run: |
+          set -euo pipefail
+          git tag -a "${{ steps.version.outputs.version }}" -m "${{ steps.version.outputs.version }}"
+          git push origin "${{ steps.version.outputs.version }}"
+
+      - name: Publish GitHub release
+        if: steps.version.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "${{ steps.version.outputs.version }}" \
+            --title "${{ steps.version.outputs.version }}" \
+            --notes-file release-notes.md
