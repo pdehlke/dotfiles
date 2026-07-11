@@ -10,7 +10,7 @@
 # Don't change. The following determines where YADR is installed.
 export yadr={{ .chezmoi.sourceDir }}
 
-{{ if eq .chezmoi.os "android" -}}
+{{- if eq .chezmoi.os "android" -}}
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -26,7 +26,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # User configuration
 {{- end }}
 
-
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 # You can manually run `z4h update` to update everything.
 zstyle ':z4h:' auto-update      'no'
@@ -39,7 +38,7 @@ zstyle ':z4h:bindkey' keyboard  'mac'
 # Always start tmux. This is the default
 #
 # If you set this to no, prompt-at-bottom won't work
-# zstyle ':z4h:' start-tmux       yes
+zstyle ':z4h:' start-tmux       yes
 
 # Move prompt to the bottom when zsh starts and on Ctrl+L.
 zstyle ':z4h:' prompt-at-bottom 'yes'
@@ -61,12 +60,12 @@ zstyle ':z4h:direnv:success' notify 'no'
 
 # Enable ('yes') or disable ('no') automatic teleportation of z4h over
 # SSH when connecting to a host.
-zstyle ':z4h:ssh:*'                   enable 'no'
+zstyle ':z4h:ssh:*'                   enable 'yes'
 # Start ssh-agent if it's not running
 # See below; we let ohmyzsh handle this because z4h doesn't add identities
 # zstyle ':z4h:ssh-agent:' start      'no'
 
-{{ if eq .chezmoi.os "android" -}}
+{{- if eq .chezmoi.os "android" -}}
 # Clone oh-my-zsh for the android setup above. On other platforms z4h's own
 # powerlevel10k does the job and this clone would be dead weight.
 z4h install ohmyzsh/ohmyzsh || return
@@ -103,7 +102,7 @@ z4h source  {{ joinPath .chezmoi.homeDir ".config/shell/theme.zsh" }}
 # this because z4h doesn't have an identity manager.
 #
 # Commented out because we prefer the 1password agent. Adjust accordingly
-# if you love to make life harder by not usint 1p.
+# if you love to make life harder by not using 1p.
 # zstyle :omz:plugins:ssh-agent identities id_github
 # z4h load ohmyzsh/ohmyzsh/plugins/ssh-agent
 
