@@ -1,8 +1,38 @@
 # Changelog
 
-## 2026-07-11
+## [2.1.0] - 2026-07-12
+### 2026-07-12
 
-### Features
+#### Features
+
+- *(zsh)* Add carapace completions via mise with solarized styling
+
+#### Other
+
+- Merge branch 'feat/carapace-completions'
+
+* feat/carapace-completions:
+  feat(zsh): add carapace completions via mise with solarized styling
+- Revert "chore(git): add ff=false so merges leave a record"
+
+This reverts commit c958f0d8684b8a3495193c64cb1d4f5a03cd1a00.
+
+#### Maintenance
+
+- *(git)* Add ff=false in ~/.yadr only, so merges leave a record
+- *(git)* Add ff=false so merges leave a record
+
+### 2026-07-11
+
+#### Features
+
+- *(fzf)* Add keybindings for history, file picker, and fuzzy cd with Solarized Dark colors
+- *(ci)* Add automated release workflow
+- *(changelog)* Add release headers to cliff.toml
+## [2.0.0] - 2026-07-11
+### 2026-07-11
+
+#### Features
 
 - *(functions)* Support ssh:// URLs in repo()
 - *(fzf)* Override hideous pink highlight color
@@ -10,31 +40,35 @@
 - *(kitty)* Solarized theme
 - *(zsh)* Add zsh-startup-bench script
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix(.zshrc) re-enable prompt-at-bottom
 - *(zsh)* Guard unalias diff against missing alias
 
-### Style
+#### Other
+
+- Update changelog; git-cliff support
+
+#### Style
 
 - *(.zshrc)* Clean up formatting
 
-## 2026-07-10
+### 2026-07-10
 
-### Features
+#### Features
 
 - *(mise)* Provision corepack yarn via chezmoi script
 - *(zsh)* Enable command spelling correction
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(mise)* Drop yarn, use corepack instead
 
-### Other
+#### Other
 
 - *(nvim)* Drop old config audit after extensive updates
 
-### Refactoring
+#### Refactoring
 
 - *(zsh)* Fix git-flow completion bugs and rename to 02_gitflow.zsh
 - *(zsh)* Fix bugs and modernize zoxide.zsh
@@ -42,171 +76,171 @@
 - *(zsh)* Zmv.zsh was a dupe; removed it
 - *(zsh)* Remove dead config, resolve duplications and contradictions
 
-### Documentation
+#### Documentation
 
 - *(readme)* Rewrite top-level README from repo audit
 - *(nvim)* Rewrite README from 07/2026 config audit
 - *(nvim)* Beautify 07/2026 config audit
 
-### Maintenance
+#### Maintenance
 
 - *(workmux)* Increase dashboard size
 - Add global .prettierrc
 
-## 2026-07-09
+### 2026-07-09
 
-### Features
+#### Features
 
 - *(nvim)* Bring uv.nvim spec under chezmoi management
 - (neovide): add neovide to ~/.config
 
-### Other
+#### Other
 
 - *(nvim)* Add 07/2026 analysis doc
 
-### Refactoring
+#### Refactoring
 
 - *(nvim)* Remove duplicate and dead plugin config
 - *(nvim)* Rewrite options.lua with documented settings
 
-### Maintenance
+#### Maintenance
 
 - *(nvim)* Add .editorconfig
 
-## 2026-07-08
+### 2026-07-08
 
-### Features
+#### Features
 
 - *(nvim)* Show listchars for whitespace and non-breaking spaces
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(zsh)* Point mise config filename to .config/mise.toml
 
-### Maintenance
+#### Maintenance
 
 - Clean up dupes from PATH
 - *(mise)* Lock checksums for java in mise.lock
 
-## 2026-07-07
+### 2026-07-07
 
-### Features
+#### Features
 
 - *(tmux)* Add workmux dashboard popup binding
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(nvim)* Stop deletes from overwriting the macOS clipboard
 
-## 2026-07-03
+### 2026-07-03
 
-### Features
+#### Features
 
 - *(workmux)* Add global config and tmux sidebar toggle
 
-### Maintenance
+#### Maintenance
 
 - Add previously unmanaged items in ~/.config
 
-## 2026-07-01
+### 2026-07-01
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Persist run_once script state in dotfiles-apply
 
-### Documentation
+#### Documentation
 
 - Require write-zsh-scripts skill for editing, not just new scripts
 
-### Maintenance
+#### Maintenance
 
 - *(chezmoi)* Move ~/.claude and ~/.agents management to dotfiles-private
 
-## 2026-06-30
+### 2026-06-30
 
-### Features
+#### Features
 
 - Disable caveman
 - Update ccstatusline
 - Better kitty config
 
-### Maintenance
+#### Maintenance
 
 - *(agents)* Suppress sycophancy and trailing summaries globally
 
-## 2026-06-29
+### 2026-06-29
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(git-hooks)* Remove --since-commit HEAD from trufflehog pre-commit scan
 
-### Maintenance
+#### Maintenance
 
 - *(git)* Trufflehog was unreliable at secret detection. switch to gitleaks
 - Option up/down for scrollback in ghostty
 
-## 2026-06-28
+### 2026-06-28
 
-### Features
+#### Features
 
 - *(config)* Add ccstatusline config
 
-### Maintenance
+#### Maintenance
 
 - Add pdehlke claude chezmoi skill
 
-## 2026-06-27
+### 2026-06-27
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* Convert Claude config files to symlinks
 
-### Maintenance
+#### Maintenance
 
 - *(ghostty)* Enable copy-on-select to clipboard
 
-## 2026-06-26
+### 2026-06-26
 
-### Features
+#### Features
 
 - *(claude)* Drop several unused skills
 
-### Documentation
+#### Documentation
 
 - *(agents)* Require domain skill load before language/style skills
 
-### Maintenance
+#### Maintenance
 
 - *(plugins)* Remove skill-codex plugin and sync plugin state
 - Add $yprivate shorthand for private dotfiles root
 
-## 2026-06-25
+### 2026-06-25
 
-### Other
+#### Other
 
 - Claude sucks
 
-### Maintenance
+#### Maintenance
 
 - Add chezmoi-settings-sync skill and restore settings template
 
-## 2026-06-24
+### 2026-06-24
 
-### Maintenance
+#### Maintenance
 
 - Set spinner to always say "Thinking"
 - Add claude configs and postinstall action
 - Support second dotfiles-private repo
 
-## 2026-06-23
+### 2026-06-23
 
-### Maintenance
+#### Maintenance
 
 - Minor fixes. claude does not understand yaml
 
-## 2026-06-22
+### 2026-06-22
 
-### Maintenance
+#### Maintenance
 
 - Add global pre-commit hook using trufflehog
 - Pin chezmoiexternals and check hashes where possible
@@ -214,40 +248,40 @@
 - Rewrite install.sh to avoid curl | sh
 - Ensure signed commits
 
-## 2026-06-16
+### 2026-06-16
 
-### Features
+#### Features
 
 - *(nvim)* Better but not perfect syntax highlighting for go templates
 
-### Maintenance
+#### Maintenance
 
 - Fix up some vim filetypes
 - Dont install huge mise frameworks in containers
 
-## 2026-06-05
+### 2026-06-05
 
-### Features
+#### Features
 
 - *(zoxide)* Add zoxide editor functions
 - *(zoxide)* Add zoxide editor functions
 - *(zoxide)* Better init; add to docker
 - Migrate from fasd abandonware to zoxide
 
-### Maintenance
+#### Maintenance
 
 - Polish fzf, zmv, and postinstall
 
-## 2026-06-03
+### 2026-06-03
 
-### Features
+#### Features
 
 - Linux and macos 1passwd support in .ssh/config
 - Add .zsh.after/11_fasd.zsh for linux support
 
-## 2026-06-02
+### 2026-06-02
 
-### Maintenance
+#### Maintenance
 
 - Fix du alias for linux
 - Dont install huge mise frameworks
@@ -258,15 +292,15 @@
 - Don't run chsh
 - Linux portability and Dockerfile updates
 
-## 2026-05-30
+### 2026-05-30
 
-### Maintenance
+#### Maintenance
 
 - Update kitty tab styling
 
-## 2026-05-28
+### 2026-05-28
 
-### Other
+#### Other
 
 - Merge branch 'main' of ssh://github.com/pdehlke/dotfiles
 
@@ -274,26 +308,26 @@
   doc: better tmux screenshots
   doc: new screenshots
 
-### Maintenance
+#### Maintenance
 
 - Simplify mise enter hook
 
-## 2026-05-27
+### 2026-05-27
 
-### Other
+#### Other
 
 - Better tmux screenshots
 - New screenshots
 
-## 2026-05-28
+### 2026-05-28
 
-### Other
+#### Other
 
 - Badges. We need stinkin badges
 
-## 2026-05-27
+### 2026-05-27
 
-### Other
+#### Other
 
 - Add a mise demo video
 - Add table of contents to README.md
@@ -311,29 +345,29 @@ Feature/update vim docs
   doc: reorg vim/nvim docs
 - WIP README.md
 
-## 2026-05-26
+### 2026-05-26
 
-### Other
+#### Other
 
 - Start replacing prezto docs with zsh4humans
 
-### Documentation
+#### Documentation
 
 - Add comprehensive neovim plugins documentation
 
-## 2026-05-15
+### 2026-05-15
 
-### Other
+#### Other
 
 - Reorg vim/nvim docs
 
-## 2026-05-27
+### 2026-05-27
 
-### Features
+#### Features
 
 - Prep a better mise setup
 
-### Other
+#### Other
 
 - WIP README.md
 - Start replacing prezto docs with zsh4humans
@@ -343,166 +377,166 @@ Feature/update vim docs
 * 'main' of https://github.com/pdehlke/dotfiles:
   chore: shellcheck ignores on aliases.sh
 
-### Documentation
+#### Documentation
 
 - Add comprehensive neovim plugins documentation
 
-## 2026-05-26
+### 2026-05-26
 
-### Maintenance
+#### Maintenance
 
 - Shellcheck ignores on aliases.sh
 
-## 2026-05-27
+### 2026-05-27
 
-### Features
+#### Features
 
 - Prompt at the bottom of the screen at startup
 
-## 2026-05-26
+### 2026-05-26
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fetch os-specific asdf instead of always using linux
 
-## 2026-05-25
+### 2026-05-25
 
-### Features
+#### Features
 
 - Use 1password for ssh-agent
 
-### Bug Fixes
+#### Bug Fixes
 
 - Small tweaks for z4h
 - Re-add /Users/pde/.yadr/root/bin to PATH after z4h upgrade
 
-### Maintenance
+#### Maintenance
 
 - Remove old zsh setup files
 
-## 2026-05-24
+### 2026-05-24
 
-### Features
+#### Features
 
 - Initilaize nvim after first install
 
-### Bug Fixes
+#### Bug Fixes
 
 - Drop z4h diff alias when color git diff works
 - Re-templatize .zshrc and add p10k mise plugin
 
-### Refactoring
+#### Refactoring
 
 - *(zsh)* Move from prezto to zsh4humans
+## [1.0.0] - 2026-05-23
+### 2026-05-23
 
-## 2026-05-23
-
-### Maintenance
+#### Maintenance
 
 - Refactor lualine
 - Refactor aliases
 - Refactor fzf
 
-## 2026-05-16
+### 2026-05-16
 
-### Maintenance
+#### Maintenance
 
 - Refactor nvim lualine config
 
-## 2026-05-15
+### 2026-05-15
 
-### Features
+#### Features
 
 - Add AI skills
 - Add python version to nvim/lualine
 
-## 2026-05-14
+### 2026-05-14
 
-### Features
+#### Features
 
 - Better approach to nvim/direnv
 - Nvim load direnv very early so plugins have access to the env
 - Add direnv status indicator to lualine
 
-### Bug Fixes
+#### Bug Fixes
 
 - Use modern direnv status --json for checking allowed state
 
-### Other
+#### Other
 
 - Merge pull request #1 from pdehlke/feature/add-direnv-lualine
 
 Feature/add direnv  status to lualine
 
-## 2026-05-13
+### 2026-05-13
 
-### Features
+#### Features
 
 - Massive LazyVim update
 
-## 2026-05-11
+### 2026-05-11
 
-### Features
+#### Features
 
 - Nvim updates and uv support with direnv and mise
 
-## 2026-05-05
+### 2026-05-05
 
-### Maintenance
+#### Maintenance
 
 - Add .editorconfig
 - Add ghostty config
 
-## 2026-04-28
+### 2026-04-28
 
-### Maintenance
+#### Maintenance
 
 - Tweak Lazyvim a bit
 
-## 2026-04-26
+### 2026-04-26
 
-### Maintenance
+#### Maintenance
 
 - Add a few small LazyVim options
 
-## 2026-04-25
+### 2026-04-25
 
-### Maintenance
+#### Maintenance
 
 - Add LazyVim config
 
-## 2026-04-15
+### 2026-04-15
 
-### Maintenance
+#### Maintenance
 
 - Better color management in fzf-tab-completion
 
-## 2026-04-08
+### 2026-04-08
 
-### Maintenance
+#### Maintenance
 
 - Update p10k and java version
 - Add bash-my-aws
 
-## 2026-04-05
+### 2026-04-05
 
-### Maintenance
+#### Maintenance
 
 - *(adHoc)* Small vim improvements and stop installing python 2
 
-## 2026-04-03
+### 2026-04-03
 
-### Features
+#### Features
 
 - *(adHoc)* Set default branch to 'main' and update README
 
-## 2026-04-02
+### 2026-04-02
 
-### Other
+#### Other
 
 - Update 01_version_managers.zsh
 
-### Maintenance
+#### Maintenance
 
 - *(adHoc)* Make nproc determination portable in private_dot_config/mr/groups.d/00-personal.tmpl
 - *(adHoc)* Revert changes to install.sh
@@ -525,101 +559,101 @@ Feature/add direnv  status to lualine
 - *(adHoc)* Set up vim/sublime the chezmoi way
 - *(adHoc)* Update .gitconfig
 
-## 2026-02-11
+### 2026-02-11
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(cli)* Fzf install from source
 
-## 2026-02-10
+### 2026-02-10
 
-### Features
+#### Features
 
 - *(zsh)* Load gpg plugins
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(zsh)* Keep prezto folder permissions
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Absolute paths in mrconfig
 
-### Style
+#### Style
 
 - Config files
 
-## 2025-12-17
+### 2025-12-17
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* Use direct url when possible
 
-## 2025-09-12
+### 2025-09-12
 
-### Features
+#### Features
 
 - *(cli)* Improve ripgrep file types
 - *(cli)* Improve direnv sample config
 
-## 2025-05-15
+### 2025-05-15
 
-### Testing
+#### Testing
 
 - *(ci)* Change runners' sequence
 
-## 2025-04-21
+### 2025-04-21
 
-### Features
+#### Features
 
 - *(termux)* Enable ssh-agent plugin
 - *(cli)* Fzf CTRL-T preview config
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* GitHub rate limit exceeded
 - *(cli)* No direnv version
 - *(cli)* `asdf not found` in install
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Gitstatus config
 
-### Style
+#### Style
 
 - *(git)* Gitstatus permissions
 
-### Maintenance
+#### Maintenance
 
 - *(git)* Remove asdf repository
 
-## 2025-03-22
+### 2025-03-22
 
-### Features
+#### Features
 
 - *(cli)* Asdf-nodejs plugin
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(cli)* Android asdf arch
 
-## 2025-02-20
+### 2025-02-20
 
-### Features
+#### Features
 
 - *(chezmoi)* Extra aliases
 - *(git)* Extra aliases config file
 - *(cli)* Direnv use_asdf lib
 
-### Performance
+#### Performance
 
 - *(ci)* Chezmoi data command
 - *(cli)* `.chezmoiscripts/plugins_asdf-vm.sh`
 - *(chezmoi)* Default config is `verbose=true`
 
-## 2025-02-15
+### 2025-02-15
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(cli)* Don't add `$ASDF_DATA_DIR/bin` in path
 - *(cli)* Termux-exec error with `/bin/bash`
@@ -627,727 +661,727 @@ Feature/add direnv  status to lualine
 - *(cli)* Asdf commands
 - *(cli)* Android error
 
-### Maintenance
+#### Maintenance
 
 - Remove unused file
 - *(desktop)* Kitty extra config
 - *(cli)* Update asdf-vm
 - *(desktop)* Update kitty default config
 
-## 2024-11-30
+### 2024-11-30
 
-### Performance
+#### Performance
 
 - *(chezmoi)* Ignore fontconfig `.uuid` files
 
-### Testing
+#### Testing
 
 - *(ci)* Same tests on github and gitlab
 
-## 2024-11-13
+### 2024-11-13
 
-### Bug Fixes
+#### Bug Fixes
 
 - YADR post install script
 
-## 2024-10-23
+### 2024-10-23
 
-### Features
+#### Features
 
 - *(git)* Useful aliases
 
-## 2024-10-09
+### 2024-10-09
 
-### Features
+#### Features
 
 - Repeat `chsh` when SO upgrades
 - New `gitHubLatestReleaseAssetURL` function
 
-## 2024-08-26
+### 2024-08-26
 
-### Features
+#### Features
 
 - *(git)* Keep `bin/fzf` file
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(docker)* Rename cache
 
-### Testing
+#### Testing
 
 - *(ci)* Use multiple ubuntu lts versions
 
-### Maintenance
+#### Maintenance
 
 - Enable trailing whitespaces in p10k files
 
-## 2024-06-25
+### 2024-06-25
 
-### Maintenance
+#### Maintenance
 
 - *(docker)* Legacy ENV structure warning
 
-## 2024-06-23
+### 2024-06-23
 
-### Features
+#### Features
 
 - *(docker)* Improvements in Dockerfile
 - *(docker)* Improvements in compose settings
 - *(zsh)* Additional directories to zsh modules
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(git)* Gitstatusd post_make action
 - *(git)* Gitstatusd file permissions
 
-### Style
+#### Style
 
 - *(chezmoi)* External list
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Update kitty sample config
 
-## 2024-03-17
+### 2024-03-17
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(desktop)* External dict to nerdfonts
 
-### Maintenance
+#### Maintenance
 
 - *(tmux)* Default to xsel on linux
 
-## 2024-01-28
+### 2024-01-28
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Skip pager when applying changes
 
-## 2024-01-01
+### 2024-01-01
 
-### Features
+#### Features
 
 - *(desktop)* Don't exclude Mono fonts
 
-## 2023-12-12
+### 2023-12-12
 
-### Features
+#### Features
 
 - Migrate from old yadr
 
-### Documentation
+#### Documentation
 
 - Update docker compose command
 - Review README*.md
 
-### CI
+#### CI
 
 - Enable workflow_dispatch event
 
-## 2023-12-11
+### 2023-12-11
 
-### Bug Fixes
+#### Bug Fixes
 
 - PromptChoiceOnce not found
 
-### Maintenance
+#### Maintenance
 
 - Repository mailmap
 
-## 2023-12-06
+### 2023-12-06
 
-### Features
+#### Features
 
 - *(desktop)* Set syntax hightlight kitty theme
 
-### Performance
+#### Performance
 
 - *(git)* Modularize git config files
 - *(git)* Gitconfig template
 
-### Style
+#### Style
 
 - Chezmoi aliases
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* Update zpreztorc
 
-## 2023-11-26
+### 2023-11-26
 
-### Bug Fixes
+#### Bug Fixes
 
 - Tmux prefix used in this dotfiles
 
-## 2023-11-24
+### 2023-11-24
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(zsh)* Disable oh-my-zsh update warning
 - *(cli)* Fzf helper to clean asdf versions
 
-### Performance
+#### Performance
 
 - *(git)* `color.ui=auto`
 - Android related templates
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Update kitty config
 
-## 2023-10-09
+### 2023-10-09
 
-### Features
+#### Features
 
 - *(git)* Present_exe skipper
 
-### Performance
+#### Performance
 
 - *(cli)* Fzf tmuxp helper
 
-### Documentation
+#### Documentation
 
 - *(desktop)* Kitty terminal config
 
-### Style
+#### Style
 
 - *(zsh)* Indent_size=2
 - *(zsh)* Zpreztorc quote vars
 
-## 2023-09-11
+### 2023-09-11
 
-### Performance
+#### Performance
 
 - *(git)* Profiles of dotfiles and fzf
 - *(desktop)* Kitty.conf
 
-### Refactoring
+#### Refactoring
 
 - PromptChoice color theme
 
-## 2023-09-01
+### 2023-09-01
 
-### Performance
+#### Performance
 
 - *(git)* Add absolute paths to config
 
-## 2023-08-21
+### 2023-08-21
 
-### Performance
+#### Performance
 
 - *(git)* Myrepos profile cleanups
 
-## 2023-07-25
+### 2023-07-25
 
-### Maintenance
+#### Maintenance
 
 - *(ruby)* Gemrc
 
-## 2023-07-22
+### 2023-07-22
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Organize kitty externals
 
-## 2023-07-20
+### 2023-07-20
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(git)* Debug skippers
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* Update powerlevel10k config v1.19.0
 
-## 2023-07-17
+### 2023-07-17
 
-### Features
+#### Features
 
 - Add support to light Solarized and Gruvbox
 - *(desktop)* Move kitty Dracula.conf theme
 - *(chezmoi)* Split chezmoidata in files
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(cli)* Ripgrep vim settings files
 
-### Performance
+#### Performance
 
 - *(cli)* Asdf-direnv template
 
-### Documentation
+#### Documentation
 
 - *(zsh)* Asdf glob patterns in p10k prompt
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Kitty font config
 - *(desktop)* `kitty 0.29.1` default config
 - *(desktop)* Kitty config and themes
 
-## 2023-07-02
+### 2023-07-02
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(android)* Termux font
 
-## 2023-06-25
+### 2023-06-25
 
-### Features
+#### Features
 
 - *(zsh)* Chezmoi shell prompt segment
 
-### Refactoring
+#### Refactoring
 
 - *(cli)* Asdf zsh loading
 - Drop use of `which` in scripts
 
-## 2023-06-19
+### 2023-06-19
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* Update docs, nerdfonts-v3
 
-## 2023-06-17
+### 2023-06-17
 
-### Maintenance
+#### Maintenance
 
 - Cleanup `.keep` files
 
-## 2023-06-14
+### 2023-06-14
 
-### Maintenance
+#### Maintenance
 
 - List font folders
 
-## 2023-06-13
+### 2023-06-13
 
-### Features
+#### Features
 
 - *(docker)* `.dockerignore`
 
-### Refactoring
+#### Refactoring
 
 - *(ci)* Gitlab-ci rewrite
 
-### CI
+#### CI
 
 - Use $MY_CHEZMOI_BIN as chezmoi path
 
-## 2023-06-10
+### 2023-06-10
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Kitty.conf
 
-## 2023-06-07
+### 2023-06-07
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Scripts in termux
 
-### Style
+#### Style
 
 - *(chezmoi)* `post_install_yadr.sh` script
 - *(git)* Dotfiles and fzf profiles
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Kitty.conf
 
-## 2023-06-06
+### 2023-06-06
 
-### Features
+#### Features
 
 - *(desktop)* Add kitty.conf.orig
 
-### CI
+#### CI
 
 - Fix gitlab runner
 
-## 2023-06-05
+### 2023-06-05
 
-### Features
+#### Features
 
 - Allow install yadr on termux
 - *(vim)* Always open fugitive on top
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(git)* Silent default third_party_skipper
 - *(zsh)* Prompt resize in kitty terminal
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Myrepos profiles
 - *(desktop)* Kitty `current-theme.conf`
 - *(git)* Mrconfig framework
 
-### Style
+#### Style
 
 - *(cli)* Fzf exclude shells list
 - Fix indentation in override/theme.zsh
 
-### CI
+#### CI
 
 - Fix gitlab rules
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Kitty terminal current theme
 - *(zsh)* Rename customization dirs
 - *(vim)* Vimscript linting
 - *(git)* Use https by default
 
-## 2023-05-24
+### 2023-05-24
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* Template `~/.zpreztorc`
 
-## 2023-05-22
+### 2023-05-22
 
-### Features
+#### Features
 
 - *(vim)* Fzf grep maps
 
-### Documentation
+#### Documentation
 
 - *(zsh)* Powerlevel10k options
 - *(git)* Style mailmap file
 
-### CI
+#### CI
 
 - Allow gitlab runs trigged from glab cli
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* `egrep` to `grep -E`
 
-## 2023-05-21
+### 2023-05-21
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(vim)* Remove xterm-direct code
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* Update p10k to nerd-fonts-v3
 
-## 2023-05-19
+### 2023-05-19
 
-### Features
+#### Features
 
 - *(vim)* Allow kitty keyboard protocol
 - *(vim)* Allow kitty keyboard protocol
 - *(git)* Write mergetools files to temp folder
 - *(desktop)* Nerd fonts external code
 
-### Performance
+#### Performance
 
 - *(zsh)* Faster loading
 
-### Maintenance
+#### Maintenance
 
 - *(vim)* Update Inconsolata font name
 - *(git)* Change mrtrust default content
 - *(chezmoi)* Init template
 - Add mailmap file
 
-## 2023-05-12
+### 2023-05-12
 
-### Features
+#### Features
 
 - Chezmoi init template
 
-### Bug Fixes
+#### Bug Fixes
 
 - Debconf DEBIAN_FRONTEND noninteractive
 
-### Other
+#### Other
 
 - Create `.gitlab-ci.yml` file
 
-## 2023-05-10
+### 2023-05-10
 
-### Features
+#### Features
 
 - *(desktop)* Update external url
 
-## 2023-05-03
+### 2023-05-03
 
-### Features
+#### Features
 
 - *(desktop)* Update nerdfonts url to v3
 
-### Refactoring
+#### Refactoring
 
 - *(cli)* Asdf direnv setup
 - *(cli)* Asdf install script
 
-### Maintenance
+#### Maintenance
 
 - *(tmux)* Yadr print tmuxp profile
 
-## 2023-05-01
+### 2023-05-01
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(tmux)* .param.monitor not found
 
-## 2023-04-28
+### 2023-04-28
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* GitHubLatestRelease
 
-### Documentation
+#### Documentation
 
 - *(zsh)* Powerlevel10k wizard option list
 
-### Maintenance
+#### Maintenance
 
 - *(cli)* FZF_ALT_C_OPTS with FZF_PREVIEW_LINES
 
-## 2023-04-21
+### 2023-04-21
 
-### Features
+#### Features
 
 - *(cli)* Use full query in fzf ftmux helper
 - *(desktop)* Kitty config template
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(tmux)* Search tmux in $PATH before call
 - *(cli)* Newer asdf without lib/asdf.sh wrapper
 - *(desktop)* Fonts with Mono in the name
 
-### Style
+#### Style
 
 - Cosmetic and linting
 - *(chezmoi)* Init template
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Remove transparent bg in kitty
 
-## 2023-04-19
+### 2023-04-19
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(cli)* FZF_CTRL_T_COMMAND without dirs
 
-## 2023-04-17
+### 2023-04-17
 
-### Features
+#### Features
 
 - *(tmux)* Sample tmuxp profile
 - *(cli)* Chezmoi zsh completions
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(tmux)* Use xclip by default
 
-### Performance
+#### Performance
 
 - *(chezmoi)* Reduce usage of lookPath
 
-### Style
+#### Style
 
 - *(cli)* Fzf configuration
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Nerd fonts initial version 2.3.3
 
-## 2023-04-03
+### 2023-04-03
 
-### Features
+#### Features
 
 - *(cli)* Improve fzf default env vars
 
-### Performance
+#### Performance
 
 - *(cli)* Fzf fasd helpers
 
-### Style
+#### Style
 
 - *(cli)* Fzf env vars and helpers
 
-## 2023-04-02
+### 2023-04-02
 
-### Other
+#### Other
 
 - 💎 style: linting and formating
 
-## 2023-04-01
+### 2023-04-01
 
-### Features
+#### Features
 
 - *(tmux)* Add P binding to switch through panes
 
-### Style
+#### Style
 
 - *(zsh)* Asdf load
 
-## 2023-03-27
+### 2023-03-27
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Main mr profiles
 
-## 2023-03-24
+### 2023-03-24
 
-### Style
+#### Style
 
 - *(chezmoi)* Templates
 - *(git)* Personal profile options
 
-## 2023-03-23
+### 2023-03-23
 
-### Features
+#### Features
 
 - *(tmux)* Linux copy programs
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(git)* Gitignore patterns
 
-### Documentation
+#### Documentation
 
 - *(desktop)* Kitty sample font-features
 
-## 2023-02-05
+### 2023-02-05
 
-### Features
+#### Features
 
 - *(chezmoi)* Umask option sample
 
-### Refactoring
+#### Refactoring
 
 - Update CI workflow
 
-## 2023-02-03
+### 2023-02-03
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Rename myrepos bundleall action
 
-### Documentation
+#### Documentation
 
 - *(zsh)* List `p10k configure` wizard options
 
-### Style
+#### Style
 
 - *(chezmoi)* Init template
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Kitty terminal config
 
-## 2022-12-16
+### 2022-12-16
 
-### Features
+#### Features
 
 - *(git)* Myrepos fzf config
 - *(chezmoi)* Cache gitHubLatestRelease info
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* External kitty dracula themes
 
-### Style
+#### Style
 
 - *(chezmoi)* Prezto clone args order
 - *(chezmoi)* Lines in chezmoidata.yaml
 
-### Maintenance
+#### Maintenance
 
 - *(cli)* Cleanup direnvrc template
 
-## 2022-12-06
+### 2022-12-06
 
-### Features
+#### Features
 
 - *(desktop)* Sample kitty layout list
 - *(chezmoi)* Gvim as command example in config
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Gitignore
 - *(git)* Vim related ignore patterns
 - Check if running interactive
 
-### Style
+#### Style
 
 - *(git)* Vim modeline on gitconfig template
 
-### Maintenance
+#### Maintenance
 
 - *(chezmoi)* Use `.param.interactive`
 
-## 2022-12-02
+### 2022-12-02
 
-### Refactoring
+#### Refactoring
 
 - *(docker)* DEBIAN_FRONTEND=Noninteractive
 
-### Style
+#### Style
 
 - *(zsh)* Update ~/.p10k.zsh
 - *(chezmoi)* Init template
 
-## 2022-11-22
+### 2022-11-22
 
-### Refactoring
+#### Refactoring
 
 - .chezmoi.yaml.tmpl
 
-### Style
+#### Style
 
 - Chezmoiexternal
 - Dockerfile
 
-### Maintenance
+#### Maintenance
 
 - *(docker)* Remove ENV CODESPACES layer
 
-## 2022-11-18
+### 2022-11-18
 
-### Features
+#### Features
 
 - *(git)* No pager in branch and stash cmds
 
-### Style
+#### Style
 
 - *(docker)* Apt installs in Dockerfile
 
-## 2022-11-12
+### 2022-11-12
 
-### Features
+#### Features
 
 - *(desktop)* Update kitty solarized themes
 
-### Refactoring
+#### Refactoring
 
 - *(vim)* Solarized colors
 
-### Documentation
+#### Documentation
 
 - *(chezmoi)* Init config samples
 
-### Style
+#### Style
 
 - *(zsh)* Use direct powerlevel10k config file
 
-### Maintenance
+#### Maintenance
 
 - *(chezmoi)* Chezmoiignore
 
-## 2022-11-11
+### 2022-11-11
 
-### Other
+#### Other
 
 - Merge from 'upstream'
 
@@ -1357,9 +1391,9 @@ Merge branch 'back2skwp'
   Swap out to better jsx plugin that doesnt mess up js formatting
   Add javascript friendly options
 
-## 2022-11-09
+### 2022-11-09
 
-### Other
+#### Other
 
 - Merge pull request #881 from skwp/yp/fix-jsx
 
@@ -1370,165 +1404,165 @@ Swap out to better jsx plugin that doesnt mess up js formatting
 Add javascript plugins
 - Add javascript friendly options
 
-## 2022-10-28
+### 2022-10-28
 
-### Features
+#### Features
 
 - *(desktop)* Kitty allow remote control
 - *(chezmoi)* Use nproc output
 
-### Refactoring
+#### Refactoring
 
 - *(tmux)* Terminal settings
 - *(git)* Gitignore files
 
-### Documentation
+#### Documentation
 
 - *(desktop)* Add kitty-direct comment
 - *(chezmoi)* Vim modeline
 
-### Style
+#### Style
 
 - *(chezmoi)* Zlogout messages
 
-### Maintenance
+#### Maintenance
 
 - *(vim)* Vimscript linting
 
-## 2022-10-27
+### 2022-10-27
 
-### Features
+#### Features
 
 - *(cli)* Alias to `chezmoi init`
 
-## 2022-10-19
+### 2022-10-19
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(desktop)* Kitty diff.conf inconsistent state
 
-## 2022-10-13
+### 2022-10-13
 
-### Features
+#### Features
 
 - *(desktop)* Kitty diff config
 - *(desktop)* External Dracula kitty theme
 
-### Style
+#### Style
 
 - *(chezmoi)* Use backticks as delimiters
 
-## 2022-10-05
+### 2022-10-05
 
-### Documentation
+#### Documentation
 
 - *(vim)* Git log browser command
 
-### Testing
+#### Testing
 
 - *(docker)* Cleanup Dockerfile
 
-## 2022-09-30
+### 2022-09-30
 
-### Features
+#### Features
 
 - Allow configure light colorschemes variants
 - *(vim)* Add sample maplocalleader setting
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(vim)* Don't overwrite fugitive mapping `,gd`
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* Nerd fonts external
 - *(chezmoi)* Ignore patterns
 
-### Style
+#### Style
 
 - *(vim)* Indent search plugin settings
 - *(chezmoi)* Format templates
 
-### Maintenance
+#### Maintenance
 
 - *(git)* Template builds sh helper
 
-## 2022-09-29
+### 2022-09-29
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(docker)* `~/.vim` symlink
 
-### Other
+#### Other
 
 - ♻️ refactor(chezmoi): fix chezmoiexternal template
 - ♻️ refactor(docker): setting volumes
 
-## 2022-09-28
+### 2022-09-28
 
-### Features
+#### Features
 
 - *(desktop)* Kitty terminal config
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* Nerd Fonts externals
 
-## 2022-09-24
+### 2022-09-24
 
-### Features
+#### Features
 
 - *(desktop)* Nerd Fonts as externals
 
-### Style
+#### Style
 
 - *(chezmoi)* Comment Prezto
 
-### Maintenance
+#### Maintenance
 
 - *(desktop)* Cleanup Nerd Fonts files
 
-## 2022-09-22
+### 2022-09-22
 
-### Testing
+#### Testing
 
 - *(docker)* Use volumes instead of bind mounts
 
-## 2022-09-13
+### 2022-09-13
 
-### Features
+#### Features
 
 - *(git)* General_build shell helper
 - *(chezmoi)* Chezmoi init template
 - *(vim)* Grep mappings
 - *(vim)* Use Files command to preview files
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(vim)* Plugin-search maps
 - *(vim)* Strip_trailling_whitespace false
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* .chezmoiignore list
 
-### Documentation
+#### Documentation
 
 - Vim plugin management
 
-### Style
+#### Style
 
 - *(vim)* RipGrep comments
 
-## 2022-09-12
+### 2022-09-12
 
-### Style
+#### Style
 
 - *(vim)* Move modeline
 
-## 2022-09-11
+### 2022-09-11
 
-### Other
+#### Other
 
 - ✨ feat(vim): close buffers if not listed
 - ✨ feat(vim): use gv.vim instead of gitv
@@ -1536,13 +1570,13 @@ Add javascript plugins
 - 💎 style(git): asdf update and post_checkout
 - 📝 docs(cli): fzf install docs
 
-### Maintenance
+#### Maintenance
 
 - *(chezmoi)* Use sourceDir in init template
 
-## 2022-09-02
+### 2022-09-02
 
-### Other
+#### Other
 
 - 🐛 fix(git): disable default make mr action
 - 🧪 test(docker): use binds to prezto and vim-plug
@@ -1556,43 +1590,43 @@ Add javascript plugins
 - ✨ feat(cli): install fzf on xdg config folder
 - 🧹 chore(cli): remove fzf.zsh file
 
-## 2022-07-30
+### 2022-07-30
 
-### Features
+#### Features
 
 - *(vim)* Fix vim-plug autoinstall
 - *(docker)* Prezto and plugged volumes
 
-### Testing
+#### Testing
 
 - *(docker)* Dependency install layers
 
-### Maintenance
+#### Maintenance
 
 - *(cli)* Asdf release version
 
-## 2022-07-29
+### 2022-07-29
 
-### Features
+#### Features
 
 - *(chezmoi)* Prompt once init functions
 
-## 2022-07-28
+### 2022-07-28
 
-### Refactoring
+#### Refactoring
 
 - *(git)* Prezto update with modules
 - *(chezmoi)* Init template
 
-## 2022-07-27
+### 2022-07-27
 
-### Features
+#### Features
 
 - *(chezmoi)* Use sh install script
 
-## 2022-06-21
+### 2022-06-21
 
-### Features
+#### Features
 
 - *(cli)* Fzf asdf helpers
 - Add ~/.rgignore
@@ -1604,72 +1638,72 @@ Add javascript plugins
 - *(vim)* Add tags path inside .git
 - *(vim)* Close fugitive windows
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(tmux)* Minimal version for terminal-features
 - *(vim)* Fugitive head
 - Better direnv support
 - *(chezmoi)* Remove after scripts `exit 0`
 
-### Refactoring
+#### Refactoring
 
 - *(vim)* Fzf plugin settings
 
-### Style
+#### Style
 
 - *(chezmoi)* Newlines, quotes, trailing spaces
 - *(vim)* Vim-vint linting
 
-### Testing
+#### Testing
 
 - *(docker)* Cleanup layers
 - *(docker)* Improve non-interactive install
 - *(docker)* Allow ignore cached copy
 
-### Maintenance
+#### Maintenance
 
 - *(zsh)* $yadr/aliases.sh file
 
-## 2022-06-08
+### 2022-06-08
 
-### Maintenance
+#### Maintenance
 
 - *(chezmoi)* Move editorconfig file
 
-## 2022-06-03
+### 2022-06-03
 
-### Features
+#### Features
 
 - *(chezmoi)* New aliases
 
-### Refactoring
+#### Refactoring
 
 - *(chezmoi)* Init template
 
-### Documentation
+#### Documentation
 
 - Fix paths on README
 - Chezmoi specific aliases
 
-### Style
+#### Style
 
 - *(docs)* Keep linebreaks consistent
 
-### Testing
+#### Testing
 
 - *(ci)* Fix unsafe repository error
 - *(docker)* Fix act local testing
 - *(ci)* Check git status
 
-## 2021-10-20
+### 2021-10-20
 
-### Other
+#### Other
 
 - Use YAML as format for chezmoi config template (#7)
 
-## 2021-10-19
+### 2021-10-19
 
-### Other
+#### Other
 
 - Merge pull request #5 from chezmoi/refactor-chezmoi-template
 
@@ -1685,152 +1719,152 @@ Refs https://github.com/twpayne/chezmoi/issues/1535\#issuecomment-946277333
 
 Refactor chezmoi config template
 
-## 2021-10-15
+### 2021-10-15
 
-### Other
+#### Other
 
 - Simplify recreate config file
 
-## 2021-10-14
+### 2021-10-14
 
-### Other
+#### Other
 
 - Read previous filled data
 - Move data initialization to top
 
-## 2022-06-03
+### 2022-06-03
 
-### Features
+#### Features
 
 - *(vim)* Zoom pane and tmux-navigator
 - *(zsh)* Prezto improvements
 
-### Bug Fixes
+#### Bug Fixes
 
 - Check if there is ZSH installed
 - *(chezmoi)* Chezmoi bin install path
 
-### Maintenance
+#### Maintenance
 
 - Kitty-terminal belongs to mine branch
 - Remove Rakefile
 
-## 2022-05-31
+### 2022-05-31
 
-### Other
+#### Other
 
 - Move chezmoiversion file
 
-## 2022-05-29
+### 2022-05-29
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Version with git-repo external
 
-### Other
+#### Other
 
 - Move files to chezmoi root folder
 
-### Documentation
+#### Documentation
 
 - README and friends out of chezmoiroot
 
-## 2022-04-18
+### 2022-04-18
 
-### Testing
+#### Testing
 
 - Remove some apps from original Dockerfile
 
-### Maintenance
+#### Maintenance
 
 - *(git)* Remove .gitmodules
 
-## 2022-04-08
+### 2022-04-08
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Post_install_yadr template
 
-### Other
+#### Other
 
 - Chmod bin/yadr/install.sh
 
-### Refactoring
+#### Refactoring
 
 - .chezmoiignore folder patterns
 
-### Maintenance
+#### Maintenance
 
 - Add create attribute to direnvrc
 
-## 2022-04-07
+### 2022-04-07
 
-### Features
+#### Features
 
 - *(git)* Update ignore patterns
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(shell)* Update asdf and asdf-direnv setup
 
-## 2022-04-03
+### 2022-04-03
 
-### Other
+#### Other
 
 - Migrate prezto to chezmoiexternals
 
 remove prezto submodule
 
-## 2022-02-27
+### 2022-02-27
 
-### Other
+#### Other
 
 - (2022-02-27) Prezto
 
-## 2022-01-14
+### 2022-01-14
 
-### Features
+#### Features
 
 - *(shell)* Chezmoi aliases
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Prevent modify targets on install
 
-### Testing
+#### Testing
 
 - Remove create template tests
 
-## 2021-12-14
+### 2021-12-14
 
-### Features
+#### Features
 
 - *(vim)* Detect es6 files as javascript
 - *(vim)* Set more useful path
 
-## 2021-12-13
+### 2021-12-13
 
-### Features
+#### Features
 
 - *(vim)* New fugitive maps
 
-### Maintenance
+#### Maintenance
 
 - Various improvements
 
-## 2021-11-29
+### 2021-11-29
 
-### Bug Fixes
+#### Bug Fixes
 
 - Ignore both README and README-pt files
 
-### Style
+#### Style
 
 - *(chezmoi)* Move scripts
 
-## 2021-11-24
+### 2021-11-24
 
-### Other
+#### Other
 
 - Merge branch 'RoyMusthang/master'
 
@@ -1843,13 +1877,13 @@ remove prezto submodule
   Instalação traduzida
   iniciando projeto
 
-### Documentation
+#### Documentation
 
 - Portuguese README version
 
-## 2021-10-20
+### 2021-10-20
 
-### Other
+#### Other
 
 - Merge pull request #4 from RoyMusthang/translation-to-portuguese
 
@@ -1871,119 +1905,119 @@ Translation to portuguese
 [Roy Musthang] Translation Readme
 - Iniciando projeto
 
-## 2021-11-17
+### 2021-11-17
 
-### Other
+#### Other
 
 - (2021-11-17) Prezto
 
-## 2021-11-10
+### 2021-11-10
 
-### Features
+#### Features
 
 - *(tmux)* Check version with semverCompare
 
-### Testing
+#### Testing
 
 - Avoid vim plug install error
 
-## 2021-10-23
+### 2021-10-23
 
-### Other
+#### Other
 
 - Update README.md
 
 Move spaceman-diff link
 
-## 2021-10-18
+### 2021-10-18
 
-### Features
+#### Features
 
 - *(chezmoi)* Use onchange scripts
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(scripts)* Instruction to re-run script
 
-## 2021-10-17
+### 2021-10-17
 
-### Features
+#### Features
 
 - Move chezmoi scripts to bin/scripts
 
-## 2021-10-14
+### 2021-10-14
 
-### Other
+#### Other
 
 - Change vim color
 - Refactor chezmoi init template
 
-## 2021-10-12
+### 2021-10-12
 
-### Features
+#### Features
 
 - Install direnv config
 - Install ASDF version manager
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(chezmoi)* Avoid trying to clone asdf twice
 
-### Other
+#### Other
 
 - Set chezmoi minimal version to 2.7.0
 - Change chezmoi config template extension to yaml
 
-### Testing
+#### Testing
 
 - *(docker)* Assume yes on PlugInstall
 - *(docker)* Install direnv as a dependency
 - *(docker)* Split dependencies installation
 - *(CI)* Check `create_` files
 
-## 2021-10-09
+### 2021-10-09
 
-### Features
+#### Features
 
 - Add custom diff colors in Kitty Terminal
 - Add Kitty Terminal conf
 
-### Style
+#### Style
 
 - *(chezmoi)* Format yaml data
 
-## 2021-10-08
+### 2021-10-08
 
-### Other
+#### Other
 
 - Move user data to ~/.gitconfig.user #4
 
-### Style
+#### Style
 
 - *(zsh)* Zlogout template
 
-## 2021-09-28
+### 2021-09-28
 
-### Bug Fixes
+#### Bug Fixes
 
 - *(tmux)* Check terminal-features support
 
-## 2021-09-27
+### 2021-09-27
 
-### Features
+#### Features
 
 - *(git)* Add a template commit message
 
-## 2021-09-24
+### 2021-09-24
 
-### Other
+#### Other
 
 - Add modeline to FZF shell functions
 - Change chezmoi aliases
 
-## 2021-09-16
+### 2021-09-16
 
-### Features
+#### Features
 
 - *(chezmoi)* Move dotfiles
 - *(zsh)* Customize logout sayings
@@ -2032,7 +2066,7 @@ Move spaceman-diff link
 - Yadr install with chezmoi
 - Nerd Fonts Complete
 
-### Bug Fixes
+#### Bug Fixes
 
 - Vimscript comments on README
 - *(git)* Config spaceman-diff tool
@@ -2051,7 +2085,7 @@ https://github.com/neovim/neovim/issues/7353#issuecomment-334279343
 - Html preview on Linux
 - Fix chezmoiignore by OS
 
-### Other
+#### Other
 
 - Zsh dot_aliases
 - Linting vimfiles
@@ -2123,14 +2157,14 @@ squash basic ignores
   Initial commit
   Add LICENSE
 
-### Refactoring
+#### Refactoring
 
 - *(vim)* Vim-vint linting
 - *(vim)* Group autocmds
 - *(tmux)* Use templates for colorschemes
 - *(vim)* Modularize settings
 
-### Documentation
+#### Documentation
 
 - *(tmux)* From @lfilho/dotfiles
 - MacOS warning
@@ -2140,7 +2174,7 @@ squash basic ignores
 - Solarized screenshots
 - Customizing powerlevel10k prompt
 
-### Style
+#### Style
 
 - *(chezmoi)* Use joinPath helper
 - Fix mixed indent
@@ -2155,12 +2189,12 @@ squash basic ignores
 - Style git modules
 - *(vim)* Plugin load alternative
 
-### Testing
+#### Testing
 
 - *(docker)* Add default programs
 - *(CI)* Update CI
 
-### Maintenance
+#### Maintenance
 
 - Relative paths in README
 - *(chezmoi)* Tmux colors on template folder
@@ -2198,57 +2232,57 @@ squash basic ignores
 - *(vim)* Follow name conventions
 - *(chezmoi)* Ignore YADR files
 
-## 2020-09-12
+### 2020-09-12
 
-### Other
+#### Other
 
 - Run CI on all pushes and pull requests
 
-## 2020-08-29
+### 2020-08-29
 
-### Other
+#### Other
 
 - Set sourceDir in config file
 
-## 2020-08-23
+### 2020-08-23
 
-### Other
+#### Other
 
 - Improve chezmoi template sample (#1)
 
-## 2020-08-22
+### 2020-08-22
 
-### Other
+#### Other
 
 - Set up continuous integration (#2)
 - Initial commit
 - Add LICENSE
 
-## 2021-03-11
+### 2021-03-11
 
-### Other
+#### Other
 
 - Merge pull request #861 from joaomarcos96/master
 
 add snipmate settings
 
-## 2021-02-03
+### 2021-02-03
 
-### Other
+#### Other
 
 - Add snipmate settings
 
-## 2020-12-15
+### 2020-12-15
 
-### Other
+#### Other
 
 - Merge pull request #851 from nandalopes/prezto-install
 
 prezto_install rake task
 
-## 2020-11-26
+### 2020-11-26
 
-### Other
+#### Other
 
 - Remove zshrc post-install inserts
 - Zshrc override
@@ -2256,19 +2290,19 @@ prezto_install rake task
 
 (cherry picked from commit d7eaeed726edc936b18aebcc0df1fcd3670c4edd)
 
-## 2020-12-15
+### 2020-12-15
 
-### Features
+#### Features
 
 - *(test)* Ubuntu Bionic Beaver docker
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix(test) interactive rake install
 
 <https://serverfault.com/a/797318/78829>
 
-### Other
+#### Other
 
 - Merge pull request #858 from nandalopes/test-docker
 
@@ -2278,63 +2312,63 @@ feat(test) improvements on test files
 
 Update vim-tmux conf
 
-## 2020-11-16
+### 2020-11-16
 
-### Other
+#### Other
 
 - Copy-mode-vi key binds
 - Update tmux-vim configuration
 
 <https://github.com/christoomey/vim-tmux-navigator/blob/master/README.md#tmux>
 
-## 2020-12-15
+### 2020-12-15
 
-### Other
+#### Other
 
 - Merge pull request #847 from plribeiro3000/jazz_fingers
 
 feat(*): Colorized irb prompt
 
-## 2020-10-26
+### 2020-10-26
 
-### Features
+#### Features
 
 - *(*)* Colorized irb prompt
 
-## 2020-12-15
+### 2020-12-15
 
-### Other
+#### Other
 
 - Merge pull request #855 from daxgames/master
 
 automate the vim plugin install so no prompt is displayed
 
-## 2020-11-25
+### 2020-11-25
 
-### Other
+#### Other
 
 - Automate plugin install of vim s no prompt is displayed
 
-## 2020-12-15
+### 2020-12-15
 
-### Other
+#### Other
 
 - Merge pull request #857 from nandalopes/ascii
 
 Fix YADR success message
 
-## 2020-12-13
+### 2020-12-13
 
-### Other
+#### Other
 
 - Use single quote string
 
 `%q{}` notation
 - Use single quote strings
 
-## 2020-11-16
+### 2020-11-16
 
-### Other
+#### Other
 
 - Merge pull request #852 from nandalopes/fix-tmux-error
 
@@ -2346,58 +2380,58 @@ Fix C- tmux error
 
 Fix #845 Vim suspends in some times
 
-## 2020-11-08
+### 2020-11-08
 
-### Other
+#### Other
 
 - Fix #845 Vim suspends in some times
 
-## 2020-11-16
+### 2020-11-16
 
-### Other
+#### Other
 
 - Merge pull request #848 from vovinacci/fix/brew-install
 
 fix: Update Homebrew install method
 
-## 2020-11-13
+### 2020-11-13
 
-### Other
+#### Other
 
 - Revert setting +x
 
-## 2020-11-07
+### 2020-11-07
 
-### Other
+#### Other
 
 - Update Homebrew install method
 
-## 2020-11-13
+### 2020-11-13
 
-### Other
+#### Other
 
 - Merge pull request #849 from Zaryob/pr
 
 added contributors alias into git.
 
-## 2020-11-07
+### 2020-11-07
 
-### Other
+#### Other
 
 - Added contributors alias into git.
 
-## 2020-06-22
+### 2020-06-22
 
-### Other
+#### Other
 
 - Merge pull request #839 from vovinacci/update-git-snapshot-dead-link
 
 Update git dead link
 - Update dead link
 
-## 2020-03-15
+### 2020-03-15
 
-### Other
+#### Other
 
 - Merge pull request #834 from chrischen/update-vundle
 
@@ -2406,68 +2440,68 @@ Update vundle repos.
 
 Update scrooloose repos as they seem to have changed maintainers.
 
-## 2020-03-14
+### 2020-03-14
 
-### Other
+#### Other
 
 - Add github action for stale issues
 - Merge pull request #825 from alanyee/master
 
 Update vimrc
 
-## 2019-07-21
+### 2019-07-21
 
-### Other
+#### Other
 
 - Update vimrc
 
 Disable modelines as a security precaution
 
-## 2019-08-17
+### 2019-08-17
 
-### Other
+#### Other
 
 - Merge pull request #827 from vovinacci/fix-macvim-install
 
 Fix MacVim installation
 
-## 2019-08-13
+### 2019-08-13
 
-### Other
+#### Other
 
 - Fix MacVim installation
 
-## 2019-07-13
+### 2019-07-13
 
-### Other
+#### Other
 
 - Merge pull request #820 from ppries/2.9-compatibility
 
 Translate tmux -fg, -bg and -attr options into -style options
 
-## 2019-05-03
+### 2019-05-03
 
-### Other
+#### Other
 
 - Translate -fg, -bg and -attr options into -style options
 
-## 2019-07-12
+### 2019-07-12
 
-### Other
+#### Other
 
 - Merge pull request #824 from Jason-Cooke/patch-1
 
 docs: fix typo
 
-## 2019-07-10
+### 2019-07-10
 
-### Documentation
+#### Documentation
 
 - Fix typo
 
-## 2019-02-10
+### 2019-02-10
 
-### Other
+#### Other
 
 - Fix typo in README
 - Merge pull request #815 from richashworth/patch-1
@@ -2477,27 +2511,27 @@ Update README.md
 
 Fixed typo in README
 
-## 2019-02-05
+### 2019-02-05
 
-### Other
+#### Other
 
 - Merge pull request #813 from vovinacci/remove_brew_prune
 
 zsh: Remove deprecated 'brew prune' command from alias
 
-## 2019-02-04
+### 2019-02-04
 
-### Other
+#### Other
 
 - Remove deprecated 'brew prune' command
 
-## 2019-01-15
+### 2019-01-15
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix missing if detecting buffer fugitive type
 
-### Other
+#### Other
 
 - Merge pull request #812 from pablobender/fix-vim-fugitive
 
@@ -2506,43 +2540,43 @@ fix missing if detecting fugitive buffer type
 
 Replace call to deprecated fugitive function
 
-## 2019-01-14
+### 2019-01-14
 
-### Other
+#### Other
 
 - Replace call to deprecated function
 
-## 2018-05-27
+### 2018-05-27
 
-### Other
+#### Other
 
 - Merge pull request #796 from fizz/patch-1
 
 Update prompt_skwp_setup
 
-## 2018-05-15
+### 2018-05-15
 
-### Other
+#### Other
 
 - Update prompt_skwp_setup
 
-## 2018-03-20
+### 2018-03-20
 
-### Other
+#### Other
 
 - Merge pull request #789 from erickwilder/fix-macvim-install-warning
 
 fix(Rakefile) Remove --custom-icons flag to install macvim.
 
-## 2018-03-19
+### 2018-03-19
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix(Rakefile) Remove --custom-icons flag to install macvim.
 
-## 2018-03-17
+### 2018-03-17
 
-### Other
+#### Other
 
 - Merge pull request #787 from gonzedge/replace-seil-with-karabiner-elements
 
@@ -2556,25 +2590,25 @@ Replace Seil with Karabiner-Elements
 Update full screen language for iTerm/MacVim
 - Update full screen language for iTerm/MacVim
 
-## 2018-02-07
+### 2018-02-07
 
-### Other
+#### Other
 
 - Merge pull request #782 from nikolai-b/patch-1
 
 Update ,K in docs
 
-## 2018-02-05
+### 2018-02-05
 
-### Other
+#### Other
 
 - Update ,K in docs
 
 https://github.com/skwp/dotfiles/commit/78da69d421ba3af8f835fdb6aa6c0076154472a2
 
-## 2017-09-21
+### 2017-09-21
 
-### Other
+#### Other
 
 - Merge pull request #766 from padi/patch-1
 
@@ -2585,9 +2619,9 @@ Looks like they've changed the scale in macOS Sierrra. `KeyRepeat -int 0` seems 
 
 mathiasbynens/dotfiles#687
 
-## 2017-09-06
+### 2017-09-06
 
-### Other
+#### Other
 
 - Merge pull request #770 from alanyee/master
 
@@ -2596,9 +2630,9 @@ Update and rename osx to macos
 
 Rename .osx to .macos
 
-## 2017-09-05
+### 2017-09-05
 
-### Other
+#### Other
 
 - Update README.md
 
@@ -2606,23 +2640,23 @@ Further update from osx to macos
 - Update and rename osx_tools.md to macos_tools.md
 - Update and rename osx to macos
 
-## 2017-09-01
+### 2017-09-01
 
-### Other
+#### Other
 
 - Merge pull request #768 from jon-choi/master
 
 remove extra quotes
 
-## 2017-08-23
+### 2017-08-23
 
-### Other
+#### Other
 
 - Remove extra quotes
 
-## 2017-09-01
+### 2017-09-01
 
-### Other
+#### Other
 
 - Merge pull request #769 from alanyee/master
 
@@ -2632,47 +2666,47 @@ Update README.md
 -Made explicit HTTPS calls
 -Replace OS X with macOS
 
-## 2017-07-14
+### 2017-07-14
 
-### Other
+#### Other
 
 - Merge pull request #763 from jameszaghini/fix/install-hub-twice
 
 Fix: hub packaged listed for install twice
 - Hub packaged listed for install twice
 
-## 2017-07-03
+### 2017-07-03
 
-### Other
+#### Other
 
 - Merge pull request #757 from skwp/path-duplicates
 
 Prevent duplicate entries in $PATH. Fixes #690
 
-## 2017-06-06
+### 2017-06-06
 
-### Other
+#### Other
 
 - Run $PATH dedup command everytime
 
-## 2017-06-05
+### 2017-06-05
 
-### Other
+#### Other
 
 - Prevent duplicate entries in $PATH. Fixes #690
 
-## 2017-06-20
+### 2017-06-20
 
-### Other
+#### Other
 
 - Merge pull request #760 from skwp/docker
 
 Adding Docker support!
 - [Credits] Add docker support
 
-## 2017-06-06
+### 2017-06-06
 
-### Other
+#### Other
 
 - [Docker] Update README with Docker support
 - [Docker] Add initial docker files
@@ -2686,9 +2720,9 @@ triggering a fatal method not found error during installation.
 
 * fixed persistent undo
 
-## 2017-06-05
+### 2017-06-05
 
-### Other
+#### Other
 
 - Merge pull request #756 from skwp/yp/remove-node-path
 
@@ -2698,9 +2732,9 @@ Remove node path setting which may interfere with RVM. People can set this thems
 
 Enable mouse support for tmux 2.1+
 
-## 2017-05-30
+### 2017-05-30
 
-### Other
+#### Other
 
 - Properly enable mouse support for tmux 2.1+
 - Merge pull request #755 from skwp/revert-738-feature/ripgrep
@@ -2711,90 +2745,90 @@ Revert "Migrate from the silver searcher to ripgrep"
 
 Migrate from the silver searcher to ripgrep
 
-## 2017-05-23
+### 2017-05-23
 
-### Other
+#### Other
 
 - Fallback to ag if rg is not present
 
-## 2017-02-23
+### 2017-02-23
 
-### Other
+#### Other
 
 - Merge branch 'master' into feature/ripgrep
 
-## 2017-01-03
+### 2017-01-03
 
-### Other
+#### Other
 
 - Setup RipGrep for:grep
 
-## 2016-12-31
+### 2016-12-31
 
-### Other
+#### Other
 
 - Migrate from the silver searcher to ripgrep
 
-## 2017-05-23
+### 2017-05-23
 
-### Other
+#### Other
 
 - Merge pull request #728 from KristerV/patch-1
 
 Update README.md
 - Update README.md
 
-## 2016-09-22
+### 2016-09-22
 
-### Other
+#### Other
 
 - Update README.md
 
-## 2017-05-23
+### 2017-05-23
 
-### Other
+#### Other
 
 - Merge pull request #737 from casaper/brewu
 
 fix: removed obsolete --all flag from brew upgrade
 
-## 2016-12-30
+### 2016-12-30
 
-### Bug Fixes
+#### Bug Fixes
 
 - Removed obsolete --all flag from brew upgrade
 
-## 2017-05-23
+### 2017-05-23
 
-### Other
+#### Other
 
 - Merge pull request #734 from randaalex/patch-4
 
 Enable scroll shell output with mouse in tmux
 
-## 2016-11-18
+### 2016-11-18
 
-### Other
+#### Other
 
 - Enable scroll shell output with mouse in tmux
 
-## 2017-05-23
+### 2017-05-23
 
-### Other
+#### Other
 
 - Merge pull request #750 from stevenbarragan/feature/tmux-tab-folder-name
 
 Display forder name on tmux's window status
 
-## 2017-04-12
+### 2017-04-12
 
-### Other
+#### Other
 
 - Display forder name on tmux's window's tab
 
-## 2017-01-16
+### 2017-01-16
 
-### Other
+#### Other
 
 - Merge pull request #743 from skwp/yp/change-search-mapping
 
@@ -2803,106 +2837,106 @@ Remap K to ,k for search so you don't accidentally lock up vim
 
 People were complaining that "K" was too easy to hit by accident on a random char and search a large codebase.
 
-## 2017-01-04
+### 2017-01-04
 
-### Other
+#### Other
 
 - Add graphql/jsx/fzf
 
-## 2016-11-29
+### 2016-11-29
 
-### Other
+#### Other
 
 - Merge pull request #725 from lfilho/patch-2
 
 Switch to henrik/vim-indexed-search
 
-## 2016-09-13
+### 2016-09-13
 
-### Other
+#### Other
 
 - Switch to henrik/vim-indexed-search
 
-## 2016-11-29
+### 2016-11-29
 
-### Other
+#### Other
 
 - Merge pull request #726 from lfilho/patch-3
 
 Make .vundle files behave like vim files
 
-## 2016-09-13
+### 2016-09-13
 
-### Other
+#### Other
 
 - Make .vundle files behave like vim files
 
-## 2016-11-29
+### 2016-11-29
 
-### Other
+#### Other
 
 - Merge pull request #721 from prouty/patch-1
 
 Fix unclosed parenthesis; make phrasing clearer.
 
-## 2016-08-30
+### 2016-08-30
 
-### Other
+#### Other
 
 - Fix unclosed parenthesis; make phrasing clearer.
 
-## 2016-11-29
+### 2016-11-29
 
-### Other
+#### Other
 
 - Merge pull request #729 from lfilho/patch-4
 
 Remove duplicated mxw/vim-jsx plugin
 
-## 2016-09-23
+### 2016-09-23
 
-### Other
+#### Other
 
 - Remove duplicated mxw/vim-jsx plugin
 
-## 2016-11-08
+### 2016-11-08
 
-### Other
+#### Other
 
 - Better ctrlp matching algorithm
 
-## 2016-10-07
+### 2016-10-07
 
-### Other
+#### Other
 
 - ,jj to get to javascript files
 
-## 2016-08-24
+### 2016-08-24
 
-### Other
+#### Other
 
 - Add zzz alias for restarting zeus
 - Merge pull request #718 from lfilho/patch-1
 
 Change argtextobj to wellle/targets.vim
 
-## 2016-07-25
+### 2016-07-25
 
-### Other
+#### Other
 
 - Change argtextobj to wellle/targets.vim
 
-## 2016-08-24
+### 2016-08-24
 
-### Other
+#### Other
 
 - Merge pull request #720 from Slotos/revert-fix-that-broke-what-was-not-broken
 
 Revert ef2156144f726ef8328e7dc299cf8e0b6b459127
 
-## 2016-08-19
+### 2016-08-19
 
-### Other
+#### Other
 
 - Revert ef2156144f726ef8328e7dc299cf8e0b6b459127
 
@@ -2913,131 +2947,131 @@ In case of new-window and split-window
 
 This reverts a fix that broke what was not broken.
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Remove dead alias
 - Merge pull request #682 from blackxored/patch-1
 
 Use new syntax for smart pane navigation
 
-## 2016-01-01
+### 2016-01-01
 
-### Other
+#### Other
 
 - Use new syntax for smart pane navigation
 
 As recommended in original source. As opposed to failing with a message that the command returned 1 and losing access to everything on this screen, this will warn on the status bar if only one pane is present.
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Merge pull request #713 from randaalex/patch-3
 
 Add .tags and .tags1 to gitignore template
 
-## 2016-07-05
+### 2016-07-05
 
-### Other
+#### Other
 
 - Add .tags and .tags1 to gitignore template
 
 atom-ctags plugin generate .tags and .tags1
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Merge pull request #716 from yonilerner/patch-1
 
 Minor README formatting change
 
-## 2016-07-22
+### 2016-07-22
 
-### Other
+#### Other
 
 - Minor README formatting change
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Merge pull request #715 from suchov/patch-1
 
 remove bitdeli.com broken image
 
-## 2016-07-19
+### 2016-07-19
 
-### Other
+#### Other
 
 - Remove bitdeli.com broken image
 
 https://bitdeli.com/ - looks like they down, I don't know if it's just a long downtime, but looks like they are not supporting the site anymore.
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Merge pull request #677 from mjbamford/fix_tmux_key_bindings
 
 Fix iTerm key bindings broken in tmux 2.1
 
-## 2015-11-10
+### 2015-11-10
 
-### Other
+#### Other
 
 - Set tmux assume-paste-time to 0
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Merge pull request #656 from andreazevedo/patch-2
 
 Fix tmux.conf
 
-## 2015-08-24
+### 2015-08-24
 
-### Other
+#### Other
 
 - Fix tmux.conf
 
 Fix tmux "open new pane in current path" option.
 
-## 2016-07-23
+### 2016-07-23
 
-### Other
+#### Other
 
 - Merge pull request #707 from sonnius/master
 
 Added higlight to zoomed window
 
-## 2016-05-01
+### 2016-05-01
 
-### Other
+#### Other
 
 - Added higlight to zommed window
 
-## 2016-07-22
+### 2016-07-22
 
-### Other
+#### Other
 
 - Add node modules bin into default path
 - Default to eslint
 
-## 2016-06-15
+### 2016-06-15
 
-### Other
+#### Other
 
 - Merge pull request #711 from padi/patch-1
 
 Add vim shortcut: copy the relative path of a file
 
-## 2016-06-07
+### 2016-06-07
 
-### Other
+#### Other
 
 - Add vim shortcut: copy the relative path of a file
 
@@ -3045,21 +3079,21 @@ I've been using ,cf for some of the time, but sometimes I don't want the full pa
 - any command where relative path suffices (running tests, removing files)
 - the full path won't work if I'm using MacVim and the project is within vagrant cli
 
-## 2016-05-24
+### 2016-05-24
 
-### Other
+#### Other
 
 - Update README.md
 
-## 2016-05-12
+### 2016-05-12
 
-### Other
+#### Other
 
 - Remove grep current partial, doesn't work well
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Revert "Merge pull request #701 from yjlintw/upstream"
 
@@ -3069,30 +3103,30 @@ changes made to 1edab81c26e57a08b35ffc88108e09b6844e7dcd.
 
 Fixed GUI visual mode highlight color
 
-## 2016-03-29
+### 2016-03-29
 
-### Other
+#### Other
 
 - Fixed GUI visual mode highlight color
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Opens nerdtree to the root of your current project if not looking at a file
 - Merge pull request #699 from lfilho/editorconfig
 
 Add: Vim plugin: editorconfig
 
-## 2016-03-28
+### 2016-03-28
 
-### Other
+#### Other
 
 - Vim plugin: editor config
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Fix system override of vim install [Fix #686]
 - Update prezto
@@ -3100,185 +3134,185 @@ Add: Vim plugin: editorconfig
 
 Don't append already existing content to .zshrc on rake update
 
-## 2016-02-17
+### 2016-02-17
 
-### Other
+#### Other
 
 - Don't append already existing content to .zshrc on rake update
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Merge pull request #688 from jasonwbarnett/update-prezto-to-latest
 
 update prezto to latest
 
-## 2016-02-01
+### 2016-02-01
 
-### Other
+#### Other
 
 - Updated prezto to latest
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Merge pull request #700 from lfilho/clean-old-refs-up
 
 Remove old references to plugins
 
-## 2016-03-28
+### 2016-03-28
 
-### Other
+#### Other
 
 - TagBar and Conque orphan references
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Merge pull request #703 from lfilho/ghi-hub
 
 Install ghi and hub via brew
 
-## 2016-03-30
+### 2016-03-30
 
-### Other
+#### Other
 
 - Install ghi and hub via brew
 
-## 2016-04-28
+### 2016-04-28
 
-### Other
+#### Other
 
 - Merge pull request #705 from lfilho/new-git-zsh-aliases
 
 Add more git fetch aliases
 
-## 2016-04-07
+### 2016-04-07
 
-### Other
+#### Other
 
 - Add more git fetch aliases
 
 (cherry picked from commit dbbf3024a8af023178590be17ddf4ba6dc492918)
 
-## 2016-04-14
+### 2016-04-14
 
-### Other
+#### Other
 
 - Update README.md
 
-## 2016-02-11
+### 2016-02-11
 
-### Other
+#### Other
 
 - Set shell so that path to ctags is correct
 
-## 2016-01-29
+### 2016-01-29
 
-### Other
+#### Other
 
 - Treat ES6 extension files as javascript
 
-## 2016-01-20
+### 2016-01-20
 
-### Other
+#### Other
 
 - Add jsx bundle
 
-## 2015-11-01
+### 2015-11-01
 
-### Other
+#### Other
 
 - Remove zr alias conflicting with zeus rspec
 
-## 2015-10-27
+### 2015-10-27
 
-### Other
+#### Other
 
 - Fix zeus alias
 - Run tests using zeus with zl and zs
 - Add zeus aliases
 
-## 2015-10-21
+### 2015-10-21
 
-### Other
+#### Other
 
 - Merge pull request #653 from merty/patch-1
 
 Fixed a typo
 
-## 2015-08-22
+### 2015-08-22
 
-### Other
+#### Other
 
 - Fixed a typo
 
-## 2015-10-21
+### 2015-10-21
 
-### Other
+#### Other
 
 - Merge pull request #664 from stevenbarragan/feature/delete-merged-branches
 
 Add command to delete all already merged branches
 
-## 2015-09-23
+### 2015-09-23
 
-### Other
+#### Other
 
 - Add command to delete already merged branches
 
-## 2015-10-21
+### 2015-10-21
 
-### Other
+#### Other
 
 - Merge pull request #666 from chrisbutcher/patch-1
 
 Fix typo: "postres" -> "postgres"
 
-## 2015-10-01
+### 2015-10-01
 
-### Other
+#### Other
 
 - Fix typo: "postres" -> "postgres"
 
-## 2015-09-08
+### 2015-09-08
 
-### Other
+#### Other
 
 - Ctrl-x and Ctrl-z navigate the quickfix list
 
-## 2015-09-07
+### 2015-09-07
 
-### Other
+#### Other
 
 - Update ctrlp [Fix #645]
 
-## 2015-08-13
+### 2015-08-13
 
-### Other
+#### Other
 
 - Allow ts alias to use a specific VM_IP
 
-## 2015-08-12
+### 2015-08-12
 
-### Other
+#### Other
 
 - More secure alias for starting thin client on localhost only
 
-## 2015-07-30
+### 2015-07-30
 
-### Other
+#### Other
 
 - Merge pull request #643 from ldong/master
 
 Updated vimrc
 
-## 2015-07-27
+### 2015-07-27
 
-### Other
+#### Other
 
 - Updated vimrc
 
@@ -3291,241 +3325,241 @@ Changed to create `~/.vim/backups` directory for `persistent_undo` only once.
 
 install AND update vundles on rake update
 
-## 2015-01-07
+### 2015-01-07
 
-### Other
+#### Other
 
 - Install AND update vundles on rake update
 
-## 2015-07-27
+### 2015-07-27
 
-### Other
+#### Other
 
 - Merge pull request #616 from ethanmad/origin/brewu-patch
 
 Update `brewu` alias to use `upgrade --all` for future proofing
 
-## 2015-05-05
+### 2015-05-05
 
-### Other
+#### Other
 
 - Made --all a flag for `brew upgrade`
 
 & Removed flag from `brew update`
 
-## 2015-04-29
+### 2015-04-29
 
-### Other
+#### Other
 
 - Update 'brewu' alias to use 'update --all' for future proofing
 
-## 2015-07-27
+### 2015-07-27
 
-### Other
+#### Other
 
 - Merge pull request #623 from dcrec1/master
 
 add a description to the update Rake task
 
-## 2015-06-14
+### 2015-06-14
 
-### Other
+#### Other
 
 - Add a description to the update Rake task
 
 adding a description makes the task being listed when running `rake -T`
 
-## 2015-07-27
+### 2015-07-27
 
-### Other
+#### Other
 
 - Merge pull request #618 from ndelage/patch-1
 
 Add note about vim+lua+neocomplete+rvm segfault
 
-## 2015-05-04
+### 2015-05-04
 
-### Other
+#### Other
 
 - Add note about vim+lua+neocomplete+rvm segfault
 
-## 2015-07-27
+### 2015-07-27
 
-### Other
+#### Other
 
 - Add css/sass/less for ctags
 - Merge pull request #606 from MosheZada/global-zsh-reload
 
 Handle SIGHUP by reloading zshrc
 
-## 2015-02-27
+### 2015-02-27
 
-### Other
+#### Other
 
 - Handle SIGHUP by reloading zshrc
 
-## 2015-07-27
+### 2015-07-27
 
-### Other
+#### Other
 
 - Rename poorly named method in rakefile
 - Merge pull request #595 from blittle/master
 
 Change the NERDTreeFind keymap to not statically set the nerdtree window size
 
-## 2015-01-13
+### 2015-01-13
 
-### Other
+#### Other
 
 - Change the NERDTreeFind keymap to not statically set the nerdtree window size
 
 With this change users can now change the variable g:NERDTreeWinSize and have it applied
 to new instances of NERDTree created with the NERDTreeFind keymap ctrl-\
 
-## 2015-07-22
+### 2015-07-22
 
-### Other
+#### Other
 
 - Merge pull request #608 from mul14/master
 
 Make installation more faster
 
-## 2015-03-13
+### 2015-03-13
 
-### Other
+#### Other
 
 - Make installation more faster
 
 Clone only the latest history
 
-## 2015-07-22
+### 2015-07-22
 
-### Other
+#### Other
 
 - Merge pull request #604 from gitter-badger/gitter-badge
 
 Add a Gitter chat badge to README.md
 
-## 2015-02-16
+### 2015-02-16
 
-### Other
+#### Other
 
 - Added Gitter badge
 
-## 2015-07-22
+### 2015-07-22
 
-### Other
+#### Other
 
 - Merge pull request #598 from DNNX/patch-1
 
 Fix a typo in README
 
-## 2015-01-22
+### 2015-01-22
 
-### Other
+#### Other
 
 - Rename PCKeyboardHack to Seil
 
 And change the link accordingly.
 - Fix a typo in README
 
-## 2015-07-22
+### 2015-07-22
 
-### Other
+#### Other
 
 - Merge pull request #637 from katgironpe/master
 
 Use correct RSpec.vim repo
 
-## 2015-07-05
+### 2015-07-05
 
-### Other
+#### Other
 
 - Use correct RSpec.vim repo
 
-## 2015-07-22
+### 2015-07-22
 
-### Other
+#### Other
 
 - Merge pull request #633 from alex-wood/keymapping-enhancements
 
 Additional aliases
 
-## 2015-06-27
+### 2015-06-27
 
-### Other
+#### Other
 
 - Make numpad enter work
 - + misc helpful key mappings
 
-## 2015-07-22
+### 2015-07-22
 
-### Other
+#### Other
 
 - Merge pull request #639 from victormours/auto-indent-pasted-text
 
 Auto indent pasted text in vim
 
-## 2015-07-17
+### 2015-07-17
 
-### Other
+#### Other
 
 - Auto indent pasted text in vim
 
 '=' is to indent, '`]' is to do it until the end of the pasted text,
 and '<C-o>' brings the cursor back to the start of the pasted text.
 
-## 2015-06-23
+### 2015-06-23
 
-### Other
+#### Other
 
 - Fix shortcuts for deprecated Rails.vim commands
 
-## 2015-06-03
+### 2015-06-03
 
-### Other
+#### Other
 
 - Change Cmd-Space to Ctrl-Space for autocomplete
 
-## 2015-04-14
+### 2015-04-14
 
-### Other
+#### Other
 
 - This wasn't working and occasionally introduced problems in other areas
 
-## 2015-03-24
+### 2015-03-24
 
-### Other
+#### Other
 
 - Make syntastic play nice with RVM
 
-## 2015-01-08
+### 2015-01-08
 
-### Other
+#### Other
 
 - Merge pull request #593 from dsimmons/search-settings
 
 [Improvement] Search Settings
 - Moved .vimrc-level settings (pertaining to search) out of ./vim/settings/yadr-search.vim and into ./vimrc. Also removed unnecessary+problematic viminfo setting.
 
-## 2015-01-06
+### 2015-01-06
 
-### Other
+#### Other
 
 - Revert bundle syntax update that may have caused pain for upgraders [Fix #588]
 
-## 2015-01-05
+### 2015-01-05
 
-### Other
+#### Other
 
 - Merge pull request #587 from mlazarov/master
 
 Updating github raw userdata urls to githubusercontent.com
 - Updating github raw userdata urls to githubusercontent.com
 
-## 2015-01-04
+### 2015-01-04
 
-### Other
+#### Other
 
 - Switch out individual language packs for vim-polyglot [Fix #573]
 - Vundle syntax update [Fix #578]
@@ -3536,59 +3570,59 @@ Updating github raw userdata urls to githubusercontent.com
 
 fix error in linux font install
 
-## 2014-12-17
+### 2014-12-17
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix error in linux font install
 
-## 2015-01-04
+### 2015-01-04
 
-### Other
+#### Other
 
 - Merge pull request #581 from gerrywastaken/patch-1
 
 Make Easymotion keys visible
 
-## 2014-12-23
+### 2014-12-23
 
-### Other
+#### Other
 
 - Make Easymotion keys visible
 
 The current readme uses tag delimiters which results in part of the readme being hidden from the end user. It is also not obvious that the commas are keys and not just a break in the sentence. For this and other reasons I also wrapped all keys in the kdb tags were are specifically intended for this situation.
 
-## 2015-01-04
+### 2015-01-04
 
-### Other
+#### Other
 
 - Merge pull request #583 from dsimmons/refactor/dedupe-persistent-undo
 
 Remove redundant persistent-undo.vim
 
-## 2014-12-30
+### 2014-12-30
 
-### Other
+#### Other
 
 - Removed redundant persistent-undo.vim
 
-## 2015-01-04
+### 2015-01-04
 
-### Other
+#### Other
 
 - Merge pull request #584 from timstott/remove_duplicate_splits_mappings
 
 Remove duplicate window split mappings
 
-## 2014-12-31
+### 2014-12-31
 
-### Other
+#### Other
 
 - Remove duplicate window split mappings
 
-## 2015-01-04
+### 2015-01-04
 
-### Other
+#### Other
 
 - Merge pull request #585 from skwp/prezto-update
 
@@ -3598,100 +3632,100 @@ Update prezto
 - Removed reference to janus
 - Add base16 colorscheme as an option
 
-## 2014-12-27
+### 2014-12-27
 
-### Other
+#### Other
 
 - Merge pull request #582 from timstott/remove_stale_plugin_settings
 
 Remove orphan vim settings for LustyExplorer plugin
 - Remove orphan vim settings for LustyExplorer plugin
 
-## 2014-12-01
+### 2014-12-01
 
-### Other
+#### Other
 
 - Merge pull request #575 from jby/fix_tmux_conf_syntax
 
 Fixed tmux.conf syntax after PR #565
 - Fixed tmux.conf syntax
 
-## 2014-11-21
+### 2014-11-21
 
-### Other
+#### Other
 
 - Fix solarized easymotion in terminal vim
 - Merge pull request #562 from jby/new_lightline_settings
 
 Modified setings of lightline to match the README in the lightline project
 
-## 2014-11-11
+### 2014-11-11
 
-### Other
+#### Other
 
 - Modified setings of lightline to match the README in the lightline project Added indication of paste mode, added functions instead of code in call of components, added git branch glyph, added path to file being edited
 
-## 2014-11-21
+### 2014-11-21
 
-### Other
+#### Other
 
 - Merge pull request #570 from lfilho/fix-macvim-external-display
 
 Adding script to fix MacVim bug with external displays
 
-## 2014-11-20
+### 2014-11-20
 
-### Other
+#### Other
 
 - Adding shell script to fix MacVim bug with external displays
 
 (cherry picked from commit 479a0b5b714805218fa16ed91446d19bbebffcfd)
 
-## 2014-11-21
+### 2014-11-21
 
-### Other
+#### Other
 
 - Merge pull request #571 from lfilho/move-osx-bin
 
 Moving ./osx to ./bin/osx
 
-## 2014-11-20
+### 2014-11-20
 
-### Other
+#### Other
 
 - Moving ./osx to ./bin/osx
 
-## 2014-11-19
+### 2014-11-19
 
-### Other
+#### Other
 
 - Merge pull request #564 from timstott/update_documentation
 
 Update vim enhancements README with Lightline
 
-## 2014-11-11
+### 2014-11-11
 
-### Other
+#### Other
 
 - Update vim enhancements README with Lightline
 
-## 2014-11-19
+### 2014-11-19
 
-### Other
+#### Other
 
 - Merge pull request #565 from ianks/tmux-split
 
 Make tmux split exactly 50%
 
-## 2014-11-12
+### 2014-11-12
 
-### Other
+#### Other
 
 - Make tmux split exactly 50%
 
-## 2014-11-19
+### 2014-11-19
 
-### Other
+#### Other
 
 - Merge pull request #569 from adamenger/patch-1
 
@@ -3700,26 +3734,26 @@ Add :q to exit shell
 
 Adding :q to exit your shell
 
-## 2014-10-29
+### 2014-10-29
 
-### Other
+#### Other
 
 - Merge pull request #556 from stevenbarragan/update-multicursor-plugin
 
 Point vim-multiple-cursors to current owner
 - Point vim-multiple-cursors to current owner
 
-## 2014-10-25
+### 2014-10-25
 
-### Other
+#### Other
 
 - Merge pull request #551 from dsimmons/fix/nerdtree-keybinding
 
 [Fix] Keybinding conflict introduced as part of #526.
 
-## 2014-10-24
+### 2014-10-24
 
-### Other
+#### Other
 
 - Fixed keybinding conflict introduced as part of #526.
 - Merge pull request #549 from ianks/master
@@ -3731,36 +3765,36 @@ Remove vim/.vundles.local.bak from source control
 
 separate mac and linux vim keymaping
 
-## 2014-09-29
+### 2014-09-29
 
-### Other
+#### Other
 
 - Make more mappings use Alt + readme
 - Use alt for more mappings
 
-## 2014-07-17
+### 2014-07-17
 
-### Other
+#### Other
 
 - Add linux font install
 
-## 2014-07-16
+### 2014-07-16
 
-### Other
+#### Other
 
 - Separate mac and linux vim keymaping
 
-## 2014-10-24
+### 2014-10-24
 
-### Other
+#### Other
 
 - Merge pull request #546 from jeffwidman/patch-2
 
 Remove deprecations from gemrc
 
-## 2014-10-17
+### 2014-10-17
 
-### Other
+#### Other
 
 - Remove deprecations from gemrc
 
@@ -3770,112 +3804,112 @@ http://www.rubydoc.info/github/rubygems/rubygems/Gem/ConfigFile#bulk_threshold-i
 --no-ri --no-rdoc is deprecated, use --no-document
 Reference: http://guides.rubygems.org/command-reference/
 
-## 2014-10-24
+### 2014-10-24
 
-### Other
+#### Other
 
 - Merge pull request #547 from tmullen/update_homebrew_path
 
 Update to Homebrew app install path.
 
-## 2014-10-18
+### 2014-10-18
 
-### Other
+#### Other
 
 - Update to Homebrew app install path.
 
-## 2014-10-24
+### 2014-10-24
 
-### Other
+#### Other
 
 - Status bar shows even on one pane [Fix #538]
 - Merge pull request #545 from jeffwidman/patch-1
 
 Update gitignore vim settings
 
-## 2014-10-17
+### 2014-10-17
 
-### Other
+#### Other
 
 - Update gitignore vim settings
 
 Pulling in updates from Github's global vim gitignore file:  https://github.com/github/gitignore/blob/master/Global/vim.gitignore
 
-## 2014-10-24
+### 2014-10-24
 
-### Other
+#### Other
 
 - Merge pull request #511 from nikolai-b/git-config-fix
 
 remove outdated git option
 
-## 2014-07-17
+### 2014-07-17
 
-### Other
+#### Other
 
 - Remove outdated git option
 
-## 2014-10-24
+### 2014-10-24
 
-### Other
+#### Other
 
 - Merge pull request #548 from ianks/master
 
 Make ls/ll aliases linux friendly
 - Make ls/ll aliases linux friendly
 
-## 2014-10-21
+### 2014-10-21
 
-### Other
+#### Other
 
 - Update themes.md
 
-## 2014-10-08
+### 2014-10-08
 
-### Other
+#### Other
 
 - Gpsh now automatically sets up tracking for the current branch name
 
-## 2014-09-30
+### 2014-09-30
 
-### Other
+#### Other
 
 - Increase number of recent branches
 
-## 2014-09-28
+### 2014-09-28
 
-### Other
+#### Other
 
 - Merge pull request #532 from ianks/solarized-choice
 
 Allow user to not use solarized
 
-## 2014-09-22
+### 2014-09-22
 
-### Other
+#### Other
 
 - Allow user to not use solarized
 
-## 2014-09-28
+### 2014-09-28
 
-### Other
+#### Other
 
 - Merge pull request #533 from lfilho/patch-1
 
 Ignoring just "tags" is too generic
 
-## 2014-09-23
+### 2014-09-23
 
-### Other
+#### Other
 
 - Ignoring just "tags" is too generic
 
 My application had a folder named "tags" as part of its business rules and because of this it got ignored.
 I believe upadting this section according to the very link in the comment above should fix it. (not ignoring `tags/` folder).
 
-## 2014-09-28
+### 2014-09-28
 
-### Other
+#### Other
 
 - Merge pull request #536 from ianks/update-prezto
 
@@ -3885,9 +3919,9 @@ Update zprezto
 
 New windows from current pane path, easy reloading of Tmux
 
-## 2014-09-24
+### 2014-09-24
 
-### Other
+#### Other
 
 - Merge https://github.com/skwp/dotfiles
 
@@ -3895,103 +3929,103 @@ New windows from current pane path, easy reloading of Tmux
   Add aliases ('cls' and 'brewU')
   Make tmux pane resizing more natural
 
-## 2014-09-22
+### 2014-09-22
 
-### Other
+#### Other
 
 - Merge pull request #531 from ianks/master
 
 Add aliases ('cls' and 'brewU')
 - Add aliases ('cls' and 'brewU')
 
-## 2014-09-05
+### 2014-09-05
 
-### Other
+#### Other
 
 - Merge pull request #528 from ianks/resize-panes
 
 Make tmux pane resizing more natural
 
-## 2014-08-25
+### 2014-08-25
 
-### Other
+#### Other
 
 - Make tmux pane resizing more natural
 
-## 2014-09-24
+### 2014-09-24
 
-### Other
+#### Other
 
 - Start tmux window in /Users/ianks/.yadr
 
-## 2014-09-02
+### 2014-09-02
 
-### Other
+#### Other
 
 - Merge pull request #529 from gringocl/fix-indentation
 
 Fix indentation
 
-## 2014-08-27
+### 2014-08-27
 
-### Other
+#### Other
 
 - Fix indentation
 
-## 2014-08-19
+### 2014-08-19
 
-### Other
+#### Other
 
 - Merge pull request #525 from gonzedge/spring-rails-console-alias
 
 Add `src` alias for `spring rails c`
 
-## 2014-08-16
+### 2014-08-16
 
-### Other
+#### Other
 
 - Add src alias for 'spring rails c'.
 
-## 2014-08-19
+### 2014-08-19
 
-### Other
+#### Other
 
 - Merge pull request #527 from storypixel/patch-1
 
 Update vimrc
 - Update vimrc
 
-## 2014-08-15
+### 2014-08-15
 
-### Other
+#### Other
 
 - Better colors
 
-## 2014-08-07
+### 2014-08-07
 
-### Other
+#### Other
 
 - Aliases for rails db migrations
 - Remove jasmine.vim which was conflicting with javascript-libraries-syntax.vim
 - \sp for specify {} blocks
 
-## 2014-07-21
+### 2014-07-21
 
-### Other
+#### Other
 
 - Get rid of heavy omni complete - seems to hang on some machines
 
-## 2014-07-04
+### 2014-07-04
 
-### Other
+#### Other
 
 - Merge pull request #506 from padi/patch-1
 
 0_path.zsh reinserts .yadr directories twice in $PATH when in tmux
 
-## 2014-06-19
+### 2014-06-19
 
-### Other
+#### Other
 
 - 0_path.zsh reinserts .yadr paths twice in tmux
 
@@ -4008,25 +4042,25 @@ sky@nimbus ~ $ echo $PATH
 /Users/sky/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/sky/.rbenv/shims:/Users/sky/.yadr/bin:/Users/sky/.yadr/bin/yadr:/Users/sky/.yadr/bin:/Users/sky/.yadr/bin/yadr
 ```
 
-## 2014-07-04
+### 2014-07-04
 
-### Other
+#### Other
 
 - Merge pull request #497 from Sumukh/master
 
 Added the Agnoster prompt as an option.
 - Add the agnoster prompt, with customizations
 
-## 2014-07-03
+### 2014-07-03
 
-### Other
+#### Other
 
 - Explain how to deal with unsolarized terminals in docs
 - If you don't use a solarized terminal, you have to set g:yadr_using_unsolarized_terminal now [Ref #487]
 
-## 2014-06-24
+### 2014-06-24
 
-### Other
+#### Other
 
 - Update docs
 - Ability to disable solarized enhancements [Fix #487]
@@ -4034,43 +4068,43 @@ Added the Agnoster prompt as an option.
 
 fix colors in console vim on iterm2
 
-## 2014-06-13
+### 2014-06-13
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix dark mode in vim+iterm2
 
-## 2014-06-19
+### 2014-06-19
 
-### Other
+#### Other
 
 - Git recent branches alias
 
-## 2014-06-17
+### 2014-06-17
 
-### Other
+#### Other
 
 - Don't override ctrl-b for buffer search. we have ,b [Fix #484]
 - Add hpr hub pull-request alias
 - Switch to lokaltog easymotion instead of skwp fork [Fix #447]
 
-## 2014-06-11
+### 2014-06-11
 
-### Other
+#### Other
 
 - Merge pull request #496 from Vijar/master
 
 zsh aliases to show/hide hidden files in Finder
 
-## 2014-05-30
+### 2014-05-30
 
-### Other
+#### Other
 
 - Zsh aliases to show/hide hidden files in Finder
 
-## 2014-06-11
+### 2014-06-11
 
-### Other
+#### Other
 
 - Merge pull request #502 from keikun17/master
 
@@ -4081,23 +4115,23 @@ zsh aliases to show/hide hidden files in Finder
 Fix in vim settings
 - [FIX] fixed an error in vim settings
 
-## 2014-06-10
+### 2014-06-10
 
-### Other
+#### Other
 
 - Merge pull request #498 from blackxored/ctrlp-unlet
 
 Unset ctrlp_user_command prior to redefinition.
 
-## 2014-06-04
+### 2014-06-04
 
-### Other
+#### Other
 
 - Unset ctrlp_user_command prior to redefinition
 
-## 2014-06-10
+### 2014-06-10
 
-### Other
+#### Other
 
 - Merge pull request #499 from giorni/iterm-plist
 
@@ -4108,45 +4142,45 @@ Mavericks cache preferences and overwrites defaults from cache, not
 installing it properly. Reading it after install updates the cache with
 new values.
 
-## 2014-05-29
+### 2014-05-29
 
-### Other
+#### Other
 
 - Merge pull request #485 from maletor/neocomplete_settings
 
 neocomplete: update settings
 
-## 2014-05-13
+### 2014-05-13
 
-### Other
+#### Other
 
 - Update settings
 
-## 2014-05-02
+### 2014-05-02
 
-### Other
+#### Other
 
 - Remove tagbar settings [Fix #464]
 
-## 2014-04-30
+### 2014-04-30
 
-### Other
+#### Other
 
 - Merge pull request #474 from lfilho/patch-1
 
 Fix Ag functions
 
-## 2014-04-29
+### 2014-04-29
 
-### Other
+#### Other
 
 - Fix Ag functions
 
 I believe this is what is intended? It was not working for me like it was...
 
-## 2014-04-28
+### 2014-04-28
 
-### Other
+#### Other
 
 - Remove duplicated plugin
 - Decided disabling arrow keys was hurting new people too much
@@ -4157,9 +4191,9 @@ Update vim-improvements.vundle
 
 This removes a redundant Bundle that already appears on line 9. This was throwing warnings for me whenever I started macvim.
 
-## 2014-04-10
+### 2014-04-10
 
-### Other
+#### Other
 
 - Merge pull request #465 from vdmgolub/snipmate_docs_update
 
@@ -4172,40 +4206,40 @@ obsolete now.
 
 Scrooloose snippets were replaced with honza/vim-snippets.
 
-## 2014-04-01
+### 2014-04-01
 
-### Other
+#### Other
 
 - Merge pull request #463 from alex-frost/master
 
 change string comparison
 - Change string comparison
 
-## 2014-03-29
+### 2014-03-29
 
-### Other
+#### Other
 
 - Merge pull request #462 from fayimora/patch-4
 
 Return git branches to lightline statusbar
 
-## 2014-03-28
+### 2014-03-28
 
-### Other
+#### Other
 
 - Add fugitive to lightline statusbar
 
-## 2014-03-14
+### 2014-03-14
 
-### Other
+#### Other
 
 - Improve easymotion highlighting to be yellow not an ugly red block
 - Always install zshrc; prevents problems if prezto dir exists but zshrc is missing [Fix #452]
 - Update README.md
 
-## 2014-03-07
+### 2014-03-07
 
-### Other
+#### Other
 
 - Update README.md
 - Merge pull request #455 from Vijar/master
@@ -4213,15 +4247,15 @@ Return git branches to lightline statusbar
 Fixed wrong setup for easyvim
 - Fixed wrong setup for easyvim
 
-## 2014-03-02
+### 2014-03-02
 
-### Other
+#### Other
 
 - Don't mess with bundler if it's not available
 
-## 2014-02-16
+### 2014-02-16
 
-### Other
+#### Other
 
 - Removed tagbar; not using
 - Remove mvim binary; ships with homebrew's macvim [Fix #450]
@@ -4231,16 +4265,16 @@ Fixed wrong setup for easyvim
 
 Add bundle parallel config
 
-## 2014-02-03
+### 2014-02-03
 
-### Other
+#### Other
 
 - Remove verbosity in core calculation
 - Add bundle parallel config
 
-## 2014-02-16
+### 2014-02-16
 
-### Other
+#### Other
 
 - More readme cleanup
 - Readme cleanup
@@ -4248,119 +4282,119 @@ Add bundle parallel config
 - Rename git changelog => git simple to avoid conflict with git-extras
 - Replace GitGrep with Ag
 
-## 2014-02-01
+### 2014-02-01
 
-### Other
+#### Other
 
 - Hit Space and type two letters to quickly jump somewhere
 - Removed mapping; doesn't exactly work. You can still use Ctrl-R when in :ex mode
 - Added Ctrl-R, reverse history search for :commands
 
-## 2014-01-28
+### 2014-01-28
 
-### Other
+#### Other
 
 - Fix docs
 
-## 2014-01-25
+### 2014-01-25
 
-### Other
+#### Other
 
 - Make 0 go to first character, making it easier to work with indented languages
 - Remove ;; semicolon mapping. Messes with regular semicolon usage (find next char)
 
-## 2014-01-20
+### 2014-01-20
 
-### Other
+#### Other
 
 - Fix up settings for neocomplete
 - Merge pull request #424 from maletor/neocomplete
 
 Initial crack at neocomplete
 
-## 2013-12-19
+### 2013-12-19
 
-### Other
+#### Other
 
 - Replace with neocomplete
 - Initial crack at neocomplete
 
-## 2014-01-20
+### 2014-01-20
 
-### Other
+#### Other
 
 - Merge pull request #439 from tku90/zprezto-key-binding-fix
 
 fixed zpreztorc key-bindings
 
-## 2014-01-15
+### 2014-01-15
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fixed zpreztorc key-bindings
 
-## 2014-01-06
+### 2014-01-06
 
-### Other
+#### Other
 
 - Change to Lightline instead of Airline [Fix #418]
 
-## 2014-01-05
+### 2014-01-05
 
-### Other
+#### Other
 
 - Added support for js highlighting for jquery/other frameworks
 - Merge pull request #421 from irrationalfab/investigate.vim
 
 Any interest in investigate.vim?
 
-## 2013-12-17
+### 2013-12-17
 
-### Other
+#### Other
 
 - Add investigate.vim
 
-## 2014-01-05
+### 2014-01-05
 
-### Other
+#### Other
 
 - Merge pull request #436 from grossjonas/master
 
 Fix syntastic deprecation
 - Fix syntastic deprecation
 
-## 2014-01-01
+### 2014-01-01
 
-### Other
+#### Other
 
 - Merge pull request #428 from lfilho/patch-1
 
 Make gf create the file if not existent
 
-## 2013-12-21
+### 2013-12-21
 
-### Other
+#### Other
 
 - Removing outdated comment
 - Make gf create the file if not existent
 
-## 2014-01-01
+### 2014-01-01
 
-### Other
+#### Other
 
 - Merge pull request #425 from sagmor/fix-homebrew-install
 
 Update Homebrew install script
 
-## 2013-12-19
+### 2013-12-19
 
-### Other
+#### Other
 
 - Update Homebrew install script
 
-## 2013-12-30
+### 2013-12-30
 
-### Other
+#### Other
 
 - Merge pull request #432 from bobek/guifont-gtk
 
@@ -4369,15 +4403,15 @@ Load correct fonts under GTK
 - Go back to using neocomplcache; prematurely upgraded
 - Install good version of MacVim with lua support
 
-## 2013-12-28
+### 2013-12-28
 
-### Other
+#### Other
 
 - Reorg bundles, add vim-vinegar and vim-grubox alternate colorscheme
 
-## 2013-12-19
+### 2013-12-19
 
-### Other
+#### Other
 
 - Merge pull request #426 from sagmor/add-zsh-to-standard-shells
 
@@ -4386,9 +4420,9 @@ Add zsh to standard shell list
 
 `/usr/local/bin/zsh` has to be at `/private/etc/shells` in order to `chsh` to it
 
-## 2013-12-18
+### 2013-12-18
 
-### Other
+#### Other
 
 - Merge pull request #423 from maletor/patch-5
 
@@ -4402,9 +4436,9 @@ same files. For example, in one workspace you want a class and its spec,
 and in another tab you want to see that class in context with another
 collaborator. This allows you to open the window multiple times.
 
-## 2013-12-16
+### 2013-12-16
 
-### Other
+#### Other
 
 - Fall back to /bin/zsh if /usr/local/bin/zsh doesn't exist
 - Fix path to zsh to use the homebrew installed newer version
@@ -4422,9 +4456,9 @@ Safely add reattach-to-user-namespace
 - Readme updates
 - Removed conque settings, no longer used
 
-## 2013-12-15
+### 2013-12-15
 
-### Other
+#### Other
 
 - Fixed multicursor mapping to Ctrl-m so that it actually works
 - Don't try to clone vundle if we already have it [Fix #415]
@@ -4434,15 +4468,15 @@ Safely add reattach-to-user-namespace
 
 Use ag as ctrlp's search command
 
-## 2013-12-08
+### 2013-12-08
 
-### Other
+#### Other
 
 - Use ag as ctrlp's search command
 
-## 2013-12-15
+### 2013-12-15
 
-### Other
+#### Other
 
 - Swap specky for lighter weight rspec.vim for highlighting
 - Removed vim-ruby-conque, causes shell connection leaks and other issues
@@ -4450,9 +4484,9 @@ Use ag as ctrlp's search command
 - Splitting up docs
 - Removed unused submodule
 
-## 2013-12-14
+### 2013-12-14
 
-### Other
+#### Other
 
 - Readme cleanups
 - Merge pull request #416 from fayimora/patch-3
@@ -4460,32 +4494,32 @@ Use ag as ctrlp's search command
 Update README.md
 - Update README.md
 
-## 2013-12-11
+### 2013-12-11
 
-### Other
+#### Other
 
 - Merge pull request #412 from treppo/solarized-vim
 
 Remove setting 256 colors for solarized on terminal vim
 - Remove setting 256 colors for solarized on terminal vim
 
-## 2013-12-05
+### 2013-12-05
 
-### Other
+#### Other
 
 - Readme cleanup
 
-## 2013-12-02
+### 2013-12-02
 
-### Other
+#### Other
 
 - Merge pull request #409 from c0nspiracy/fix-coderay-customization
 
 Fix token color customization for CodeRay >= 1.1.0
 
-## 2013-11-29
+### 2013-11-29
 
-### Other
+#### Other
 
 - Compare version numbers properly
 - Fix token color customization for CodeRay >= 1.1.0
@@ -4493,50 +4527,50 @@ Fix token color customization for CodeRay >= 1.1.0
 See: https://github.com/rubychan/coderay/commit/e2acec3ef141725d2fc264e56d1aa18e838c6acf
      https://github.com/pry/pry/issues/1012#issuecomment-29213405
 
-## 2013-12-02
+### 2013-12-02
 
-### Other
+#### Other
 
 - Revert "Merge pull request #410 from treppo/master"
 
 This reverts commit 6e344fef4e00914d3a2e8955f48cf5ca7479a945, reversing
 changes made to 4c88ca6e45dfb9b2bd80f1ff3eebd84e7b5d885d.
 
-## 2013-11-29
+### 2013-11-29
 
-### Other
+#### Other
 
 - Merge pull request #410 from treppo/master
 
 Remove setting 256 colors for solarized on terminal vim
 - Remove setting 256 colors for solarized on terminal vim
 
-## 2013-11-25
+### 2013-11-25
 
-### Other
+#### Other
 
 - Merge pull request #394 from treppo/master
 
 Allow users to overwrite the tmux configuration
 
-## 2013-11-15
+### 2013-11-15
 
-### Other
+#### Other
 
 - Allow local configuration for tmux
 - Merge pull request #405 from jby/add_tmux_vim_syntax
 
 Added syntax highlightning for tmux.conf
 
-## 2013-11-13
+### 2013-11-13
 
-### Other
+#### Other
 
 - Added syntax highlightning for tmux.conf
 
-## 2013-11-15
+### 2013-11-15
 
-### Other
+#### Other
 
 - Merge pull request #406 from jeremyclement/master
 
@@ -4545,102 +4579,102 @@ Resolve error "E518: Unknown option: undofile" for vim < 7.3
 - Make :Gsesarch way faster - requires to :BundleUpdate to get latest skwp/greplace.vim
 - Spring rspec alias
 
-### Testing
+#### Testing
 
 - Test presence of persistent_undo module before use it. (prevent error msg for versions<703)
 
-## 2013-11-05
+### 2013-11-05
 
-### Other
+#### Other
 
 - Merge pull request #402 from imobach/master
 
 Enable tmux to send-prefix using C-a a
 
-## 2013-10-29
+### 2013-10-29
 
-### Other
+#### Other
 
 - Enable tmux to send-prefix using C-a a
 
 * It's useful when you have a tmux session into another tmux session
   (ie. via ssh).
 
-## 2013-11-04
+### 2013-11-04
 
-### Other
+#### Other
 
 - Go back to using skwp prompt for rvm-prompt integration
 - Changed reference to prezto master
 - Fix gitconfig colors causing iTerm with solarized to show diffs incorrectly
 - Add puppet module
 
-## 2013-10-30
+### 2013-10-30
 
-### Other
+#### Other
 
 - Removed sparkup from readme [Fix #403]
 
-## 2013-10-21
+### 2013-10-21
 
-### Other
+#### Other
 
 - Silence vim-session dialogs
 - Move vim settings out of plugins to ensure they all get correctly loaded after everything else [Fix #373]
 - Update README.md
 
-## 2013-10-09
+### 2013-10-09
 
-### Other
+#### Other
 
 - Git recent-branches - tell me what i worked on recently
 
-## 2013-09-18
+### 2013-09-18
 
-### Other
+#### Other
 
 - Git snapshot: take a snapshot and stash it without messing with your working tree
 
-## 2013-09-03
+### 2013-09-03
 
-### Other
+#### Other
 
 - Merge pull request #387 from maletor/patch-2
 
 Update ctrlp.vim
 
-## 2013-08-29
+### 2013-08-29
 
-### Other
+#### Other
 
 - Update ctrlp.vim
 
-## 2013-09-03
+### 2013-09-03
 
-### Other
+#### Other
 
 - Merge pull request #390 from jby/fix_vim-sparkup
 
 Removed bundle kogakure/vim-sparkup.git
 - Removed bundle kogakure/vim-sparkup.git since the repo doesn't exist on github anymore
 
-## 2013-08-17
+### 2013-08-17
 
-### Other
+#### Other
 
 - Merge pull request #379 from kris-luminar/bugfix_cant_find_pane
 
 fix can't find pane bug
 
-## 2013-08-09
+### 2013-08-09
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fix can't find pane bug
 
-## 2013-08-05
+### 2013-08-05
 
-### Other
+#### Other
 
 - Merge pull request #377 from phillipalexander/patch-1
 
@@ -4650,9 +4684,9 @@ Remove redundant recommended OSX tool 'autojump'  from README.md
 autojump 'j' functionality is matched/replaced by fasd 'z' command (installed and enabled as a prezto submodule by default). Instead of typing `j [dirspec]`, you simply type `z [dirspec]`.
 - Don't use powerline fonts in airline [Fix #367] maybe
 
-## 2013-08-04
+### 2013-08-04
 
-### Other
+#### Other
 
 - Added vim-session; :SaveSession and :OpenSession [Fix #322]
 - Upgraded hub command
@@ -4661,29 +4695,29 @@ autojump 'j' functionality is matched/replaced by fasd 'z' command (installed an
 - Added multicursor - hit Ctrl-n to select multiple things and then i/c them! [Fix #368]
 - Switch to steeef_simplified prompt which doesn't seem to be problematic like the skwp prompt with newer prezto installs [Fix #272 #286]
 
-## 2013-08-02
+### 2013-08-02
 
-### Other
+#### Other
 
 - Added simplified steeef theme without newlines
 
-## 2013-08-01
+### 2013-08-01
 
-### Other
+#### Other
 
 - Merge pull request #364 from lfilho/yankring-Y-behaviour
 
 Fixing Y behaviour
 
-## 2013-06-16
+### 2013-06-16
 
-### Other
+#### Other
 
 - Fixing Y behaviour
 
-## 2013-08-01
+### 2013-08-01
 
-### Other
+#### Other
 
 - Remove duplicate vundles (thanks fayimora)
 - Merge pull request #375 from DanielWright/patch-1
@@ -4694,49 +4728,49 @@ Updates RubyGem sources
 `gems.rubyforge.org` and `gems.github.com` have been replaced with `rubygems.org` as RubyGems sources
 - Swapped out powerline for airline [Fix #372]
 
-## 2013-07-16
+### 2013-07-16
 
-### Other
+#### Other
 
 - Merge pull request #369 from bridgeutopia/master
 
 Remove duplicate of vim-slim on vundles
 
-## 2013-07-13
+### 2013-07-13
 
-### Other
+#### Other
 
 - Remove duplicate of vim-slim on vundles
 
-## 2013-06-21
+### 2013-06-21
 
-### Other
+#### Other
 
 - Remove lusty juggler / not using
 
-## 2013-06-19
+### 2013-06-19
 
-### Other
+#### Other
 
 - Add :ChangeHashSyntax for ruby 1.8->1.9 hashes
 
-## 2013-06-12
+### 2013-06-12
 
-### Other
+#### Other
 
 - Merge pull request #357 from nandalopes/fix-311-dirty-worktree
 
 [Fix #311] zsh/presto gets "modified" after clean install
 
-## 2013-06-06
+### 2013-06-06
 
-### Other
+#### Other
 
 - [Fix #311] zsh/presto gets "modified" after clean install
 
-## 2013-06-12
+### 2013-06-12
 
-### Other
+#### Other
 
 - Merge pull request #359 from victormours/adding-brew-update
 
@@ -4744,37 +4778,37 @@ Adding brew update to Rakefile
 - Follow presentation style
 - Adding brew update
 
-## 2013-06-04
+### 2013-06-04
 
-### Other
+#### Other
 
 - Revert "Fix: dirty worktree after running 'rake install'"
 
 This reverts commit 50fdb9109f43ad8185b9cc2a36cc94db953d3b0c.
 
-## 2013-06-03
+### 2013-06-03
 
-### Other
+#### Other
 
 - Highlight easymotion targets
 
-## 2013-05-29
+### 2013-05-29
 
-### Other
+#### Other
 
 - Merge pull request #337 from treppo/master
 
 Add multiple selection
 
-## 2013-05-22
+### 2013-05-22
 
-### Other
+#### Other
 
 - Add the multicursor plugin
 
-## 2013-05-29
+### 2013-05-29
 
-### Other
+#### Other
 
 - Merge pull request #344 from nandalopes/fix-dirty-worktree
 
@@ -4785,34 +4819,34 @@ Fix: dirty worktree after running 'rake install'
 Fix: [Zsh] load ssh-agent module
 - Update prezto
 
-## 2013-05-27
+### 2013-05-27
 
-### Other
+#### Other
 
 - Merge pull request #342 from MarioRicalde/patch-3
 
 Adds some missing links to the Readme
 - Adds some missing links to the Readme
 
-## 2013-05-21
+### 2013-05-21
 
-### Other
+#### Other
 
 - Merge pull request #336 from MarioRicalde/patch-2
 
 Removes Swipe back/forth feature for Chrome
 
-## 2013-05-20
+### 2013-05-20
 
-### Other
+#### Other
 
 - Removes Swipe back/forth feature for Chrome
 
 Swiping on Chrome my accident is a pain when using the inspector, this command will disable it only for Google Chrome.
 
-## 2013-05-16
+### 2013-05-16
 
-### Other
+#### Other
 
 - Fix previous commit
 
@@ -4821,9 +4855,9 @@ Added the wrong file by mistake
 
 Fixes #328
 
-## 2013-05-14
+### 2013-05-14
 
-### Other
+#### Other
 
 - Revert "Wrapping search. Perl regex while searching. Center search matches and jumps"
 
@@ -4832,23 +4866,23 @@ instance variables.
 
 This reverts commit 88dd66685af2ba85970d5100bb5c1a3135213228.
 
-## 2013-05-13
+### 2013-05-13
 
-### Other
+#### Other
 
 - Merge pull request #332 from lfilho/better-search-and-jump
 
 Some more improvements to searching and jumping
 
-## 2013-05-09
+### 2013-05-09
 
-### Other
+#### Other
 
 - Wrapping search. Perl regex while searching. Center search matches and jumps
 
-## 2013-05-13
+### 2013-05-13
 
-### Other
+#### Other
 
 - Map ,t to CtrlP standard (not mixed) [Fix #333]
 - Revert "Externalizing color scheme configs outside plugin folder" -
@@ -4856,24 +4890,24 @@ screwed up command line vim
 
 This reverts commit 20d884b842e60b66bb35ecebcc9c3478707dbcf3.
 
-## 2013-05-09
+### 2013-05-09
 
-### Other
+#### Other
 
 - Merge pull request #315 from lfilho/custom-themes
 
 Custom themes / colorschemes
 
-## 2013-04-30
+### 2013-04-30
 
-### Other
+#### Other
 
 - Externalizing color scheme configs outside plugin folder
 (cherry picked from commit ac952b3d3ffbe8ea33460e98a37eb6ce67a871c1)
 
-## 2013-05-09
+### 2013-05-09
 
-### Other
+#### Other
 
 - Merge pull request #331 from kuroir/patch-1
 
@@ -4882,9 +4916,9 @@ Disable Expose ( Mission Control ) Animations
 
 They suck when using multiple displays, no need to have them.
 
-## 2013-05-03
+### 2013-05-03
 
-### Other
+#### Other
 
 - Merge pull request #324 from lfilho/cleaning-vundle
 
@@ -4894,9 +4928,9 @@ Cleaning vundles.vim
 Conflicts:
 	vim/vundles.vim
 
-## 2013-05-02
+### 2013-05-02
 
-### Other
+#### Other
 
 - Removed gitgutter - causing slowness
 - Merge pull request #320 from lfilho/organizing-vundles
@@ -4907,16 +4941,16 @@ Re-organizing vundle file
 
 Fix: make vim command be os-specific, readme fix
 
-## 2013-05-01
+### 2013-05-01
 
-### Other
+#### Other
 
 - Fix: make vim command be os-specific, readme fix
 (cherry picked from commit c58e8d3c3cc923639241e2e5edc59846fb5ba810)
 
-## 2013-05-02
+### 2013-05-02
 
-### Other
+#### Other
 
 - Merge pull request #319 from lfilho/next-textobject-update
 
@@ -4927,9 +4961,9 @@ Updating next-textobject to Steve Losh's new version
 Adding 3 more and organizing text objects vundles
 - Adding 3 more and organizing text objects vundles
 
-## 2013-05-01
+### 2013-05-01
 
-### Other
+#### Other
 
 - Merge pull request #316 from nandalopes/sfix_readme
 
@@ -4946,17 +4980,17 @@ indenting.
 
 This reverts commit 72ff8f33db0f6b3ec37f8012d1979184c1751ff8.
 
-## 2013-04-30
+### 2013-04-30
 
-### Other
+#### Other
 
 - Merge pull request #292 from skwp/vundles_local
 
 Add .vundles.local to allow per-installation plugin customization
 
-## 2013-04-09
+### 2013-04-09
 
-### Other
+#### Other
 
 - Add .vundles.local to allow per-installation plugin customization
 
@@ -4966,92 +5000,92 @@ vundles.vim
 
 Fixes #275
 
-## 2013-04-30
+### 2013-04-30
 
-### Other
+#### Other
 
 - Merge pull request #303 from lfilho/ack2ag
 
 Switching from Ack to Ag
 
-## 2013-04-25
+### 2013-04-25
 
-### Other
+#### Other
 
 - Switching from Ack to Ag
 
-## 2013-04-30
+### 2013-04-30
 
-### Other
+#### Other
 
 - Merge pull request #313 from lfilho/faster-git-compl
 
 Adding hack to make git completion faster for local stuff
 
-## 2013-04-29
+### 2013-04-29
 
-### Other
+#### Other
 
 - Adding hack to make git completion faster for local stuff
 
-## 2013-04-25
+### 2013-04-25
 
-### Other
+#### Other
 
 - Merge pull request #308 from jravetch/patch-1
 
 Remove old reference to tab navigation
 
-## 2013-04-23
+### 2013-04-23
 
-### Other
+#### Other
 
 - Remove old reference to tab navigation
 - Merge pull request #304 from petRUShka/load-ssh-agent
 
 Fix: [Zsh] load ssh-agent module
 
-## 2013-04-18
+### 2013-04-18
 
-### Other
+#### Other
 
 - [Zsh] load ssh-agent module
 
-## 2013-04-17
+### 2013-04-17
 
-### Other
+#### Other
 
 - Merge pull request #301 from lfilho/insensitive-search
 
 Externalizing and improving search configuration
 - Externalizing and improving search configuration
 
-## 2013-04-16
+### 2013-04-16
 
-### Other
+#### Other
 
 - Revert numbers.vim causing relative numbering issue
 
-## 2013-04-15
+### 2013-04-15
 
-### Other
+#### Other
 
 - Disable automatic switch of line numbers
 
 Fixes #296
 
-## 2013-04-10
+### 2013-04-10
 
-### Other
+#### Other
 
 - Updated pry readme to reference jazz_hands gem
 - Update plugin mgmt help on README.md
 
 We now have a working yadr vim-delete-plugin
 
-## 2013-04-09
+### 2013-04-09
 
-### Other
+#### Other
 
 - Add numbers.vim to vundles.list
 
@@ -5067,47 +5101,47 @@ The tree buffer makes it easy to drill down through the directories of
 your git repository, but it’s not obvious how you could go up a level to
 the parent directory. This new mappings ".." helps.
 
-## 2013-04-08
+### 2013-04-08
 
-### Other
+#### Other
 
 - Merge pull request #285 from lfilho/improved-semicolon-insertion
 
 Improved semicolon insertion
 
-## 2013-04-06
+### 2013-04-06
 
-### Other
+#### Other
 
 - Improving semicolon insertion at the end of the line
 
-## 2013-04-08
+### 2013-04-08
 
-### Other
+#### Other
 
 - Merge pull request #287 from lfilho/visual-star-search
 
 Adding visual star search vundle
 
-## 2013-04-06
+### 2013-04-06
 
-### Other
+#### Other
 
 - Fixing typo in the readme
 - Updating the readme with the visual star search plugin
 - Adding visual star search vundle
 
-## 2013-04-08
+### 2013-04-08
 
-### Other
+#### Other
 
 - Merge pull request #289 from skwp/visual_sel_aft_indent
 
 Change indent/unindent behaviour in visual mode
 
-## 2013-04-07
+### 2013-04-07
 
-### Other
+#### Other
 
 - Change indent/unindent behaviour in visual mode
 
@@ -5117,17 +5151,17 @@ indent multiple times.
 
 This remap fixes the problem.
 
-## 2013-04-08
+### 2013-04-08
 
-### Other
+#### Other
 
 - Merge pull request #288 from skwp/easy_install
 
 Change installation script
 
-## 2013-04-07
+### 2013-04-07
 
-### Other
+#### Other
 
 - Change installation script
 
@@ -5138,17 +5172,17 @@ and invoked in a single line.
 The script takes a parameter "ask" if the use prefers to control
 which modules of yadr are installed.
 
-## 2013-04-08
+### 2013-04-08
 
-### Other
+#### Other
 
 - Merge pull request #290 from skwp/iterm2_solarized_autoinstall
 
 Add autoinstall of Solarized iTerm2 themes
 
-## 2013-04-07
+### 2013-04-07
 
-### Other
+#### Other
 
 - Add solarized theme to console vim
 - Add autoinstall of Solarized iTerm2 themes
@@ -5161,18 +5195,18 @@ It's an interactive procedure that requires selection by the user.
 
 Fixes #278
 
-## 2013-04-04
+### 2013-04-04
 
-### Other
+#### Other
 
 - Merge pull request #283 from jby/snippet-fix
 
 Replaced honza/snipmate-snippets with honza/vim-snippets
 - Replaced honza/snipmate-snippets with honza/vim-snippets since it seem upstream changed name
 
-## 2013-04-02
+### 2013-04-02
 
-### Other
+#### Other
 
 - Fix a bug that was causing .vim.after to be removed after update
 
@@ -5186,9 +5220,9 @@ persist between updates.
 
 Fixes #225
 
-## 2013-04-01
+### 2013-04-01
 
-### Other
+#### Other
 
 - Revert "Add support for sourcing the right rvm env on bufenter"
 
@@ -5198,9 +5232,9 @@ This reverts commit 2521763858432cec5a4ecbfa19786c5bf0234a18.
 
 Add support for automatically sourcing the right rvm env
 
-## 2013-03-30
+### 2013-03-30
 
-### Other
+#### Other
 
 - Add support for sourcing the right rvm env on bufenter
 
@@ -5215,26 +5249,26 @@ project's directory.
 Using the command :Rvm will source the right GEM_HOME
 so that :Bedit [gem] is able to look in the right place.
 
-## 2013-04-01
+### 2013-04-01
 
-### Other
+#### Other
 
 - Merge pull request #274 from duhanebel/update_readme
 
 Remove csapprox from the README
 
-## 2013-03-30
+### 2013-03-30
 
-### Other
+#### Other
 
 - Remove csapprox from the README
 
 csapprox has been removed from the list of default vundles so it
 shouldn't be listed on the README anymore
 
-## 2013-03-29
+### 2013-03-29
 
-### Other
+#### Other
 
 - Fix setting of Gsearch to silver searcher ag
 - Remove bogus bundle
@@ -5265,9 +5299,9 @@ shouldn't be listed on the README anymore
 Conflicts:
 	.gitmodules
 
-## 2013-03-25
+### 2013-03-25
 
-### Other
+#### Other
 
 - Remove "press a key to continue" before vundle_install
 - Fix a bug preventing the correct update of vim
@@ -5275,9 +5309,9 @@ Conflicts:
 Somehow I forgot to execute "install" after the vundle migration
 on the "update" task
 
-## 2013-03-21
+### 2013-03-21
 
-### Other
+#### Other
 
 - Change duhanebel's forked repos to originals
 
@@ -5285,9 +5319,9 @@ Both powerline and syntastic on the default vundles.vim were
 pointing to my own forks, which are not needed for the main repo.
 - Fix a typo on the Rakefile
 
-## 2013-03-20
+### 2013-03-20
 
-### Other
+#### Other
 
 - Fix a bug that was preventing a clean install
 
@@ -5295,9 +5329,9 @@ The installation of the plugin only happened during an update
 because the code that checks out the vundle plugin was in the
 wrong place.
 
-## 2013-03-17
+### 2013-03-17
 
-### Other
+#### Other
 
 - Change rake file to reuse methods in vundle.rb
 
@@ -5314,9 +5348,9 @@ yadr-vim-list-plugin do what they're supposed to.
 
 yadr-vim-add-plugin now supports adding vundle plugins
 
-## 2013-03-16
+### 2013-03-16
 
-### Other
+#### Other
 
 - Update Rakefile to manage pathogen-to-vundle upgrade
 
@@ -5346,43 +5380,43 @@ the bundle directory as everything is done through the :Bundle
 command
 - Remove all vim submodules
 
-## 2013-03-29
+### 2013-03-29
 
-### Other
+#### Other
 
 - Use silver searcher for lightning fast :Gsearch
 
-## 2013-03-24
+### 2013-03-24
 
-### Other
+#### Other
 
 - Merge pull request #270 from darylrobbins/master
 
 User Git Config
 - Updated README to describe new user Git configuration.
 
-## 2013-03-23
+### 2013-03-23
 
-### Other
+#### Other
 
 - Added support for git user configuration. Gitconfig will now include the configuration from ~/.gitconfig.user, if it exists. The include is done at the end of gitconfig, so that it can override any of the default values.
 
-## 2013-03-22
+### 2013-03-22
 
-### Other
+#### Other
 
 - Merge pull request #269 from petRUShka/master
 
 Add vim-plugin for opening files like this `vim Rakefile:110`
 - [VIM] added file-line plugin. Allows to open file and move to certain line like this vim Rakefile:110
 
-## 2013-03-21
+### 2013-03-21
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fixes #268
 
-### Other
+#### Other
 
 - Merge pull request #266 from duhanebel/install_link_fix
 
@@ -5413,9 +5447,9 @@ different version from the one shipped with OS X
 
 Fixes #264
 
-## 2013-03-14
+### 2013-03-14
 
-### Other
+#### Other
 
 - Merge pull request #259 from duhanebel/iterm_solarized
 
@@ -5432,9 +5466,9 @@ of these two themes only if OS == OSX. The user will still have
 to set the themes for his/her current profile manually (but that's
 explained at the end of the installation process).
 
-## 2013-03-08
+### 2013-03-08
 
-### Other
+#### Other
 
 - Revert "Added ,mm to switch to mailer while in view"
 
@@ -5443,45 +5477,45 @@ This reverts commit 44a2cd79d09aea86c464d4880d5fdfe8b378d7ce.
 - Added ,mm to switch to mailer while in view
 - Updated subprojects
 
-## 2013-03-07
+### 2013-03-07
 
-### Other
+#### Other
 
 - Merge pull request #250 from kmees/issue_249
 
 Renamed vim/plugion/settings/fugitive.git to vim/plugin/settings/fugitiv...
 
-## 2013-02-28
+### 2013-02-28
 
-### Other
+#### Other
 
 - Renamed vim/plugion/settings/fugitive.git to vim/plugin/settings/fugitive.vim. Fixes issue #249
 
-## 2013-03-07
+### 2013-03-07
 
-### Other
+#### Other
 
 - Removed unused plugin ruby_focused_unit_test
 
-## 2013-02-27
+### 2013-02-27
 
-### Other
+#### Other
 
 - Readme cleanup
 - Removed unused / not working ,,f ,,F aliases
 
-## 2013-02-26
+### 2013-02-26
 
-### Other
+#### Other
 
 - Merge pull request #247 from irrationalfab/vim-gitgutter
 
 Add gitgutter
 - Add gitgutter
 
-## 2013-02-21
+### 2013-02-21
 
-### Other
+#### Other
 
 - Remove gitgutter; causes errors
 - Upgrade plugins
@@ -5491,25 +5525,25 @@ Added vim-gitgutter, which shows git diff in the gutter
 - Added vim-gitgutter, which shows git diff in the gutter
 - Upgrade plugins
 
-## 2013-02-16
+### 2013-02-16
 
-### Other
+#### Other
 
 - Remove arpeggio; unused
 - Improved sass colors
 
-## 2013-02-06
+### 2013-02-06
 
-### Other
+#### Other
 
 - Vim plugins and prezto updated
 - Merge pull request #243 from gonzedge/submodules-init
 
 Remove unused submodules directories.
 
-## 2013-02-05
+### 2013-02-05
 
-### Other
+#### Other
 
 - Remove unused submodules directories.
 
@@ -5527,9 +5561,9 @@ This was introduced by 3d60f721dd53e7f5414d11004c749784efc74f64
 which removed the 'mattn/zencoding-vim' and 'skwp/vim-indexed-search'
 submodules from the `.gitmodules`.
 
-## 2013-02-04
+### 2013-02-04
 
-### Other
+#### Other
 
 - Revert "Add quickfixsigns module - shows which lines changed"
 
@@ -5538,36 +5572,36 @@ This reverts commit ae8946dbb2b45c6086b0d7615e10fd8656a7d4d6.
 
 Skip homebrew install if it's already in the path
 
-## 2013-01-26
+### 2013-01-26
 
-### Other
+#### Other
 
 - Follow code style.
 - Install homebrew only if it's not in the path already.
 
-## 2013-01-05
+### 2013-01-05
 
-### Other
+#### Other
 
 - Do not install brew
 
-## 2013-02-04
+### 2013-02-04
 
-### Other
+#### Other
 
 - Merge pull request #237 from rafaelregis/aliases_cleanup
 
 Aliases cleanup
 
-## 2013-01-18
+### 2013-01-18
 
-### Other
+#### Other
 
 - Delete yuv alias, as asked by the comment.
 
-## 2013-01-17
+### 2013-01-17
 
-### Other
+#### Other
 
 - Use vim instead of vi.
 
@@ -5577,51 +5611,51 @@ Aliases cleanup
 - cd ..; cd ../..; cd ../../..; cd ../../../.. are aliased by
   default on zsh to ..; ...; ....; ..... respectively.
 
-## 2013-02-04
+### 2013-02-04
 
-### Other
+#### Other
 
 - Merge pull request #239 from lfilho/master
 
 Removing duplicated vim plugins
 
-## 2013-01-24
+### 2013-01-24
 
-### Other
+#### Other
 
 - Removing duplicated vim plugins
 
-## 2013-02-04
+### 2013-02-04
 
-### Other
+#### Other
 
 - Merge pull request #242 from szajbus/skwp
 
 updated vim nerdtree tabs plugin
 
-## 2013-01-27
+### 2013-01-27
 
-### Other
+#### Other
 
 - Updated vim nerdtree tabs plugin
 
-## 2013-01-23
+### 2013-01-23
 
-### Other
+#### Other
 
 - Add quickfixsigns module - shows which lines changed
 
-## 2013-01-17
+### 2013-01-17
 
-### Other
+#### Other
 
 - Merge pull request #235 from rafaelregis/fix_vim_alias
 
 Fixed vim alias.
 
-## 2013-01-10
+### 2013-01-10
 
-### Other
+#### Other
 
 - Fixed vim alias.
 
@@ -5634,18 +5668,18 @@ Updated vim-slim submodule.
 - Added ,gt html tidy command
 - Color improvement
 
-## 2013-01-07
+### 2013-01-07
 
-### Other
+#### Other
 
 - Merge pull request #231 from andyattebery/master
 
 Removed vim-slim submodule
 - Removed vim-slim submodule
 
-## 2013-01-06
+### 2013-01-06
 
-### Other
+#### Other
 
 - Merge pull request #230 from treppo/patch-1
 
@@ -5654,45 +5688,45 @@ Configure Macvim as the standard git mergetool
 
 Why use something else than Macvim with fugitive.vim as a mergetool?
 
-## 2013-01-02
+### 2013-01-02
 
-### Other
+#### Other
 
 - Merge pull request #228 from alikaragoz/master
 
 Fix issue to take into account the ASK environnement variable
 
-## 2012-12-26
+### 2012-12-26
 
-### Other
+#### Other
 
 - Fixed issue where the ASK environnement variable..
 
 was not taken into account when doing a ASK=true rake install
 
-## 2012-12-10
+### 2012-12-10
 
-### Other
+#### Other
 
 - Fix cmd-j and cmd-k navigate by function bindings
 
-## 2012-12-01
+### 2012-12-01
 
-### Other
+#### Other
 
 - Merge pull request #220 from lukeorland/vim-jade-url
 
 change vim-jade submodule URL from git:// to https://
 
-## 2012-11-28
+### 2012-11-28
 
-### Other
+#### Other
 
 - Change vim-jade submodule URL from git:// to https://
 
-## 2012-12-01
+### 2012-12-01
 
-### Other
+#### Other
 
 - Merge pull request #223 from jasonwbarnett/added-license
 
@@ -5700,30 +5734,30 @@ added LICENSE
 - Copy and pasted too much from wikipedia
 - Added LICENSE
 
-## 2012-11-30
+### 2012-11-30
 
-### Other
+#### Other
 
 - Removed esc-l and esc-. bindings messing with vim in zsh
 
-## 2012-11-28
+### 2012-11-28
 
-### Other
+#### Other
 
 - Removed zoomwin - messes with syntax highlighting
 - Added hub command for github interaction
 - Rbf abbreviation for rspec before block
 - Better sass colors
 
-## 2012-11-26
+### 2012-11-26
 
-### Other
+#### Other
 
 - Automatically use zshell
 
-## 2012-11-20
+### 2012-11-20
 
-### Other
+#### Other
 
 - Ensure EDITOR/VISUAL vars set to vim [Fix #217]
 - Better colors, readme update
@@ -5732,15 +5766,15 @@ added LICENSE
 This plugin was causing issues with numerous other plugins
 including the ctrl-shift-e expansion of html and ConqueTerm
 
-## 2012-11-17
+### 2012-11-17
 
-### Other
+#### Other
 
 - Improve colors in normal vi [Fix #216]
 
-## 2012-11-16
+### 2012-11-16
 
-### Other
+#### Other
 
 - Cl! abbreviation for logging, and ;; for closing javascript lines
 - Undo zm mapping which conflicts with folding. Jump to method now Cmd-Shift-M
@@ -5751,9 +5785,9 @@ including the ctrl-shift-e expansion of html and ConqueTerm
 - Font improvement: Inconsolata XL
 - Bundles for better javascript highlighting and tag highlighting
 
-## 2012-11-13
+### 2012-11-13
 
-### Other
+#### Other
 
 - Bring back keybindings to enable vim mode and ctrl-R [Fix #212]
 
@@ -5767,45 +5801,45 @@ This reverts commit 686e8d706fedb667c2b905564b79d7daec7e0e96.
 Added `vim/spell` to gitignore.
 - Added `vim/spell` to gitignore.
 
-## 2012-11-12
+### 2012-11-12
 
-### Other
+#### Other
 
 - Added tmux support [Fix #190]
 - Fix pointer to PCKeyboardHack [Fix #200]
 
-## 2012-11-10
+### 2012-11-10
 
-### Other
+#### Other
 
 - Merge pull request #206 from kylewest/kylewest-prezto-theme
 
 kylewest theme
 
-## 2012-11-06
+### 2012-11-06
 
-### Other
+#### Other
 
 - Cleanup RPROMPT
 - Kylewest theme
 
-## 2012-11-10
+### 2012-11-10
 
-### Other
+#### Other
 
 - Merge pull request #207 from kylewest/skwp-theme-cleanup
 
 refactor skwp theme in the "prezto" style
 
-## 2012-11-06
+### 2012-11-06
 
-### Refactoring
+#### Refactoring
 
 - Refactor skwp theme in the "prezto" style
 
-## 2012-11-10
+### 2012-11-10
 
-### Other
+#### Other
 
 - Upgrade vim plugins
 - Enable vi mode in the prompt
@@ -5819,20 +5853,20 @@ refactor skwp theme in the "prezto" style
 - Enable all syntax highlighters
 - Update to latest zpreztorc from prezto repository
 
-### Refactoring
+#### Refactoring
 
 - Refactor skwp theme in the "prezto" style
 
-## 2012-11-09
+### 2012-11-09
 
-### Other
+#### Other
 
 - A few new git aliases
 - Add ragtag plugin - Ctrl-x,/ to close html tags
 
-## 2012-11-06
+### 2012-11-06
 
-### Other
+#### Other
 
 - Merge pull request #204 from tUrG0n/master
 
@@ -5841,9 +5875,9 @@ Added jade support
 - Removed vim-jade
 - Added vim-jade plugin
 
-## 2012-10-25
+### 2012-10-25
 
-### Other
+#### Other
 
 - Go back to emacs binding - it broke Ctrl-C
 - Disable bell [Fix #199]
@@ -5851,9 +5885,9 @@ Added jade support
 - Simplified installation: no more questions. It overwrites stuff and leaves backups by default. [Fix #197, #175]
 - Ship custom zpreztorc with syntax highlight, history substring search [Fix #191]
 
-## 2012-10-24
+### 2012-10-24
 
-### Other
+#### Other
 
 - Zeus and rspec aliases
 - Stash aliases
@@ -5861,9 +5895,9 @@ Added jade support
 
 support rbenv version in skwp prompt
 
-## 2012-10-23
+### 2012-10-23
 
-### Other
+#### Other
 
 - Ask rbenv for current version instead of reading rbenv/version file
 - Support rbenv version in skwp prompt
@@ -5871,43 +5905,43 @@ support rbenv version in skwp prompt
 
 Update chrome/Custom.css
 
-## 2012-10-20
+### 2012-10-20
 
-### Other
+#### Other
 
 - Update chrome/Custom.css
 
-## 2012-10-19
+### 2012-10-19
 
-### Other
+#### Other
 
 - Updated plugins
 - Don't clobber zprezto files if they exist [CLose #172]
 
-## 2012-10-18
+### 2012-10-18
 
-### Other
+#### Other
 
 - Update plugins, replace ShowMarks (again)
 
-## 2012-10-16
+### 2012-10-16
 
-### Other
+#### Other
 
 - Moved defunkt module
 - Added ignore dirty statements
 
-## 2012-10-14
+### 2012-10-14
 
-### Other
+#### Other
 
 - Added mail index rebuild script
 
 from: http://apple.stackexchange.com/questions/40258/mail-app-5-1-is-unusually-slow
 
-## 2012-10-12
+### 2012-10-12
 
-### Other
+#### Other
 
 - A little cleaner under linux
 
@@ -5915,15 +5949,15 @@ I'm not explicitly supporting linux, but a few minor changes
 make YADR useable for server administration.
 - Removed bogus symlink
 
-## 2012-10-10
+### 2012-10-10
 
-### Other
+#### Other
 
 - Fix installation (upgrade was working ok)
 
-## 2012-10-09
+### 2012-10-09
 
-### Other
+#### Other
 
 - Github flavored markdown support
 - Added ,,F to do same as ,,f in a vertical split
@@ -5940,53 +5974,53 @@ totally flopped when it came to ruby bang methods. This function
 handles methods! and method.invocations! to find bang versions
 of methods.
 
-## 2012-10-08
+### 2012-10-08
 
-### Other
+#### Other
 
 - Ignore whitespace in git diffs; a few aliases
 
-## 2012-10-04
+### 2012-10-04
 
-### Other
+#### Other
 
 - Merge pull request #176 from brotbert/linux-no-homebrew-and-font-install
 
 don't try to install homebrew and fonts on linux-based systems
 - Don't try to install homebrew and fonts on linux-based systems
 
-## 2012-10-03
+### 2012-10-03
 
-### Other
+#### Other
 
 - Added bundler rvm support
 
 See http://robots.thoughtbot.com/post/15346721484/use-bundlers-binstubs
 - When opening nerdtree wtih C-\ ensure consistent sizing
 
-## 2012-10-02
+### 2012-10-02
 
-### Other
+#### Other
 
 - Added  outer ruby block functionality
 
-## 2012-10-01
+### 2012-10-01
 
-### Other
+#### Other
 
 - Added ghi github issues command line interface
 
-## 2012-09-28
+### 2012-09-28
 
-### Other
+#### Other
 
 - Simplify install: Move font, homebrew installation into rake installer
 - Updated to latest vim-powerline
 - Override rm alias so that it doesn't prompt every time
 
-## 2012-09-27
+### 2012-09-27
 
-### Other
+#### Other
 
 - Clean up location of ~/.yadr
 - Ensure prezto and other submodules are correctly installed recursive [Close #170]
@@ -6004,9 +6038,9 @@ Added support for slim syntax
 - Switch prezto to point to master [#167]
 - Automatically load ~/.secrets [Close #166]
 
-## 2012-09-26
+### 2012-09-26
 
-### Other
+#### Other
 
 - Added abolish.vim for camelcase/underscore toggling and others
 - Switch between running rspec1 and rspec2 with `:Rspec1` and `:Rspec2`
@@ -6019,74 +6053,74 @@ We no longer pollute yadr or prezto directories with custom code!
 - Latest fasd
 - Prezto support! Make sure you run rake:install
 
-## 2012-09-06
+### 2012-09-06
 
-### Other
+#### Other
 
 - Update prezto submodule
 
-## 2012-08-10
+### 2012-08-10
 
-### Other
+#### Other
 
 - Set correct PDIR location in zshenv
 - Moved to experimental Prezto branch
 
-## 2012-08-09
+### 2012-08-09
 
-### Other
+#### Other
 
 - Add simple Prezto installation
 - Add Prezto submodule
 - Remove zsh/prezto custom directory in favor of submodule
 - Swap all references of oh-my-zsh to Prezto
 
-## 2012-09-26
+### 2012-09-26
 
-### Other
+#### Other
 
 - Added NrrwRgn plugin
 
-## 2012-09-19
+### 2012-09-19
 
-### Other
+#### Other
 
 - Latest versions of vim plugins
 
-## 2012-09-18
+### 2012-09-18
 
-### Other
+#### Other
 
 - Better javascript parsing libraries
 - Updated to latest version of vim-ruby-conque
 
-## 2012-09-14
+### 2012-09-14
 
-### Other
+#### Other
 
 - Hardcode location of .yadr
 
 Occasionally it is slow on the find command. This code has no reason to be.
 
-## 2012-09-13
+### 2012-09-13
 
-### Other
+#### Other
 
 - Merge pull request #161 from tUrG0n/patch-3
 
 Always show powerline even with one window open.
 - Fixed bug in #160
 
-## 2012-09-11
+### 2012-09-11
 
-### Other
+#### Other
 
 - Added  for html preview in Safari
 - Improve color of grep to yellow
 
-## 2012-08-22
+### 2012-08-22
 
-### Other
+#### Other
 
 - Merge pull request #141 from corroded/relative_vim_overrides
 
@@ -6094,28 +6128,28 @@ Uses vim/after directory instead of root for custom vimrc.after
 - Added vimrc.after to gitignore
 - Updated README
 
-## 2012-08-21
+### 2012-08-21
 
-### Other
+#### Other
 
 - Added original implementation for janus overrides
 - Uses vim/after directory instead of root for custom vimrc.after
 
-## 2012-08-10
+### 2012-08-10
 
-### Other
+#### Other
 
 - Remove git.zsh, it is not useful [Close #135]
 
-## 2012-08-09
+### 2012-08-09
 
-### Other
+#### Other
 
 - Handle systems without rvm [Close #130]
 
-## 2012-08-08
+### 2012-08-08
 
-### Other
+#### Other
 
 - Updated reference to prezto (omz sorin)
 - Enabling theme changes when using prezto through zsh before
@@ -6133,21 +6167,21 @@ Update link to @sorin-ionescu Oh My Zsh
 
 Oh My Zsh fork now renamed to Prezto
 
-## 2012-07-26
+### 2012-07-26
 
-### Other
+#### Other
 
 - Ctags file for better parsing of ruby,js
 
-## 2012-07-21
+### 2012-07-21
 
-### Other
+#### Other
 
 - Remove bogus unmap
 
-## 2012-07-20
+### 2012-07-20
 
-### Other
+#### Other
 
 - Resolve #122 unmap yankring @ in after file.
 
@@ -6155,56 +6189,56 @@ Oh My Zsh fork now renamed to Prezto
 loaded. Moved nunmap @ to `vim/after/plugin/yankring.vim` because
 it is loaded after the plugin is finished loading.
 
-## 2012-07-19
+### 2012-07-19
 
-### Other
+#### Other
 
 - Upgraded plugins
 
-## 2012-07-16
+### 2012-07-16
 
-### Other
+#### Other
 
 - Added SearchComplete tab completion when searching with /
 
-## 2012-07-10
+### 2012-07-10
 
-### Other
+#### Other
 
 - Marky the markdownifier
 - Don't explicitly load plugins [Close #118]
 - Change ,bf mapping conflicting with buffer list ,b
 - Add back Rails2-compatible console alias 'co'
 
-## 2012-06-23
+### 2012-06-23
 
-### Other
+#### Other
 
 - Merge pull request #115 from bastnic/patch-2
 
 Handle homebrew sbin executables
 
-## 2012-06-18
+### 2012-06-18
 
-### Other
+#### Other
 
 - Handle homebrew sbin executables
 
-## 2012-06-23
+### 2012-06-23
 
-### Other
-
-- Fixing omodload: no such module: alias issue (#111)
-
-## 2012-06-20
-
-### Other
+#### Other
 
 - Fixing omodload: no such module: alias issue (#111)
 
-## 2012-06-22
+### 2012-06-20
 
-### Other
+#### Other
+
+- Fixing omodload: no such module: alias issue (#111)
+
+### 2012-06-22
+
+#### Other
 
 - Remove duplication in readme
 - Added ,bf mapping to add before { } block
@@ -6212,25 +6246,25 @@ Handle homebrew sbin executables
 - Restore YankRing plugin to functionality
 - Gcp git cherry pick alias
 
-## 2012-06-14
+### 2012-06-14
 
-### Other
+#### Other
 
 - Merge pull request #112 from mplatts/patch-1
 
 Rails console alias updated for Rails 3
 - Rails console alias updated for Rails 3
 
-## 2012-06-11
+### 2012-06-11
 
-### Other
+#### Other
 
 - Make ,qc also close conques
 - Never nuke a NERDTree using Q
 
-## 2012-06-08
+### 2012-06-08
 
-### Other
+#### Other
 
 - Changed default ,t binding do use CtrlP mixed mode
 
@@ -6238,9 +6272,9 @@ The mixed mode is more intelligent, searching buffers, MRU, and
 the general file list. It gives you more of what you want, and
 less of what you don't :)
 
-## 2012-06-07
+### 2012-06-07
 
-### Other
+#### Other
 
 - Make ctrlp play nice with vim-ruby-conque by closing its window
 - Fix install/submodule update problem with skwp-vim-powerline [Close #105]
@@ -6250,22 +6284,22 @@ Updated submodules to latestk
 - Made conque and gitgrep play nice with each other by killing each other's windows to prevent sizing problems
 - ,vv and ,cc to open view and controller in rails
 
-## 2012-06-02
+### 2012-06-02
 
-### Other
+#### Other
 
 - Auto create undodir [Close #103]
 
-## 2012-05-31
+### 2012-05-31
 
-### Other
+#### Other
 
 - Upgraded all plugins to most recent
 - Added some rake aliases
 
-## 2012-05-30
+### 2012-05-30
 
-### Other
+#### Other
 
 - Fix errors if pry-nav is unavailable
 - Merged spec finder and conque spec runner into one plugin
@@ -6273,17 +6307,17 @@ Updated submodules to latestk
 - Upgraded spec-finder
 - Updated visual select mode to retain syntax highlighting
 
-## 2012-05-26
+### 2012-05-26
 
-### Other
+#### Other
 
 - Merge pull request #106 from n0nick/master
 
 Adding webapi-vim.
 
-## 2012-05-23
+### 2012-05-23
 
-### Other
+#### Other
 
 - Adding webapi-vim.
 
@@ -6294,33 +6328,33 @@ See https://github.com/mattn/webapi-vim for details.
 Gist.vim requirements note: http://git.io/pwMo9A#requirements
 - Fix evil submodule code introduced in 3525561
 
-## 2012-05-22
+### 2012-05-22
 
-### Other
+#### Other
 
 - Merge pull request #102 from irrationalfab/master
 
 Enable spell checking for git commits.
 
-## 2012-05-15
+### 2012-05-15
 
-### Other
+#### Other
 
 - Enable spell checking for git commits.
 
 Source: http://stackoverflow.com/questions/1691060/vim-set-spell-in-file-git-commit-editmsg
 
-## 2012-05-22
+### 2012-05-22
 
-### Other
+#### Other
 
 - Merge pull request #104 from n0nick/master
 
 Adding vim-less bundle.
 
-## 2012-05-20
+### 2012-05-20
 
-### Other
+#### Other
 
 - Adding vim-less bundle.
 
@@ -6328,63 +6362,63 @@ This vim bundle adds syntax highlighting, indenting and
 autocompletion for the dynamic stylesheet language LESS.
 See https://github.com/groenewege/vim-less for details.
 
-## 2012-05-19
+### 2012-05-19
 
-### Other
+#### Other
 
 - Added information about pry-nav for ruby debugging
 
-## 2012-05-18
+### 2012-05-18
 
-### Other
+#### Other
 
 - Added editrc/inputrc for vimification of mysql/irb command line tools
 
-## 2012-05-15
+### 2012-05-15
 
-### Other
+#### Other
 
 - Switch to @skwp fork of EasyMotion for vimperator style two character targets
 - Added Cmd-), Cmd-] and etc for modifying content inside surrounds
 - Add common abbreviations
 
-## 2012-05-10
+### 2012-05-10
 
-### Other
+#### Other
 
 - More vim surround shortcuts ,} ,] ,) ,' etc
 
-## 2012-05-08
+### 2012-05-08
 
-### Other
+#### Other
 
 - ,# and ," for wrapping words in ruby interpolation or quotes
 - Added rake.vim, like rails.vim but for any project with a rakefile
 
-## 2012-05-03
+### 2012-05-03
 
-### Other
+#### Other
 
 - Added vim-bundler with :Bopen to browse bundled gem code
 - Added ,m and ,M jump-to-method(tag) via CtrlP
 
-## 2012-05-02
+### 2012-05-02
 
-### Other
+#### Other
 
 - Updated plugins
 
-## 2012-04-27
+### 2012-04-27
 
-### Other
+#### Other
 
 - Moved spec opener to externalized plugin
 - Added ,ocf for opening changed files (stolen from @garybernhardt)
 - Updated readme with new instructions for OMZ
 
-## 2012-04-26
+### 2012-04-26
 
-### Other
+#### Other
 
 - Added `Ctrl-s` to open spec for any file you're looking at
 
@@ -6392,18 +6426,18 @@ Similar to rails.vim's :A and :AV command, except it knows
 about fast_spec. Could be expanded in the future to add more
 spec paths.
 
-## 2012-04-24
+### 2012-04-24
 
-### Other
+#### Other
 
 - Added ctrl-a and ctrl-e end and beginning of line bindings [Close #94]
 - Upgraded vim plugins
 - Added `,Cmd-R` to rerun last conque commend (re-exec spec)
 - Updated vim-ruby-conque not to warn on spec/rspec missing [Close #92]
 
-## 2012-04-23
+### 2012-04-23
 
-### Other
+#### Other
 
 - Merge pull request #91 from msaffitz/master
 
@@ -6424,26 +6458,26 @@ old robby one to ~/.oh-my-zsh.robby or similar, so you can toggle
 back and forth through renames, or symlinks.
 - Moved rvm configuration to separate zsh snippet to keep zshrc clean
 
-## 2012-04-20
+### 2012-04-20
 
-### Other
+#### Other
 
 - Renamed grc alias to not conflict with grc colorization tool
 - Better colors for ruby
 - Add zsh syntax highlighting
 - Added Ctrl-x,Ctrl-l to zsh to insert output of last command
 
-## 2012-04-19
+### 2012-04-19
 
-### Other
+#### Other
 
 - Upgraded to latest osx defaults from @mathiasbynens
 - Remove unused statusline, powerline.vim is used
 - Unmap the arrow keys, use Cmd-Arrow keys instead for window resize
 
-## 2012-04-18
+### 2012-04-18
 
-### Other
+#### Other
 
 - Added Specky for rspec highlighting outside spec/
 
@@ -6453,9 +6487,9 @@ Specky to do this. Specky is not currently enabled in any other
 way (we will still use ruby-vim-conque to run tests, but Specky
 will do highlighting/file detection).
 
-## 2012-04-16
+### 2012-04-16
 
-### Other
+#### Other
 
 - Upgraded vim-ruby-conque with nice j/k/n/p/f/q keybindings
 - Upgraded vim-ruby-conque
@@ -6467,15 +6501,15 @@ will do highlighting/file detection).
 - Updated custom zsh paths in README. Fixes #87.
 - Remove imagemagick from instructions, not needed
 
-## 2012-04-15
+### 2012-04-15
 
-### Other
+#### Other
 
 - Upgraded plugins
 
-## 2012-04-14
+### 2012-04-14
 
-### Other
+#### Other
 
 - Highlighting for zsh scripts
 - Open NERDTree on startup
@@ -6484,17 +6518,17 @@ will do highlighting/file detection).
 Use .yadr/custom/zsh/before if you want your own list of plugins.
 - Added `,cn` to copy name of current file into system clipboard
 
-## 2012-04-11
+### 2012-04-11
 
-### Other
+#### Other
 
 - Merge pull request #86 from Omer/master
 
 Incorrect PATH to Google Chrome's Custom CSS.
 
-## 2012-04-10
+### 2012-04-10
 
-### Other
+#### Other
 
 - Incorrect PATH to Google Chrome's Custom CSS.
 
@@ -6505,9 +6539,9 @@ On the way:
 - Created a symlink instead of copying the stylesheet.
 - Added back timcharper-textile as a submodule
 
-## 2012-04-07
+### 2012-04-07
 
-### Other
+#### Other
 
 - Deleted timcharper-textile
 - Upgraded plugins
@@ -6515,23 +6549,23 @@ On the way:
 
 Adds missing ignore = dirty to .gitmodules
 
-## 2012-04-06
+### 2012-04-06
 
-### Other
+#### Other
 
 - Adds missing ignore dirty.
 
-## 2012-04-07
+### 2012-04-07
 
-### Other
+#### Other
 
 - Merge pull request #82 from markcornick/fix_gitignore
 
 Fix excludes file in gitconfig
 
-## 2012-04-06
+### 2012-04-06
 
-### Other
+#### Other
 
 - Fix excludes file in gitconfig
 
@@ -6544,9 +6578,9 @@ kylewest zsh theme with vi insert/command mode indicator
 - Added my theme.
 - Made skwp theme safe for those without rvm. [fixes #80]
 
-## 2012-04-05
+### 2012-04-05
 
-### Other
+#### Other
 
 - Load zsh customizations from custom/zsh/before/* and custom/zsh/after/* instead of filename globbing [Close #79]
 
@@ -6569,23 +6603,23 @@ Docs typo fix
 * kylewest/symlinks:
   Removed symlinks.
 
-## 2012-04-02
+### 2012-04-02
 
-### Other
+#### Other
 
 - Removed symlinks.
 
-## 2012-04-04
+### 2012-04-04
 
-### Other
+#### Other
 
 - Added ',hi' to see the current highlight group
 - Remove VimBookmarking, not working, not used
 - Syntax highlighting for textile
 
-## 2012-04-02
+### 2012-04-02
 
-### Other
+#### Other
 
 - Fix overzealous wildignore causing 'blog' directory to disappear [Close #70]
 - Add change-inside-surroundings plugin [Close #68]
@@ -6617,28 +6651,28 @@ right brace to make everything work properly.
   adding sample zsh configs.
   added directories and code for custom zsh configuration.
 
-## 2012-03-23
+### 2012-03-23
 
-### Other
+#### Other
 
 - Documentation for customizing ZSH.
 - Merged upstream/master.
 
-## 2012-03-22
+### 2012-03-22
 
-### Other
+#### Other
 
 - Only init fasd if it is installed.
 
-## 2012-03-21
+### 2012-03-21
 
-### Other
+#### Other
 
 - Merge master branch.
 
-## 2012-03-01
+### 2012-03-01
 
-### Other
+#### Other
 
 - Merge master
 - Removed brew and github plugins.
@@ -6647,9 +6681,9 @@ ZSH was becoming slow. Research suggested these plugins were to blame.
 
 http://superuser.com/questions/236953/zsh-starts-incredibly-slowly
 
-## 2012-01-31
+### 2012-01-31
 
-### Other
+#### Other
 
 - Updated .gitignore for new zsh paths.
 - Simplifying paths for zsh customization.
@@ -6664,48 +6698,48 @@ http://superuser.com/questions/236953/zsh-starts-incredibly-slowly
 - Adding sample zsh configs.
 - Added directories and code for custom zsh configuration.
 
-## 2012-04-01
+### 2012-04-01
 
-### Other
+#### Other
 
 - Replaced Extradite with gitv. Use :gitv
 
  * For optimal functionality, remove module:
    `rm -rf .yadr/vim/bundle/int3-vim-extradite`
 
-## 2012-03-29
+### 2012-03-29
 
-### Other
+#### Other
 
 - Added ,gcf - git grep references to current file
 
-## 2012-03-22
+### 2012-03-22
 
-### Other
+#### Other
 
 - Added zsh skwp.theme to installer, so we don't rely on my zsh fork anymore
 
-## 2012-03-20
+### 2012-03-20
 
-### Other
+#### Other
 
 - Switched to skwp/vim-conque to replace rson/vim-conque for solarized support
 
-## 2012-03-19
+### 2012-03-19
 
-### Other
+#### Other
 
 - Added fasd for quick filesystem navigation
 
-## 2012-03-15
+### 2012-03-15
 
-### Other
+#### Other
 
 - Upgraded plugins
 
-## 2012-03-14
+### 2012-03-14
 
-### Other
+#### Other
 
 - Merge pull request #54 from taybin/snippets_update
 
@@ -6716,9 +6750,9 @@ Update snippets to a more modern plugin from @garbas and @honza
 - with dependencies tlib and vim-addon-mw-utils
 - Remove older, unsupported snipmate and snippets
 
-## 2012-03-13
+### 2012-03-13
 
-### Other
+#### Other
 
 - Update README.md
 - Updated powerline to use full path since Rails filenames are not always unique
@@ -6745,9 +6779,9 @@ add camelcasemotion with mappings to B, W, and E instead of ,b ,w and ,e
   whitespace deletion.
 - Add set visuabell. [Close #49]
 
-## 2012-03-12
+### 2012-03-12
 
-### Other
+#### Other
 
 - Merge pull request #47 from maletor/master
 
@@ -6759,9 +6793,9 @@ History substring search and other useful plugins.
 - Ignore images in wildignore
 - Latest version of skwp solarized powerline theme
 
-## 2012-03-09
+### 2012-03-09
 
-### Other
+#### Other
 
 - Better wildignore for rails projects
 - Added Arpeggio plugin for key chord combos and Filesystem      Size   Used  Avail Capacity  Mounted on
@@ -6779,22 +6813,22 @@ map auto_home    0Bi    0Bi    0Bi   100%    /home
 - Upgraded powerline and solarized to produce a solarized powerline
 - Changed conflicting ,cc keymap to ,vc (execute vim command)
 
-## 2012-03-08
+### 2012-03-08
 
-### Other
+#### Other
 
 - Added + and - for resizing vertical windows
 
-## 2012-03-09
+### 2012-03-09
 
-### Other
+#### Other
 
 - Replaced vim-rspec with vim-ruby-conque bindings
 - Removed unused file
 
-## 2012-03-08
+### 2012-03-08
 
-### Other
+#### Other
 
 - Tweaks to skwp powerline theme
 - Integrate vim-powerline with custom skwp theme
@@ -6803,17 +6837,17 @@ map auto_home    0Bi    0Bi    0Bi   100%    /home
 - Updated README with keymap debugging info
 - Upgraded ctrlp
 
-## 2012-03-07
+### 2012-03-07
 
-### Other
+#### Other
 
 - Upgrdae fugitive and solarized
 - Added ,gf - go to file in vertical split
 - Better colors for manpage search as suggested by @irrationalfab
 
-## 2012-03-06
+### 2012-03-06
 
-### Other
+#### Other
 
 - Remove semicolon mapping; semicolon is used to repeat last find command
 - Add support for ~/.vimrc.after
@@ -6824,9 +6858,9 @@ Less Colors for Man Pages
 - Replace showmarks due to deleted repo by @garbas [Close #39]
 - Upgraded syntastic; Removed javaScriptLint plugin - replaced with syntastic
 
-## 2012-02-28
+### 2012-02-28
 
-### Other
+#### Other
 
 - Compatibility with latest pry/coderay
 - Explicitly load plugin files to ensure all keybindings are loaded [Close #24]
@@ -6835,40 +6869,40 @@ Less Colors for Man Pages
 
 Persistent Undo for CLI vim. MacVim is now required to come from brew.
 
-## 2012-02-23
+### 2012-02-23
 
-### Other
+#### Other
 
 - Persistent undo for cli vim.
 
 Also had to create the backups directory, not sure where to do that.
 
-## 2012-02-28
+### 2012-02-28
 
-### Other
+#### Other
 
 - Merge pull request #31 from bastnic/patch-1
 
 Change gitignore_global to yadr one
 
-## 2012-02-25
+### 2012-02-25
 
-### Other
+#### Other
 
 - Change gitignore_global to yadr one
 
-## 2012-02-28
+### 2012-02-28
 
-### Other
+#### Other
 
 - Merge pull request #33 from maletor/patch-2
 
 Update chrome/install.sh
 - Update chrome/install.sh
 
-## 2012-02-24
+### 2012-02-24
 
-### Other
+#### Other
 
 - Merge pull request #29 from maletor/patch-1
 
@@ -6876,21 +6910,21 @@ Add homebrew path
 - Add homebrew path
 - Changed html escape and unescape mappings to ,he and ,hu [Closes #27]
 
-## 2012-02-10
+### 2012-02-10
 
-### Other
+#### Other
 
 - ,z and ,x bindings to move back and forth through buffers
 
-## 2012-02-07
+### 2012-02-07
 
-### Other
+#### Other
 
 - Upgraded ,gcp to really find references to current partial
 
-## 2012-02-05
+### 2012-02-05
 
-### Other
+#### Other
 
 - Updated README re: skwp theme for oh-my-zsh
 - ,gd alias for git-grepping a ruby function definition
@@ -6898,9 +6932,9 @@ Add homebrew path
 - Do not try to source the .secrets file if there is none
 (cherry picked from commit 0002a86a3f4cf5db8c7a623189cd08f8816dfa9d)
 
-## 2012-01-31
+### 2012-01-31
 
-### Other
+#### Other
 
 - Merge pull request #21 from kylewest/yankring
 
@@ -6911,15 +6945,15 @@ yankring history should be hidden.
 Added gemrc with automatic --no-ri --no-rdoc
 - Added gemrc and updated documentation.
 
-## 2012-01-30
+### 2012-01-30
 
-### Other
+#### Other
 
 - Better syntax highlighting for json in haml, vim
 
-## 2012-01-27
+### 2012-01-27
 
-### Other
+#### Other
 
 - Add jslint for warnings on saving javascript file
 - Merge pull request #13 from kylewest/simple-automated-install
@@ -6930,13 +6964,13 @@ Simple automated installer. Use: rake install
 * master:
   Fix ctrlp settings that conflict with Fugitive [closes #18]
 
-## 2012-01-26
+### 2012-01-26
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fixed wrapping keymaps so they don't conflict with tabs.
 
-### Other
+#### Other
 
 - Fix ctrlp settings that conflict with Fugitive [closes #18]
 - Merge master, fixed README conflicts.
@@ -6945,9 +6979,9 @@ Simple automated installer. Use: rake install
 Key bindings for wrapping, etc
 - Is it possible to have tab 0? I don't think so, so I removed the mapping.
 
-## 2012-01-25
+### 2012-01-25
 
-### Other
+#### Other
 
 - Merge branch 'master' into vim-tweaks
 - Simple vimrc customizations. ~/.vimrc.before is loaded before everything. ~/.vimrc.after is loaded after all plugins load.
@@ -6955,9 +6989,9 @@ Key bindings for wrapping, etc
 - Added TODO to have certain file types automatically wrapped.
 - Added function for wrapping text.
 
-## 2012-01-26
+### 2012-01-26
 
-### Other
+#### Other
 
 - Merge pull request #17 from kylewest/master
 
@@ -6966,31 +7000,31 @@ README Formatting
 - More README formatting changes. No content changes.
 - Readme formatting. No content changes.
 
-## 2012-01-25
+### 2012-01-25
 
-### Other
+#### Other
 
 - Added ,F - find tag in vertical split window
 - Improve window killer (Q) - close window if multiple windows to same buffer exist
 
-## 2012-01-26
+### 2012-01-26
 
-### Bug Fixes
+#### Bug Fixes
 
 - Fixed incorrect path for zsh symlinking.
 
-## 2012-01-25
+### 2012-01-25
 
-### Other
+#### Other
 
 - Updated documentation for automated install.
 - YADR can be installed to any directory and everything still works
 - Added Rakefile. it symlinks from the repo to the home directory.
 - Moved gitconfig and ignore to git directory. symlinks created but will be removed at some point.
 
-## 2012-01-24
+### 2012-01-24
 
-### Other
+#### Other
 
 - Updated contributors in README
 - Remap ,, to ,gz - Go Zoom a window
@@ -7026,9 +7060,9 @@ Bugfixes from kylewest: reference to homebrew ctags, cleanup
 - Added ctrl-p file finder, using file search by default
 - Fix commit pointer to skwp-vim-ruby-conque
 
-## 2012-01-23
+### 2012-01-23
 
-### Other
+#### Other
 
 - Better colors
 - Add syntax highlighting for R language
@@ -7037,9 +7071,9 @@ Bugfixes from kylewest: reference to homebrew ctags, cleanup
 - Fix keybindings for fugitive: ,dg = :diffget
 - Added coffeescript and stylus support
 
-## 2012-01-21
+### 2012-01-21
 
-### Other
+#### Other
 
 - Make Ctrl-j and Ctrl-k quick up and down more intelligent in ruby
 - Upgraded skwp-vim-ruby-conque: reuse same window
@@ -7053,9 +7087,9 @@ Bugfixes from kylewest: reference to homebrew ctags, cleanup
 - Hit <ctrl-space> to put spaces around an equals sign
 - Better solarized support for jasmine.vim specs, ruby
 
-## 2012-01-11
+### 2012-01-11
 
-### Other
+#### Other
 
 - Upgraded CommandT to fix BufLeave warnings
 - Compile skwp-CommandT when running yadr-init-plugins
@@ -7064,9 +7098,9 @@ Bugfixes from kylewest: reference to homebrew ctags, cleanup
 - Updated CommandT to latest version
 - Added jasmine.vim for jasmin unit tests
 
-## 2012-01-06
+### 2012-01-06
 
-### Other
+#### Other
 
 - Add Cmd-' and Cmd-" for change inside strings
 - Upgrade skwp-vim-rspec
@@ -7074,47 +7108,47 @@ Bugfixes from kylewest: reference to homebrew ctags, cleanup
 - Upgraded skwp-vim-ruby-conque. Run spec/etc in colorized window, reusing same window
 - Added tabman plugin. Use \mt to manage all tabs and windows.
 
-## 2012-01-04
+### 2012-01-04
 
-### Other
+#### Other
 
 - Fix typo: \gi should be \ig for indent guides
 
-## 2012-01-03
+### 2012-01-03
 
-### Other
+#### Other
 
 - Added rspec pending to xit feature. Use: ,rxit
 
-## 2012-01-02
+### 2012-01-02
 
-### Other
+#### Other
 
 - Added ,ws to strip trailing whitespace in a file
 
-## 2011-12-30
+### 2011-12-30
 
-### Other
+#### Other
 
 - Upgraded nerdtree to latest
 - Added sass-status plugin for viewing sass nesting in status bar
 
-## 2011-12-27
+### 2011-12-27
 
-### Other
+#### Other
 
 - Use ctrl-H ctrl-L for switching tabs to avoid interfering with rspec plugin
 
-## 2011-12-24
+### 2011-12-24
 
-### Other
+#### Other
 
 - Added vim-indent-guides, upgraded skwp-vim-rspec
 - Remove autocmd causing problems. Add mapping for running specs
 
-## 2011-12-23
+### 2011-12-23
 
-### Other
+#### Other
 
 - Jump to common rails dirs with ,jm ,jc ,jv ,jh  etc..using CommandT
 
@@ -7124,9 +7158,9 @@ because CommandT does fuzzy matching. Which means you can hit
 matches much more intelligently than a typical commandT call
 because it's already constrained to what you want.
 
-## 2011-12-22
+### 2011-12-22
 
-### Other
+#### Other
 
 - Changed 'Q' to intelligently close window or kill buffer if it's the last one
 - Merge pull request #5 from durdn/master
@@ -7137,9 +7171,9 @@ Fixed your ,gg GitGrep mapping to close the quotes and put cursor in the middle
 - Better colors for solarized search and cursor
 - Upgraded vim-rspec to latest
 
-## 2011-12-21
+### 2011-12-21
 
-### Other
+#### Other
 
 - Added gt 'git tag' alias
 - Upgraded skwp-vim-rspec
@@ -7149,9 +7183,9 @@ Fixed your ,gg GitGrep mapping to close the quotes and put cursor in the middle
 - Added vim-rspec plugin forked from taq/vim-rspec, with fixes
 - Make conqueTerm behave nicer when running long running commands inside it
 
-## 2011-12-20
+### 2011-12-20
 
-### Other
+#### Other
 
 - Updated README with screenshot
 - Improve visual select color, as well as CommandT
@@ -7161,27 +7195,27 @@ Fixed your ,gg GitGrep mapping to close the quotes and put cursor in the middle
 
 See pryrc comments for how to disable.
 
-## 2011-12-19
+### 2011-12-19
 
-### Other
+#### Other
 
 - Reverted gitconfig to use vim, which seems to work better on Lion
 - Added Extradite git log parser (use :Extradite with a file open)
 - Do not open nerd tree on startup
 - Added :Rfastspec command to find specs in fast_spec dir (or ,lf with lusty juggler)
 
-## 2011-12-18
+### 2011-12-18
 
-### Other
+#### Other
 
 - Added example oh-my-zsh zshrc and instructions
 - Added splitjoin plugin. Use sj and sk to split and join hashes into multiple lines.
 - Don't use vim when committing from terminal
 - Replaced align.vim with tabular.vim because it is more popular
 
-## 2011-12-17
+### 2011-12-17
 
-### Other
+#### Other
 
 - Added align.vim plugin. Use :Align= to align by equals sign.
 - Why YADR is not a Janus fork
@@ -7196,9 +7230,9 @@ making a paste (using standard p character)
 - Added ,oq for open quickfix, and ,q to close it
 - Added gplr git pull --rebase alias
 
-## 2011-12-16
+### 2011-12-16
 
-### Other
+#### Other
 
 - Added pre-alpha release note
 - Added textxobj plugins for more awesome 'nouns'
@@ -7225,17 +7259,17 @@ be automatic. The text will end up in your screen.
 - Keybindings ,rt for opening a Ruby Test (spec) in a split and ,n for NerdTree
 - Fix neocompletion with ruby
 
-## 2011-12-15
+### 2011-12-15
 
-### Other
+#### Other
 
 - Added pry! abbreviation for pry debugging line
 - Mvim from MacVim build 63
 - Ack, sudo plugins. Removed vim-ruby-debugger because it's not working cleanly
 
-## 2011-12-13
+### 2011-12-13
 
-### Other
+#### Other
 
 - Improve status line colors (solarized)
 - Improved method listing colors in pry
@@ -7250,24 +7284,24 @@ Added many convenience mappings for LustyJuggler such as
 - Added lastpos, unimpaired, vim-git plugins
 - Breaking vimrc apart into individual settings files in vim/plugin/settings
 
-## 2011-12-11
+### 2011-12-11
 
-### Other
+#### Other
 
 - Updated README with latest keymap
 - Better key mappings for gitgrep which don't override standard behavior
 
-## 2011-12-09
+### 2011-12-09
 
-### Other
+#### Other
 
 - CommandT auto compiled on yadr init-plugins
 - Updated subproject with file header
 - Extracted vim-git-grep-rails-partial plugin
 
-## 2011-12-08
+### 2011-12-08
 
-### Other
+#### Other
 
 - Added Command-T with ,t mapping (although I prefer PeepOpen)
 - Removed bufexplorer, updated readme
@@ -7284,9 +7318,9 @@ Added many convenience mappings for LustyJuggler such as
 - Adding 'yadr' command for managing plugins (wip)
 - Deleted incorrectly cached module
 
-## 2011-12-07
+### 2011-12-07
 
-### Other
+#### Other
 
 - Updated solarized submodule to latest
 - Changed gitconfig to use vim again..vi reports errors on exit, causing problems
@@ -7327,9 +7361,9 @@ Added many convenience mappings for LustyJuggler such as
 - Removed all old bash cruft, supporting only zsh now. Improved README
 - Broke out rspec/ruby conque integration into separate plugin: https://github.com/skwp/vim-ruby-conque
 
-## 2011-12-06
+### 2011-12-06
 
-### Other
+#### Other
 
 - Added pryrc and awesome_print configuration, updated README
 - Removed unused dir
@@ -7339,15 +7373,15 @@ Follows tComment's 'gcc' alias for comment current line.
 - Color cleanup
 - Removed old unused docs
 
-## 2011-12-03
+### 2011-12-03
 
-### Other
+#### Other
 
 - Turn off case insensitive search, change easymotion to use only homerow keys and other nearby keys
 
-## 2011-11-30
+### 2011-11-30
 
-### Other
+#### Other
 
 - Added html escaping script using C-h
 - Apple-k, Apple-K for underscores and dashes
@@ -7356,21 +7390,21 @@ Follows tComment's 'gcc' alias for comment current line.
 - Added ctags files to global gitignore
 - Added a few git aliases
 
-## 2011-11-28
+### 2011-11-28
 
-### Other
+#### Other
 
 - Fix psg alias
 
-## 2011-11-27
+### 2011-11-27
 
-### Other
+#### Other
 
 - Improved git log colors
 
-## 2011-11-24
+### 2011-11-24
 
-### Other
+#### Other
 
 - Removed user info from gitconfig, use env variables
 - Better git log command
@@ -7378,17 +7412,17 @@ Follows tComment's 'gcc' alias for comment current line.
 - Removed alias irb=>pry
 - Added rvm
 
-## 2011-11-23
+### 2011-11-23
 
-### Other
+#### Other
 
 - Improved default git logging to use tree graph mode
 - Moved private info into env variables, cleanup
 - Configuration for zsh
 
-## 2011-11-22
+### 2011-11-22
 
-### Other
+#### Other
 
 - Cleanup paths, remove personal info
 - Added willmorgan git helper scripts in bin/willmorgan
@@ -7397,16 +7431,16 @@ Follows tComment's 'gcc' alias for comment current line.
 
 (changed M to \m for show marks)
 
-## 2011-11-21
+### 2011-11-21
 
-### Other
+#### Other
 
 - Aliases for git reset
 - Fix window moving commands conflicting with M (show marks)
 
-## 2011-11-18
+### 2011-11-18
 
-### Other
+#### Other
 
 - Fix submodule path
 - Added vim-colors-solarized submodule
@@ -7417,9 +7451,9 @@ Follows tComment's 'gcc' alias for comment current line.
 - Trying to fix submodule situation
 - Keybindings from ttscoff
 
-## 2011-11-17
+### 2011-11-17
 
-### Other
+#### Other
 
 - Readme cleanup
 - Updated readme
