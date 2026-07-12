@@ -209,6 +209,8 @@
     /.config/git/
     {{-   $file }}
     {{- end }}
+[includeIf "gitdir:~/.yadr/**"]
+    path = .gitconfig.yadr
 
 {{- /*
  vim:ft=gitconfig:

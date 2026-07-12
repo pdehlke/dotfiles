@@ -1,0 +1,15 @@
+# vim:ft=gitconfig:
+#
+# YADR is single developer (me); main and feature branches basically never diverge
+# before merges. This means there's never actually a merge commit, because
+# git just fastforwards the HEAD pointer. In turn, this means that the
+# release action never sees a merge commit and never increments the release
+# version.
+#
+# Thus we force git to never do fastforward merges.
+#
+# This is really suboptimal for most repos, so we scope it to just .yadr in
+# ${HOME}/.gitconfig
+[merge]
+  ff = false
+
