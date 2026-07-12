@@ -1,0 +1,39 @@
+{
+  "carapace": {
+    "Value": "#839496",
+    "Description": "#586e75",
+    "Error": "bold #dc322f",
+    "Usage": "#586e75",
+
+    "KeywordAmbiguous": "#b58900",
+    "KeywordNegative": "#dc322f",
+    "KeywordPositive": "#859900",
+    "KeywordUnknown": "dim #657b83",
+
+    "LogLevelTrace": "#268bd2",
+    "LogLevelDebug": "dim #586e75",
+    "LogLevelInfo": "#859900",
+    "LogLevelWarning": "#b58900",
+    "LogLevelError": "#d33682",
+    "LogLevelCritical": "#dc322f",
+    "LogLevelFatal": "#2aa198",
+
+    "Highlight1": "#268bd2",
+    "Highlight2": "#b58900",
+    "Highlight3": "#d33682",
+    "Highlight4": "#2aa198",
+    "Highlight5": "#859900",
+    "Highlight6": "dim #268bd2",
+    "Highlight7": "dim #b58900",
+    "Highlight8": "dim #d33682",
+    "Highlight9": "dim #2aa198",
+    "Highlight10": "dim #859900",
+    "Highlight11": "bold",
+    "Highlight12": "dim bold",
+
+    "FlagArg": "#268bd2",
+    "FlagMultiArg": "#d33682",
+    "FlagNoArg": "#839496",
+    "FlagOptArg": "#b58900"
+  }
+}
