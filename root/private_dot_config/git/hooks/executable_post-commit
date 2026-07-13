@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Chain to any project-local post-commit hook that predates this global one.
+# core.hooksPath replaces .git/hooks entirely, so local hooks won't run
+# unless we call them explicitly.
+local_hook="$(git rev-parse --git-dir)/hooks/post-commit"
+if [[ -x "$local_hook" ]]; then
+	"$local_hook"
+fi
+
+# ctags is a nice-to-have, not a gate: skip silently if missing rather than
+# warning on every commit in every repo on the machine (this hook is global).
+command -v ctags &>/dev/null || exit 0
+
+git_dir="$(git rev-parse --git-dir)"
+toplevel="$(git rev-parse --show-toplevel)"
+
+# Regenerate in the background so large trees never slow down `git commit`
+# returning control to the shell.
+ctags --tag-relative=yes --exclude=.git --exclude=node_modules \
+	-Rf "$git_dir/tags" "$toplevel" &>/dev/null &
+disown

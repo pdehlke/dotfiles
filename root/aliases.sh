@@ -112,6 +112,7 @@ alias gcim='git commit -m'
 alias gci='git commit'
 alias gco='git checkout'
 alias gcp='git cherry-pick'
+alias gpr='git pr' # checkout someone else's PR locally (git-extras)
 alias ga='git add -A'
 alias gap='git add -p'
 alias guns='git reset HEAD'
@@ -146,6 +147,7 @@ alias gplr='git pull --rebase'
 alias gps='git push'
 alias gpsh='git push -u origin `git rev-parse --abbrev-ref HEAD`'
 alias gnb='git checkout -b' # new branch aka checkout -b
+alias gcb='git create-branch -r' # new branch + remote tracking in one step (git-extras)
 alias grs='git reset'
 alias grsh='git reset --hard'
 alias gcln='git clean'
@@ -158,6 +160,7 @@ alias gt='git tag -n'
 alias gbg='git bisect good'
 alias gbb='git bisect bad'
 alias gdmb='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias gdsb='git delete-squashed-branches' # clean up squash-merged branches gdmb can't see (git-extras)
 
 # Common shell functions
 alias less='less -r'
@@ -195,6 +198,7 @@ alias ts='tmux new-session -s'
 [ -e "$HOMEBREW_PREFIX/etc/grc.zsh" ] && source "$HOMEBREW_PREFIX/etc/grc.zsh"
 alias weather='http --body "wttr.in?format=2"'
 alias cb='git branch --sort=-committerdate | peco --prompt "Checkout>" | xargs git checkout'
+alias db='git branch --sort=-committerdate | grep -v "\*" | peco --prompt "Delete>" | xargs -n 1 git delete-branch'
 
 # Taskwarrior aliases
 alias in="task add +in"

@@ -67,6 +67,10 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "FileType" }, {
 -- neo-tree root there when entering a subdir)
 -- vim.opt.autochdir = true
 
+-- Ctrl-] / :tags navigation: pick up the tags file the global git
+-- post-commit hook regenerates into .git/tags after every commit.
+vim.opt.tags:prepend(".git/tags;")
+
 -- 0 shows all symbols in a file (bullet points, codeblock language markers).
 -- obsidian.nvim works better with 1 or 2; kitty needs 2 or codeblocks render
 -- oddly

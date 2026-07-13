@@ -11,6 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN dnf copr enable -y jdxcode/mise && \
   dnf install -y \
   chezmoi \
+  ctags \
   zsh \
   curl \
   wget \
@@ -23,7 +24,8 @@ RUN dnf copr enable -y jdxcode/mise && \
   zoxide \
   gcc \
   make \
-  git && \
+  git \
+  git-extras && \
   dnf clean all
 
 RUN groupadd yadr && \

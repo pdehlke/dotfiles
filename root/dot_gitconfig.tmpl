@@ -56,6 +56,10 @@
   co = checkout                     # checkout
   nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
 
+  # checkout someone else's PR locally, via git-extras' git-pr (fetches
+  # refs/pull/<n>/head, no gh CLI or API token needed for public repos)
+  co-upstream-pr = pr
+
   # cherry-pick
   cp = cherry-pick -x               # grab a change from a branch
 

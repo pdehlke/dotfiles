@@ -43,8 +43,6 @@
   - [ZSH](#zsh)
     - [Aliases](#aliases)
     - [Dotfiles management aliases](#dotfiles-management-aliases)
-  - [Git customizations](#git-customizations)
-    - [Secret scanning with gitleaks](#secret-scanning-with-gitleaks)
   - [Myrepos framework configuration](#myrepos-framework-configuration)
   - [SSH agent and identities](#ssh-agent-and-identities)
   - [Developer experience enhancements](#developer-experience-enhancements)
@@ -56,6 +54,11 @@
     - [Tmux configuration](#tmux-configuration)
     - [Vimization of everything](#vimization-of-everything)
     - [Image diffs: spaceman-diff](#image-diffs-spaceman-diff)
+    - [Git customizations](#git-customizations)
+      - [Shell aliases](#shell-aliases)
+      - [Git config aliases](#git-config-aliases)
+      - [Secret scanning with gitleaks](#secret-scanning-with-gitleaks)
+      - [Automatic ctags reindexing on commit](#automatic-ctags-reindexing-on-commit)
   - [Editor configurations](#editor-configurations)
     - [A complete neovim IDE based on LazyVim](#a-complete-neovim-ide-based-on-lazyvim)
     - [Classic vim](#classic-vim)
@@ -295,11 +298,13 @@ first in your $PATH:
 - coreutils
 - chezmoi
 - direnv
+- git-extras
 - mise
 - vim
 - neovim
 - peco
 - tmux
+- universal-ctags
 - zoxide
 - zsh-completions
 - 1password
@@ -368,41 +373,6 @@ please submit a PR.
 | `czD`                             | chezmoi (D)ata        | list chezmoi variables, useful for templating                                |
 | `czm file(s)`                     | chezmoi (m)erge       | three-way merge between _destination_, _source state_ and _target state_     |
 
-### Git customizations
-
-YADR will take over your `~/.gitconfig`, so if you want to store your usernames,
-please put them into `~/.gitconfig.user`
-
-It is recommended to use this file to set your user info; the first time you
-install it, YADR will ask you for the name and email address you want to use on
-commits. Alternately, you can set the appropriate environment variables in your
-`~/.secrets`.
-
-- `git l` or `gl` - a much more usable git log
-- `git b` or `gb` - a list of branches with summary of last commit
-- `git r` - a list of remotes with info
-- `git t` or `gt` - a list of tags with info
-- `git nb` or `gnb` - a (n)ew (b)ranch - like checkout -b
-- `git cp` or `gcp` - cherry-pick -x (showing what was cherrypicked)
-- `git simple` - a clean format for creating changelogs
-- `git recent-branches` - if you forgot what you've been working on
-- `git unstage` / `guns` (remove from index) and `git uncommit` / `gunc` (revert
-  to the time prior to the last commit - dangerous if already pushed) aliases
-- Some sensible default configs, such as improving merge messages, push only
-  pushes the current branch, removing status hints, and using mnemonic prefixes
-  in diff: (i)ndex, (w)ork tree, (c)ommit and (o)bject
-- Slightly improved colors for diff
-- `gdmb` (g)it (d)elete (m)erged (b)ranches - Deletes all branches already
-  merged on current branch
-
-#### Secret scanning with gitleaks
-
-The gitconfig sets a global `core.hooksPath` pointing at `~/.config/git/hooks`,
-where a pre-commit hook runs [gitleaks](https://github.com/gitleaks/gitleaks)
-against your staged changes. **Every commit in every repo gets scanned for
-secrets before it lands.** The hook chains to any project-local pre-commit hook
-first, so it plays nice with repos that have their own hooks.
-
 ### Myrepos framework configuration
 
 [Myrepos](https://myrepos.branchable.com/) is a tool to manage all your version
@@ -441,7 +411,8 @@ available to your environment through a dedicated agent. **There is no need to
 store keys on disk any more**, no need to start a standalone agent, and no need
 to add your keys to it. You'll see the default `IdentityAgent` line in
 `${HOME}/.ssh/config`; I very strongly encourage you to use this feature of
-1password.
+1password. If you're olde, crotchety, or just generally a neckbeard, you'll need
+to change that and the value of `SSH_AUTH_SOCK` in `.zsh.after/000_env.zsh`.
 
 ### Developer experience enhancements
 
@@ -568,6 +539,199 @@ search feature in editrc, very useful in irb, postgres command line, and etc.
 
 We include the [`spaceman-diff`](https://github.com/holman/spaceman-diff)
 command. Now you can diff images from the command line.
+
+#### Git customizations
+
+YADR will take over your `~/.gitconfig`. Per-user additions and customizations
+go in `~/.gitconfig.user`, which gets loaded from `.gitconfig` via an [Include]
+directive at the bottom. The first time you install YADR, it will ask you for
+the name and email address you want to use on commits. Alternately, you can set
+the appropriate environment variables in your `~/.secrets`.
+
+Some sensible defaults are set for you too: better merge messages, `push` only
+pushes the current branch, status hints are turned off, and diffs use mnemonic
+prefixes -- (i)ndex, (w)ork tree, (c)ommit, (o)bject -- with slightly improved
+colors. [git-flow](https://github.com/nvie/gitflow) completion is set up in
+[`02_gitflow.zsh`](./root/dot_zsh.after/02_gitflow.zsh).
+
+[git-extras](https://github.com/tj/git-extras) is installed via the `Brewfile`
+and backs several of the aliases below. `pr`, `create-branch`, `delete-branch`,
+and `delete-squashed-branches` are git-extras subcommands, not built-in git --
+they just happen to be invoked the same way (`git <name>`) because git
+dispatches any unrecognized subcommand to a `git-<name>` binary on `$PATH`, and
+that's exactly what git-extras installs.
+
+Aliases live in two places: short `zsh` mnemonics in
+[`aliases.sh`](./root/aliases.sh) (the same file covered in [Aliases](#aliases)
+above -- edit with `ae`, reload with `ar`), and git's own `[alias]` block in
+[`dot_gitconfig.tmpl`](./root/dot_gitconfig.tmpl), invoked as `git <name>`.
+
+##### Shell aliases
+
+| Alias                        | Runs                                                                       | What it does                                                                                                                                   |
+| ---------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `gs`, `gsb`                  | `git status`, `git status --short --branch`                                | Working tree status, full or a compact one-liner with branch name                                                                              |
+| `gstsh`, `gst`, `gsp`, `gsa` | `git stash`, `git stash pop`, `git stash apply`                            | Stash changes, then pop (remove from stash) or apply (keep in stash) them back                                                                 |
+| `gsh`, `gshw`, `gshow`       | `git show`                                                                 | Show a commit (three names, same command)                                                                                                      |
+| `gi`                         | `vim .gitignore`                                                           | Jump straight to editing `.gitignore`                                                                                                          |
+| `gcm`, `gcim`                | `git commit -m`                                                            | Commit with an inline message                                                                                                                  |
+| `gci`                        | `git commit`                                                               | Commit (opens `$EDITOR` for the message)                                                                                                       |
+| `gco`, `co`                  | `git checkout`                                                             | Switch branches or restore files                                                                                                               |
+| `gcp`                        | `git cherry-pick`                                                          | Cherry-pick a commit                                                                                                                           |
+| `gpr`                        | `git pr`                                                                   | **New.** Checkout someone else's PR locally (git-extras) -- short form of `co-upstream-pr` below                                               |
+| `ga`, `gap`                  | `git add -A`, `git add -p`                                                 | Stage everything, or stage hunk-by-hunk                                                                                                        |
+| `guns`, `gunc`               | `git reset HEAD`, `git reset --soft HEAD^`                                 | Unstage everything, or undo the last commit while keeping its changes staged                                                                   |
+| `gm`, `gms`                  | `git merge`, `git merge --squash`                                          | Merge a branch normally, or squashed into one commit                                                                                           |
+| `gam`                        | `git amend --reset-author`                                                 | Amend the last commit and reset authorship to you (see the `amend` note in the table below)                                                    |
+| `grv`, `grr`, `grad`         | `git remote -v`, `git remote rm`, `git remote add`                         | Inspect, remove, or add a remote                                                                                                               |
+| `gr`, `gra`, `ggrc`, `gbi`   | `git rebase`, `--abort`, `--continue`, `--interactive`                     | Rebase, and its usual companions                                                                                                               |
+| `gl`, `glg`, `glog`          | `git log --graph --date=short`                                             | Graph log with short dates (three names, same command)                                                                                         |
+| `gf`, `gfch`                 | `git fetch`                                                                | Fetch                                                                                                                                          |
+| `gfp`                        | `git fetch --prune`                                                        | Fetch and prune remote-tracking branches that no longer exist                                                                                  |
+| `gfa`                        | `git fetch --all`                                                          | Fetch every remote                                                                                                                             |
+| `gfap`                       | `git fetch --all --prune`                                                  | Fetch every remote, pruned                                                                                                                     |
+| `gd`                         | `git diff`                                                                 | Diff unstaged changes                                                                                                                          |
+| `gdc`, `gds`                 | `git diff --cached -w`, `git diff --staged -w`                             | Diff staged changes, ignoring whitespace (`--cached`/`--staged` are the same flag)                                                             |
+| `gb`                         | `git branch -v`                                                            | List branches with each one's last commit                                                                                                      |
+| `grb`                        | `git recent-branches`                                                      | Branches sorted by last commit date -- what have I been touching lately                                                                        |
+| `gpl`, `gplr`                | `git pull`, `git pull --rebase`                                            | Pull, normally or rebasing                                                                                                                     |
+| `gps`                        | `git push`                                                                 | Push                                                                                                                                           |
+| `gpsh`                       | `` git push -u origin `git rev-parse --abbrev-ref HEAD` ``                 | Push a brand-new branch and set its upstream in one step                                                                                       |
+| `gnb`                        | `git checkout -b`                                                          | New branch                                                                                                                                     |
+| `gcb`                        | `git create-branch -r`                                                     | **New.** New branch with remote tracking already set up (git-extras) -- no separate `gpsh` needed afterward                                    |
+| `grs`, `grsh`                | `git reset`, `git reset --hard`                                            | Reset, softly or hard                                                                                                                          |
+| `gcln`, `gclndf`, `gclndfx`  | `git clean`, `git clean -df`, `git clean -dfx`                             | Remove untracked files, optionally including directories (`-d`) and ignored files (`-x`) -- try `-n` first                                     |
+| `gsm`, `gsmi`, `gsmu`        | `git submodule`, `git submodule init`, `git submodule update`              | Submodule shortcuts                                                                                                                            |
+| `gt`                         | `git tag -n`                                                               | List tags with their annotation text                                                                                                           |
+| `gbg`, `gbb`                 | `git bisect good`, `git bisect bad`                                        | Mark the current commit during a bisect                                                                                                        |
+| `gdmb`                       | `git branch --merged \| grep -v "\*" \| xargs -n 1 git branch -d`          | Delete every local branch already merged into the current one                                                                                  |
+| `gdsb`                       | `git delete-squashed-branches`                                             | **New.** Delete branches that were squash-merged (git-extras) -- catches PRs `gdmb` can't see, since squash merges never show up in `--merged` |
+| `cb`                         | `git branch --sort=-committerdate \| peco \| xargs git checkout`           | Fuzzy-pick a branch (sorted by last commit) via [peco](https://github.com/peco/peco), then check it out                                        |
+| `db`                         | `git branch --sort=-committerdate \| peco \| xargs -n 1 git delete-branch` | **New.** Fuzzy-pick a branch and delete it, locally and on its matching remote (git-extras) -- the delete-side counterpart to `cb`             |
+
+##### Git config aliases
+
+The full `[alias]` block from `~/.gitconfig`, grouped the way the file itself
+groups them:
+
+| Alias                                   | Runs                                                                        | What it does                                                                                                                                                                                                                                                                                                                               |
+| --------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **-- misc info --**                     |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `la`                                    | `git config -l \| grep alias \| cut -c 7-`                                  | List every alias currently configured                                                                                                                                                                                                                                                                                                      |
+| `contributors`                          | `shortlog --summary --numbered --email`                                     | Ranked contributor list                                                                                                                                                                                                                                                                                                                    |
+| `snapshot`                              | stash, then immediately re-apply it                                         | A snapshot of the working tree you can diff against without losing anything                                                                                                                                                                                                                                                                |
+| `snapshots`                             | `stash list --grep snapshot`                                                | List only the stashes `snapshot` created                                                                                                                                                                                                                                                                                                   |
+| `recent-branches`                       | last 15 branches by commit date                                             | Same query the shell's `grb` runs                                                                                                                                                                                                                                                                                                          |
+| **-- branch --**                        |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `b`                                     | `branch -v`                                                                 | List branches, verbose                                                                                                                                                                                                                                                                                                                     |
+| `ren`, `ren-local`, `ren-remote`        | rename a branch, locally and on its remote                                  | `ren-local`/`ren-remote` are the internal helpers `ren` calls                                                                                                                                                                                                                                                                              |
+| `cob`                                   | `checkout -b`                                                               | New branch (identical to `nb` below, and to the shell's `gnb`)                                                                                                                                                                                                                                                                             |
+| **-- commit --**                        |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `c`                                     | `commit -m`                                                                 | Commit with a message                                                                                                                                                                                                                                                                                                                      |
+| `ca`                                    | `commit -am`                                                                | Stage tracked changes and commit with a message                                                                                                                                                                                                                                                                                            |
+| `ci`                                    | `commit`                                                                    | Commit                                                                                                                                                                                                                                                                                                                                     |
+| `cm`                                    | `!git add -A && git commit -m`                                              | Stage everything and commit, in one step                                                                                                                                                                                                                                                                                                   |
+| `save`                                  | `!git add -A && git commit -m 'SAVEPOINT'`                                  | Quick checkpoint commit, meant to be amended or rebased away later                                                                                                                                                                                                                                                                         |
+| `wip`                                   | `!git add -u && git commit -m "WIP"`                                        | Stage already-tracked changes (not new files) and mark them WIP                                                                                                                                                                                                                                                                            |
+| `amend`                                 | `commit -a --amend`                                                         | **Defined twice** in the gitconfig -- first as `commit --amend`, redefined near the bottom as `commit -a --amend`. The later one wins, so `amend` (and the shell's `gam`) auto-stage every tracked change before amending                                                                                                                  |
+| `ammend`                                | `commit --amend`                                                            | Typo-tolerant twin of the _original_ `amend` -- unaffected by the redefinition above, so it does **not** auto-stage                                                                                                                                                                                                                        |
+| `amend-noedit`, `ammend-noedit`         | `commit --amend --no-edit`                                                  | Amend reusing the previous commit message, no editor, no auto-stage                                                                                                                                                                                                                                                                        |
+| **-- checkout --**                      |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `co`                                    | `checkout`                                                                  | Checkout                                                                                                                                                                                                                                                                                                                                   |
+| `nb`                                    | `checkout -b`                                                               | New branch (identical to `cob` above)                                                                                                                                                                                                                                                                                                      |
+| `co-upstream-pr`                        | `pr`                                                                        | **New.** Checkout someone else's PR locally by number, URL, or `remote:number` -- a passthrough to git-extras' `git pr`, which fetches `refs/pull/<n>/head` directly (no `gh` CLI or API token needed for public repos). Also available as `gpr` from the shell; run `git pr clean` (not aliased) to delete the `pr/*` branches it creates |
+| **-- cherry-pick --**                   |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `cp`                                    | `cherry-pick -x`                                                            | Cherry-pick, recording where the commit came from                                                                                                                                                                                                                                                                                          |
+| **-- diff --**                          |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `d`                                     | `diff`                                                                      | Diff unstaged changes                                                                                                                                                                                                                                                                                                                      |
+| `dc`                                    | `diff --cached`                                                             | Diff staged changes                                                                                                                                                                                                                                                                                                                        |
+| `dnp`                                   | `diff --no-prefix`                                                          | Diff without `a/`/`b/` prefixes, so filenames can be copy-pasted straight into an editor                                                                                                                                                                                                                                                   |
+| `last`                                  | `diff HEAD^`                                                                | Diff the most recent commit                                                                                                                                                                                                                                                                                                                |
+| **-- log --**                           |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `l`                                     | `log --graph --date=short`                                                  | Graph log, short dates                                                                                                                                                                                                                                                                                                                     |
+| `changes`                               | log with name-status, colored                                               | Per-file change status -- handy for changelogs                                                                                                                                                                                                                                                                                             |
+| `short`                                 | one-line log                                                                | Hash, relative date, author, colored subject                                                                                                                                                                                                                                                                                               |
+| `simple`                                | `log --pretty=" * %s"`                                                      | Bare bullet-point log, good for pasting into a changelog                                                                                                                                                                                                                                                                                   |
+| `shortnocolor`                          | same as `short`, no ANSI color                                              | Safe to pipe or redirect                                                                                                                                                                                                                                                                                                                   |
+| `filelog`                               | `log -u`                                                                    | Full history (with diffs) of a single file                                                                                                                                                                                                                                                                                                 |
+| `ll`                                    | decorated, `--numstat`                                                      | Per-file insertion/deletion counts                                                                                                                                                                                                                                                                                                         |
+| `ls1`                                   | decorated, no numstat                                                       | Same as `ll` without the stat counts                                                                                                                                                                                                                                                                                                       |
+| `lds`                                   | graph, short date, decorated                                                |                                                                                                                                                                                                                                                                                                                                            |
+| `ls`                                    | decorated, relative date                                                    |                                                                                                                                                                                                                                                                                                                                            |
+| `lc`                                    | `!f() { git ll "$1"^.."$1"; }; f`                                           | Show just the changes introduced by one commit or tag                                                                                                                                                                                                                                                                                      |
+| `lnc`                                   | hash + subject + author, no color                                           | Compact one-liner                                                                                                                                                                                                                                                                                                                          |
+| `le`                                    | `log --oneline --decorate`                                                  | The shortest useful log                                                                                                                                                                                                                                                                                                                    |
+| **-- pull / push --**                   |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `pl`                                    | `pull`                                                                      | Pull                                                                                                                                                                                                                                                                                                                                       |
+| `ps`                                    | `push`                                                                      | Push                                                                                                                                                                                                                                                                                                                                       |
+| **-- rebase --**                        |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `rc`                                    | `rebase --continue`                                                         |                                                                                                                                                                                                                                                                                                                                            |
+| `rs`                                    | `rebase --skip`                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| **-- merge --**                         |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `mt`                                    | `mergetool`                                                                 | Launch the configured merge tool (vimdiff, via fugitive's `:Gvdiffsplit`, see the `[mergetool]` block)                                                                                                                                                                                                                                     |
+| **-- remote --**                        |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `r`                                     | `remote -v`                                                                 | List remotes, verbose                                                                                                                                                                                                                                                                                                                      |
+| **-- reset --**                         |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `unstage`                               | `reset HEAD`                                                                | Remove files from the index, working tree untouched                                                                                                                                                                                                                                                                                        |
+| `uncommit`                              | `reset --soft HEAD^`                                                        | Undo the last commit, leaving its changes staged                                                                                                                                                                                                                                                                                           |
+| **-- stash --**                         |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `ss`, `sl`, `sa`, `sd`                  | `stash`, `stash list`, `stash apply`, `stash drop`                          | Stash, list, apply, or drop                                                                                                                                                                                                                                                                                                                |
+| **-- status --**                        |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `s`, `st`, `stat`                       | `status`                                                                    | Three names, identical command                                                                                                                                                                                                                                                                                                             |
+| `sb`                                    | `status --short --branch`                                                   | Compact status with branch name                                                                                                                                                                                                                                                                                                            |
+| **-- tag --**                           |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `t`                                     | `tag -n`                                                                    | List tags with their annotation text                                                                                                                                                                                                                                                                                                       |
+| **-- svn helpers --**                   |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `svnr`, `svnd`, `svnl`                  | `svn rebase`, `svn dcommit`, `svn log --oneline --show-commit`              | For repos still bridged to Subversion                                                                                                                                                                                                                                                                                                      |
+| **-- remote-aware workflow helpers --** |                                                                             |                                                                                                                                                                                                                                                                                                                                            |
+| `cdef`                                  | checkout the remote's default branch                                        | Whatever it's actually named -- uses `originhead`                                                                                                                                                                                                                                                                                          |
+| `originhead`, `head-branch`, `default`  | print a remote's `HEAD branch` name                                         | `head-branch` and `default` are literally identical (both hardcode `origin`); `originhead` does the same thing but takes an optional remote name argument. Used internally by `cdef`/`up`/`bclean`/`bdone`                                                                                                                                 |
+| `recentb`                               | ahead/behind table of recent branches                                       | A heavier version of `recent-branches`, relative to a reference branch                                                                                                                                                                                                                                                                     |
+| `ec`                                    | `config --global -e`                                                        | Open the global gitconfig for editing                                                                                                                                                                                                                                                                                                      |
+| `up`                                    | switch to the default branch, fetch, pull                                   | Fetches every remote (pruned) first                                                                                                                                                                                                                                                                                                        |
+| `undo`                                  | `reset HEAD~1 --mixed`                                                      | Undo the last commit, unstaging its changes but keeping them in the working tree                                                                                                                                                                                                                                                           |
+| `wipe`                                  | `!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard` | **Careful:** commits a savepoint, then immediately hard-resets it away. The commit only survives in the reflog -- recoverable, but not obvious unless you know to look there                                                                                                                                                               |
+| `bclean`                                | delete branches merged into the default branch                              | Optionally pass a different branch name to compare against                                                                                                                                                                                                                                                                                 |
+| `bdone`                                 | checkout the default branch, `up`, then `bclean`                            | The "I'm finished with this branch" one-liner                                                                                                                                                                                                                                                                                              |
+
+The `default`/`head-branch`/`originhead`/`cdef`/`up`/`bclean`/`bdone` family all
+shell out to `git remote show origin`, which reflects git's cached knowledge of
+the remote's default branch. If a remote's default branch was renamed after you
+cloned (`master` to `main`, say), refresh it with
+`git remote set-head origin -a` before relying on any of these.
+
+##### Secret scanning with gitleaks
+
+The gitconfig sets a global `core.hooksPath` pointing at `~/.config/git/hooks`,
+where a pre-commit hook runs [gitleaks](https://github.com/gitleaks/gitleaks)
+against your staged changes. **Every commit in every repo gets scanned for
+secrets before it lands.** The hook chains to any project-local pre-commit hook
+first, so it plays nice with repos that have their own hooks.
+
+##### Automatic ctags reindexing on commit
+
+A global `post-commit` hook -- same `core.hooksPath` mechanism as the gitleaks
+hook above -- regenerates a [ctags](https://ctags.io/) index after every commit,
+in every repo on the machine:
+
+- [`universal-ctags`](https://github.com/universal-ctags/ctags) is bundled via
+  the `Brewfile`. macOS ships its own ancient BSD `ctags` at `/usr/bin/ctags`,
+  which chokes on the long-option syntax universal-ctags uses; Homebrew's copy
+  takes priority on `$PATH` once installed. On linux systems, you'll want to
+  install `universal-ctags` via your distro's package manager.
+- The hook writes to `.git/tags` rather than a repo-root `tags` file, so there's
+  nothing to `.gitignore` and nothing shows up in `git status` -- `.git/`
+  contents are never tracked.
+- It regenerates in the background (`&` plus `disown`), so a large tree never
+  slows down `git commit` returning control to your shell.
+- If `ctags` isn't installed, the hook silently no-ops -- it's a nice-to-have,
+  not a gate like gitleaks.
+- It chains to any project-local `post-commit` hook first, exactly like the
+  pre-commit hook does.
+- Neovim's `tags` option (in
+  [`lua/config/options.lua`](./root/private_dot_config/nvim/lua/config/options.lua))
+  has `.git/tags;` prepended, so `Ctrl-]` and `:tags` find the regenerated index
+  automatically, no matter which subdirectory of a repo you're editing from.
 
 ### Editor configurations
 

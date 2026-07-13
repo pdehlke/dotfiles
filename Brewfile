@@ -113,6 +113,7 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "tree"
 brew "tree-sitter-cli"
+brew "universal-ctags"
 brew "vim", link: false
 brew "wget"
 brew "yazi"
