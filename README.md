@@ -475,6 +475,20 @@ Two environment variables shape how it behaves:
   function and its `user-commands flow:...` zstyle depend on `_git` staying in
   charge). Everything else is fair game.
 
+`11_carapace.zsh` also pipes `carapace _carapace`'s generated script through
+a `sed` filter before sourcing it. carapace writes its own `list-colors`
+zstyle for every completed command, using zsh's rich match-highlight syntax
+(multiple `=`-separated fields per entry) rather than the simple GNU
+dircolors `code=value` shape. z4h's own fzf-popup colorizer
+(`-z4h-set-list-colors`) only understands the dircolors shape and crashes
+(`bad set of key/value pairs for associative array`) when it reads
+carapace's value back for the same completion context — reproducible on
+both file completion (`ls <TAB>`) and plain subcommand completion (`brew
+<TAB>`, `docker <TAB>`), since both of z4h's completion-rendering paths call
+the same colorizer. The `sed` filter removes just that one `zstyle` call;
+carapace's actual completion candidates are untouched, and z4h falls back to
+coloring them from `LS_COLORS` instead of carapace's own per-match styling.
+
 Styling lives in
 [`root/private_dot_config/carapace/styles.json`](./root/private_dot_config/carapace/styles.json),
 hand-mapped to Solarized Dark using the same hex palette as fzf's
