@@ -45,8 +45,11 @@ if [[ $platform == 'linux' ]]; then
   alias ll='ls -alh --color=auto'
   alias ls='ls --color=auto'
 elif [[ $platform == 'darwin' ]]; then
-  alias ll='/bin/ls -alGhAF'
-  alias ls='/bin/ls -GhAF'
+  # coreutils gnubin puts GNU ls ahead of /bin/ls on $PATH (000_path.zsh),
+  # so --color=auto here honors $LS_COLORS from 06_dircolors.zsh; BSD ls's
+  # -G/$LSCOLORS mechanism does not.
+  alias ll='ls -alhAF --color=auto'
+  alias ls='ls -hAF --color=auto'
 fi
 
 # show me files matching "ls grep"

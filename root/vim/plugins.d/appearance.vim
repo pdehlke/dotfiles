@@ -6,6 +6,9 @@ Plug 'skwp/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'chriskempson/base16-vim'
+" Installed as an option only; solarized stays active (see
+" ~/.vim/settings/after/colorscheme.vim). Try it with :colorscheme catppuccin_mocha
+Plug 'catppuccin/vim'
 
 " Other visual enhancements
 Plug 'godlygeek/CSApprox' " Required for Gblame in terminal vim, Fix gvim only colorscheme on terminals

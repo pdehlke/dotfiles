@@ -37,4 +37,14 @@ return {
             vim.cmd.colorscheme("solarized")
         end,
     },
+    {
+        -- Installed as an option only; solarized stays active above.
+        -- Try it with :colorscheme catppuccin
+        "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = true,
+        opts = {
+            flavour = "mocha",
+        },
+    },
 }
