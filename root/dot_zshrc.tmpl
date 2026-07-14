@@ -94,7 +94,7 @@ export GPG_TTY=$TTY
 z4h source ~/.env.zsh
 z4h source $yadr/aliases.sh
 for config_file ( {{- joinPath .chezmoi.homeDir ".zsh.after/*.zsh" -}} ) z4h source $config_file
-z4h source  {{ joinPath .chezmoi.homeDir ".config/shell/theme.zsh" }}
+z4h source  {{ joinPath .chezmoi.homeDir ".config/p10k/init.zsh" }}
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
