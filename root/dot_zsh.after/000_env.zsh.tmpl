@@ -8,6 +8,7 @@ export BAT_THEME="Solarized (dark)"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#000000,bg=cyan,underline"
 
+
 {{ if eq .chezmoi.os "darwin" -}}
 # Point SSH_AUTH_SOCK at the 1Password SSH agent so tools that talk to the
 # agent directly (ssh-add, git commit signing, etc.) reach it. `ssh` itself
@@ -29,3 +30,6 @@ export yprivate=$HOME/.yadr-private/root
 # (they hardcode it, not via this var), so this just brings XDG-only tools
 # into line.
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# the tmux plugin manager abends in a deeply confusing way if this is not set
+export TMUX_PLUGIN_MANAGER_PATH=${XDG_CONFIG_HOME}/tmux/plugins
