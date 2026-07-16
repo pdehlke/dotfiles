@@ -1,7 +1,7 @@
 return {
     {
         "maxmx03/solarized.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         ---@type solarized.config
         opts = {
@@ -38,13 +38,31 @@ return {
         end,
     },
     {
-        -- Installed as an option only; solarized stays active above.
-        -- Try it with :colorscheme catppuccin
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = true,
+        lazy = false,
+        ---@type CatppuccinOptions
         opts = {
             flavour = "mocha",
+            integrations = {
+                lualine = false,
+            },
+            styles = {
+                comments = { "italic" },
+                types = { "bold" },
+                functions = { "bold" },
+                strings = { "bold" },
+                keywords = { "bold" },
+                variables = { "bold" },
+            },
+            transparent_background = false,
+            custom_highlights = function(colors)
+                return {
+                    SpellBad = { style = { "undercurl" } },
+                    ["@variable.parameter"] = { style = { "bold" } },
+                    ["@constant"] = { style = { "bold" } },
+                }
+            end,
         },
     },
 }

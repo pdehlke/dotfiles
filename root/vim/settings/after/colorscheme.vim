@@ -8,12 +8,12 @@ set termguicolors
 set background=dark
 
 " Status line colorscheme
-let g:lightline.colorscheme='solarized'
+let g:lightline.colorscheme='catppuccin_mocha'
 
 """ Colorscheme
 """ Don't abort if our color scheme is not installed.
 try
-  colorscheme solarized
+  colorscheme catppuccin_mocha
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
