@@ -27,8 +27,6 @@ overlaps.
 .chezmoiversion                      # minimum chezmoi version required
 root/
   .chezmoiignore                     # OS-specific path excludes
-  dot_local/bin/
-    executable_chezmoi-add           # helper for adding encrypted files (see below)
   encrypted_dot_<name>.age           # encrypted managed files
   dot_<name>                         # plain (unencrypted) managed files
   dot_config/...                     # subdirectory structure mirrors $HOME
@@ -72,7 +70,7 @@ On any machine where dotfiles-private will be used:
 
 - `age` installed: `brew install age`
 - `op` CLI installed and signed in: `eval $(op signin)`
-- Public dotfiles repo applied first (deploys `dotfiles-apply` to `~/.local/bin/`)
+- Public dotfiles repo applied first (deploys `dotfiles-apply`, `chezmoi-add`, and `pchezmoi` to `~/.local/bin/`)
 - dotfiles-private cloned to `~/.yadr-private`
 
 ## Creating the age key in 1Password
@@ -144,8 +142,10 @@ fail and the script will exit before chezmoi runs.
 
 ### Encrypted files (secrets)
 
-Use `chezmoi-add` instead of bare `chezmoi add --encrypt`. It sets up the
-ephemeral key environment before calling chezmoi:
+Use `chezmoi-add` instead of bare `chezmoi add --encrypt`. It is deployed by
+the public repo to `~/.local/bin/` and sets up the ephemeral key environment
+before calling chezmoi (via `pchezmoi`, which points chezmoi at the private
+repo):
 
 ```sh
 chezmoi-add ~/.some-secret-file

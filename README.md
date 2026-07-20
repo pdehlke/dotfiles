@@ -214,7 +214,7 @@ dotfiles-apply
 ```
 
 To add a new encrypted file to the private layer, use the `chezmoi-add` helper
-that the private repo deploys.
+that this repo deploys to `~/.local/bin/`.
 
 ### Setting up the private repo
 

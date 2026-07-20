@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+# General chezmoi wrapper for the private dotfiles repo.
+# Usage: pchezmoi <chezmoi-subcommand> [args...]
+#
+# Configures the private repo source dir and age encryption, then
+# delegates to chezmoi. Age identity exists only for the duration
+# of this script in a restricted temp dir.
+#
+# Requires: op CLI installed (brew install 1password-cli); signs in automatically if needed.
+setopt ERR_EXIT NO_UNSET PIPE_FAIL PROMPT_SUBST
+PS4='+(%x:%I): ${funcstack[1]:+${funcstack[1]}(): }'
+
+source "${HOME}/.zsh.after/000_functions.zsh"
+
+if [[ $# -eq 0 ]]; then
+  log FATAL "Usage: $(basename "$0") <chezmoi-subcommand> [args...]"
+fi
+
+if ! command -v op >/dev/null 2>&1; then
+  log FATAL "1Password CLI (op) not found. Install it with: brew install 1password-cli"
+fi
+
+if ! op whoami >/dev/null 2>&1; then
+  log INFO "Not signed in to 1Password, attempting signin..."
+  SIGNIN="$(op signin)" || log FATAL "1Password signin failed. Run 'eval \$(op signin)' manually and retry."
+  eval "${SIGNIN}"
+  if ! op whoami >/dev/null 2>&1; then
+    log FATAL "1Password signin appeared to succeed but session is not active."
+  fi
+  log INFO "Signed in to 1Password."
+fi
+
+SCRATCH="$(mktemp -d)" || log FATAL "mktemp failed"
+chmod 700 "${SCRATCH}"
+if command -v shred >/dev/null 2>&1; then
+  trap 'find "${SCRATCH}" -type f -exec shred -u {} +; rm -rf "${SCRATCH}"' EXIT
+else
+  trap 'rm -rf "${SCRATCH}"' EXIT
+fi
+
+readonly OP_ITEM="op://Private/dotfiles-private age key"
+readonly IDENTITY="${SCRATCH}/age-identity.txt"
+readonly CONFIG="${SCRATCH}/chezmoi-private.yaml"
+readonly PERSISTENT_STATE="${HOME}/.local/state/chezmoi-private/chezmoistate.boltdb"
+
+log INFO "Retrieving age identity from 1Password..."
+op read "${OP_ITEM}/private_key" > "${IDENTITY}" || log FATAL "Failed to retrieve age private key from 1Password"
+chmod 600 "${IDENTITY}"
+
+RECIPIENT="$(op read "${OP_ITEM}/public_key")" || log FATAL "Failed to retrieve age public key from 1Password"
+
+cat > "${CONFIG}" << EOF
+workingTree: "${HOME}/.yadr-private"
+sourceDir: "${HOME}/.yadr-private/root"
+encryption: age
+age:
+  identity: "${IDENTITY}"
+  recipient: "${RECIPIENT}"
+format: yaml
+mode: file
+persistentState: "${PERSISTENT_STATE}"
+EOF
+
+chezmoi --config "${CONFIG}" "${@}"
