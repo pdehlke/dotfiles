@@ -216,6 +216,19 @@ dotfiles-apply
 To add a new encrypted file to the private layer, use the `chezmoi-add` helper
 that this repo deploys to `~/.local/bin/`.
 
+To run any other chezmoi command against the private layer -- `diff`, `cat`,
+`edit`, `apply`, and so on -- use the `pchezmoi` wrapper, also deployed to
+`~/.local/bin/` by this repo. It points chezmoi at the private source dir and
+sets up the ephemeral age key (so `op` must be signed in), then passes its
+arguments straight through:
+
+```sh
+pchezmoi diff              # preview private-layer changes
+pchezmoi edit ~/.netrc     # edit a managed private file
+```
+
+`chezmoi-add` is a thin convenience wrapper over `pchezmoi add --encrypt`.
+
 ### Setting up the private repo
 
 See [docs/dotfiles-private.md](docs/dotfiles-private.md) for full setup
