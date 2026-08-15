@@ -67,7 +67,7 @@ zstyle ':z4h:ssh:*'                   enable 'yes'
 
 # Send these files over to the remote host when connecting over SSH to the
 # enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.zsh.after' '~/.env.zsh'
+zstyle ':z4h:ssh:*' send-extra-files '~/.zsh.after' '~/.env.zsh' '~/.config/mise'
 
 # Start ssh-agent if it's not running
 # See below; we let ohmyzsh handle this because z4h doesn't add identities
@@ -162,6 +162,9 @@ zstyle ':completion:*' users {{ .chezmoi.username }} root
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Set up mise last, so its path doesn't get overwritten
+if ! command -v mise >/dev/null 2>&1; then
+    curl -s https://mise.run 2>/dev/null | sh >/dev/null 2>&1
+fi
 export MISE_DEFAULT_CONFIG_FILENAME=".config/mise.toml"
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
