@@ -64,6 +64,11 @@ zstyle ':z4h:direnv:success' notify 'no'
 # Enable ('yes') or disable ('no') automatic teleportation of z4h over
 # SSH when connecting to a host.
 zstyle ':z4h:ssh:*'                   enable 'yes'
+
+# Send these files over to the remote host when connecting over SSH to the
+# enabled hosts.
+zstyle ':z4h:ssh:*' send-extra-files '~/.zsh.after' '~/.env.zsh'
+
 # Start ssh-agent if it's not running
 # See below; we let ohmyzsh handle this because z4h doesn't add identities
 # zstyle ':z4h:ssh-agent:' start      'no'
@@ -93,7 +98,12 @@ export GPG_TTY=$TTY
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
 z4h source $yadr/aliases.sh
-for config_file ( {{- joinPath .chezmoi.homeDir ".zsh.after/*.zsh" -}} ) z4h source $config_file
+if [[ -d ${HOME}/.zsh.after ]]; then
+  for config_file ( ${HOME}/.zsh.after/*.zsh ) z4h source $config_file
+fi
+# if [[ -d {{ joinPath .chezmoi.homeDir ".zsh.after" }} ]]; then
+#   for config_file ( {{- joinPath .chezmoi.homeDir ".zsh.after/*.zsh" -}} ) z4h source $config_file
+# fi
 z4h source  {{ joinPath .chezmoi.homeDir ".config/p10k/init.zsh" }}
 
 # Use additional Git repositories pulled in with `z4h install`.
