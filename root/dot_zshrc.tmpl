@@ -8,7 +8,8 @@
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 #
 # Don't change. The following determines where YADR is installed.
-export yadr={{ .chezmoi.sourceDir }}
+# export yadr={{ .chezmoi.sourceDir }}
+export yadr=${HOME}/.yadr/root
 
 {{- if eq .chezmoi.os "android" -}}
 # Path to your oh-my-zsh installation.
@@ -67,7 +68,7 @@ zstyle ':z4h:ssh:*'                   enable 'yes'
 
 # Send these files over to the remote host when connecting over SSH to the
 # enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.zsh.after' '~/.env.zsh' '~/.config/mise'
+zstyle ':z4h:ssh:*' send-extra-files '~/.zsh.after' '~/.yadr/root/aliases.sh' '~/.env.zsh' '~/.config/mise'
 
 # Start ssh-agent if it's not running
 # See below; we let ohmyzsh handle this because z4h doesn't add identities
