@@ -33,3 +33,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # the tmux plugin manager abends in a deeply confusing way if this is not set
 export TMUX_PLUGIN_MANAGER_PATH=${XDG_CONFIG_HOME}/tmux/plugins
+
+# Prevents Claude Code from auto-updating in the background
+export DISABLE_AUTOUPDATER=1
+
+# Completely disables all update checks/commands
+export DISABLE_UPDATES=1
+

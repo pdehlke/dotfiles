@@ -1,0 +1,102 @@
+#!/usr/bin/env zsh
+#
+# cleanup_docker - nuke all local Docker state: containers, images, build
+# cache, and volumes. Reclaims disk space taken up by Docker on this machine.
+#
+# This is destructive and irreversible. It removes EVERYTHING, not just
+# dangling/unused objects.
+#
+# Usage: cleanup_docker [-y|--yes] [-n|--dry-run] [-h|--help]
+
+set -euo pipefail
+
+assume_yes=0
+dry_run=0
+
+for arg in "$@"; do
+  case "$arg" in
+    -y|--yes) assume_yes=1 ;;
+    -n|--dry-run) dry_run=1 ;;
+    -h|--help)
+      echo "Usage: cleanup_docker [-y|--yes] [-n|--dry-run]"
+      echo
+      echo "Removes all Docker containers, images, build cache, and volumes."
+      echo "  -y, --yes       skip the confirmation prompt"
+      echo "  -n, --dry-run   show what would be removed without removing it"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $arg" >&2
+      exit 1
+      ;;
+  esac
+done
+
+if command -v tput >/dev/null 2>&1 && [[ -t 1 ]]; then
+  bold=$(tput bold); dim=$(tput dim); red=$(tput setaf 1)
+  green=$(tput setaf 2); yellow=$(tput setaf 3); reset=$(tput sgr0)
+else
+  bold=""; dim=""; red=""; green=""; yellow=""; reset=""
+fi
+
+info() { print -P "${dim}==>${reset} $1" }
+step() { print -P "${bold}${green}==>${reset} $1" }
+warn() { print -P "${yellow}==>${reset} $1" }
+
+if ! command -v docker >/dev/null 2>&1; then
+  print -P "${red}error:${reset} docker not found in PATH" >&2
+  exit 1
+fi
+
+if ! docker info >/dev/null 2>&1; then
+  print -P "${red}error:${reset} docker daemon is not reachable (is it running?)" >&2
+  exit 1
+fi
+
+if (( ! assume_yes && ! dry_run )); then
+  warn "This will remove ALL containers, images, build cache, and volumes."
+  print -n "Continue? [y/N] "
+  read -r reply
+  [[ "$reply" == [yY] ]] || { info "aborted"; exit 1 }
+fi
+
+run() {
+  if (( dry_run )); then
+    print -P "${dim}[dry-run]${reset} $*"
+  else
+    "$@"
+  fi
+}
+
+step "Docker disk usage before cleanup"
+docker system df
+
+step "Removing containers"
+containers=("${(@f)$(docker ps -aq)}")
+if [[ -n "${containers[1]:-}" ]]; then
+  run docker rm -f "${containers[@]}"
+else
+  info "no containers to remove"
+fi
+
+step "Removing images"
+images=("${(@f)$(docker images -aq)}")
+if [[ -n "${images[1]:-}" ]]; then
+  run docker rmi -f "${images[@]}"
+else
+  info "no images to remove"
+fi
+
+step "Pruning buildx cache"
+run docker buildx prune -af
+
+step "Pruning remaining system objects and volumes"
+run docker system prune -af --volumes
+
+if (( ! dry_run )); then
+  step "Docker disk usage after cleanup"
+  docker system df
+  step "${green}done${reset}"
+else
+  step "${yellow}dry run complete, nothing was removed${reset}"
+fi
