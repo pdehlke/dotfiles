@@ -187,7 +187,11 @@ alias path='echo $PATH | tr : "\n"'
 
 # alias listening="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
-alias cat=bat
+if $(command -v bat >/dev/null 2>&1); then
+  alias cat=bat
+elif $(command -v batcat > /dev/null 2>&1); then
+  alias cat=batcat
+fi
 alias pfm=npm
 alias history='history -i'
 
